@@ -1,9 +1,9 @@
-import { Navbar } from "@/components/Navbar/Navbar";
+import { Layout } from "@/components/layout/Layout";
 
 const Home = () => {
   return (
     <div>
-      <Navbar/>
+      <Layout />
     </div>
   );
 }
