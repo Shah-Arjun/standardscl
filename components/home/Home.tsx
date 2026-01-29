@@ -1,13 +1,13 @@
 import { Layout } from "../layout/SiteLayout";
 import { AcademicsSection } from "./AcademicsSection";
 import { ActivitiesSection } from "./ActivitiesSection";
+import { AdmissionCTA } from "./AdmissionCTA";
 import { FacilitiesSection } from "./FacilitiesSection";
 import { GradesSection } from "./GradesSection";
 import { HeroSection } from "./HeroSection";
+import { PrincipalMessage } from "./PrincipalMessage";
 import TeachersSection from "./TeachersSection";
 import { TestimonialsSection } from "./TestimonialsSection";
-// import { PrincipalMessage } from "@/components/home/PrincipalMessage";
-// import { AdmissionCTA } from "@/components/home/AdmissionCTA";
 
 
 
@@ -21,9 +21,8 @@ const Index = () => {
       <TestimonialsSection />
       <ActivitiesSection />
       <TeachersSection />
-      {/*
       <PrincipalMessage />
-      <AdmissionCTA /> */}
+      <AdmissionCTA />
     </Layout>
   );
 };
