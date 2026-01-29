@@ -1,8 +1,8 @@
 import { Layout } from "../layout/SiteLayout";
+import { AcademicsSection } from "./AcademicsSection";
+import { FacilitiesSection } from "./FacilitiesSection";
 import { GradesSection } from "./GradesSection";
 import { HeroSection } from "./HeroSection";
-// import { FacilitiesSection } from "@/components/home/FacilitiesSection";
-// import { AcademicsSection } from "@/components/home/AcademicsSection";
 // import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 // import { PrincipalMessage } from "@/components/home/PrincipalMessage";
 // import { ActivitiesSection } from "@/components/home/ActivitiesSection";
@@ -14,8 +14,9 @@ const Index = () => {
     <Layout>
       <HeroSection />
       <GradesSection />
-      {/*<AcademicsSection />
+      <AcademicsSection />
       <FacilitiesSection />
+      {/*
       <TestimonialsSection />
       <ActivitiesSection />
       <TeachersSection />
