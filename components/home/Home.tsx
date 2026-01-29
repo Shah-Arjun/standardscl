@@ -3,7 +3,7 @@ import { AcademicsSection } from "./AcademicsSection";
 import { FacilitiesSection } from "./FacilitiesSection";
 import { GradesSection } from "./GradesSection";
 import { HeroSection } from "./HeroSection";
-// import { TestimonialsSection } from "@/components/home/TestimonialsSection";
+import { TestimonialsSection } from "./TestimonialsSection";
 // import { PrincipalMessage } from "@/components/home/PrincipalMessage";
 // import { ActivitiesSection } from "@/components/home/ActivitiesSection";
 // import { AdmissionCTA } from "@/components/home/AdmissionCTA";
@@ -16,8 +16,8 @@ const Index = () => {
       <GradesSection />
       <AcademicsSection />
       <FacilitiesSection />
-      {/*
       <TestimonialsSection />
+      {/*
       <ActivitiesSection />
       <TeachersSection />
       <PrincipalMessage />
