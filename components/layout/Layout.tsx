@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Navbar } from "./Navbar";
-//import { NoticeMarquee } from "../shared/NoticeMarquee";
+import { NoticeMarquee } from "../shared/NoticeMarquee";
 import { Footer } from "./Footer";
 import { FloatingNotice } from "../shared/FloatingNotice";
 
@@ -12,7 +12,7 @@ export const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      {/* <NoticeMarquee /> */}
+      <NoticeMarquee />
       <main className="flex-1">{children}</main>
       <Footer />
       <FloatingNotice />
