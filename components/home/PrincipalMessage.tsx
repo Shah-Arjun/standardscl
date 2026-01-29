@@ -1,11 +1,9 @@
-"use client"
+"use client";
 
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import principalImage from "@/public/principal-illustration.jpg";
 import Image from "next/image";
-
-
 
 export const PrincipalMessage = () => {
   return (
@@ -48,32 +46,35 @@ export const PrincipalMessage = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <h2 className="font-heading font-bold text-3xl md:text-4xl text-foreground mb-6">
-              Message from the <span className="text-gradient-golden">Principal</span>
+              Message from the{" "}
+              <span className="text-gradient-golden">Principal</span>
             </h2>
 
             <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <p>Dear Parents and Students,</p>
               <p>
-                Dear Parents and Students,
-              </p>
-              <p>
-                Welcome to Standard Secondary Boarding School! For over three decades,
-                we have been committed to nurturing young minds and building future
-                leaders. Our school stands as a beacon of quality education in
-                Sunsari District.
+                Welcome to Standard Secondary Boarding School! For over three
+                decades, we have been committed to nurturing young minds and
+                building future leaders. Our school stands as a beacon of
+                quality education in Sunsari District.
               </p>
               <p>
                 We believe that every child is unique and has the potential to
-                achieve greatness. Our dedicated team of educators works tirelessly
-                to provide not just academic excellence, but holistic development
-                that includes character building, sports, and cultural activities.
+                achieve greatness. Our dedicated team of educators works
+                tirelessly to provide not just academic excellence, but holistic
+                development that includes character building, sports, and
+                cultural activities.
               </p>
               <p>
-                Our motto <strong className="text-primary">"Learning for Life"</strong> reflects
-                our commitment to preparing students not just for examinations,
-                but for the challenges and opportunities life presents.
+                Our motto{" "}
+                <strong className="text-primary">"Learning for Life"</strong>{" "}
+                reflects our commitment to preparing students not just for
+                examinations, but for the challenges and opportunities life
+                presents.
               </p>
               <p className="font-semibold text-foreground">
-                I invite you to join our growing family of learners and achievers.
+                I invite you to join our growing family of learners and
+                achievers.
               </p>
             </div>
 

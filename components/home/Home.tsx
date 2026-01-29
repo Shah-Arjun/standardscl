@@ -1,4 +1,4 @@
-import { Layout } from "../layout/SiteLayout";
+import { SiteLayout } from "../layout/SiteLayout";
 import { AcademicsSection } from "./AcademicsSection";
 import { ActivitiesSection } from "./ActivitiesSection";
 import { AdmissionCTA } from "./AdmissionCTA";
@@ -13,7 +13,7 @@ import { TestimonialsSection } from "./TestimonialsSection";
 
 const Index = () => {
   return (
-    <Layout>
+    <SiteLayout>
       <HeroSection />
       <GradesSection />
       <AcademicsSection />
@@ -23,7 +23,7 @@ const Index = () => {
       <TeachersSection />
       <PrincipalMessage />
       <AdmissionCTA />
-    </Layout>
+    </SiteLayout>
   );
 };
 
