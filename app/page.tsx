@@ -1,11 +1,12 @@
-import { Layout } from "@/components/layout/Layout";
+// home page
+import Home from "@/components/home/Home";
 
-const Home = () => {
+const Page = () => {
   return (
     <div>
-      <Layout />
+      <Home />
     </div>
   );
 }
 
-export default Home;
+export default Page;
