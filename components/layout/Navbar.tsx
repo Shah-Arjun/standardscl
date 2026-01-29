@@ -20,7 +20,7 @@ const navLinks = [
     path: "/academics",
     children: [
       { name: "Overview", path: "/academics" },
-      { name: "Grades", path: "/grades" },
+      { name: "Grades", path: "/academics/grades" },
     ],
   },
   { name: "Admissions", path: "/admissions" },
@@ -53,7 +53,10 @@ export const Navbar = () => {
               <Phone className="w-4 h-4" />
               <span className="hidden sm:inline">9800000000</span>
             </a>
-            <a href="mailto:standard@gmail.com" className="flex items-center gap-2">
+            <a
+              href="mailto:standard@gmail.com"
+              className="flex items-center gap-2"
+            >
               <Mail className="w-4 h-4" />
               <span className="hidden sm:inline">standard@gmail.com</span>
             </a>
@@ -82,9 +85,7 @@ export const Navbar = () => {
               </div>
               <div className="hidden md:block">
                 <h1 className="font-bold text-lg">Standard Secondary</h1>
-                <p className="text-xs text-muted-foreground">
-                  Boarding School
-                </p>
+                <p className="text-xs text-muted-foreground">Boarding School</p>
               </div>
             </Link>
 
@@ -118,14 +119,12 @@ export const Navbar = () => {
                     key={link.name}
                     href={link.path}
                     className={`px-4 py-2 rounded-lg ${
-                      isActive(link.path)
-                        ? "text-primary"
-                        : "text-foreground"
+                      isActive(link.path) ? "text-primary" : "text-foreground"
                     }`}
                   >
                     {link.name}
                   </Link>
-                )
+                ),
               )}
             </div>
 
@@ -137,10 +136,7 @@ export const Navbar = () => {
             </div>
 
             {/* Mobile Toggle */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden"
-            >
+            <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden">
               {isOpen ? <X /> : <Menu />}
             </button>
           </div>
