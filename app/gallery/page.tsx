@@ -109,10 +109,10 @@ const Gallery = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h1 className="text-gray-800 font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-6">
+            <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-6">
               Beautiful Moments
             </h1>
-            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+            <p className="text-white/90 mx-auto text-lg">
                     Explore our collection of stunning photography and memorable moments captured through our lens.
             </p>
           </motion.div>
