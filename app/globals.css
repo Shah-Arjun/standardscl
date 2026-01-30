@@ -33,6 +33,7 @@
 
   /* School palette */
   --color-golden: hsl(38 92% 50%);
+  --color-golden-light: hsl(38 92% 65%);
   --color-golden-dark: hsl(35 90% 42%);
   --color-brick: hsl(24 90% 38%);
   --color-cream: hsl(40 33% 96%);
@@ -71,11 +72,17 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-weight: 600;
   }
 
-  code, pre {
+  code,
+  pre {
     font-family: var(--font-mono);
   }
 }
@@ -140,12 +147,10 @@
     filter: drop-shadow(0 0 32px hsl(193 95% 68% / 0.6));
   }
 
-   .bg-gradient-hero {
-    background-image: linear-gradient(
-      135deg,
-      hsl(38 92% 50%),
-      hsl(24 90% 38%)
-    );
+  .bg-gradient-hero {
+    background-image: linear-gradient(135deg,
+        hsl(38 92% 50%),
+        hsl(24 90% 38%));
   }
 }
 
@@ -161,6 +166,27 @@
     color: var(--color-muted-foreground);
   }
 
+  .bg-gradient-warm {
+    background: linear-gradient(135deg,
+        hsl(40 33% 98%),
+        hsl(38 92% 95%));
+  }
+
+  .bg-gradient-hero {
+    background: linear-gradient(135deg,
+        hsl(38 92% 50%),
+        hsl(24 90% 38%));
+  }
+
+  .text-gradient-golden {
+    background: linear-gradient(to right,
+        hsl(38 92% 50%),
+        hsl(24 90% 38%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
   .animate-wiggle {
     animation: wiggle 1s ease-in-out infinite;
   }
@@ -168,14 +194,40 @@
   .animate-marquee {
     animation: marquee 15s linear infinite;
   }
-  
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
 }
 
 /* ============= */
 @keyframes wiggle {
-  0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(-10deg); }
-  75% { transform: rotate(10deg); }
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-10deg);
+  }
+
+  75% {
+    transform: rotate(10deg);
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
 
@@ -183,14 +235,20 @@
    Animations
 ================================ */
 @keyframes logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes marquee {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -200,11 +258,20 @@
   .animate-marquee {
     animation: none;
   }
+
+  .animate-float,
+  .animate-logo-spin {
+    animation: none !important;
+  }
+
+  .will-change-transform {
+    will-change: auto !important;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .animate-logo-spin {
-    animation: logo-spin 20s linear infinite;
+    animation: logo-spin 16s linear infinite;
   }
 }
 
