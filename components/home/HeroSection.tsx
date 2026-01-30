@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { ArrowRight, MapPin, GraduationCap, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/public/hero-illustration.jpg";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 export const HeroSection = () => {
   return (
@@ -124,7 +124,7 @@ export const HeroSection = () => {
                     <span className="text-2xl">🎓</span>
                   </div>
                   <div>
-                    <p className="font-bold text-foreground">31+ Years</p>
+                    <p className="font-bold text-foreground">30+ Years</p>
                     <p className="text-sm text-muted-foreground">Of Excellence</p>
                   </div>
                 </div>

@@ -19,7 +19,7 @@ export const NoticeMarquee = () => {
           <span className="text-sm font-semibold">Notice</span>
         </div>
         <div className="overflow-hidden flex-1">
-          <div className="flex animate-marquee whitespace-nowrap">
+          <div className="flex animate-marquee whitespace-nowrap min-w-max">
             {notices.map((notice, index) => (
               <span key={index} className="mx-8 text-sm font-medium">
                 {notice}

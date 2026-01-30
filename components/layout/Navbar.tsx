@@ -58,7 +58,9 @@ export const Navbar = () => {
               className="flex items-center gap-2"
             >
               <Mail className="w-4 h-4" />
-              <span className="hidden sm:inline">standard@gmail.com</span>
+              <span className="hidden sm:inline">
+                standardschool2051@gmail.com
+              </span>
             </a>
           </div>
           <Link href="/notices" className="flex items-center gap-2">
@@ -70,10 +72,10 @@ export const Navbar = () => {
 
       {/* Main Navbar */}
       <nav
-        className={`sticky top-0 z-50 transition-all ${
+        className={`sticky top-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-background/95 backdrop-blur shadow-md"
-            : "bg-background"
+            ? "bg-[hsl(var(--color-background)/0.9)] backdrop-blur-md shadow-md"
+            : "bg-[hsl(var(--color-background)/1)]"
         }`}
       >
         <div className="container-school">
@@ -96,7 +98,7 @@ export const Navbar = () => {
                   <DropdownMenu key={link.name}>
                     <DropdownMenuTrigger asChild>
                       <button
-                        className={`px-4 py-2 flex items-center gap-1 rounded-lg ${
+                        className={`px-4 py-2 rounded-lg transition-colors hover:text-primary ${
                           isActive(link.path)
                             ? "text-primary"
                             : "text-foreground"
