@@ -30,16 +30,17 @@ const curriculum = [
 
 const schedule = [
   { time: "6:00 AM", activity: "Wake-up & Morning Exercise" },
-  { time: "7:00 AM", activity: "Breakfast & Preparation" },
-  { time: "8:00 AM", activity: "Assembly & Classes Begin" },
-  { time: "10:00 AM", activity: "Short Break" },
+  { time: "7:00 AM", activity: "Coaching Classes" },
+  { time: "8:00 AM", activity: "Short Break" },
+  { time: "10:00 AM", activity: "Morning Assembly & Classes Begin" },
   { time: "12:30 PM", activity: "Lunch Break" },
   { time: "1:30 PM", activity: "Afternoon Classes" },
-  { time: "4:00 PM", activity: "Extra-curricular Activities" },
-  { time: "6:00 PM", activity: "Self Study / Homework" },
+  { time: "4:00 PM", activity: "Classes End & Extra-curricular Activities Begins" },
+  { time: "6:00 PM", activity: "Self-Study / Homework" },
   { time: "8:00 PM", activity: "Dinner" },
   { time: "9:30 PM", activity: "Lights Out" },
 ];
+
 
 const Academics = () => {
   return (

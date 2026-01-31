@@ -1,5 +1,6 @@
 "use client";
 
+import { color } from "framer-motion";
 import {
   Phone,
   Mail,
@@ -123,7 +124,7 @@ export const Footer = () => {
                     href="mailto:standard@gmail.com"
                     className="text-muted-foreground hover:text-golden transition-colors"
                   >
-                    standard@gmail.com
+                    standardschool2051@gmail.com
                   </a>
                 </li>
               </ul>
@@ -171,11 +172,11 @@ export const Footer = () => {
 
           {/* Map */}
           <div className="w-full overflow-hidden rounded-2xl border border-border shadow-md mt-8">
-            <div className="relative w-full aspect-[16/9] sm:aspect-[4/3] lg:aspect-[16/7] h-100">
+            <div className="relative w-full aspect-[16/9] sm:aspect-[4/3] lg:aspect-[16/7] h-70">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1146.125499502753!2d87.22085152316471!3d26.681266376883094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ef6b54a9ea5841%3A0xaaa3d314ed1a04bb!2sM6JC%2BFX9%2C%20Ramdhuni%20Bhasi%2056705%2C%20Nepal!5e0!3m2!1sen!2suk!4v1769857331191!5m2!1sen!2suk"
                 className="absolute inset-0 w-full h-full"
-                style={{ border: 0 }}
+                style={{ border: 2 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

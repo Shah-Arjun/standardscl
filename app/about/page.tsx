@@ -28,7 +28,7 @@ const values = [
 ];
 
 const stats = [
-  { number: "30+", label: "Years of Excellence" },
+  { number: "31+", label: "Years of Excellence" },
   { number: "500+", label: "Students Enrolled" },
   { number: "50+", label: "Qualified Teachers" },
   { number: "95%", label: "SEE Pass Rate" },

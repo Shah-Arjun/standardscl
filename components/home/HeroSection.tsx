@@ -3,15 +3,45 @@
 import { motion } from "framer-motion";
 import { ArrowRight, MapPin, GraduationCap, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/public/hero-illustration.jpg";
 import Image from "next/image";
 import Link from "next/link";
+
+import heroImage from "@/public/hero-illustration.jpg";
+import ssbsTeachers from "@/public/ssbsTeachers.jpg";
 import { TypewriterText } from "../text/TypewriterText";
 
 export const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-warm min-h-[90svh] flex items-center">
-      {/* Decorative Elements */}
+    /**
+     * SECTION
+     * - relative → allows absolutely positioned background layers
+     * - min-h-[90svh] → fills screen on all devices (mobile safe)
+     * - overflow-hidden → hides decorative overflow
+     */
+    <section className="relative min-h-[90svh] flex items-center overflow-hidden">
+      {/* ================= BACKGROUND IMAGE =================
+         - Uses Next/Image for optimization
+         - fill → covers entire section
+         - object-cover → maintains aspect ratio
+         - opacity → does NOT affect content
+      */}
+      <div className="absolute inset-0 -z-20">
+        <Image
+          src={ssbsTeachers}
+          alt="Standard Secondary Boarding School Teachers"
+          fill
+          priority
+          className="object-cover object-center opacity-40"
+        />
+      </div>
+
+      {/* ================= OVERLAY =================
+         - Improves text readability
+         - Works for both light & dark modes
+      */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/70 via-background/60 to-background/90" />
+
+      {/* ================= DECORATIVE BLOBS ================= */}
       <div
         aria-hidden
         className="absolute top-0 left-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl"
@@ -25,9 +55,10 @@ export const HeroSection = () => {
         className="absolute top-1/2 left-1/4 w-24 h-24 bg-golden-light/30 rounded-full blur-2xl animate-float"
       />
 
-      <div className="container-school section-padding">
+      {/* ================= MAIN CONTENT ================= */}
+      <div className="container-school section-padding relative z-10">
         <div className="grid lg:grid-cols-2 gap-24 items-center">
-          {/* ================= LEFT SIDE : CONTENT ================= */}
+          {/* ================= LEFT : TEXT CONTENT ================= */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -56,7 +87,7 @@ export const HeroSection = () => {
                   className="text-gradient-golden whitespace-nowrap"
                 />
               </span>{" "}
-              Boarding School{""}
+              Boarding School
             </h1>
 
             {/* Tagline */}
@@ -98,7 +129,7 @@ export const HeroSection = () => {
               </div>
             </div>
 
-            {/* CTAs */}
+            {/* CTA Buttons */}
             <div className="flex flex-wrap justify-center lg:justify-start gap-4">
               <Link href="/admissions">
                 <Button className="btn-primary-school group">
@@ -118,11 +149,10 @@ export const HeroSection = () => {
             </div>
 
             {/* Location */}
-
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
+              transition={{ delay: 0.5 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full"
             >
               <MapPin className="w-4 h-4" />
@@ -130,12 +160,13 @@ export const HeroSection = () => {
             </motion.div>
           </motion.div>
 
-          {/* ================= RIGHT SIDE : IMAGE ================= */}
+          {/* ================= RIGHT : IMAGE ================= */}
+          {/* ================= RIGHT SIDE : VIDEO ================= */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative w-full max-w-6xl mx-auto"
+            className="relative w-full max-w-[1400px] mx-auto"
           >
             {/* Glow */}
             <div
@@ -143,15 +174,18 @@ export const HeroSection = () => {
               className="absolute inset-6 bg-primary/30 blur-3xl rounded-3xl -z-10"
             />
 
-            {/* Image */}
-            <Image
-              src={heroImage}
-              alt="Happy students at Standard Secondary Boarding School"
-              className="w-full rounded-3xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.35)]"
-              priority
+            {/* Video */}
+            <video
+              src="/ssbs.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              controls
+              className="w-full rounded-3xl"
             />
 
-            {/* Floating Card */}
+            {/* Floating Card (kept same) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -163,7 +197,7 @@ export const HeroSection = () => {
                   🎓
                 </div>
                 <div>
-                  <p className="font-bold">30+ Years</p>
+                  <p className="font-bold">31+ Years</p>
                   <p className="text-sm text-muted-foreground">Of Excellence</p>
                 </div>
               </div>

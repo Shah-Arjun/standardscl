@@ -41,7 +41,8 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isActive = (path: string) => pathname === path;
+  const isActive = (path: string) =>
+    pathname === path || pathname.startsWith(path + "/");
 
   return (
     <>
@@ -51,7 +52,7 @@ export const Navbar = () => {
           <div className="flex items-center gap-6">
             <a href="tel:9800000000" className="flex items-center gap-2">
               <Phone className="w-4 h-4" />
-              <span className="hidden sm:inline">9800000000</span>
+              <span className="hidden sm:inline">+977 98XXXXXXXX</span>
             </a>
             <a
               href="mailto:standard@gmail.com"
@@ -96,21 +97,25 @@ export const Navbar = () => {
               {navLinks.map((link) =>
                 link.children ? (
                   <DropdownMenu key={link.name}>
-                    <DropdownMenuTrigger asChild>
+                    <DropdownMenuTrigger asChild className="flex items-center">
                       <button
-                        className={`px-4 py-2 rounded-lg transition-colors hover:text-primary ${
+                        className={`flex items-center gap-1 px-4 py-1 transition-all border-2 rounded-bl-xl rounded-tr-xl ${
                           isActive(link.path)
-                            ? "text-primary"
-                            : "text-foreground"
+                            ? "border-primary text-primary"
+                            : "border-transparent text-foreground hover:border-muted"
                         }`}
                       >
                         {link.name}
                         <ChevronDown className="w-4 h-4" />
                       </button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent>
+                    <DropdownMenuContent className="bg-white/90 border-2">
                       {link.children.map((child) => (
-                        <DropdownMenuItem key={child.name} asChild>
+                        <DropdownMenuItem
+                          key={child.name}
+                          asChild
+                          className="border"
+                        >
                           <Link href={child.path}>{child.name}</Link>
                         </DropdownMenuItem>
                       ))}
@@ -120,8 +125,10 @@ export const Navbar = () => {
                   <Link
                     key={link.name}
                     href={link.path}
-                    className={`px-4 py-2 rounded-lg ${
-                      isActive(link.path) ? "text-primary" : "text-foreground"
+                    className={`px-3 py-0.5 transition-all border-2 rounded-bl-xl rounded-tr-xl ${
+                      isActive(link.path)
+                        ? "text-primary border-primary"
+                        : "text-foreground border-transparent hover:border-muted"
                     }`}
                   >
                     {link.name}
