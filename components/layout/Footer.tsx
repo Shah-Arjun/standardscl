@@ -1,6 +1,14 @@
-"use client"
+"use client";
 
-import { Phone, Mail, MapPin, Facebook, Instagram, Youtube, Twitter } from "lucide-react";
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Facebook,
+  Instagram,
+  Youtube,
+  Twitter,
+} from "lucide-react";
 import Link from "next/link";
 
 const quickLinks = [
@@ -29,24 +37,32 @@ export const Footer = () => {
             {/* School Info */}
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-gradient-golden rounded-xl flex items-center justify-center">
+                <div className="w-12 h-12 bg-gradient-golden bg-amber-400 rounded-xl flex items-center justify-center">
                   <span className="text-2xl font-bold text-foreground">S</span>
                 </div>
                 <div>
-                  <h3 className="font-heading font-bold text-lg">Standard Secondary</h3>
-                  <p className="text-sm text-muted-foreground">Boarding School</p>
+                  <h3 className="font-heading font-bold text-lg">
+                    Standard Secondary
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Boarding School
+                  </p>
                 </div>
               </div>
               <p className="text-muted-foreground mb-6 leading-relaxed">
-                Nurturing young minds since establishment. We believe in holistic education
-                that prepares students for life's challenges.
+                Nurturing young minds since establishment. We believe in
+                holistic education that prepares students for life's challenges.
               </p>
-              <p className="text-golden font-semibold italic">"Learning for Life"</p>
+              <p className="text-golden font-semibold italic">
+                "Learning for Life"
+              </p>
             </div>
 
             {/* Quick Links */}
             <div>
-              <h4 className="font-heading font-bold text-lg mb-6 text-golden">Quick Links</h4>
+              <h4 className="font-heading font-bold text-lg mb-6 text-golden">
+                Quick Links
+              </h4>
               <ul className="space-y-3">
                 {quickLinks.map((link) => (
                   <li key={link.name}>
@@ -63,7 +79,9 @@ export const Footer = () => {
 
             {/* Academics */}
             <div>
-              <h4 className="font-heading font-bold text-lg mb-6 text-golden">Academics</h4>
+              <h4 className="font-heading font-bold text-lg mb-6 text-golden">
+                Academics
+              </h4>
               <ul className="space-y-3">
                 {academicLinks.map((link) => (
                   <li key={link.name}>
@@ -80,7 +98,9 @@ export const Footer = () => {
 
             {/* Contact Info */}
             <div>
-              <h4 className="font-heading font-bold text-lg mb-6 text-golden">Contact Us</h4>
+              <h4 className="font-heading font-bold text-lg mb-6 text-golden">
+                Contact Us
+              </h4>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-golden mt-0.5 shrink-0" />
@@ -90,13 +110,19 @@ export const Footer = () => {
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone className="w-5 h-5 text-golden shrink-0" />
-                  <a href="tel:9800000000" className="text-muted-foreground hover:text-golden transition-colors">
-                    9800000000
+                  <a
+                    href="tel:9800000000"
+                    className="text-muted-foreground hover:text-golden transition-colors"
+                  >
+                    +977 98XXXXXXXX
                   </a>
                 </li>
                 <li className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-golden shrink-0" />
-                  <a href="mailhref:standard@gmail.com" className="text-muted-foreground hover:text-golden transition-colors">
+                  <a
+                    href="mailto:standard@gmail.com"
+                    className="text-muted-foreground hover:text-golden transition-colors"
+                  >
                     standard@gmail.com
                   </a>
                 </li>
@@ -106,24 +132,35 @@ export const Footer = () => {
               <div className="flex items-center gap-4 mt-6">
                 <a
                   href="https://www.facebook.com/p/Standard-Secondary-Boarding-School-100046922456345/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-golden/20 flex items-center justify-center hover:bg-golden hover:text-foreground transition-all"
                 >
                   <Facebook className="w-5 h-5" />
                 </a>
+
                 <a
                   href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-golden/20 flex items-center justify-center hover:bg-golden hover:text-foreground transition-all"
                 >
                   <Instagram className="w-5 h-5" />
                 </a>
+
                 <a
                   href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-golden/20 flex items-center justify-center hover:bg-golden hover:text-foreground transition-all"
                 >
                   <Youtube className="w-5 h-5" />
                 </a>
+
                 <a
                   href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-golden/20 flex items-center justify-center hover:bg-golden hover:text-foreground transition-all"
                 >
                   <Twitter className="w-5 h-5" />
@@ -133,32 +170,40 @@ export const Footer = () => {
           </div>
 
           {/* Map */}
-          <div className="mt-12 rounded-2xl overflow-hidden border border-border/20">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3571.2!2d87.27!3d26.66!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zTTZKQytGWDksIFJhbWRodW5pIEJoYXNpIDU2NzA1LCBOZXB1bA!5e0!3m2!1sen!2snp!4v1"
-              width="100%"
-              height="250"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="School Location"
-            />
+          <div className="w-full overflow-hidden rounded-2xl border border-border shadow-md mt-8">
+            <div className="relative w-full aspect-[16/9] sm:aspect-[4/3] lg:aspect-[16/7] h-100">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1146.125499502753!2d87.22085152316471!3d26.681266376883094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ef6b54a9ea5841%3A0xaaa3d314ed1a04bb!2sM6JC%2BFX9%2C%20Ramdhuni%20Bhasi%2056705%2C%20Nepal!5e0!3m2!1sen!2suk!4v1769857331191!5m2!1sen!2suk"
+                className="absolute inset-0 w-full h-full"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="School Location"
+              />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Bothrefm Bar */}
+      {/* Bottom ref Bar */}
       <div className="border-t border-border/20 py-6 px-4">
         <div className="container-school flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-muted-foreground text-sm text-center md:text-left">
-            © {new Date().getFullYear()} Standard Secondary Boarding School. All rights reserved.
+            © {new Date().getFullYear()} Standard Secondary Boarding School. All
+            rights reserved.
           </p>
           <div className="flex items-center gap-6 text-sm">
-            <Link href="/privacy" className="text-muted-foreground hover:text-golden transition-colors">
+            <Link
+              href="/privacy"
+              className="text-muted-foreground hover:text-golden transition-colors"
+            >
               Privacy Policy
             </Link>
-            <Link href="/terms" className="text-muted-foreground hover:text-golden transition-colors">
+            <Link
+              href="/terms"
+              className="text-muted-foreground hover:text-golden transition-colors"
+            >
               Terms of Service
             </Link>
           </div>

@@ -55,7 +55,11 @@
   --color-foreground: hsl(40 33% 96%);
   --color-card: hsl(20 12% 14%);
   --color-muted: hsl(20 10% 20%);
+  --color-muted-foreground: hsl(35 15% 60%);
+  --color-border: hsl(20 10% 25%);
+  --color-ring: hsl(38 92% 50%);
 }
+
 
 /* ================================
    Base Styles
@@ -146,22 +150,12 @@
   .logo.react:hover {
     filter: drop-shadow(0 0 32px hsl(193 95% 68% / 0.6));
   }
-
-  .bg-gradient-hero {
-    background-image: linear-gradient(135deg,
-        hsl(38 92% 50%),
-        hsl(24 90% 38%));
-  }
 }
 
 /* ================================
    Utilities
 ================================ */
 @layer utilities {
-  .text-muted {
-    color: var(--color-muted-foreground);
-  }
-
   .text-muted-foreground {
     color: var(--color-muted-foreground);
   }
@@ -187,12 +181,14 @@
     color: transparent;
   }
 
+
+
   .animate-wiggle {
     animation: wiggle 1s ease-in-out infinite;
   }
 
   .animate-marquee {
-    animation: marquee 20s linear infinite;
+    animation: marquee 24s linear infinite;
   }
 
   .animate-float {
@@ -201,7 +197,7 @@
 
 }
 
-/* ============= */
+/* ============================== */
 @keyframes wiggle {
 
   0%,
@@ -229,6 +225,22 @@
     transform: translateY(-12px);
   }
 }
+
+@keyframes caret {
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+  25%, 75% {
+    opacity: 0;
+  }
+}
+
+/* cursor blinking */
+.animate-caret {
+  animation: caret 2s steps(1) infinite;
+}
+
+
 
 
 /* ================================
@@ -274,6 +286,38 @@
     animation: logo-spin 16s linear infinite;
   }
 }
+
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee-left {
+  animation: marquee-left 30s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 30s linear infinite;
+}
+
+/* Pause on hover */
+.pause-on-hover:hover {
+  animation-play-state: paused;
+}
+
 
 /* ================================
    Scrollbar

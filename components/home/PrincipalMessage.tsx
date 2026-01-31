@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import principalImage from "@/public/principal-illustration.jpg";
+import principal from "@/public/principal.jpg";
 import Image from "next/image";
 
 export const PrincipalMessage = () => {
@@ -20,14 +21,15 @@ export const PrincipalMessage = () => {
           >
             <div className="relative z-10">
               <Image
-                src={principalImage}
+                src={principal}
                 alt="School Principal"
-                className="w-full max-w-md mx-auto rounded-3xl shadow-2xl"
+                className="w-full max-w-sm md:max-w-lg lg:max-w-xl mx-auto rounded-3xl shadow-2xl"
+
               />
               {/* Name Card */}
               <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-gradient-hero px-6 py-3 rounded-xl shadow-golden">
                 <p className="font-heading font-bold text-primary-foreground text-center">
-                  Mr. Ram Bahadur Thapa
+                  Mr. Ganesh Koirala
                 </p>
                 <p className="text-primary-foreground/80 text-sm text-center">
                   School Chief / Principal
@@ -35,7 +37,7 @@ export const PrincipalMessage = () => {
               </div>
             </div>
             {/* Background */}
-            <div className="absolute top-8 left-8 w-full max-w-md h-full bg-secondary/30 rounded-3xl -z-10" />
+            <div className="absolute top-8 left-8 w-full max-w-sm md:max-w-lg lg:max-w-xl h-full bg-secondary/30 rounded-3xl -z-10" />
           </motion.div>
 
           {/* Content */}
@@ -67,7 +69,7 @@ export const PrincipalMessage = () => {
               </p>
               <p>
                 Our motto{" "}
-                <strong className="text-primary">"Learning for Life"</strong>{" "}
+                <strong className="text-primary">"Education is Main Path of Success"</strong>{" "}
                 reflects our commitment to preparing students not just for
                 examinations, but for the challenges and opportunities life
                 presents.

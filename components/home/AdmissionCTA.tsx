@@ -58,7 +58,7 @@ export const AdmissionCTA = () => {
           {/* CTA Buttons */}
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/admissions">
-              <Button className="bg-white text-primary hover:bg-white/90 font-semibold px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all group">
+              <Button className="bg-white text-primary hover:text-xl hover:bg-white/90 font-semibold px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all group">
                 Apply Now
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -66,7 +66,7 @@ export const AdmissionCTA = () => {
             <Link href="/contact">
               <Button
                 variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-primary font-semibold px-8 py-6 text-lg rounded-xl transition-all"
+                className="hover:bg-white/90 text-primary hover:text-xl font-semibold px-8 py-6 text-lg rounded-xl hover:shadow-xl transition-all group"
               >
                 Contact Us
               </Button>

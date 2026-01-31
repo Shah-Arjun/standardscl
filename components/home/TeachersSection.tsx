@@ -1,11 +1,13 @@
-"use client"
+"use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { SectionHeader } from "@/components/shared/SectionHeader";
+
 import teacher1 from "@/public/teacher-1.jpg";
 import teacher2 from "@/public/teacher-2.jpg";
 import teacher3 from "@/public/teacher-3.jpg";
-import Image from "next/image";
 
 const teachers = [
   {
@@ -44,9 +46,43 @@ const teachers = [
     field: "Physical Education",
     image: teacher2,
   },
+  {
+    name: "Mr. Dinesh Chaudhary",
+    post: "Sports Coordinator",
+    field: "Physical Education",
+    image: teacher2,
+  },
+  {
+    name: "Mr. Umesh Chaudhary",
+    post: "Sports Coordinator",
+    field: "Physical Education",
+    image: teacher2,
+  },
+  {
+    name: "Mr. Ramesh Chy",
+    post: "Sports Coordinator",
+    field: "Physical Education",
+    image: teacher2,
+  },
+  {
+    name: "Mr. Ram Chaudhary",
+    post: "Sports Coordinator",
+    field: "Physical Education",
+    image: teacher2,
+  },
 ];
 
 export const TeachersSection = () => {
+  const teachersPerPage = 6;
+  const [page, setPage] = useState(0);
+
+  const totalPages = Math.ceil(teachers.length / teachersPerPage);
+
+  const visibleTeachers = teachers.slice(
+    page * teachersPerPage,
+    page * teachersPerPage + teachersPerPage
+  );
+
   return (
     <section className="section-padding bg-muted">
       <div className="container-school">
@@ -55,13 +91,13 @@ export const TeachersSection = () => {
           subtitle="Meet our dedicated team of experienced educators"
         />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {teachers.map((teacher, index) => (
+        {/* Teachers Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {visibleTeachers.map((teacher, index) => (
             <motion.div
               key={teacher.name}
               initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               className="bg-card rounded-2xl overflow-hidden shadow-lg border border-border group card-hover"
             >
@@ -69,10 +105,12 @@ export const TeachersSection = () => {
                 <Image
                   src={teacher.image}
                   alt={teacher.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent" />
               </div>
+
               <div className="p-6 -mt-12 relative z-10">
                 <div className="bg-card rounded-xl p-4 shadow-md">
                   <h3 className="font-heading font-bold text-lg text-foreground mb-1">
@@ -81,11 +119,34 @@ export const TeachersSection = () => {
                   <p className="text-primary font-medium text-sm mb-1">
                     {teacher.post}
                   </p>
-                  <p className="text-muted-foreground text-sm">{teacher.field}</p>
+                  <p className="text-muted-foreground text-sm">
+                    {teacher.field}
+                  </p>
                 </div>
               </div>
             </motion.div>
           ))}
+        </div>
+
+        {/* Navigation Arrows */}
+        <div className="flex justify-center items-center gap-6 mt-10">
+          <button
+            onClick={() => setPage((p) => Math.max(p - 1, 0))}
+            disabled={page === 0}
+            className="w-12 h-12 flex items-center justify-center rounded-full bg-primary text-white text-xl disabled:opacity-40 hover:scale-110 transition"
+          >
+            ←
+          </button>
+
+          <button
+            onClick={() =>
+              setPage((p) => Math.min(p + 1, totalPages - 1))
+            }
+            disabled={page === totalPages - 1}
+            className="w-12 h-12 flex items-center justify-center rounded-full bg-primary text-white text-xl disabled:opacity-40 hover:scale-110 transition"
+          >
+            →
+          </button>
         </div>
       </div>
     </section>
