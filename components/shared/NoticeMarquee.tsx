@@ -3,12 +3,15 @@
 import { Megaphone } from "lucide-react";
 
 const notices = [
-  "🎓 Admissions Open for Academic Year 2025-2026!",
   "🏆 Congratulations to our students for excellent SEE results!",
-  "📅 Annual Sports Week starting from February 1st",
-  "📝 Entrance Examination scheduled for March 15th",
+  "🎓 Admissions Open for Academic Year 2083!",
+  "📝 Be prepared for the Entrance Examination for new admission",
+  "🏅 Annual Sports Week concluded successfully with great enthusiasm!",
+  "🎉 HISAN Creative Mela is going on",
   "🎨 Art & Science Exhibition coming soon!",
+  "🙏 Successfully concluded Free New Admission Campaign on the auspicious occasion of Saraswati Puja",
 ];
+
 
 export const NoticeMarquee = () => {
   return (
