@@ -92,6 +92,7 @@ export const Navbar = () => {
               </div>
             </Link>
 
+
             {/* Desktop Nav */}
             <div className="hidden lg:flex items-center gap-1">
               {navLinks.map((link) =>
@@ -137,6 +138,7 @@ export const Navbar = () => {
               )}
             </div>
 
+
             {/* CTA */}
             <div className="hidden lg:block">
               <Link href="/admissions">
@@ -173,3 +175,7 @@ export const Navbar = () => {
     </>
   );
 };
+
+
+
+
