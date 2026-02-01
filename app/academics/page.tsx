@@ -80,15 +80,17 @@ const Academics = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-card p-8 rounded-2xl shadow-lg border border-border text-center card-hover"
+                className="bg-card p-8 rounded-2xl shadow-lg border border-border text-center card-hover hover:border-primary"
               >
-                <div className="w-20 h-20 bg-gradient-hero rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-golden">
+                <div className="hover:scale-104">
+                  <div className="w-20 h-20 bg-gradient-hero rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-golden">
                   <item.icon className="w-10 h-10 text-primary-foreground" />
                 </div>
                 <h3 className="font-heading font-bold text-xl text-foreground mb-4">
                   {item.title}
                 </h3>
                 <p className="text-muted-foreground">{item.description}</p>
+                </div>
               </motion.div>
             ))}
           </div>

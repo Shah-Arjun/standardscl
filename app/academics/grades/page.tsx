@@ -52,6 +52,7 @@ const grades = [
       "Social Studies",
       "Computer",
       "Moral Education",
+      "Serofero"
     ],
   },
   {
@@ -100,8 +101,7 @@ const grades = [
       "Science",
       "Social Studies",
       "Optional Mathematics",
-      "Computer Science",
-      "Health & Physical Education",
+      "Accountancy",
     ],
   },
 ];

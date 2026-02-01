@@ -37,7 +37,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    details: ["standard@gmail.com", "info@standardschool.edu.np"],
+    details: ["standardschool2051@gmail.com", "info@standardschool.edu.np"],
   },
   {
     icon: Clock,
@@ -248,7 +248,7 @@ const Contact = () => {
       {/* Map */}
       <section className="h-96">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3571.2!2d87.27!3d26.66!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zTTZKQytGWDksIFJhbWRodW5pIEJoYXNpIDU2NzA1LCBOZXB1bA!5e0!3m2!1sen!2snp!4v1"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1146.125499502753!2d87.22085152316471!3d26.681266376883094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ef6b54a9ea5841%3A0xaaa3d314ed1a04bb!2sM6JC%2BFX9%2C%20Ramdhuni%20Bhasi%2056705%2C%20Nepal!5e0!3m2!1sen!2suk!4v1769857331191!5m2!1sen!2suk"
           width="100%"
           height="100%"
           style={{ border: 0 }}

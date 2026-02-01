@@ -11,8 +11,8 @@ import Link from "next/link";
 const notices = [
   {
     id: 1,
-    title: "Admissions Open for Academic Year 2025-2026",
-    date: "January 15, 2025",
+    title: "Admissions Open for Academic Year 2083",
+    date: "Baishakh",
     category: "Admissions",
     excerpt:
       "We are pleased to announce that admissions are now open for the upcoming academic year. Limited seats available for all grades from Nursery to Grade 10.",

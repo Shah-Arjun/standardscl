@@ -23,7 +23,7 @@ export const PrincipalMessage = () => {
               <Image
                 src={principal}
                 alt="School Principal"
-                className="w-full max-w-sm md:max-w-lg lg:max-w-xl mx-auto rounded-3xl shadow-2xl"
+                className="w-full max-w-sm md:max-w-lg lg:max-w-xl mx-auto rounded-3xl shadow-2xl hover:scale-102 hover:shadow-amber-200"
 
               />
               {/* Name Card */}

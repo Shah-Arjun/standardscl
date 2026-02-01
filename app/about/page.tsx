@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/shared/SectionHeader";
@@ -27,10 +27,46 @@ const values = [
   },
 ];
 
+
+const whyUs = [
+              {
+                icon: Award,
+                title: "Academic Excellence",
+                description:
+                  "Consistently high SEE pass rates and top performers",
+              },
+              {
+                icon: Users,
+                title: "Experienced Faculty",
+                description: "Qualified and dedicated teaching professionals",
+              },
+              {
+                icon: BookOpen,
+                title: "Modern Curriculum",
+                description: "NEB curriculum with English medium instruction",
+              },
+              {
+                icon: Heart,
+                title: "Safe Environment",
+                description: "24/7 security with CCTV surveillance",
+              },
+              {
+                icon: Target,
+                title: "Holistic Development",
+                description: "Balance of academics, sports, and arts",
+              },
+              {
+                icon: Eye,
+                title: "Individual Attention",
+                description:
+                  "Optimal student-teacher ratio for personalized learning",
+              },
+            ]
+
 const stats = [
   { number: "31+", label: "Years of Excellence" },
-  { number: "500+", label: "Students Enrolled" },
-  { number: "50+", label: "Qualified Teachers" },
+  { number: "800+", label: "Students Enrolled" },
+  { number: "45+", label: "Qualified Teachers" },
   { number: "95%", label: "SEE Pass Rate" },
 ];
 
@@ -49,8 +85,8 @@ const About = () => {
               About Our School
             </h1>
             <p className="text-xl text-white/90">
-              Building tomorrow's leaders through quality education, discipline, and values
-              in the heart of Sunsari District, Nepal.
+              Building tomorrow's leaders through quality education, discipline,
+              and values in the heart of Sunsari District, Nepal.
             </p>
           </motion.div>
         </div>
@@ -70,22 +106,25 @@ const About = () => {
               </h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  Standard Secondary Boarding School was established with a vision to
-                  provide quality education accessible to all. Located in the beautiful
-                  Itahari-17, Sunsari District of Nepal, our school has grown to become
-                  one of the most trusted educational institutions in the region.
+                  Standard Secondary Boarding School was established with a
+                  vision to provide quality education accessible to all. Located
+                  in the beautiful Itahari-17, Sunsari District of Nepal, our
+                  school has grown to become one of the most trusted educational
+                  institutions in the region.
                 </p>
                 <p>
-                  Over the decades, we have maintained our commitment to academic
-                  excellence while embracing modern teaching methodologies. Our English
-                  medium instruction following the NEB Nepal curriculum ensures students
-                  are well-prepared for both national examinations and global opportunities.
+                  Over the decades, we have maintained our commitment to
+                  academic excellence while embracing modern teaching
+                  methodologies. Our English medium instruction following the
+                  NEB Nepal curriculum ensures students are well-prepared for
+                  both national examinations and global opportunities.
                 </p>
                 <p>
-                  What sets us apart is our holistic approach to education. We believe
-                  that true education goes beyond textbooks - it shapes character,
-                  builds confidence, and nurtures talent. Our boarding facility provides
-                  a home away from home, fostering independence and lifelong friendships.
+                  What sets us apart is our holistic approach to education. We
+                  believe that true education goes beyond textbooks - it shapes
+                  character, builds confidence, and nurtures talent. Our
+                  boarding facility provides a home away from home, fostering
+                  independence and lifelong friendships.
                 </p>
               </div>
             </motion.div>
@@ -128,7 +167,7 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-card p-8 rounded-2xl shadow-lg border border-border"
+                className="bg-card p-8 rounded-2xl shadow-lg border border-border hover:scale-103 hover:shadow-amber-600 hover:shadow-md"
               >
                 <div className="w-16 h-16 bg-gradient-hero rounded-2xl flex items-center justify-center mb-6 shadow-golden">
                   <item.icon className="w-8 h-8 text-primary-foreground" />
@@ -157,38 +196,7 @@ const About = () => {
           />
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                icon: Award,
-                title: "Academic Excellence",
-                description: "Consistently high SEE pass rates and top performers",
-              },
-              {
-                icon: Users,
-                title: "Experienced Faculty",
-                description: "Qualified and dedicated teaching professionals",
-              },
-              {
-                icon: BookOpen,
-                title: "Modern Curriculum",
-                description: "NEB curriculum with English medium instruction",
-              },
-              {
-                icon: Heart,
-                title: "Safe Environment",
-                description: "24/7 security with CCTV surveillance",
-              },
-              {
-                icon: Target,
-                title: "Holistic Development",
-                description: "Balance of academics, sports, and arts",
-              },
-              {
-                icon: Eye,
-                title: "Individual Attention",
-                description: "Optimal student-teacher ratio for personalized learning",
-              },
-            ].map((item, index) => (
+            {whyUs.map((item, index) => (
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, y: 20 }}
@@ -198,13 +206,15 @@ const About = () => {
                 className="flex gap-4 p-6 bg-card rounded-xl border border-border hover:border-primary transition-colors"
               >
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <item.icon className="w-6 h-6 text-primary" />
+                  <item.icon className="w-6 h-6 text-primary " />
                 </div>
                 <div>
                   <h4 className="font-heading font-bold text-foreground mb-1">
                     {item.title}
                   </h4>
-                  <p className="text-sm text-muted-foreground">{item.description}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {item.description}
+                  </p>
                 </div>
               </motion.div>
             ))}

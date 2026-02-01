@@ -116,10 +116,11 @@ const Facilities = () => {
       {/* Facilities Grid */}
       <section className="section-padding bg-background">
         <div className="container-school">
-          <SectionHeader
+          {/* <SectionHeader
             title="Campus Facilities"
             subtitle="Everything your child needs for an excellent educational experience"
-          />
+          /> */}
+          
 
           <div className="grid md:grid-cols-2 gap-8">
             {facilities.map((facility, index) => (

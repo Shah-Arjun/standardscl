@@ -56,8 +56,7 @@ const requirements = [
   "Birth Certificate (Original & Copy)",
   "Character Certificate from previous school",
   "Transfer Certificate (if applicable)",
-  "Recent passport-size photos (4 copies)",
-  "Parent's Citizenship copy",
+  "Recent passport-size photos (2 copies)",
   "Previous grade mark sheet",
 ];
 
@@ -105,7 +104,7 @@ const Admissions = () => {
           >
             <div className="inline-flex items-center gap-2 bg-white/20 px-4 py-2 rounded-full mb-6 animate-pulse-glow">
               <span className="w-2 h-2 bg-white rounded-full" />
-              <span className="font-semibold">Admissions Open 2025-2026</span>
+              <span className="font-semibold">Admissions Open for 2083</span>
             </div>
             <h1 className="font-heading font-bold text-4xl md:text-5xl mb-6">
               Join Our Family
@@ -139,7 +138,7 @@ const Admissions = () => {
                 {index < steps.length - 1 && (
                   <div className="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-hero -translate-x-1/2 z-0" />
                 )}
-                <div className="bg-card p-6 rounded-2xl border border-border relative z-10 h-full">
+                <div className="bg-card p-6 rounded-2xl border border-border relative z-10 h-full hover:border-primary hover:-translate-x-1 transition-transform">
                   <div className="w-16 h-16 bg-gradient-hero rounded-2xl flex items-center justify-center mb-4 shadow-golden">
                     <span className="text-2xl font-bold text-primary-foreground">
                       {step.number}
@@ -193,7 +192,7 @@ const Admissions = () => {
                   <div>
                     <p className="font-bold text-foreground">Entrance Exam</p>
                     <p className="text-muted-foreground text-sm">
-                      March 15, 2025
+                      Baishakh 07, 2025
                     </p>
                   </div>
                 </div>
@@ -206,7 +205,7 @@ const Admissions = () => {
                       Last Date to Apply
                     </p>
                     <p className="text-muted-foreground text-sm">
-                      March 10, 2025
+                      Baishakh, 2083
                     </p>
                   </div>
                 </div>
