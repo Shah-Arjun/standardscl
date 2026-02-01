@@ -82,7 +82,7 @@ export const Navbar = () => {
         <div className="container-school">
           <div className="flex h-20 items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3">
+            <Link href="/" className="flex items-center gap-3 ml-3 xs:ml-3 md:ml-3">
               <div className="w-12 h-12 bg-gradient-hero rounded-xl flex items-center justify-center">
                 <span className="text-2xl font-bold text-white">S</span>
               </div>
@@ -145,7 +145,7 @@ export const Navbar = () => {
             </div>
 
             {/* Mobile Toggle */}
-            <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden">
+            <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden mr-3">
               {isOpen ? <X /> : <Menu />}
             </button>
           </div>
