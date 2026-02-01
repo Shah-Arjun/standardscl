@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -21,8 +21,6 @@ import {
   Twitter,
 } from "lucide-react";
 
-
-
 const contactInfo = [
   {
     icon: MapPin,
@@ -43,6 +41,29 @@ const contactInfo = [
     icon: Clock,
     title: "Office Hours",
     details: ["Sunday - Friday: 8:00 AM - 5:00 PM", "Saturday: Closed"],
+  },
+];
+
+const socialLinks = [
+  {
+    icon: Facebook,
+    href: "https://www.facebook.com/profile.php?id=100046922456345",
+    label: "Facebook",
+  },
+  {
+    icon: Instagram,
+    href: "https://www.instagram.com/",
+    label: "Instagram",
+  },
+  {
+    icon: Youtube,
+    href: "https://www.youtube.com/",
+    label: "YouTube",
+  },
+  {
+    icon: Twitter,
+    href: "https://twitter.com/",
+    label: "Twitter",
   },
 ];
 
@@ -81,7 +102,8 @@ const Contact = () => {
               Contact Us
             </h1>
             <p className="text-xl text-white/90">
-              We'd love to hear from you. Get in touch with us for any inquiries.
+              We'd love to hear from you. Get in touch with us for any
+              inquiries.
             </p>
           </motion.div>
         </div>
@@ -101,8 +123,9 @@ const Contact = () => {
                 Get in Touch
               </h2>
               <p className="text-muted-foreground mb-8">
-                Have questions about admissions, academics, or anything else? 
-                Our team is here to help. Reach out through any of the following channels.
+                Have questions about admissions, academics, or anything else?
+                Our team is here to help. Reach out through any of the following
+                channels.
               </p>
 
               <div className="space-y-6 mb-8">
@@ -115,9 +138,14 @@ const Contact = () => {
                       <info.icon className="w-6 h-6 text-primary-foreground" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-foreground mb-1">{info.title}</h4>
+                      <h4 className="font-bold text-foreground mb-1">
+                        {info.title}
+                      </h4>
                       {info.details.map((detail, index) => (
-                        <p key={index} className="text-muted-foreground text-sm">
+                        <p
+                          key={index}
+                          className="text-muted-foreground text-sm"
+                        >
                           {detail}
                         </p>
                       ))}
@@ -131,12 +159,17 @@ const Contact = () => {
                 <h4 className="font-heading font-bold text-foreground mb-4">
                   Follow Us
                 </h4>
-                <div className="flex items-center gap-4">
-                  {[Facebook, Instagram, Youtube, Twitter].map((Icon, index) => (
+                <div className="flex gap-4">
+                  {socialLinks.map(({ icon: Icon, href, label }, index) => (
                     <a
                       key={index}
-                      href="#"
-                      className="w-12 h-12 bg-muted rounded-xl flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={label}
+                      className="w-12 h-12 bg-muted rounded-xl flex items-center justify-center
+                 hover:bg-primary hover:text-primary-foreground
+                 transition-colors"
                     >
                       <Icon className="w-5 h-5" />
                     </a>
