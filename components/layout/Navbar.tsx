@@ -152,6 +152,7 @@ export const Navbar = () => {
             </button>
           </div>
 
+
           {/* Mobile Menu */}
           {isOpen && (
             <div className="lg:hidden py-4 border-t">
