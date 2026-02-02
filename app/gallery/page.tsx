@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { X } from "lucide-react";
-
+import { event as gaEvent } from "@/lib/gtag";
 import { SiteLayout } from "@/components/layout/SiteLayout";
 
 const categories = [
@@ -30,7 +30,7 @@ const galleryItems = [
     title: "Bus",
     image: "/bus.jpg",
   },
-    {
+  {
     id: 3,
     category: "School",
     title: "Logo",
@@ -169,7 +169,16 @@ export default function Gallery() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                onClick={() => setSelectedItem(item)}
+                // onClick={() => setSelectedItem(item)}
+
+                onClick={() => {
+                  gaEvent({
+                    action: "click_gallery_image",
+                    category: "Gallery",
+                    label: item.title,
+                  });
+                  setSelectedItem(item);
+                }}
                 className="relative aspect-square rounded-2xl overflow-hidden cursor-pointer group"
               >
                 <Image

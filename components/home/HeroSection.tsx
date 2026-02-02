@@ -197,6 +197,13 @@ export const HeroSection = () => {
               loop
               playsInline
               controls
+              onPlay={() =>
+                gaEvent({
+                  action: "play_hero_video",
+                  category: "Video",
+                  label: "Hero Section Video",
+                })
+              }
               className="w-full rounded-2xl sm:rounded-3xl"
             />
 
