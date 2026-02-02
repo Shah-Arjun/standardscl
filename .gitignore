@@ -189,5 +189,12 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Ignore all video files in public folder
 public/ssbs.mp4
 *.mp4
+/public/**/*.mp4
+/public/**/*.mov
+/public/**/*.avi
+/public/**/*.mkv
+/public/**/*.webm

@@ -30,11 +30,11 @@ const galleryItems = [
     title: "Bus",
     image: "/bus.jpg",
   },
-  {
+    {
     id: 3,
-    category: "Events",
-    title: "Annual Day",
-    image: "/event1.jpg",
+    category: "School",
+    title: "Logo",
+    image: "/SchoolLogo.png",
   },
   {
     id: 4,
@@ -95,6 +95,12 @@ const galleryItems = [
     category: "Educational Tour",
     title: "Lumbini",
     image: "/tour3.jpg",
+  },
+  {
+    id: 15,
+    category: "Events",
+    title: "Annual Day",
+    image: "/event1.jpg",
   },
 ];
 

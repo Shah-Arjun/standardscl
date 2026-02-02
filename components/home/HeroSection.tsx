@@ -74,7 +74,7 @@ export const HeroSection = () => {
             >
               <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
               <span className="text-sm font-semibold">
-                Admissions Open 2025–2026
+                Admissions Open for Academic Years 2083
               </span>
             </motion.div>
 

@@ -11,6 +11,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Image from "next/image";
+import SchoolLogo from "./../../public/SchoolLogo-nobg.png";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -50,7 +52,7 @@ export const Navbar = () => {
       <div className="bg-gradient-hero text-primary-foreground py-2 px-4">
         <div className="container-school flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
-            <a href="tel:9800000000" className="flex items-center gap-2">
+            <a href="tel:+9779800000000" className="flex items-center gap-2">
               <Phone className="w-4 h-4" />
               <span className="hidden sm:inline">+977 98XXXXXXXX</span>
             </a>
@@ -84,7 +86,14 @@ export const Navbar = () => {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 ml-3">
               <div className="w-12 h-12 bg-gradient-hero rounded-xl flex items-center justify-center">
-                <span className="text-2xl font-bold text-white">S</span>
+                {/* <span className="text-2xl font-bold text-white">S</span> */}
+                <Image
+                  src={SchoolLogo}
+                  alt="Standard Secondary Boarding School Logo"
+                  width={40}
+                  height={40}
+                  priority
+                />
               </div>
               <div className="hidden md:block">
                 <h1 className="font-bold text-lg">Standard Secondary</h1>
@@ -92,23 +101,14 @@ export const Navbar = () => {
               </div>
             </Link>
 
-
             {/* Desktop Nav */}
-            <div className="hidden lg:flex items-center gap-1">
+            <div className="hidden lg:flex items-center gap-1 bg-yellow-100 px-4 py-2 rounded-2xl shadow-2xs shadow-amber-200">
               {navLinks.map((link) =>
                 link.children ? (
                   <DropdownMenu key={link.name}>
-                    <DropdownMenuTrigger asChild className="flex items-center">
-                      <button
-                        className={`flex items-center gap-1 px-4 py-1 transition-all border-2 rounded-bl-xl rounded-tr-xl ${
-                          isActive(link.path)
-                            ? "border-primary text-primary"
-                            : "border-transparent text-foreground hover:border-muted"
-                        }`}
-                      >
-                        {link.name}
-                        <ChevronDown className="w-4 h-4" />
-                      </button>
+                    <DropdownMenuTrigger className="flex items-center gap-1 px-4 py-1 ...">
+                      {link.name}
+                      <ChevronDown className="w-4 h-4" />
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="bg-white/90 border-2">
                       {link.children.map((child) => (
@@ -126,9 +126,9 @@ export const Navbar = () => {
                   <Link
                     key={link.name}
                     href={link.path}
-                    className={`px-3 py-0.5 transition-all border-2 rounded-bl-xl rounded-tr-xl ${
+                    className={`px-3 py-0.5 transition-all border-2 rounded-2xl ${
                       isActive(link.path)
-                        ? "text-primary border-primary"
+                        ? "text-primary border-primary bg-amber-50"
                         : "text-foreground border-transparent hover:border-muted"
                     }`}
                   >
@@ -138,7 +138,6 @@ export const Navbar = () => {
               )}
             </div>
 
-
             {/* CTA */}
             <div className="hidden lg:block">
               <Link href="/admissions">
@@ -147,25 +146,44 @@ export const Navbar = () => {
             </div>
 
             {/* Mobile Toggle */}
-            <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden mr-3">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden mr-3"
+            >
               {isOpen ? <X /> : <Menu />}
             </button>
           </div>
-
 
           {/* Mobile Menu */}
           {isOpen && (
             <div className="lg:hidden py-4 border-t">
               {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.path}
-                  onClick={() => setIsOpen(false)}
-                  className="block px-4 py-3"
-                >
-                  {link.name}
-                </Link>
+                <div key={link.name}>
+                  <Link
+                    href={link.path}
+                    onClick={() => setIsOpen(false)}
+                    className="block px-4 py-3 font-medium"
+                  >
+                    {link.name}
+                  </Link>
+
+                  {link.children && (
+                    <div className="ml-4 border-l">
+                      {link.children.map((child) => (
+                        <Link
+                          key={child.name}
+                          href={child.path}
+                          onClick={() => setIsOpen(false)}
+                          className="block px-4 py-2 text-sm text-muted-foreground"
+                        >
+                          {child.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
+
               <Link href="/admissions">
                 <Button className="w-full mt-4">Apply Now</Button>
               </Link>
@@ -176,7 +194,3 @@ export const Navbar = () => {
     </>
   );
 };
-
-
-
-
