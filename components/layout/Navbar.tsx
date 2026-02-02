@@ -95,14 +95,14 @@ export const Navbar = () => {
         <div className="container-school">
           <div className="flex h-20 items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 ml-3">
-              <div className="w-12 h-12 bg-gradient-hero rounded-xl flex items-center justify-center">
+            <Link href="/" className="flex items-center gap-3 ml-3 ">
+              <div className="w-18 h-18 rounded-xl flex items-center justify-center">
                 {/* <span className="text-2xl font-bold text-white">S</span> */}
                 <Image
                   src={SchoolLogo}
                   alt="Standard Secondary Boarding School Logo"
-                  width={40}
-                  height={40}
+                  width={100}
+                  height={100}
                   priority
                 />
               </div>

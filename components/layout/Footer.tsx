@@ -9,6 +9,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { event as gaEvent } from "@/lib/gtag";
+import Image from "next/image";
+import SchoolLogo from "@/public/SchoolLogo.png"
 
 
 const quickLinks = [
@@ -37,8 +39,8 @@ export const Footer = () => {
             {/* School Info */}
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-gradient-golden rounded-xl flex items-center justify-center bg-primary">
-                  <span className="text-2xl font-bold text-foreground">S</span>
+                <div className="w-12 h-12 bg-gradient-golden rounded-xl flex items-center justify-center">
+                  <Image src={SchoolLogo} alt="School logo"/>
                 </div>
                 <div>
                   <h3 className="font-heading font-bold text-lg">
