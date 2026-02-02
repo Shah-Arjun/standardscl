@@ -1,9 +1,10 @@
-"use client"
+"use client";
 
 import { motion } from "framer-motion";
 import { ArrowRight, FileText, Calendar, ClipboardList } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { event as gaEvent } from "@/lib/gtag";
 
 export const AdmissionCTA = () => {
   return (
@@ -58,7 +59,21 @@ export const AdmissionCTA = () => {
           {/* CTA Buttons */}
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/admissions">
-              <Button className="bg-white text-primary hover:text-xl hover:bg-white/90 font-semibold px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all group">
+              {/* <Button className="bg-white text-primary hover:text-xl hover:bg-white/90 font-semibold px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all group">
+                Apply Now
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button> */}
+
+              <Button
+                className="bg-white text-primary hover:text-xl hover:bg-white/90 font-semibold px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all group"
+                onClick={() =>
+                  gaEvent({
+                    action: "click_apply_now",
+                    category: "Admissions",
+                    label: "Hero Section",
+                  })
+                }
+              >
                 Apply Now
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>

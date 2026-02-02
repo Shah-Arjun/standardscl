@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { event as gaEvent } from "@/lib/gtag";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Phone, Mail, ChevronDown, Bell } from "lucide-react";
@@ -141,7 +142,19 @@ export const Navbar = () => {
             {/* CTA */}
             <div className="hidden lg:block">
               <Link href="/admissions">
-                <Button className="btn-primary-school">Apply Now</Button>
+                {/* <Button className="btn-primary-school">Apply Now</Button> */}
+                <Button
+                  className="btn-primary-school group"
+                  onClick={() =>
+                    gaEvent({
+                      action: "click_apply_now",
+                      category: "Admissions",
+                      label: "Hero Section",
+                    })
+                  }
+                >
+                  Apply Now
+                </Button>
               </Link>
             </div>
 

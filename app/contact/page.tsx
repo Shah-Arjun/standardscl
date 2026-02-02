@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import { event as gaEvent } from "@/lib/gtag";
 import {
   Phone,
   Mail,
@@ -80,6 +81,14 @@ const Contact = () => {
   
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
+
+
+  // for google analytics
+  gaEvent({
+    action: "submit_contact_form",
+    category: "Contact",
+    label: "Contact Page Form",
+  });
 
   try {
     const res = await fetch("/api/contact", {

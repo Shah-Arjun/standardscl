@@ -9,6 +9,7 @@ import Link from "next/link";
 import heroImage from "@/public/hero-illustration.jpg";
 import ssbsTeachers from "@/public/ssbsTeachers.jpg";
 import { TypewriterText } from "../text/TypewriterText";
+import { event as gaEvent } from "@/lib/gtag";
 
 export const HeroSection = () => {
   return (
@@ -134,7 +135,20 @@ export const HeroSection = () => {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
               <Link href="/admissions">
-                <Button className="btn-primary-school group">
+                {/* <Button className="btn-primary-school group">
+                  Apply Now
+                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Button> */}
+                <Button
+                  className="btn-primary-school group"
+                  onClick={() =>
+                    gaEvent({
+                      action: "click_apply_now",
+                      category: "Admissions",
+                      label: "Hero Section",
+                    })
+                  }
+                >
                   Apply Now
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
@@ -162,7 +176,6 @@ export const HeroSection = () => {
             </motion.div>
           </motion.div>
 
-          {/* ================= RIGHT : IMAGE ================= */}
           {/* ================= RIGHT SIDE : VIDEO ================= */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
