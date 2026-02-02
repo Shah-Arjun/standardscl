@@ -1,50 +1,100 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { X } from "lucide-react";
 
 import { SiteLayout } from "@/components/layout/SiteLayout";
 
-const categories = ["All", "Campus", "Events", "Sports", "Activities"];
+const categories = [
+  "All",
+  "School",
+  "Teachers",
+  "Events",
+  "Sports",
+  "Activities",
+  "Educational Tour",
+];
 
 const galleryItems = [
   {
     id: 1,
-    category: "Campus",
+    category: "School",
     title: "School Building",
-    image: "/activities-illustration.jpg",
+    image: "/sclbuilding.jpg",
   },
   {
     id: 2,
-    category: "Campus",
-    title: "Library",
-    image: "/hero-illustration.jpg",
+    category: "School",
+    title: "Bus",
+    image: "/bus.jpg",
   },
   {
     id: 3,
     category: "Events",
     title: "Annual Day",
-    image: "/ssbsTeachers.jpg",
+    image: "/event1.jpg",
   },
   {
     id: 4,
     category: "Events",
-    title: "Science Fair",
-    image: "/ssbsTeachers.jpg",
+    title: "Prize Distribution",
+    image: "/prize1.jpg",
   },
   {
     id: 5,
     category: "Sports",
     title: "Sports Week",
-    image: "/principal.jpg",
+    image: "/sports.jpg",
   },
   {
     id: 6,
+    category: "Sports",
+    title: "Sports Week",
+    image: "/activities-illustration.jpg",
+  },
+  {
+    id: 7,
     category: "Activities",
     title: "Art Exhibition",
-    image: "/teacher-1.jpg",
+    image: "/art2.jpg",
+  },
+  {
+    id: 8,
+    category: "Activities",
+    title: "Art Exhibition",
+    image: "/art1.jpg",
+  },
+  {
+    id: 10,
+    category: "Events",
+    title: "Lakhe",
+    image: "/lakhe.jpg",
+  },
+  {
+    id: 11,
+    category: "Teachers",
+    title: "SSBS",
+    image: "/ssbsTeachers.jpg",
+  },
+  {
+    id: 12,
+    category: "Educational Tour",
+    title: "Janakpur",
+    image: "/tour1.jpg",
+  },
+  {
+    id: 13,
+    category: "Educational Tour",
+    title: "Pokhara",
+    image: "/tour2.jpg",
+  },
+  {
+    id: 14,
+    category: "Educational Tour",
+    title: "Lumbini",
+    image: "/tour3.jpg",
   },
 ];
 
@@ -58,6 +108,10 @@ export default function Gallery() {
     activeCategory === "All"
       ? galleryItems
       : galleryItems.filter((item) => item.category === activeCategory);
+
+  useEffect(() => {
+    document.body.style.overflow = selectedItem ? "hidden" : "auto";
+  }, [selectedItem]);
 
   return (
     <SiteLayout>
@@ -116,6 +170,7 @@ export default function Gallery() {
                   src={item.image}
                   alt={item.title}
                   fill
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
 
@@ -166,10 +221,12 @@ export default function Gallery() {
             className="relative max-w-5xl w-full aspect-video rounded-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* lightbox image */}
             <Image
               src={selectedItem.image}
               alt={selectedItem.title}
               fill
+              sizes="90vw"
               className="object-contain bg-black"
             />
           </motion.div>
