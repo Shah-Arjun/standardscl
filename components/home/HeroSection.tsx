@@ -191,7 +191,7 @@ export const HeroSection = () => {
 
             {/* Video */}
             <video
-              src="/ssbs.mp4"
+              src="/ssbsfinal.mp4"
               autoPlay
               muted
               loop
