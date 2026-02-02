@@ -76,9 +76,23 @@ const Contact = () => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    toast.success("Message sent successfully! We will get back to you soon.");
+
+  
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  try {
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (!res.ok) throw new Error("Failed");
+
+    toast.success("Message sent successfully!");
     setFormData({
       name: "",
       email: "",
@@ -86,7 +100,11 @@ const Contact = () => {
       subject: "",
       message: "",
     });
-  };
+  } catch (error) {
+    toast.error("Something went wrong. Please try again.");
+  }
+};
+
 
   return (
     <SiteLayout>
