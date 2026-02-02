@@ -53,7 +53,17 @@ export const Navbar = () => {
       <div className="bg-gradient-hero text-primary-foreground py-2 px-4">
         <div className="container-school flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
-            <a href="tel:+9779800000000" className="flex items-center gap-2">
+            <a
+              href="tel:+9779800000000"
+              className="flex items-center gap-2"
+              onClick={() =>
+                gaEvent({
+                  action: "click_phone",
+                  category: "Contact",
+                  label: "Header / Contact Section",
+                })
+              }
+            >
               <Phone className="w-4 h-4" />
               <span className="hidden sm:inline">+977 98XXXXXXXX</span>
             </a>

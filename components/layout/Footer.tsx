@@ -8,6 +8,8 @@ import {
   Twitter,
 } from "lucide-react";
 import Link from "next/link";
+import { event as gaEvent } from "@/lib/gtag";
+
 
 const quickLinks = [
   { name: "About Us", path: "/about" },
@@ -111,6 +113,13 @@ export const Footer = () => {
                   <a
                     href="tel:9800000000"
                     className="text-muted-foreground hover:text-golden transition-colors"
+                    onClick={() =>
+                      gaEvent({
+                        action: "click_phone",
+                        category: "Contact",
+                        label: "Header / Contact Section",
+                      })
+                    }
                   >
                     +977 98XXXXXXXX
                   </a>
