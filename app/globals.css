@@ -320,17 +320,18 @@
 
 
 /* ================================
-   Scrollbar
+   Hide Scrollbar (Keep Scrolling)
 ================================ */
-::-webkit-scrollbar {
-  width: 8px;
+* {
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE & Edge (legacy) */
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--color-golden);
-  border-radius: 4px;
+*::-webkit-scrollbar {
+  display: none;                /* Chrome, Safari */
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-golden-dark);
+
+html, body {
+  overflow-x: hidden;
 }

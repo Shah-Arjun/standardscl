@@ -18,7 +18,7 @@ export const HeroSection = () => {
      * - min-h-[90svh] → fills screen on all devices (mobile safe)
      * - overflow-hidden → hides decorative overflow
      */
-    <section className="relative min-h-[90svh] flex items-center overflow-hidden">
+    <section className="relative min-h-[85svh] md:min-h-[90svh] flex items-center overflow-hidden">
       {/* ================= BACKGROUND IMAGE =================
          - Uses Next/Image for optimization
          - fill → covers entire section
@@ -44,26 +44,28 @@ export const HeroSection = () => {
       {/* ================= DECORATIVE BLOBS ================= */}
       <div
         aria-hidden
-        className="absolute top-0 left-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl"
+        className="hidden sm:block absolute top-0 left-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl"
       />
+
       <div
         aria-hidden
-        className="absolute bottom-0 right-0 w-48 h-48 bg-secondary/20 rounded-full blur-3xl"
+        className="hidden sm:block absolute bottom-0 right-0 w-48 h-48 bg-secondary/20 rounded-full blur-3xl"
       />
+
       <div
         aria-hidden
-        className="absolute top-1/2 left-1/4 w-24 h-24 bg-golden-light/30 rounded-full blur-2xl animate-float"
+        className="hidden md:block absolute top-1/2 left-1/4 w-24 h-24 bg-golden-light/30 rounded-full blur-2xl animate-float"
       />
 
       {/* ================= MAIN CONTENT ================= */}
       <div className="container-school section-padding relative z-10">
-        <div className="grid lg:grid-cols-2 gap-24 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center justify-items-center">
           {/* ================= LEFT : TEXT CONTENT ================= */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center lg:text-left max-w-xl mx-auto lg:mx-0 space-y-6"
+            className="text-center lg:text-left max-w-md sm:max-w-lg lg:max-w-xl mx-auto lg:mx-0 space-y-5 sm:space-y-6"
           >
             {/* Badge */}
             <motion.div
@@ -79,9 +81,9 @@ export const HeroSection = () => {
             </motion.div>
 
             {/* Heading */}
-            <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl leading-tight">
+            <h1 className="ffont-heading font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
               Welcome to{" "}
-              <span className="inline-block min-w-[16ch]">
+              <span className="inline-block min-w-[12ch] sm:min-w-[16ch]">
                 <TypewriterText
                   text="Standard Secondary"
                   className="text-gradient-golden whitespace-nowrap"
@@ -96,14 +98,14 @@ export const HeroSection = () => {
             </p>
 
             {/* Description */}
-            <p className="text-lg text-muted-foreground">
+            <p className="text-base sm:text-lg text-muted-foreground">
               Nurturing young minds with quality education, discipline, and
               values. Join our family of learners and achievers in the heart of
               Sunsari, Nepal.
             </p>
 
             {/* Stats */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-6">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center lg:justify-start gap-6">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
                   <GraduationCap className="w-5 h-5 text-primary" />
@@ -121,7 +123,7 @@ export const HeroSection = () => {
                   <Users className="w-5 h-5 text-secondary" />
                 </div>
                 <div>
-                  <p className="font-bold">500+ Students</p>
+                  <p className="font-bold">800+ Students</p>
                   <p className="text-sm text-muted-foreground">
                     Growing Family
                   </p>
@@ -130,7 +132,7 @@ export const HeroSection = () => {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-4">
+            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
               <Link href="/admissions">
                 <Button className="btn-primary-school group">
                   Apply Now
@@ -166,7 +168,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative w-full max-w-[1400px] mx-auto"
+            className="relative w-full max-w-sm sm:max-w-md md:max-w-xl lg:max-w-2xl mx-auto"
           >
             {/* Glow */}
             <div
@@ -182,7 +184,7 @@ export const HeroSection = () => {
               loop
               playsInline
               controls
-              className="w-full rounded-3xl"
+              className="w-full rounded-2xl sm:rounded-3xl"
             />
 
             {/* Floating Card (kept same) */}
@@ -190,7 +192,7 @@ export const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
-              className="absolute -bottom-6 -left-6 bg-card p-4 rounded-2xl shadow-lg border"
+              className="absolute -bottom-4 sm:-bottom-6 -left-4 sm:-left-6 bg-card p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg border"
             >
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-gradient-hero rounded-xl flex items-center justify-center">
