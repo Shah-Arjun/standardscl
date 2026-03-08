@@ -187,7 +187,6 @@ export default function AddTeacher() {
   return (
     <div className="max-w-xl w-full mx-auto p-6 bg-white shadow rounded mt-6 sm:p-8 md:p-10">
       <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center">Teacher Details</h2>
-      {message && <p className="mb-4 text-center text-green-600">{message}</p>}
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* full name */}
@@ -361,8 +360,11 @@ export default function AddTeacher() {
           {loading ? "Uploading..." : "Add Teacher"}
         </button>
 
-        
+
       </form>
+
+            {message && <p className="mb-4 text-center text-green-600">{message}</p>}
+
     </div>
   );
 }

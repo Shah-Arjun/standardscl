@@ -1,67 +1,42 @@
 import { NextResponse } from "next/server";
-import { upload } from "../../../middleware/multer";
-import mysql from "mysql2/promise";
-import nextConnect from "next-connect";
-import fs from "fs";
+import { upload } from "../../../../lib/multer";
 import { db } from "../../../../config/db";
 
-// Disable default bodyParser
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
-// Use next-connect to integrate Multer
-const handler = nextConnect();
-
-handler.use(upload.single("image"));
-
-handler.post(async (req, res) => {
+export async function POST(req) {
   try {
-    const {
-      full_name,
-      gender,
-      email,
-      phone,
-      address,
-      qualification,
-      subject_specialization,
-      position,
-      working_period,
-      years_of_teaching_experience,
-    } = req.body;
+    await new Promise((resolve, reject) => {
+      upload.single("image")(req, {}, (err) => {
+        if (err) reject(err);
+        else resolve(true);
+      });
+    });
 
-    const imagePath = req.file
-      ? "/uploads/teachers/" + req.file.filename
-      : null;
+    const file = req.file;
+    const formData = req.body;
 
-    const sql = `
-      INSERT INTO teachers 
-      (full_name, gender, email, phone, address, qualification, subject_specialization, position, working_period, years_of_teaching_experience, image)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `;
+    const imagePath = file ? "/uploads/teachers/" + file.filename : null;
 
-    await db.execute(sql, [
-      full_name,
-      gender,
-      email,
-      phone,
-      address,
-      qualification,
-      subject_specialization,
-      position,
-      working_period,
-      years_of_teaching_experience,
-      imagePath,
-    ]);
+    await db.execute(
+      `INSERT INTO teachers
+       (full_name, gender, email, phone, address, qualification, subject_specialization, positions, working_period, years_of_teaching_experience, image)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        formData.full_name,
+        formData.gender,
+        formData.email,
+        formData.phone,
+        formData.address,
+        formData.qualification,
+        formData.subject_specialization,
+        formData.positions,
+        formData.working_period,
+        formData.years_of_teaching_experience,
+        imagePath,
+      ]
+    );
 
-    return res
-      .status(201)
-      .json({ message: "Teacher data inserted successfully" });
+    return NextResponse.json({ message: "Teacher created successfully" }, { status: 201 });
   } catch (err) {
-    return res.status(500).json({ error: err.message });
+    return NextResponse.json({ error: err.message }, { status: 500 });
   }
-});
-
-export default handler;
+}
