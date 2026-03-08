@@ -47,6 +47,7 @@
     "framer-motion": "^12.29.2",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.563.0",
+    "mysql2": "^3.17.2",
     "next": "16.1.5",
     "next-themes": "^0.4.6",
     "nodemailer": "^7.0.13",
@@ -62,7 +63,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",
-    "@types/node": "^20",
+    "@types/node": "^20.19.33",
     "@types/nodemailer": "^7.0.9",
     "@types/react": "^19",
     "@types/react-dom": "^19",
