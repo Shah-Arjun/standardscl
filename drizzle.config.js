@@ -1,11 +1,11 @@
 // code related to migration
 
-
+import 'dotenv/config';          
 import { defineConfig } from "drizzle-kit";   //yesle migration herchha
 
 
 // defineConfig takes 4 arguments
-defineConfig({
+export default defineConfig({
     schema: "./database/schema.js",     //path of schema file
     out: "./drizzle",    //output directory, where the migration files generated based on schema by drizzle-orm is stored, drizzle folder is created at the root of the project itself
     dialect: "postgresql",    //name of db we are using
