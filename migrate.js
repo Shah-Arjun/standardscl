@@ -20,8 +20,10 @@ import {migrate} from "drizzle-orm/postgres-js/migrator"
         console.log("Running migrations...");
         await migrate(db, { migrationsFolder: "./drizzle" });
         console.log("Migrations completed successfully!");
+
       } catch (err) {
         console.error("Migration failed:", err);
+        
       } finally {
         await connection.end();
         console.log("Database connection closed.");
