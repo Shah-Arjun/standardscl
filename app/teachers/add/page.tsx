@@ -144,7 +144,7 @@ export default function AddTeacher() {
     data.append("image", file);
 
     try {
-      const res = await fetch("/api/teachers/create", {
+      const res = await fetch("/api/teachers/add", {
         method: "POST",
         body: data,
       });
