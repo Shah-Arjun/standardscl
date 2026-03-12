@@ -1,3 +1,4 @@
+import { sql } from "drizzle-orm";
 import { pgTable, pgEnum, serial, varchar, text, float, timestamp } from "drizzle-orm/pg-core";
 
 // Field of Study Enum
@@ -31,26 +32,34 @@ import { pgTable, pgEnum, serial, varchar, text, float, timestamp } from "drizzl
 // ]);
 
 
-pgTable("teachers", {
+// teachers schema
+export const teachersTable =  pgTable("teachers", {
   //takes table name and its columns names with validation as object
-  id: serial("id").primaryKey(), //serial is a helper function that creates an auto-incrementing integer column, and id passed is actual name of db column, and primaryKey() marks it as the primary key of the table.
-  teacherName: varchar("teacher_name", { length: 255 }).notNull(),
-  gender: pgEnum("gender", ["male", "female", "other"]).notNull(),
-  email: varchar("email", { length: 255 }).unique(),
-  phone: varchar("phone", { length: 20 }).notNull(),
-  address: text("address"),
+  id : serial("id").primaryKey(), //serial is a helper function that creates an auto-incrementing integer column, and id passed is actual name of db column, and primaryKey() marks it as the primary key of the table.
+  teacherName : varchar("teacher_name", { length: 255 }).notNull(),
+  gender : pgEnum("gender", ["male", "female", "other"]).notNull(),
+  email : varchar("email", { length: 255 }).unique(),
+  phone : varchar("phone", { length: 20 }).notNull(),
+  address : text("address"),
 
-  employmentType: pgEnum("employment_type", ["Full Time", "Part Time", "Contract"]).notNull(),
-  qualification: text("qualification", { length: 255 }).notNull(),
+  employmentType : pgEnum("employment_type", ["Full Time", "Part Time", "Contract"]).notNull(),
+  qualification : text("qualification", { length: 255 }).notNull(),
 
-  fieldOfStudy: text("field_of_study").notNull(),
+  fieldOfStudy : text("field_of_study").notNull(),
 
-  subjectTeaches: text("subject_teaches", { length: 100 }).notNull(),
-  post: text("position").notNull(),
+  subjectTeaches : text("subject_teaches", { length: 100 }).notNull(),
+  post : text("position").notNull(),
   
-  experience: float("years_of_experience"),              // years of teaching experience
+  experience : float("years_of_experience"),              // years of teaching experience
   
-  photo: text("photo", { length: 500 }).notNull(),     // URL of the teacher's photo
+  photo : text("photo", { length: 500 }).notNull(),     // URL of the teacher's photo
 
-  createdAt: timestamp("created_at").defaultNow(),
+  createdAt : timestamp("created_at").defaultNow(),    // or
+//   createdAt : timestamp("created_at").default(sql`CURRENT_TIMESTAMP`),
+  updatedAt : timestamp("updated_at").defaultNow().onUpdateNow(),
+
 });
+
+
+
+// other schema goes here
