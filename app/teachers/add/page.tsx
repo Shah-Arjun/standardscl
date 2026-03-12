@@ -51,6 +51,34 @@ const positions = [
 const workingPeriods = ["Full Time", "Part Time"];
 
 
+export const fieldOfStudyEnum = pgEnum("field_of_study_enum", [
+  "Mathematics",
+  "Science",
+  "Computer Science/Engineering",
+  "Education",
+  "Sanskrit",
+  "Economics",
+  "Other",
+]);
+
+export const postEnum = pgEnum("position_enum", [
+  "Founder",
+  "Principal",
+  "Vice-Principal",
+  "Exam Coordinator",
+  "ECA Coordinator",
+  "ECL Coordinator",
+  "Accountant",
+  "ECA Member",
+  "ECL Member",
+  "Assistant Teacher",
+  "Martial Art(Karate) Teacher",
+  "Dance Teacher",
+  "Music Teacher",
+  "Arts/Drawing Teacher",
+  "Other"
+]);
+
 
 
 

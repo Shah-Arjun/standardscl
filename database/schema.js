@@ -5,33 +5,7 @@ import { pgTable, serial, varchar, text, float, timestamp, pgEnum } from "drizzl
 // --- Enums ---
 export const genderEnum = pgEnum("gender_enum", ["male", "female", "other"]);
 
-export const fieldOfStudyEnum = pgEnum("field_of_study_enum", [
-  "Mathematics",
-  "Science",
-  "Computer Science/Engineering",
-  "Education",
-  "Sanskrit",
-  "Economics",
-  "Other",
-]);
 
-export const postEnum = pgEnum("position_enum", [
-  "Founder",
-  "Principal",
-  "Vice-Principal",
-  "Exam Coordinator",
-  "ECA Coordinator",
-  "ECL Coordinator",
-  "Accountant",
-  "ECA Member",
-  "ECL Member",
-  "Assistant Teacher",
-  "Martial Art(Karate) Teacher",
-  "Dance Teacher",
-  "Music Teacher",
-  "Arts/Drawing Teacher",
-  "Other"
-]);
 
 export const employmentEnum = pgEnum("employment_enum", ["Full Time", "Part Time", "Contract", "Other"]);
 
@@ -47,10 +21,10 @@ export const teachersTable =  pgTable("teachers", {
   phone: varchar("phone", { length: 20 }).notNull(),
   address: text("address"),
 
-  employmentType: employmentEnum("employment_type").notNull(),
+  employmentType: text("employment_type").notNull(),
   qualification: text("qualification", { length: 255 }).notNull(),
 
-  fieldOfStudy: fieldOfStudyEnum("field_of_study").notNull(),
+  fieldOfStudy: text("field_of_study").notNull(),
   subjectTeaches: text("subject_teaches", { length: 100 }).notNull(),
   post: postEnum("position").notNull(),
 
