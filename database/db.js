@@ -6,8 +6,7 @@ import { drizzle } from "drizzle-orm"   //imports the Drizzle ORM driver used to
 
 const connStr = process.env.DATABASE_URL
 
-const connection = postgres(connStr)     // creates a PostgreSQL connection instance using the connection string.
+export const connection = postgres(connStr)     // creates a PostgreSQL connection instance using the connection string.
 
-const db = dr(connection) //Initialize Drizzle ORM,,, Now instead of writing raw SQL everywhere, we can use Drizzle's typed query system.
+export const db = drizzle(connection) //Initialize Drizzle ORM,,, Now instead of writing raw SQL everywhere, we can use Drizzle's typed query system.
 
-export default db
