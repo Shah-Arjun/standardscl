@@ -1,0 +1,1 @@
+ALTER TABLE "teachers" ALTER COLUMN "years_of_experience" SET NOT NULL;

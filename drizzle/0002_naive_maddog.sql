@@ -1,0 +1,1 @@
+ALTER TABLE "teachers" ALTER COLUMN "gender" DROP NOT NULL;

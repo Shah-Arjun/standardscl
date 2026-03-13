@@ -8,6 +8,34 @@
       "when": 1773333743010,
       "tag": "0000_wild_robin_chapel",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1773370761714,
+      "tag": "0001_exotic_stephen_strange",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1773371176320,
+      "tag": "0002_naive_maddog",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1773371260123,
+      "tag": "0003_ancient_prodigy",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1773371463429,
+      "tag": "0004_free_sunspot",
+      "breakpoints": true
     }
   ]
 }
