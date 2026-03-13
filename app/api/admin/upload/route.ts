@@ -7,6 +7,8 @@ export async function POST(req: Request) {
 
     const formData = await req.formData();
 
+    console.log("Form data received:  \n", formData);
+
     const file: File | null = formData.get("photo") as unknown as File;
 
     if (!file) {
