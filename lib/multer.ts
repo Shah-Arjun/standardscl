@@ -39,7 +39,7 @@ const fileFilter: multer.Options["fileFilter"] = (req, file, cb) => {
   const allowed = /jpg|jpeg|png|webp/;
 
   const ext = allowed.test(path.extname(file.originalname).toLowerCase());  //checks files extenson
-  c//onst mime = allowed.test(file.mimetype);  //checks mime type  eg. image/jpeg
+  //const mime = allowed.test(file.mimetype);  //checks mime type  eg. image/jpeg
 
 
   //allow file if the test passes
