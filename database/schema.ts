@@ -6,10 +6,6 @@ export const genderEnum = pgEnum("gender_enum", ["male", "female", "other"]);
 
 
 
-// export const employmentEnum = pgEnum("employment_enum", ["Full Time", "Part Time", "Contract", "Other"]);
-
-
-
 // teachers schema
 export const teachersTable =  pgTable("teachers", {
   //takes table name and its columns names with validation as object
