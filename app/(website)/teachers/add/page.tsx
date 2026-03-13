@@ -17,6 +17,8 @@ interface TeacherFormData {
   experience: string;
 }
 
+type MultiSelectKey = "qualifications" | "fieldsOfStudy" | "subjectsTeaches" | "posts";
+
 const defaultOptions = {
   qualifications: ["BEd Mathematics", "BEd Science", "BEd English", "Other"],
   fieldsOfStudy: ["Mathematics", "Science", "English", "Other"],
@@ -69,6 +71,9 @@ export default function AddTeacher() {
   };
 
 
+  
+
+
   // handle multi-select checkboxes
   const handleMultiSelect = (
     key: "qualifications" | "fieldsOfStudy" | "subjectsTeaches" | "posts",
@@ -77,30 +82,36 @@ export default function AddTeacher() {
   ) => {
     setFormData((prev) => {
       const arr = prev[key];
-      if (checked) return { ...prev, [key]: [...arr, value] };
-      return { ...prev, [key]: arr.filter((v) => v !== value) };
+      if (checked) {
+        // add value to array
+        return { ...prev, [key]: [...arr, value] };
+      } else {
+        // remove value from array
+        return { ...prev, [key]: arr.filter((v) => v !== value) };
+      }
     });
   };
 
+
   // handle custom value input
-  const handleAddCustomValue = (
-    key: "qualifications" | "fieldsOfStudy" | "subjectsTeaches" | "posts"
-  ) => {
+  const handleCustomInputChange = (key: MultiSelectKey, value: string) => {
+    setCustomValues((prev) => ({ ...prev, [key]: value }));
+  };
+  
+
+
+  const handleAddCustomValue = (key: MultiSelectKey) => {
     const value = customValues[key].trim();
     if (!value) return;
+  
     setFormData((prev) => ({
       ...prev,
       [key]: [...prev[key], value],
     }));
+  
     setCustomValues((prev) => ({ ...prev, [key]: "" }));
   };
 
-  const handleCustomInputChange = (
-    key: string,
-    value: string
-  ) => {
-    setCustomValues((prev) => ({ ...prev, [key]: value }));
-  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -113,38 +124,54 @@ export default function AddTeacher() {
       return;
     }
   
+    // Step 2: Prepare arrays
+    const dataToSend = prepareMultiSelectArrays();
+  
+    // Step 3: Build FormData
     const formDataToSend = new FormData();
-    formDataToSend.append("teacherName", formData.teacherName);
-    formDataToSend.append("gender", formData.gender);
-    formDataToSend.append("email", formData.email);
-    formDataToSend.append("phone", formData.phone);
-    formDataToSend.append("address", formData.address);
-    formDataToSend.append("employmentType", formData.employmentType);
-
-    formDataToSend.append("qualification", JSON.stringify(formData.qualifications));
-    formDataToSend.append("fieldOfStudy", JSON.stringify(formData.fieldsOfStudy));
-    formDataToSend.append("subjectTeaches", JSON.stringify(formData.subjectsTeaches));
-    formDataToSend.append("post", JSON.stringify(formData.posts));
-    formDataToSend.append("experience", formData.experience);
-    formDataToSend.append("photo", file); // attach the photo
+    formDataToSend.append("teacherName", dataToSend.teacherName);
+    formDataToSend.append("gender", dataToSend.gender);
+    formDataToSend.append("email", dataToSend.email);
+    formDataToSend.append("phone", dataToSend.phone);
+    formDataToSend.append("address", dataToSend.address);
+    formDataToSend.append("employmentType", dataToSend.employmentType);
+  
+    formDataToSend.append("qualification", JSON.stringify(dataToSend.qualifications));
+    formDataToSend.append("fieldOfStudy", JSON.stringify(dataToSend.fieldsOfStudy));
+    formDataToSend.append("subjectTeaches", JSON.stringify(dataToSend.subjectsTeaches));
+    formDataToSend.append("post", JSON.stringify(dataToSend.posts));
+    formDataToSend.append("experience", dataToSend.experience);
+    formDataToSend.append("photo", file);
   
     try {
-      const res = await fetch("/api/teachers/add", {
-        method: "POST",
-        body: formDataToSend, // no JSON, no Content-Type header
-      });
-  
+      const res = await fetch("/api/teachers/add", { method: "POST", body: formDataToSend });
       const result = await res.json();
-      if (res.ok) {
-        setMessage("Teacher added successfully!");
-        // Reset form...
-      } else setMessage(result.message);
-    } catch (err) {
+      if (res.ok) setMessage("Teacher added successfully!");
+      else setMessage(result.message);
+    } catch {
       setMessage("Submit failed");
     }
   
     setLoading(false);
   };
+
+
+  // Update array before submit
+  const prepareMultiSelectArrays = () => {
+    const dataToSend = { ...formData };
+  
+    const keys: MultiSelectKey[] = ["qualifications", "fieldsOfStudy", "subjectsTeaches", "posts"];
+  
+    keys.forEach((key) => {
+      const typedValue = customValues[key];
+      if (dataToSend[key].includes("Other") && typedValue.trim()) {
+        dataToSend[key] = dataToSend[key].map((v: string) => (v === "Other" ? typedValue.trim() : v));
+      }
+    });
+  
+    return dataToSend;
+  };
+
 
   // render multi-select with custom input
   const renderMultiSelect = (
@@ -155,7 +182,10 @@ export default function AddTeacher() {
       <label className="font-medium capitalize">{key.replace(/([A-Z])/g, " $1")}</label>
       <div className="flex flex-wrap gap-2">
         {options.map((opt) => (
-          <label key={opt} className="flex items-center space-x-1 border p-1 rounded cursor-pointer">
+          <label
+            key={opt}
+            className="flex items-center space-x-1 border p-1 rounded cursor-pointer"
+          >
             <input
               type="checkbox"
               checked={formData[key].includes(opt)}
@@ -165,6 +195,8 @@ export default function AddTeacher() {
           </label>
         ))}
       </div>
+  
+      {/* Show input if Other is selected */}
       {formData[key].includes("Other") && (
         <div className="flex gap-2 mt-1">
           <input
@@ -185,6 +217,9 @@ export default function AddTeacher() {
       )}
     </div>
   );
+
+
+
 
   return (
     <div className="max-w-xl mx-auto p-6 bg-white shadow rounded mt-6">
@@ -256,7 +291,6 @@ export default function AddTeacher() {
           <option>Full Time</option>
           <option>Part Time</option>
           <option>Contract</option>
-          <option>Other</option>
         </select>
 
         {/* Multi-select dropdowns */}
@@ -264,6 +298,8 @@ export default function AddTeacher() {
         {renderMultiSelect("fieldsOfStudy", defaultOptions.fieldsOfStudy)}
         {renderMultiSelect("subjectsTeaches", defaultOptions.subjectsTeaches)}
         {renderMultiSelect("posts", defaultOptions.posts)}
+
+
 
         {/* Experience */}
         <input
