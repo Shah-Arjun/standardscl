@@ -1,5 +1,7 @@
 import { teachersTable } from "@/database/schema";
 import {db} from "../../../../database/db"
+import fs from "fs/promises"; // 
+
 
 
 // // // GET teachers api ;  http://localhost:3000/api/teachers/add
@@ -48,46 +50,110 @@ import {db} from "../../../../database/db"
 // }
 
 import { NextResponse } from "next/server";
+import path from "path";
+
+
 
 // POST handler
 export async function POST(req: Request) {
   try {
-    const body = await req.json(); // Parse JSON
+    const formData = await req.formData(); // Parse FormData
+
+    // get fields
+    const teacherName = formData.get("teacherName")?.toString();
+    const gender = formData.get("gender")?.toString();
+    const email = formData.get("email")?.toString();
+    const phone = formData.get("phone")?.toString();
+    const address = formData.get("address")?.toString();
+    const employmentType = formData.get("employmentType")?.toString();
+    const qualification = formData.get("qualification")?.toString();
+    const fieldOfStudy = formData.get("fieldOfStudy")?.toString();
+    const subjectTeaches = formData.get("subjectTeaches")?.toString();
+    const post = formData.get("post")?.toString();
+    const experience = formData.get("experience")?.toString();
+
+    // get file
+    const photo = formData.get("photo") as File | null;
 
     // Check required fields
-    if (!body.teacherName || !body.phone) {
+    if (!teacherName || !phone || !address || !employmentType || !qualification || !fieldOfStudy || !subjectTeaches || !post || !experience) {
       return NextResponse.json(
-        { success: false, message: "Teacher Name and Phone are required" },
+        { success: false, message: "Teacher Name, Phone, Address, Employment Type, Qualification, Field Of Study, Subject Teaches, Post, and Experience are required" },
         { status: 400 }
       );
     }
 
+    //checks photo
+    if (!photo) {
+      return NextResponse.json(
+        { success: false, message: "Photo is required" },
+        { status: 400 }
+      );
+    }
+
+
+    // convert file to buffer
+    const bytes = await photo.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+
+    // Get the path to the uploads folder relative to the project root
+    const uploadsDir = path.join(process.cwd(), 'uploads');
+
+
+    // Check if folder exists, if not, create it recursively
+    await fs.mkdir(uploadsDir, { recursive: true });
+
+
+    // unique filename
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+
+    // get extension of file
+    const ext = path.extname(photo.name)
+
+    // make file name
+    const fileName = `teacher-${uniqueSuffix}${ext}`;
+
+    const filePath = path.join(uploadsDir, fileName);   //actual path from root directory
+
+    console.log("filename--> ", fileName)
+    console.log('\n\n\nfilepath-->', filePath)
+
+
     // Build teacher data
     const teacherData:any = {
-      teacherName: body.teacherName,
-      gender: body.gender || "male",
-      email: body.email,
-      phone: body.phone,
-      address: body.address || "",
-      employmentType: body.employmentType || "Full Time",
-      qualification: body.qualification?.split(",") || [],
-      fieldOfStudy: body.fieldOfStudy?.split(",") || [],
-      subjectTeaches: body.subjectTeaches?.split(",") || [],
-      post: body.post?.split(",") || [],
-      experience: body.experience || "",
-      photo: "///", // no photo
+      teacherName,
+      gender: gender || "male",
+      email,
+      phone,
+      address: address || "",
+      employmentType: employmentType || "Full Time",
+      qualification: qualification?.split(",") || [],
+      fieldOfStudy: fieldOfStudy?.split(",") || [],
+      subjectTeaches: subjectTeaches?.split(",") || [],
+      post: post?.split(",") || [],
+      experience: experience || "",
+      photo: fileName // save unique file name
     };
+
+// console.log("teachers data---. \n", teacherData)
 
     // Insert into DB
     const inserted = await db.insert(teachersTable).values(teacherData).returning();
+
+    // save file to upload folder
+    await fs.writeFile(filePath, buffer);
 
     return NextResponse.json({
       success: true,
       message: "Teacher added successfully",
       data: inserted,
     });
+
   } catch (err: any) {
-    console.error("POST /api/teachers/add error:", err);
-    return NextResponse.json({ success: false, message: err.message || "Upload failed" }, { status: 500 });
+    // console.error("POST /api/teachers/add error:", err);
+    return NextResponse.json({
+        success: false,
+        message: err.message || "Upload failed" 
+    }, { status: 500 });
   }
 }
