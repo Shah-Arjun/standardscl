@@ -21,15 +21,15 @@ export const teachersTable =  pgTable("teachers", {
   address: text("address"),
 
   employmentType: text("employment_type").notNull(),
-  qualification: text("qualification", { length: 255 }).notNull(),
+  qualification: text("qualification").notNull(),
 
   fieldOfStudy: text("field_of_study").notNull(),
-  subjectTeaches: text("subject_teaches", { length: 100 }).notNull(),
+  subjectTeaches: text("subject_teaches").notNull(),
   post: text("position").notNull(),
 
   experience: decimal("years_of_experience").notNull(), // can store decimal years
 
-  photo: text("photo", { length: 500 }).notNull(), // URL of teacher's photo
+  photo: text("photo").notNull(), // URL of teacher's photo
 
 //   createdAt : timestamp("created_at").defaultNow(),    // or
   createdAt : timestamp("created_at").default(sql`CURRENT_TIMESTAMP`),

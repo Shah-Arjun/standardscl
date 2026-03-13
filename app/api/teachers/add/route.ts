@@ -1,5 +1,5 @@
+import { teachersTable } from "@/database/schema";
 import {db} from "../../../../database/db"
-import {teachersTable} from "../../../../database/schema"
 
 
 // // GET teachers api ;  http://localhost:3000/api/teachers/add
@@ -11,10 +11,11 @@ import {teachersTable} from "../../../../database/schema"
 
 
 // ADD teaches api : http://localhost:3000/api/teachers/add
-export async function POST(req) {
+export async function POST(req : Request) {
   try {
     const body = await req.json();
-    console.log(body)
+    // console.log(body)
+    
     const newTeacher = await db
       .insert(teachersTable)
       .values({
@@ -38,7 +39,7 @@ export async function POST(req) {
       data: newTeacher,
     });
 
-  } catch (error) {
+  } catch (error : any) {
     return Response.json({
       success: false,
       message: error.message,

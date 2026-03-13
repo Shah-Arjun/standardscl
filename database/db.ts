@@ -6,7 +6,7 @@ import { drizzle } from "drizzle-orm/postgres-js"  //imports the Drizzle ORM dri
 
 const connStr = process.env.DATABASE_URL
 
-export const connection = postgres(connStr)     // creates a PostgreSQL connection instance using the connection string.
+export const connection = postgres(connStr as string)     // creates a PostgreSQL connection instance using the connection string.
 
 export const db = drizzle(connection) //Initialize Drizzle ORM,,, Now instead of writing raw SQL everywhere, we can use Drizzle's typed query system.
 
