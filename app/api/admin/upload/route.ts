@@ -1,45 +1,40 @@
-// add imaegs test api
-
-
-import {upload} from "../../../../lib/multer";
-import { runMiddleware } from "../../../../lib/runMiddleware";
 import { NextResponse } from "next/server";
+import path from "path";
+import fs from "fs/promises";
 
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
-
-
-//add images api
-export async function POST(req: any, res: any) {
+export async function POST(req: Request) {
   try {
- console.log("hello")
-    await runMiddleware(req, res, upload.single("photo"));
-    // await runMiddleware(req, res, upload.array("photos", 5));   //for multiple file upload , max=5
 
-    console.log("Middleware executed successfully");
+    const formData = await req.formData();
 
-    const file = req.file;   //returns object containing uploaded file information
+    const file: File | null = formData.get("photo") as unknown as File;
 
-    const body = req.body;
+    if (!file) {
+      return NextResponse.json({ message: "No file uploaded" }, { status: 400 });
+    }
 
-    console.log(body)
-    
-    console.log("Uploaded file--->\n:", file);
-    console.log("Uploaded file.filename--->\n:", file.filename);
-    console.log("Form data:", body);
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+
+    const uploadDir = path.join(process.cwd(), "uploads");
+
+    // create folder if not exists
+    await fs.mkdir(uploadDir, { recursive: true });
+
+    const filePath = path.join(uploadDir, file.name);
+
+    await fs.writeFile(filePath, buffer);
+
+    console.log("File saved:", filePath);
 
     return NextResponse.json({
       success: true,
-      file,
-      body,
+      filename: file.name,
     });
 
   } catch (error) {
+    console.error(error);
+
     return NextResponse.json(
       { message: "Upload failed" },
       { status: 500 }
