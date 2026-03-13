@@ -60,7 +60,7 @@ export async function POST(req: Request) {
     const formData = await req.formData(); // Parse FormData
 
     // get fields
-    const teacherName = formData.get("teacherName")?.toString();
+    const teacherName = formData.get("teacherName")?.split(",").toString();
     const gender = formData.get("gender")?.toString();
     const email = formData.get("email")?.toString();
     const phone = formData.get("phone")?.toString();

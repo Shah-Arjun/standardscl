@@ -68,12 +68,8 @@ export default function AddTeacher() {
     }));
   };
 
-  // const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   if (e.target.files && e.target.files.length > 0) setFile(e.target.files[0]);
-  // };
 
   // handle multi-select checkboxes
-  
   const handleMultiSelect = (
     key: "qualifications" | "fieldsOfStudy" | "subjectsTeaches" | "posts",
     value: string,
@@ -108,48 +104,39 @@ export default function AddTeacher() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
     setLoading(true);
     setMessage("");
   
-    const data = {
-      teacherName: formData.teacherName,
-      gender: formData.gender,
-      email: formData.email,
-      phone: formData.phone,
-      address: formData.address,
-      employmentType: formData.employmentType,
-      qualification: formData.qualifications.join(","),
-      fieldOfStudy: formData.fieldsOfStudy.join(","),
-      subjectTeaches: formData.subjectsTeaches.join(","),
-      post: formData.posts.join(","),
-      experience: formData.experience,
-    };
+    if (!file) {
+      setMessage("Please select a photo");
+      setLoading(false);
+      return;
+    }
+  
+    const formDataToSend = new FormData();
+    formDataToSend.append("teacherName", formData.teacherName);
+    formDataToSend.append("gender", formData.gender);
+    formDataToSend.append("email", formData.email);
+    formDataToSend.append("phone", formData.phone);
+    formDataToSend.append("address", formData.address);
+    formDataToSend.append("employmentType", formData.employmentType);
+    formDataToSend.append("qualification", formData.qualifications.join(","));
+    formDataToSend.append("fieldOfStudy", formData.fieldsOfStudy.join(","));
+    formDataToSend.append("subjectTeaches", formData.subjectsTeaches.join(","));
+    formDataToSend.append("post", formData.posts.join(","));
+    formDataToSend.append("experience", formData.experience);
+    formDataToSend.append("photo", file); // attach the photo
   
     try {
       const res = await fetch("/api/teachers/add", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: formDataToSend, // no JSON, no Content-Type header
       });
   
       const result = await res.json();
-  
       if (res.ok) {
         setMessage("Teacher added successfully!");
-        setFormData({
-          teacherName: "",
-          gender: "male",
-          email: "",
-          phone: "",
-          address: "",
-          employmentType: "Full Time",
-          qualifications: [],
-          fieldsOfStudy: [],
-          subjectsTeaches: [],
-          posts: [],
-          experience: "",
-        });
+        // Reset form...
       } else setMessage(result.message);
     } catch (err) {
       setMessage("Submit failed");
@@ -288,13 +275,15 @@ export default function AddTeacher() {
         />
 
         {/* Photo */}
-        {/* <input
+        <input
           type="file"
           name="photo"
           accept="image/*"
-          onChange={handleFileChange}
+          onChange={(e) => {
+            if (e.target.files && e.target.files.length > 0) setFile(e.target.files[0]);
+          }}
           className="w-full p-2 border rounded"
-        /> */}
+        />
 
         {/* Button */}
         <button
