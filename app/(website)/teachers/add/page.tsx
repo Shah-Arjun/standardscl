@@ -120,10 +120,11 @@ export default function AddTeacher() {
     formDataToSend.append("phone", formData.phone);
     formDataToSend.append("address", formData.address);
     formDataToSend.append("employmentType", formData.employmentType);
-    formDataToSend.append("qualification", formData.qualifications.join(","));
-    formDataToSend.append("fieldOfStudy", formData.fieldsOfStudy.join(","));
-    formDataToSend.append("subjectTeaches", formData.subjectsTeaches.join(","));
-    formDataToSend.append("post", formData.posts.join(","));
+
+    formDataToSend.append("qualification", JSON.stringify(formData.qualifications));
+    formDataToSend.append("fieldOfStudy", JSON.stringify(formData.fieldsOfStudy));
+    formDataToSend.append("subjectTeaches", JSON.stringify(formData.subjectsTeaches));
+    formDataToSend.append("post", JSON.stringify(formData.posts));
     formDataToSend.append("experience", formData.experience);
     formDataToSend.append("photo", file); // attach the photo
   

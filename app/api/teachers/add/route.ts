@@ -58,19 +58,22 @@ import path from "path";
 export async function POST(req: Request) {
   try {
     const formData = await req.formData(); // Parse FormData
-
+console.log("formData-->", formData)
     // get fields
-    const teacherName = formData.get("teacherName")?.split(",").toString();
-    const gender = formData.get("gender")?.toString();
-    const email = formData.get("email")?.toString();
-    const phone = formData.get("phone")?.toString();
-    const address = formData.get("address")?.toString();
-    const employmentType = formData.get("employmentType")?.toString();
-    const qualification = formData.get("qualification")?.toString();
-    const fieldOfStudy = formData.get("fieldOfStudy")?.toString();
-    const subjectTeaches = formData.get("subjectTeaches")?.toString();
-    const post = formData.get("post")?.toString();
-    const experience = formData.get("experience")?.toString();
+    const teacherName = formData.get("teacherName")?.toString().trim();
+    const gender = formData.get("gender")?.toString().trim();
+    const email = formData.get("email")?.toString().trim();
+    const phone = formData.get("phone")?.toString().trim();
+    const address = formData.get("address")?.toString().trim();
+    const employmentType = formData.get("employmentType")?.toString().trim();
+
+    const qualification = formData.get("qualification")? JSON.parse(formData.get("qualification") as string) : [];
+    const fieldOfStudy = formData.get("fieldOfStudy")? JSON.parse(formData.get("fieldOfStudy") as string) : [];
+    const subjectTeaches = formData.get("subjectTeaches")? JSON.parse(formData.get("subjectTeaches") as string) : [];
+    const post = formData.get("post")? JSON.parse(formData.get("post") as string) : [];
+    const experience = formData.get("experience")?.toString().trim();
+
+    console.log("\n---->", formData)
 
     // get file
     const photo = formData.get("photo") as File | null;
@@ -127,15 +130,15 @@ export async function POST(req: Request) {
       phone,
       address: address || "",
       employmentType: employmentType || "Full Time",
-      qualification: qualification?.split(",") || [],
-      fieldOfStudy: fieldOfStudy?.split(",") || [],
-      subjectTeaches: subjectTeaches?.split(",") || [],
-      post: post?.split(",") || [],
+      qualification: qualification || [],
+      fieldOfStudy: fieldOfStudy || [],
+      subjectTeaches: subjectTeaches || [],
+      post: post || [],
       experience: experience || "",
       photo: fileName // save unique file name
     };
 
-// console.log("teachers data---. \n", teacherData)
+console.log("teachers data---. \n", teacherData)
 
     // Insert into DB
     const inserted = await db.insert(teachersTable).values(teacherData).returning();
