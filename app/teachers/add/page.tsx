@@ -2,6 +2,7 @@
 
 import { useState, ChangeEvent, FormEvent } from "react";
 
+// Data type
 interface TeacherFormData {
   teacherName: string;
   gender: string;
@@ -9,15 +10,27 @@ interface TeacherFormData {
   phone: string;
   address: string;
   employmentType: string;
-  qualification: string;
-  fieldOfStudy: string;
-  subjectTeaches: string;
-  post: string;
+  qualifications: string[];
+  fieldsOfStudy: string[];
+  subjectsTeaches: string[];
+  posts: string[];
   experience: string;
 }
 
-export default function AddTeacher() {
+const defaultOptions = {
+  qualifications: ["BEd Mathematics", "BEd Science", "BEd English", "Other"],
+  fieldsOfStudy: ["Mathematics", "Science", "English", "Other"],
+  subjectsTeaches: ["Math", "Science", "English", "Nepali", "Other"],
+  posts: [
+    "Principal",
+    "Vice-Principal",
+    "Assistant Teacher",
+    "Accountant",
+    "Other",
+  ],
+};
 
+export default function AddTeacher() {
   const [formData, setFormData] = useState<TeacherFormData>({
     teacherName: "",
     gender: "male",
@@ -25,74 +38,105 @@ export default function AddTeacher() {
     phone: "",
     address: "",
     employmentType: "Full Time",
-    qualification: "",
-    fieldOfStudy: "",
-    subjectTeaches: "",
-    post: "",
-    experience: ""
+    qualifications: [],
+    fieldsOfStudy: [],
+    subjectsTeaches: [],
+    posts: [],
+    experience: "",
   });
 
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-
+  const [customValues, setCustomValues] = useState<{
+    [key: string]: string;
+  }>({
+    qualifications: "",
+    fieldsOfStudy: "",
+    subjectsTeaches: "",
+    posts: "",
+  });
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-
     setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
+  // const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files && e.target.files.length > 0) setFile(e.target.files[0]);
+  // };
 
-
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-
-    if (e.target.files && e.target.files.length > 0) {
-      setFile(e.target.files[0]);
-    }
-
+  // handle multi-select checkboxes
+  
+  const handleMultiSelect = (
+    key: "qualifications" | "fieldsOfStudy" | "subjectsTeaches" | "posts",
+    value: string,
+    checked: boolean
+  ) => {
+    setFormData((prev) => {
+      const arr = prev[key];
+      if (checked) return { ...prev, [key]: [...arr, value] };
+      return { ...prev, [key]: arr.filter((v) => v !== value) };
+    });
   };
 
+  // handle custom value input
+  const handleAddCustomValue = (
+    key: "qualifications" | "fieldsOfStudy" | "subjectsTeaches" | "posts"
+  ) => {
+    const value = customValues[key].trim();
+    if (!value) return;
+    setFormData((prev) => ({
+      ...prev,
+      [key]: [...prev[key], value],
+    }));
+    setCustomValues((prev) => ({ ...prev, [key]: "" }));
+  };
 
+  const handleCustomInputChange = (
+    key: string,
+    value: string
+  ) => {
+    setCustomValues((prev) => ({ ...prev, [key]: value }));
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-
     e.preventDefault();
-
-    if (!file) {
-      setMessage("Please select image");
-      return;
-    }
-
+  
     setLoading(true);
-
-    const data = new FormData();
-
-    Object.entries(formData).forEach(([key, value]) => {
-      data.append(key, value);
-    });
-
-    data.append("photo", file);
-
+    setMessage("");
+  
+    const data = {
+      teacherName: formData.teacherName,
+      gender: formData.gender,
+      email: formData.email,
+      phone: formData.phone,
+      address: formData.address,
+      employmentType: formData.employmentType,
+      qualification: formData.qualifications.join(","),
+      fieldOfStudy: formData.fieldsOfStudy.join(","),
+      subjectTeaches: formData.subjectsTeaches.join(","),
+      post: formData.posts.join(","),
+      experience: formData.experience,
+    };
+  
     try {
-
       const res = await fetch("/api/teachers/add", {
         method: "POST",
-        body: data
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
       });
-
+  
       const result = await res.json();
-
+  
       if (res.ok) {
-
-        setMessage("Teacher added successfully");
-
+        setMessage("Teacher added successfully!");
         setFormData({
           teacherName: "",
           gender: "male",
@@ -100,41 +144,65 @@ export default function AddTeacher() {
           phone: "",
           address: "",
           employmentType: "Full Time",
-          qualification: "",
-          fieldOfStudy: "",
-          subjectTeaches: "",
-          post: "",
-          experience: ""
+          qualifications: [],
+          fieldsOfStudy: [],
+          subjectsTeaches: [],
+          posts: [],
+          experience: "",
         });
-
-        setFile(null);
-
-      } else {
-        setMessage(result.message);
-      }
-
-    } catch (error) {
-
-      setMessage("Upload failed");
-
+      } else setMessage(result.message);
+    } catch (err) {
+      setMessage("Submit failed");
     }
-
+  
     setLoading(false);
-
   };
 
-
+  // render multi-select with custom input
+  const renderMultiSelect = (
+    key: "qualifications" | "fieldsOfStudy" | "subjectsTeaches" | "posts",
+    options: string[]
+  ) => (
+    <div className="space-y-2">
+      <label className="font-medium capitalize">{key.replace(/([A-Z])/g, " $1")}</label>
+      <div className="flex flex-wrap gap-2">
+        {options.map((opt) => (
+          <label key={opt} className="flex items-center space-x-1 border p-1 rounded cursor-pointer">
+            <input
+              type="checkbox"
+              checked={formData[key].includes(opt)}
+              onChange={(e) => handleMultiSelect(key, opt, e.target.checked)}
+            />
+            <span>{opt}</span>
+          </label>
+        ))}
+      </div>
+      {formData[key].includes("Other") && (
+        <div className="flex gap-2 mt-1">
+          <input
+            type="text"
+            placeholder="Add custom value"
+            value={customValues[key]}
+            onChange={(e) => handleCustomInputChange(key, e.target.value)}
+            className="p-1 border rounded flex-1"
+          />
+          <button
+            type="button"
+            className="bg-blue-600 text-white px-3 rounded"
+            onClick={() => handleAddCustomValue(key)}
+          >
+            Add
+          </button>
+        </div>
+      )}
+    </div>
+  );
 
   return (
-
     <div className="max-w-xl mx-auto p-6 bg-white shadow rounded mt-6">
-
-      <h2 className="text-2xl font-bold mb-6 text-center">
-        Add Teacher
-      </h2>
+      <h2 className="text-2xl font-bold mb-6 text-center">Add Teacher</h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-
         {/* Name */}
         <input
           type="text"
@@ -158,18 +226,6 @@ export default function AddTeacher() {
           <option value="other">Other</option>
         </select>
 
-
-        {/* Email */}
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        />
-
-
         {/* Phone */}
         <input
           type="text"
@@ -179,6 +235,16 @@ export default function AddTeacher() {
           onChange={handleChange}
           className="w-full p-2 border rounded"
           required
+        />
+
+{/* email */}
+      <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+          className="w-full p-2 border rounded"
         />
 
 
@@ -191,7 +257,6 @@ export default function AddTeacher() {
           onChange={handleChange}
           className="w-full p-2 border rounded"
         />
-
 
         {/* Employment Type */}
         <select
@@ -206,50 +271,11 @@ export default function AddTeacher() {
           <option>Other</option>
         </select>
 
-
-        {/* Qualification */}
-        <input
-          type="text"
-          name="qualification"
-          placeholder="Qualification"
-          value={formData.qualification}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        />
-
-
-        {/* Field of Study */}
-        <input
-          type="text"
-          name="fieldOfStudy"
-          placeholder="Field Of Study"
-          value={formData.fieldOfStudy}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        />
-
-
-        {/* Subject */}
-        <input
-          type="text"
-          name="subjectTeaches"
-          placeholder="Subject Teaches"
-          value={formData.subjectTeaches}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        />
-
-
-        {/* Position */}
-        <input
-          type="text"
-          name="post"
-          placeholder="Position"
-          value={formData.post}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        />
-
+        {/* Multi-select dropdowns */}
+        {renderMultiSelect("qualifications", defaultOptions.qualifications)}
+        {renderMultiSelect("fieldsOfStudy", defaultOptions.fieldsOfStudy)}
+        {renderMultiSelect("subjectsTeaches", defaultOptions.subjectsTeaches)}
+        {renderMultiSelect("posts", defaultOptions.posts)}
 
         {/* Experience */}
         <input
@@ -261,15 +287,14 @@ export default function AddTeacher() {
           className="w-full p-2 border rounded"
         />
 
-
         {/* Photo */}
-        <input
+        {/* <input
           type="file"
+          name="photo"
           accept="image/*"
           onChange={handleFileChange}
           className="w-full p-2 border rounded"
-        />
-
+        /> */}
 
         {/* Button */}
         <button
@@ -279,15 +304,9 @@ export default function AddTeacher() {
         >
           {loading ? "Saving..." : "Add Teacher"}
         </button>
-
       </form>
 
-      {message && (
-        <p className="text-center mt-4 text-green-600">{message}</p>
-      )}
-
+      {message && <p className="text-center mt-4 text-green-600">{message}</p>}
     </div>
-
   );
-
 }

@@ -16,7 +16,7 @@ export const teachersTable =  pgTable("teachers", {
   id : serial("id").primaryKey(), //serial is a helper function that creates an auto-incrementing integer column, and id passed is actual name of db column, and primaryKey() marks it as the primary key of the table.
   teacherName: varchar("teacher_name", { length: 255 }).notNull(),
   gender: genderEnum("gender"),
-  email: varchar("email", { length: 255 }).unique(),
+  email: varchar("email", { length: 255 }).notNull(),
   phone: varchar("phone", { length: 20 }).notNull(),
   address: text("address"),
 

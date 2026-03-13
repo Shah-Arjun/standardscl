@@ -36,6 +36,13 @@
       "when": 1773371463429,
       "tag": "0004_free_sunspot",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1773392370406,
+      "tag": "0005_lowly_firedrake",
+      "breakpoints": true
     }
   ]
 }
