@@ -191,7 +191,7 @@ export const HeroSection = () => {
 
             {/* Video */}
             <video
-              src="/ssbsfinal.mp4"
+              src="https://res.cloudinary.com/dpraq0j6y/video/upload/v1773504852/ssbsfinal_n1aylb.mp4"
               autoPlay
               muted
               loop
