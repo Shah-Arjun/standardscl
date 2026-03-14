@@ -88,7 +88,7 @@ export const Navbar = () => {
       <nav
         className={`fixed top-0 start-0 w-full left-0 z-50 m-0 transition-all duration-300 ${
           scrolled
-            ? "bg-[hsl(var(--color-background)/0.9)] backdrop-blur-md shadow-md bg-amber-600"
+            ? "backdrop-blur-md shadow-md bg-secondary/80"
             : "bg-[hsl(var(--color-background)/1)]"
         }`}
       >
@@ -177,41 +177,44 @@ export const Navbar = () => {
             </button>
           </div>
 
-          {/* Mobile Menu */}
-          {isOpen && (
-            <div className="lg:hidden bg-amber-400 rounded-md py-4 px-4 border-t">
-              {navLinks.map((link) => (
-                <div key={link.name}>
-                  <Link
-                    href={link.path}
-                    onClick={() => setIsOpen(false)}
-                    className="block mx-4 px-4 py-2 border border-gray-500 rounded-xl mt-2 font-medium"
-                  >
-                    {link.name}
-                  </Link>
+{/* Mobile Menu */}
+{isOpen && (
+  <div className="lg:hidden bg-white rounded-md py-4 px-4 border-t shadow-md">
+    {navLinks.map((link) => (
+      <div key={link.name}>
+        <Link
+          href={link.path}
+          onClick={() => setIsOpen(false)}
+          className="block w-full px-4 py-2 border border-gray-300 rounded-xl mt-2 font-medium hover:bg-gray-100 transition"
+        >
+          {link.name}
+        </Link>
 
-                  {link.children && (
-                    <div className="ml-8 border-l">
-                      {link.children.map((child) => (
-                        <Link
-                          key={child.name}
-                          href={child.path}
-                          onClick={() => setIsOpen(false)}
-                          className="block ml-2 mr-4 mt-2 px-4 py-2 border border-amber-100 rounded-xl text-sm text-gray-800"
-                        >
-                          {child.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-
-              <Link href="/admissions" className="">
-                <Button className="w-full mt-4 bg-amber-100 border-gray-500">Apply Now</Button>
+        {link.children && (
+          <div className="ml-4 border-l pl-3 mt-2 space-y-2">
+            {link.children.map((child) => (
+              <Link
+                key={child.name}
+                href={child.path}
+                onClick={() => setIsOpen(false)}
+                className="block px-3 py-2 rounded-lg text-sm text-gray-700 hover:bg-gray-100 transition"
+              >
+                {child.name}
               </Link>
-            </div>
-          )}
+            ))}
+          </div>
+        )}
+      </div>
+    ))}
+
+    <Link href="/admissions">
+      <Button className="w-full mt-4 bg-amber-500 border border-gray-300 hover:bg-amber-500">
+        Apply Now
+      </Button>
+    </Link>
+  </div>
+)}
+
         </div>
       </nav>
     </>
