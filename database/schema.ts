@@ -18,10 +18,10 @@ export const teachersTable =  pgTable("teachers", {
 
   employmentType: text("employment_type").notNull(),
 
-  qualification: jsonb("qualification").$type<string[]>(),
+  qualifications: jsonb("qualification").$type<string[]>(),
   fieldOfStudy: jsonb("field_of_study").$type<string[]>(),
 
-  subjectTeaches: jsonb("subject_teaches").$type<string[]>(),
+  subjectsTeaches: jsonb("subject_teaches").$type<string[]>(),
   post: jsonb("position").$type<string[]>(),
 
   experience: decimal("years_of_experience").notNull(), // can store decimal years
