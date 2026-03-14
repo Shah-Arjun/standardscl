@@ -79,7 +79,7 @@ type MultiSelectKey =
   | "post";
 
 const defaultOptions = {
-  subjectsTeaches: ["Math", "Science", "English", "Nepali", "Other"],
+  subjectsTeaches: ["Math", "Science", "English", "Nepali", "Socaial Std.", "SeroFero", "Health", "Arts", "Other"],
   post: [
     "Founder",
     "Principal",

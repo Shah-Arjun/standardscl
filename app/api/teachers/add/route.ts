@@ -226,7 +226,7 @@ export async function POST(req: Request) {
   try {
     const formData = await req.formData();
 
-    console.log("form data  ", formData);
+    //console.log("form data  ", formData);
 
     // ─── Extract string fields ──────────────────────────────
     const teacherName = formData.get("teacherName")?.toString().trim() ?? "";
@@ -340,7 +340,7 @@ export async function POST(req: Request) {
     };
 
     //debug
-    console.log("Inserting teacher data into DB:", teacherData);
+    //console.log("Inserting teacher data into DB:", teacherData);
 
     const inserted = await db
       .insert(teachersTable)
