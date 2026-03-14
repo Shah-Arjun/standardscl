@@ -33,7 +33,7 @@ export const Footer = () => {
   return (
     <footer className="bg-foreground text-background">
       {/* Main Footer */}
-      <div className="section-padding pb-16">
+      <div className="section-padding pb-17 sm:pb-10">
         <div className="container-school">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             {/* School Info */}

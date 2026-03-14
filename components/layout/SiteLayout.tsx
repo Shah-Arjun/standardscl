@@ -15,7 +15,7 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
     <div className=" min-h-screen flex flex-col">
       <Navbar />
       <NoticeMarquee />
-      <main className="flex-1 pt-[calc(5rem+2.5rem)]">{children}</main>      <Footer />
+      <main className="flex-1 mt-16">{children}</main>      <Footer />
       <FloatingNotice />
     </div>
   );

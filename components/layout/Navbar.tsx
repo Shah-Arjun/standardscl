@@ -50,7 +50,7 @@ export const Navbar = () => {
   return (
     <>
       {/* Top Bar */}
-      <div className=" hidden bg-gradient-hero text-primary-foreground py-2 px-4">
+      {/* <div className=" hidden bg-gradient-hero text-primary-foreground py-2 px-4">
         <div className="container-school flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
             <a
@@ -82,21 +82,21 @@ export const Navbar = () => {
             <span className="hidden sm:inline">Latest Notices</span>
           </Link>
         </div>
-      </div>
+      </div> */}
 
       {/* Main Navbar */}
       <nav
-        className={`fixed top-0 start-0 w-full left-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 start-0 w-full left-0 z-50 m-0 transition-all duration-300 ${
           scrolled
-            ? "bg-[hsl(var(--color-background)/0.9)] backdrop-blur-md shadow-md"
+            ? "bg-[hsl(var(--color-background)/0.9)] backdrop-blur-md shadow-md bg-amber-600"
             : "bg-[hsl(var(--color-background)/1)]"
         }`}
       >
-        <div className="container-school">
-          <div className="flex h-18 items-center justify-between">
+        <div className="container-school mb-0">
+          <div className="flex h-18 pb-0 mb-0 items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 ml-3 ">
-              <div className="w-16 h-16 rounded-xl flex items-center justify-center">
+              <div className="w-16 h-16 pb-0 rounded-xl flex items-center justify-center">
                 {/* <span className="text-2xl font-bold text-white">S</span> */}
                 <Image
                   src={SchoolLogo}
@@ -171,7 +171,7 @@ export const Navbar = () => {
             {/* Mobile Toggle */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden mr-3"
+              className="lg:hidden mr-8 ml-8"
             >
               {isOpen ? <X /> : <Menu />}
             </button>
@@ -179,25 +179,25 @@ export const Navbar = () => {
 
           {/* Mobile Menu */}
           {isOpen && (
-            <div className="lg:hidden py-4 border-t">
+            <div className="lg:hidden bg-amber-400 rounded-md py-4 px-4 border-t">
               {navLinks.map((link) => (
                 <div key={link.name}>
                   <Link
                     href={link.path}
                     onClick={() => setIsOpen(false)}
-                    className="block px-4 py-3 font-medium"
+                    className="block mx-4 px-4 py-2 border border-gray-500 rounded-xl mt-2 font-medium"
                   >
                     {link.name}
                   </Link>
 
                   {link.children && (
-                    <div className="ml-4 border-l">
+                    <div className="ml-8 border-l">
                       {link.children.map((child) => (
                         <Link
                           key={child.name}
                           href={child.path}
                           onClick={() => setIsOpen(false)}
-                          className="block px-4 py-2 text-sm text-muted-foreground"
+                          className="block ml-2 mr-4 mt-2 px-4 py-2 border border-amber-100 rounded-xl text-sm text-gray-800"
                         >
                           {child.name}
                         </Link>
@@ -207,8 +207,8 @@ export const Navbar = () => {
                 </div>
               ))}
 
-              <Link href="/admissions">
-                <Button className="w-full mt-4">Apply Now</Button>
+              <Link href="/admissions" className="">
+                <Button className="w-full mt-4 bg-amber-100 border-gray-500">Apply Now</Button>
               </Link>
             </div>
           )}
