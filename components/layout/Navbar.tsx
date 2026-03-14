@@ -29,6 +29,7 @@ const navLinks = [
   { name: "Admissions", path: "/admissions" },
   { name: "Facilities", path: "/facilities" },
   { name: "Gallery", path: "/gallery" },
+  { name: "Results", path: "https://www.standardschool.edu.np/Home" },
   { name: "Notices", path: "/notices" },
   { name: "Contact", path: "/contact" },
 ];
@@ -95,7 +96,7 @@ export const Navbar = () => {
         <div className="container-school mb-0">
           <div className="flex h-18 pb-0 mb-0 items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 ml-3 ">
+            <Link href="/" className="flex items-center gap-3 ml-3 lg:ml-0 md:ml-0">
               <div className="w-16 h-16 pb-0 rounded-xl flex items-center justify-center">
                 {/* <span className="text-2xl font-bold text-white">S</span> */}
                 <Image
@@ -117,7 +118,7 @@ export const Navbar = () => {
               {navLinks.map((link) =>
                 link.children ? (
                   <DropdownMenu key={link.name}>
-                    <DropdownMenuTrigger className="flex items-center gap-1 px-4 py-1 ...">
+                    <DropdownMenuTrigger className="flex items-center gap-1 px-4 py-1">
                       {link.name}
                       <ChevronDown className="w-4 h-4" />
                     </DropdownMenuTrigger>

@@ -586,6 +586,7 @@ export default function AddTeacher() {
                     <p className="pl-1">or drag and drop</p>
                   </div>
                   <p className="text-xs text-gray-500">PNG, JPG, JPEG</p>
+                  <p className="text-xs text-gray-500">Image should be less than 10MB</p>
                 </div>
               </div>
             </div>
