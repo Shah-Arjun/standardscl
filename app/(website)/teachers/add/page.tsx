@@ -230,7 +230,7 @@ export default function AddTeacher() {
       return;
     }
 
-    c//onsole.log("Submitting qualifications:", formData.qualifications);
+    //console.log("Submitting qualifications:", formData.qualifications);
     //console.log("All form data:", formData);
 
     const dataToSend = { ...formData }; // prepareMultiSelectArrays can be simplified if you adopt add-as-extra approach
