@@ -17,10 +17,10 @@ export const NoticeMarquee = () => {
   return (
     <div className="sticky top-18 bg-secondary text-secondary-foreground overflow-hidden z-40">
       <div className="container-school flex items-center">
-        <div className="flex items-center gap-2 bg-primary px-4 py-1 rounded-full mr-4 flex-shrink-0">
-          <Megaphone className="w-4 h-4" />
-          <span className="text-sm font-semibold">Notice</span>
-        </div>
+        <div className="flex items-center gap-2 bg-primary px-3 py-1 rounded-full mr-2 flex-shrink-0">
+        <Megaphone className="w-4 h-4" />
+        <span className="hidden sm:inline text-sm font-semibold">Notice</span>
+      </div>
         <div className="overflow-hidden flex-1">
           <div className="flex animate-marquee whitespace-nowrap min-w-max">
             {notices.map((notice, index) => (

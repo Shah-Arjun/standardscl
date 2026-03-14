@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Standard Secondary Boarding School",
+  icons:{
+    icon: "/SchoolLogo.png"
+  },
   description: "Official website of Standard Secondary Boarding School",
 };
 
