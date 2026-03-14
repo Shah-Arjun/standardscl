@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { pgTable, serial, varchar, text, timestamp, pgEnum, decimal, jsonb } from "drizzle-orm/pg-core";
+import { pgTable, serial, varchar, text, timestamp, pgEnum, jsonb, numeric } from "drizzle-orm/pg-core";
 
 // --- Enums ---
 export const genderEnum = pgEnum("gender_enum", ["male", "female", "other"]);
@@ -19,13 +19,11 @@ export const teachersTable =  pgTable("teachers", {
   employmentType: text("employment_type").notNull(),
 
   qualifications: jsonb("qualification").$type<string[]>(),
-  fieldOfStudy: jsonb("field_of_study").$type<string[]>(),
 
   subjectsTeaches: jsonb("subject_teaches").$type<string[]>(),
   post: jsonb("position").$type<string[]>(),
 
-  experience: decimal("years_of_experience").notNull(), // can store decimal years
-
+  experience: numeric("years_of_experience", { precision: 5, scale: 2 }).$type<number>().notNull(),
   photo: text("photo").notNull(), // URL of teacher's photo
 
 //   createdAt : timestamp("created_at").defaultNow(),    // or

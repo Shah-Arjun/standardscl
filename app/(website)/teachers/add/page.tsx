@@ -1,20 +1,26 @@
 "use client";
 
+import Image from "next/image";
 import { useState, ChangeEvent, FormEvent, useEffect } from "react";
+import SchoolLogo from "./../../../../public/SchoolLogo-nobg.png";
+import { useRouter } from "next/navigation";
+import { Footer } from "@/components/layout/Footer";
+
+type Gender = "male" | "female" | "other";
+
 
 // ──────────────────────────────────────────────── Types
 interface TeacherFormData {
   teacherName: string;
-  gender: string;
+  gender: Gender;
   email: string;
   phone: string;
   address: string;
   employmentType: string;
   qualifications: string[];
-  fieldOfStudy: string[];
   subjectsTeaches: string[];
-  posts: string[];
-  experience: string;
+  post: string[];
+  experience: number;
 }
 
 type QualificationCategory =
@@ -69,22 +75,12 @@ const qualificationOptions: Record<QualificationCategory, string[]> = {
 
 type MultiSelectKey =
   | "qualifications"
-  | "fieldOfStudy"
   | "subjectsTeaches"
-  | "posts";
+  | "post";
 
 const defaultOptions = {
-  fieldOfStudy: [
-    "Mathematics",
-    "Science",
-    "Computer Science/Engineering",
-    "Education",
-    "Sanskrit",
-    "Economics",
-    "Other",
-  ],
   subjectsTeaches: ["Math", "Science", "English", "Nepali", "Other"],
-  posts: [
+  post: [
     "Founder",
     "Principal",
     "Vice-Principal",
@@ -113,16 +109,17 @@ export default function AddTeacher() {
     address: "",
     employmentType: "Full Time",
     qualifications: [],
-    fieldOfStudy: [],
     subjectsTeaches: [],
-    posts: [],
-    experience: "",
+    post: [],
+    experience: 2,
   });
 
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const router = useRouter()
+
 
   // ──────────────────────────────────────────────── Add this state back (only for qualifications filtering)
   const [selectedCategory, setSelectedCategory] = useState<
@@ -143,9 +140,8 @@ export default function AddTeacher() {
     Record<MultiSelectKey, string>
   >({
     qualifications: "",
-    fieldOfStudy: "",
     subjectsTeaches: "",
-    posts: "",
+    post: "",
   });
 
   // Sync qualifications
@@ -253,16 +249,12 @@ export default function AddTeacher() {
       JSON.stringify(dataToSend.qualifications),
     );
     formDataToSend.append(
-      "fieldOfStudy",
-      JSON.stringify(dataToSend.fieldOfStudy),
-    );
-    formDataToSend.append(
       "subjectsTeaches",
       JSON.stringify(dataToSend.subjectsTeaches),
     );
-    formDataToSend.append("posts", JSON.stringify(dataToSend.posts));
+    formDataToSend.append("post", JSON.stringify(dataToSend.post));
 
-    formDataToSend.append("experience", dataToSend.experience);
+    formDataToSend.append("experience", dataToSend.experience.toString());
     formDataToSend.append("photo", file);
 
 
@@ -278,7 +270,8 @@ export default function AddTeacher() {
         throw new Error(text || "Failed to add teacher");
       }
 
-      alert("Teacher added successfully!\nThank you — have a great day!");
+      alert("Teacher added successfully!\nThank you for your time — have a great day!");
+      router.push("/") // redirect to home after successful submission
       // Optional: reset form here
     } catch (err: any) {
       setMessage(err.message || "Failed to submit form");
@@ -291,7 +284,7 @@ export default function AddTeacher() {
 
   // ──────────────────────────────────────────────── Updated renderMultiSelect (better UX)
   const renderMultiSelect = (key: MultiSelectKey, options: string[]) => (
-    <div className="space-y-2">
+    <div className="space-y-2 pt-2">
       <label className="block text-md font-medium text-gray-700 capitalize">
         {key.replace(/([A-Z])/g, " $1")}
       </label>
@@ -349,16 +342,34 @@ export default function AddTeacher() {
     </div>
   );
 
+
+
+
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+    <>
+    <div className="min-h-screen bg-gray-50 py-6 px-2 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
-        <div className="bg-white shadow-xl rounded-2xl overflow-hidden">
+        <div className="bg-white mb-4 shadow-xl rounded-2xl overflow-hidden">
           {/* Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-8 text-white">
-            <h2 className="text-2xl md:text-3xl font-bold text-center">
+          <div className="bg-gradient-to-r grid from-blue-600 to-blue-800  text-white">
+            {/* logo */}
+          <div className="flex justify-center">
+            <div className="w-30 h-30 pt-2 rounded-xl flex items-center justify-center">
+                {/* <span className="text-2xl font-bold text-white">S</span> */}
+                <Image
+                  src={SchoolLogo}
+                  alt="Standard Secondary Boarding School Logo"
+                  width={120}
+                  height={120}
+                  priority
+                />
+              </div>
+              </div>
+
+            <h2 className=" pt-0 text-2xl md:text-3xl font-bold text-center">
               Add New Teacher
             </h2>
-            <p className="mt-2 text-blue-100 text-center text-md md:text-base">
+            <p className="mt-2 mb-2 text-blue-100 text-center text-md md:text-base">
               Please fill in all required fields (*) and upload a clear
               passport-size photo.
             </p>
@@ -480,10 +491,9 @@ export default function AddTeacher() {
             </div>
 
             {/* Qualifications - Category + Chips */}
-            {/* Qualifications */}
-            <div className="space-y-3">
+            <div className="space-y-3 pt-2">
               <label className="block text-md font-medium text-gray-700">
-                Qualifications <span className="text-red-500">*</span>
+                Qualifications Category<span className="text-red-500">*</span>
               </label>
 
               <select
@@ -496,9 +506,9 @@ export default function AddTeacher() {
                   // This is strongly recommended for clean UX
                   setFormData((prev) => ({ ...prev, qualifications: [] }));
                 }}
-                className="block w-full rounded-lg border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-md"
+                className="block p-2 w-full rounded-lg border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-md"
               >
-                <option value="">Select qualification category...</option>
+                {/* <option value="">Select qualification category...</option> */}
                 {Object.keys(qualificationOptions).map((cat) => (
                   <option key={cat} value={cat}>
                     {cat}
@@ -515,19 +525,24 @@ export default function AddTeacher() {
               )}
             </div>
 
+
+
+
             {/* Other multi-select fields */}
-            {renderMultiSelect("fieldOfStudy", defaultOptions.fieldOfStudy)}
-            {renderMultiSelect(
-              "subjectsTeaches",
-              defaultOptions.subjectsTeaches,
-            )}
-            {renderMultiSelect("posts", defaultOptions.posts)}
+            {renderMultiSelect("subjectsTeaches", defaultOptions.subjectsTeaches,)}
+            {renderMultiSelect("post", defaultOptions.post)}
+
+
+
 
             {/* Photo Upload */}
-            <div className="space-y-3">
+            <div className="space-y-3 pt-2">
               <label className="block text-md font-medium text-gray-700">
-                Passport Size Photo <span className="text-red-500">*</span>
+                Photo/Image <span className="text-red-500">*</span>
               </label>
+              <p className="text-sm text-gray-500 mt-2 italic">
+                Note: The image should be <span className="text-lg rounded-sm bg-green-300 text-gray-700 font-semibold"> clear and professional </span>, as it will be displayed on the school's main website page.
+              </p>
 
               <div className="mt-1 flex justify-center rounded-lg border-2 border-dashed border-gray-700 px-6 pt-5 pb-6">
                 <div className="space-y-1 text-center">
@@ -556,7 +571,7 @@ export default function AddTeacher() {
 
                   <div className="flex text-md text-gray-600">
                     <label className="relative cursor-pointer rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-500">
-                      <span>Upload a file</span>
+                      <span className="underline">Upload a file</span>
                       <input
                         type="file"
                         accept="image/*"
@@ -567,10 +582,12 @@ export default function AddTeacher() {
                     </label>
                     <p className="pl-1">or drag and drop</p>
                   </div>
-                  <p className="text-xs text-gray-500">PNG, JPG, max 5MB</p>
+                  <p className="text-xs text-gray-500">PNG, JPG, JPEG</p>
                 </div>
               </div>
             </div>
+
+
 
             {/* Submit */}
             <div>
@@ -624,5 +641,8 @@ export default function AddTeacher() {
         </div>
       </div>
     </div>
+      {/* // footer */}
+      <Footer />
+    </>
   );
 }

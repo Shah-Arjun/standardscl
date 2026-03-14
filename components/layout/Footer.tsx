@@ -216,9 +216,9 @@ export const Footer = () => {
               All rights reserved.
             </p>
             <p className="text-muted-foreground/70 text-xs mt-1">
-              Developed by{" "}
+              Developer: {" "}
               <span className="text-golden font-medium">
-                Arjun.Dev +977 9807307132
+                Arjun |  +977 9807307132
               </span>
             </p>
           </div>

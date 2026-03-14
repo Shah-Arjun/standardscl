@@ -50,6 +50,27 @@
       "when": 1773421217905,
       "tag": "0006_plain_fixer",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1773459387882,
+      "tag": "0007_bored_pretty_boy",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1773467742149,
+      "tag": "0008_gorgeous_kulan_gath",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1773467918631,
+      "tag": "0009_simple_guardsmen",
+      "breakpoints": true
     }
   ]
 }
