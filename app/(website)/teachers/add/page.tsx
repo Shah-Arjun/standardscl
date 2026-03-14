@@ -288,6 +288,7 @@ export default function AddTeacher() {
       <label className="block text-md font-medium text-gray-700 capitalize">
         {key.replace(/([A-Z])/g, " $1")}
       </label>
+      {/* <p className="text-green-500">Please click add button if you select "Other"</p> */}
 
       <div className="flex flex-wrap gap-2.5">
         {options.map((opt) => (
@@ -491,10 +492,12 @@ export default function AddTeacher() {
             </div>
 
             {/* Qualifications - Category + Chips */}
-            <div className="space-y-3 pt-2">
+            <div className="space-y-3 pt-2 pb-0">
               <label className="block text-md font-medium text-gray-700">
                 Qualifications Category<span className="text-red-500">*</span>
               </label>
+              {/* <p className="text-green-500 mt-0">(lease click add button if you select "Other"</p> */}
+
 
               <select
                 value={selectedCategory}

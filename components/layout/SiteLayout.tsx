@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { ReactNode } from "react";
 import { Navbar } from "./Navbar";
@@ -12,11 +12,10 @@ interface SiteLayoutProps {
 
 export const SiteLayout = ({ children }: SiteLayoutProps) => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className=" min-h-screen flex flex-col">
       <Navbar />
       <NoticeMarquee />
-      <main className="flex-1">{children}</main>
-      <Footer />
+      <main className="flex-1 pt-[calc(5rem+2.5rem)]">{children}</main>      <Footer />
       <FloatingNotice />
     </div>
   );

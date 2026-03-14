@@ -15,7 +15,7 @@ const notices = [
 
 export const NoticeMarquee = () => {
   return (
-    <div className="bg-secondary text-secondary-foreground py-2 overflow-hidden">
+    <div className="sticky top-20 bg-secondary text-secondary-foreground overflow-hidden z-40">
       <div className="container-school flex items-center">
         <div className="flex items-center gap-2 bg-primary px-4 py-1 rounded-full mr-4 flex-shrink-0">
           <Megaphone className="w-4 h-4" />

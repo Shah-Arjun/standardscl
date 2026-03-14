@@ -50,7 +50,7 @@ export const Navbar = () => {
   return (
     <>
       {/* Top Bar */}
-      <div className="bg-gradient-hero text-primary-foreground py-2 px-4">
+      <div className=" hidden bg-gradient-hero text-primary-foreground py-2 px-4">
         <div className="container-school flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
             <a
@@ -86,17 +86,17 @@ export const Navbar = () => {
 
       {/* Main Navbar */}
       <nav
-        className={`sticky top-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 start-0 w-full left-0 z-50 transition-all duration-300 ${
           scrolled
             ? "bg-[hsl(var(--color-background)/0.9)] backdrop-blur-md shadow-md"
             : "bg-[hsl(var(--color-background)/1)]"
         }`}
       >
         <div className="container-school">
-          <div className="flex h-20 items-center justify-between">
+          <div className="flex h-18 items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 ml-3 ">
-              <div className="w-18 h-18 rounded-xl flex items-center justify-center">
+              <div className="w-16 h-16 rounded-xl flex items-center justify-center">
                 {/* <span className="text-2xl font-bold text-white">S</span> */}
                 <Image
                   src={SchoolLogo}
@@ -113,7 +113,7 @@ export const Navbar = () => {
             </Link>
 
             {/* Desktop Nav */}
-            <div className="hidden lg:flex items-center gap-1 bg-yellow-100 px-4 py-2 rounded-2xl shadow-2xs shadow-amber-200">
+            <div className="hidden top-0 lg:flex items-center gap-1 bg-yellow-100 px-4 py-2 rounded-2xl shadow-2xs shadow-amber-200">
               {navLinks.map((link) =>
                 link.children ? (
                   <DropdownMenu key={link.name}>
