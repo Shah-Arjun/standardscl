@@ -511,7 +511,7 @@ export default function AddTeacher() {
                 }}
                 className="block p-2 w-full rounded-lg border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-md"
               >
-                {/* <option value="">Select qualification category...</option> */}
+                <option value="">Select qualification category...</option>
                 {Object.keys(qualificationOptions).map((cat) => (
                   <option key={cat} value={cat}>
                     {cat}
