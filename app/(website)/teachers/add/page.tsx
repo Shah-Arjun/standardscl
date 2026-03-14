@@ -230,8 +230,8 @@ export default function AddTeacher() {
       return;
     }
 
-    console.log("Submitting qualifications:", formData.qualifications);
-    console.log("All form data:", formData);
+    c//onsole.log("Submitting qualifications:", formData.qualifications);
+    //console.log("All form data:", formData);
 
     const dataToSend = { ...formData }; // prepareMultiSelectArrays can be simplified if you adopt add-as-extra approach
 
@@ -274,7 +274,7 @@ export default function AddTeacher() {
       router.push("/") // redirect to home after successful submission
       // Optional: reset form here
     } catch (err: any) {
-      setMessage(err.message || "Failed to submit form");
+      setMessage("Failed to submit form");
     } finally {
       setLoading(false);
     }
