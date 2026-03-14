@@ -24,6 +24,7 @@ export const teachersTable =  pgTable("teachers", {
   post: jsonb("position").$type<string[]>(),
 
   experience: numeric("years_of_experience", { precision: 5, scale: 2 }).$type<number>().notNull(),
+  photoPublicId: varchar("photo_public_id").notNull(), // Cloudinary public ID for the photo, to access photo
   photo: text("photo").notNull(), // URL of teacher's photo
 
 //   createdAt : timestamp("created_at").defaultNow(),    // or

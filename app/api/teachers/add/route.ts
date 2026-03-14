@@ -11,7 +11,7 @@ export async function POST(req: Request) {
   try {
     const formData = await req.formData();
 
-    console.log("form data  ", formData); //debug
+    //console.log("form data  ", formData); //debug
 
 
 
@@ -28,8 +28,7 @@ export async function POST(req: Request) {
       : "male";
     const phone = formData.get("phone")?.toString().trim() ?? "";
     const address = formData.get("address")?.toString().trim() ?? "";
-    const employmentType =
-      formData.get("employmentType")?.toString().trim() ?? "";
+    const employmentType = formData.get("employmentType")?.toString().trim() ?? "";
     const experience = Number(formData.get("experience"));
 
     // is experience a number?
@@ -113,9 +112,7 @@ export async function POST(req: Request) {
       );
     }
 
-    console.log(
-      "All validations passed, proceeding with file save and DB insert...",
-    ); //debug
+    //console.log("All validations passed, proceeding with file save and DB insert..."); //debug
 
 
 
@@ -148,7 +145,7 @@ export async function POST(req: Request) {
       );
     }
 
-    console.log("cloudResult-->\n", cloudResult);
+    //console.log("cloudResult-->\n", cloudResult);
 
 
     // ─── prepare data ───────────────────────────────────
@@ -164,18 +161,19 @@ export async function POST(req: Request) {
       subjectsTeaches,
       post,
       photo: cloudResult.secure_url, //db savees cloudinary url
+      photoPublicId: cloudResult.public_id, //db saves cloudinary public id for  of photo for future access
     };
 
 
 
     //debug
-    console.log("Inserting teacher data into DB:", teacherData);
+    //console.log("Inserting teacher data into DB:", teacherData);
 
 
     // ─── Insert into DB ───────────────────────────────────
     const inserted = await db.insert(teachersTable).values(teacherData).returning();
 
-    console.log("Inserted teacher data:", inserted);
+    //console.log("Inserted teacher data:", inserted);
 
 
     return NextResponse.json({
