@@ -32,7 +32,7 @@ const teachers = [
     name: "Mr. Suman Raut",
     post: "Exam Co-ordinator",
     field: "Account, Mathematics",
-    image: "https://res.cloudinary.com/dpraq0j6y/image/upload/v1773537772/teachers/bydxnshgplqd1tkxadbn.jpg",
+    image: teacher2,
   },
   {
     name: "Mr. Rabin Bogati",
@@ -126,7 +126,7 @@ export const TeachersSection = () => {
               className="bg-card rounded-2xl overflow-hidden shadow-lg border border-border group card-hover"
             >
               <div className="relative h-48 overflow-hidden">
-                <img
+                <Image
                   src={teacher.image}
                   alt={teacher.name}
                   fill
