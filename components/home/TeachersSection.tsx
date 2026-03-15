@@ -32,7 +32,7 @@ const teachers = [
     name: "Mr. Suman Raut",
     post: "Exam Co-ordinator",
     field: "Account, Mathematics",
-    image: teacher2,
+    image: "https://res.cloudinary.com/dpraq0j6y/image/upload/v1773537772/teachers/bydxnshgplqd1tkxadbn.jpg",
   },
   {
     name: "Mr. Rabin Bogati",

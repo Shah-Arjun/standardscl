@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/shared/SectionHeader";
-import activitiesImage from "@/public/activities-illustration.jpg";
+// import activitiesImage from "@/public/activities-illustration.jpg";
 import {
     Trophy,
     Music,
@@ -81,8 +81,8 @@ export const ActivitiesSection = () => {
                         viewport={{ once: true }}
                         className="relative"
                     >
-                        <Image
-                            src={activitiesImage}
+                        <img
+                            src="https://res.cloudinary.com/dpraq0j6y/image/upload/v1770037838/sports_nd9wgi.jpg"
                             alt="Students enjoying co-curricular activities"
                             className="rounded-3xl shadow-lg w-full"
                         />
