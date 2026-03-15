@@ -126,7 +126,7 @@ export const TeachersSection = () => {
               className="bg-card rounded-2xl overflow-hidden shadow-lg border border-border group card-hover"
             >
               <div className="relative h-48 overflow-hidden">
-                <Image
+                <img
                   src={teacher.image}
                   alt={teacher.name}
                   fill
