@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/shared/SectionHeader";
-// import principalImage from "@/public/principal-illustration.jpg";
-// import principal from "@/public/principal.jpg";
+import principalImage from "@/public/principal-illustration.jpg";
+import principal from "@/public/principal.jpg";
 import Image from "next/image";
 
 export const PrincipalMessage = () => {
@@ -20,8 +20,8 @@ export const PrincipalMessage = () => {
             className="relative"
           >
             <div className="relative z-10">
-              <img
-                src="https://res.cloudinary.com/dpraq0j6y/image/upload/v1773545333/teachers/fup318vjjwk7sxmfevge.jpg"
+              <Image
+                src={principalImage}
                 alt="School Principal"
                 className="w-full max-w-sm md:max-w-lg lg:max-w-xl mx-auto rounded-3xl shadow-2xl hover:scale-102 hover:shadow-amber-200"
 
