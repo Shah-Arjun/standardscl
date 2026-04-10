@@ -131,7 +131,7 @@ export const Navbar = () => {
                     label: "Navbar",
                   })
                 }
-                className="inline-flex items-center justify-center px-4 py-3 text-md lg:text-lg font-medium rounded-4xl bg-primary text-white hover:bg-primary/90 hover:border-2 border-accent/50"
+                className="inline-flex items-center justify-center px-4 py-3 text-md lg:text-lg font-medium rounded-4xl bg-primary text-white hover:bg-primary/90 hover:border-2 border-secondary"
               >
                 Get Admission
               </Link>

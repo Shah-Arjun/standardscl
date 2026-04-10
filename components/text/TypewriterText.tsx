@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
+import pen from "@/public/pen.png";
 
 type TypewriterTextProps = {
   text: string;
@@ -54,18 +56,18 @@ export const TypewriterText = ({
     <span className={`inline-flex items-center ${className}`}>
       {displayed}
 
-      {/* ✅ VISIBLE CURSOR (gradient-safe) */}
+      {/* VISIBLE CURSOR */}
       <span
         aria-hidden
         className="
           ml-1
+          py-4
           inline-block
-          h-[0.8em]
-          border-l-5
           border-yellow-700
           animate-caret
         "
       />
+      <Image src={pen} alt="Pen Icon" className="w-9 h-13  rotate-45 transition-transform duration-300" />
     </span>
   );
 };
