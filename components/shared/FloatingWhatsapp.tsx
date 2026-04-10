@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Bell, X, ChevronRight } from "lucide-react";
+import { X, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import WhatsAppIcon from "../../public/whatsapp.png";
 
 const latestNotices = [
   { id: 1, title: "Admissions Open for 2083", date: "Jan 15, 2025" },
@@ -14,6 +15,7 @@ const latestNotices = [
 /* ================= ANIMATION VARIANTS ================= */
 
 import type { Variants } from "framer-motion";
+import Image from "next/image";
 
 const panelVariants: Variants = {
   hidden: {
@@ -52,11 +54,11 @@ const itemVariants: Variants = {
   },
 };
 
-export const FloatingNotice = () => {
+export const FloatingWhatsapp = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-8 right-8 z-50">
       {/* ================= NOTICE PANEL ================= */}
       <AnimatePresence>
         {isOpen && (
@@ -118,26 +120,36 @@ export const FloatingNotice = () => {
       </AnimatePresence>
 
       {/* ================= FLOATING BELL ================= */}
+      {/* Ripple Rings */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <span className="absolute w-14 h-14 rounded-full bg-green-400 opacity-30 animate-ping" />
+        <span className="absolute w-14 h-14 rounded-full bg-green-400 opacity-20 animate-ping delay-200" />
+        <span className="absolute w-14 h-14 rounded-full bg-green-400 opacity-10 animate-ping delay-500" />
+      </div>
       <motion.button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => {
+          const phone = "9779807307132"; // replace with your number
+          const message = "Hello, I want to inquire about admission.";
+
+          window.open(
+            `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+            "_blank",
+          );
+        }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         animate={{
           rotate: isOpen ? 12 : 0,
         }}
         transition={{ type: "spring", stiffness: 200 }}
-        className="relative w-14 h-14 rounded-full bg-gradient-hero shadow-lg flex items-center justify-center"
+        className="relative w-16 h-16 rounded-full bg-gradient-hero shadow-lg flex items-center justify-center"
       >
         <motion.div
           animate={{ rotate: isOpen ? 0 : [0, -10, 10, -10, 0] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
         >
+          <Image width={100} height={56} src={WhatsAppIcon} alt="WhatsApp" />
         </motion.div>
-
-        {/* Badge */}
-        <span className="absolute -top-1 -right-1 w-5 h-5 bg-secondary text-secondary-foreground text-xs font-bold rounded-full flex items-center justify-center">
-          3
-        </span>
       </motion.button>
     </div>
   );
