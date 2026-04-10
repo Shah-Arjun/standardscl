@@ -26,7 +26,7 @@ export const AdmissionCTA = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-white/20 text-primary-foreground px-4 py-2 rounded-full mb-6 animate-pulse-glow">
             <span className="w-2 h-2 bg-white rounded-full" />
-            <span className="font-semibold">Admissions Open for 2025-2026</span>
+            <span className="font-semibold">Admissions Open for 2083</span>
           </div>
 
           <h2 className="font-heading font-bold text-3xl md:text-5xl text-primary-foreground mb-6">
@@ -75,7 +75,7 @@ export const AdmissionCTA = () => {
                 }
               >
                 Apply Now
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
             <Link href="/contact">

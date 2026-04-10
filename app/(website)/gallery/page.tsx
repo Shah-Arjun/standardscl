@@ -7,6 +7,8 @@ import { X } from "lucide-react";
 import { event as gaEvent } from "@/lib/gtag";
 import { SiteLayout } from "@/components/layout/SiteLayout";
 
+
+
 const categories = [
   "All",
   "School",
@@ -16,6 +18,8 @@ const categories = [
   "Activities",
   "Educational Tour",
 ];
+
+
 
 const galleryItems = [
   {

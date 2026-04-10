@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/shared/SectionHeader";
-import principalImage from "@/public/principal-illustration.jpg";
 import principal from "@/public/principal.jpg";
 import Image from "next/image";
 
@@ -19,12 +18,15 @@ export const PrincipalMessage = () => {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="relative z-10">
+            <div className="relative z-10 group">
               <Image
-                src={principalImage}
+                src="https://res.cloudinary.com/dpraq0j6y/image/upload/f_auto,q_auto,w_800/v1775802322/teachers/fup318vjjwk7sxmfevge.jpg"
                 alt="School Principal"
-                className="w-full max-w-sm md:max-w-lg lg:max-w-xl mx-auto rounded-3xl shadow-2xl hover:scale-102 hover:shadow-amber-200"
-
+                width={800}
+                height={1000}
+                quality={100}
+                priority
+                className="w-full max-w-sm md:max-w-lg lg:max-w-xl mx-auto rounded-3xl object-cover transition-all duration-500 hover:scale-105 hover:shadow-[0_20px_60px_rgba(251,191,36,0.35)]"
               />
               {/* Name Card */}
               <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-gradient-hero px-6 py-3 rounded-xl shadow-golden">
@@ -69,7 +71,9 @@ export const PrincipalMessage = () => {
               </p>
               <p>
                 Our motto{" "}
-                <strong className="text-primary">"Education is Main Path of Success"</strong>{" "}
+                <strong className="text-primary">
+                  "Education is Main Path of Success"
+                </strong>{" "}
                 reflects our commitment to preparing students not just for
                 examinations, but for the challenges and opportunities life
                 presents.

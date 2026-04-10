@@ -35,4 +35,7 @@ export const teachersTable =  pgTable("teachers", {
 
 
 
+
+
+
 // other schema goes here
