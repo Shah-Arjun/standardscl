@@ -11,55 +11,29 @@ import ssbsTeachers from "@/public/ssbsTeachers.jpg";
 import { TypewriterText } from "../text/TypewriterText";
 import { event as gaEvent } from "@/lib/gtag";
 
+
+
 export const HeroSection = () => {
   return (
-    /**
-     * SECTION
-     * - relative → allows absolutely positioned background layers
-     * - min-h-[90svh] → fills screen on all devices (mobile safe)
-     * - overflow-hidden → hides decorative overflow
-     */
     <section className="relative min-h-[85svh] md:min-h-[90svh] flex items-center overflow-hidden">
-      {/* ================= BACKGROUND IMAGE =================
-         - Uses Next/Image for optimization
-         - fill → covers entire section
-         - object-cover → maintains aspect ratio
-         - opacity → does NOT affect content
-      */}
+      {/* ================= BACKGROUND IMAGE =================*/}
       <div className="absolute inset-0 -z-20">
         <Image
           src={ssbsTeachers}
           alt="Standard Secondary Boarding School Teachers"
           fill
           priority
-          className="object-cover object-center opacity-40"
+          className="object-cover object-center opacity-60"
         />
       </div>
 
-      {/* ================= OVERLAY =================
-         - Improves text readability
-         - Works for both light & dark modes
-      */}
+      {/* ================= OVERLAY =================*/}
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/70 via-background/60 to-background/90" />
 
       {/* ================= DECORATIVE BLOBS ================= */}
-      <div
-        aria-hidden
-        className="hidden sm:block absolute top-0 left-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl"
-      />
-
-      <div
-        aria-hidden
-        className="hidden sm:block absolute bottom-0 right-0 w-48 h-48 bg-secondary/20 rounded-full blur-3xl"
-      />
-
-      <div
-        aria-hidden
-        className="hidden md:block absolute top-1/2 left-1/4 w-24 h-24 bg-golden-light/30 rounded-full blur-2xl animate-float"
-      />
 
       {/* ================= MAIN CONTENT ================= */}
-      <div className="container-school section-padding relative z-10">
+      <div className="container-school relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center justify-items-center">
           {/* ================= LEFT : TEXT CONTENT ================= */}
           <motion.div

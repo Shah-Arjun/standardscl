@@ -10,8 +10,7 @@ import {
 import Link from "next/link";
 import { event as gaEvent } from "@/lib/gtag";
 import Image from "next/image";
-import SchoolLogo from "@/public/SchoolLogo.png"
-
+import SchoolLogo from "@/public/SchoolLogo.png";
 
 const quickLinks = [
   { name: "About Us", path: "/about" },
@@ -40,7 +39,7 @@ export const Footer = () => {
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 bg-gradient-golden rounded-xl flex items-center justify-center">
-                  <Image src={SchoolLogo} alt="School logo"/>
+                  <Image src={SchoolLogo} alt="School logo" />
                 </div>
                 <div>
                   <h3 className="font-heading font-bold text-lg">
@@ -52,8 +51,8 @@ export const Footer = () => {
                 </div>
               </div>
               <p className="text-muted-foreground mb-6 leading-relaxed">
-                Nurturing young minds since establishment. We believe in
-                holistic education that prepares students for life's challenges.
+                Nurturing young minds from Nursery to Grade 10 with love,
+                creativity, and academic excellence.
               </p>
               <p className="text-golden font-semibold italic">
                 "Education is Main Path of Success"
@@ -70,9 +69,9 @@ export const Footer = () => {
                   <li key={link.name}>
                     <Link
                       href={link.path}
-                      className="text-muted-foreground hover:text-golden transition-colors"
+                      className="text-muted-foreground hover:text-golden hover:ml-3 scroll-smooth transition-colors"
                     >
-                      {link.name}
+                      <span className="mr-3">&gt;</span>{link.name}
                     </Link>
                   </li>
                 ))}
@@ -216,9 +215,9 @@ export const Footer = () => {
               All rights reserved.
             </p>
             <p className="text-muted-foreground/70 text-xs mt-1">
-              Developer: {" "}
+              Developer:{" "}
               <span className="text-golden font-medium">
-                Arjun |  +977 9807307132
+                Arjun | +977 9807307132
               </span>
             </p>
           </div>

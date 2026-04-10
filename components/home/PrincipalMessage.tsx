@@ -9,7 +9,7 @@ export const PrincipalMessage = () => {
   return (
     <section className="section-padding bg-muted">
       <div className="container-school">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
           {/* Image */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -18,7 +18,7 @@ export const PrincipalMessage = () => {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="relative z-10 group">
+            <div className="relative z-10 group lg:m-20">
               <Image
                 src="https://res.cloudinary.com/dpraq0j6y/image/upload/f_auto,q_auto,w_800/v1775802322/teachers/fup318vjjwk7sxmfevge.jpg"
                 alt="School Principal"
@@ -26,13 +26,16 @@ export const PrincipalMessage = () => {
                 height={1000}
                 quality={100}
                 priority
-                className="w-full max-w-sm md:max-w-lg lg:max-w-xl mx-auto rounded-3xl object-cover transition-all duration-500 hover:scale-105 hover:shadow-[0_20px_60px_rgba(251,191,36,0.35)]"
+                className="w-full max-w-sm md:max-w-lg lg:max-w-xl mx-auto rounded-2xl object-cover  border-6 border-white/60 transition-all duration-500 hover:scale-105 shadow-lg hover:shadow-golden"
               />
               {/* Name Card */}
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-gradient-hero px-6 py-3 rounded-xl shadow-golden">
-                <p className="font-heading font-bold text-primary-foreground text-center">
+              <div
+                className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-gradient-hero px-6 py-4 rounded-xl shadow-golden backdrop-blur-md border border-white/20"
+              >
+                <p className="font-heading font-bold text-primary-foreground text-center text-lg">
                   Mr. Ganesh Koirala
                 </p>
+
                 <p className="text-primary-foreground/80 text-sm text-center">
                   School Chief / Principal
                 </p>
@@ -59,8 +62,7 @@ export const PrincipalMessage = () => {
               <p>
                 Welcome to Standard Secondary Boarding School! For over three
                 decades, we have been committed to nurturing young minds and
-                building future leaders. Our school stands as a beacon of
-                quality education in Sunsari District.
+                building future leaders.
               </p>
               <p>
                 We believe that every child is unique and has the potential to

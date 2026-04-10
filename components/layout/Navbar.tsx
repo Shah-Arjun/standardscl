@@ -4,20 +4,16 @@ import { useState, useEffect } from "react";
 import { event as gaEvent } from "@/lib/gtag";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone, Mail, ChevronDown, Bell } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 import SchoolLogo from "./../../public/SchoolLogo-nobg.png";
 
+
+
 const navLinks = [
   { name: "Home", path: "/" },
-  { name: "About Us", path: "/about" },
   {
     name: "Academics",
     path: "/academics",
@@ -26,198 +22,201 @@ const navLinks = [
       { name: "Grades", path: "/academics/grades" },
     ],
   },
-  { name: "Admissions", path: "/admissions" },
   { name: "Facilities", path: "/facilities" },
   { name: "Gallery", path: "/gallery" },
-  { name: "Results", path: "https://www.standardschool.edu.np/Home" },
+  {
+    name: "Results",
+    path: "https://www.standardschool.edu.np/Home",
+    external: true,
+  },
   { name: "Notices", path: "/notices" },
+  { name: "About Us", path: "/about" },
   { name: "Contact", path: "/contact" },
 ];
+
+
+
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const [openMobileMenu, setOpenMobileMenu] = useState<string | null>(null);
 
+
+
+  
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isActive = (path: string) =>
-    pathname === path || pathname.startsWith(path + "/");
+
+  // if link active deciding arrow function
+  const isActive = (path: string, external?: boolean) => {
+    if (external) return false;        // External links are never "active"
+    return pathname === path || pathname.startsWith(path + "/");
+  };
+
+
 
   return (
-    <>
-      {/* Top Bar */}
-      {/* <div className=" hidden bg-gradient-hero text-primary-foreground py-2 px-4">
-        <div className="container-school flex justify-between items-center text-sm">
-          <div className="flex items-center gap-6">
-            <a
-              href="tel:+9779800000000"
-              className="flex items-center gap-2"
-              onClick={() =>
-                gaEvent({
-                  action: "click_phone",
-                  category: "Contact",
-                  label: "Header / Contact Section",
-                })
-              }
-            >
-              <Phone className="w-4 h-4" />
-              <span className="hidden sm:inline">+977 98XXXXXXXX</span>
-            </a>
-            <a
-              href="mailto:standard@gmail.com"
-              className="flex items-center gap-2"
-            >
-              <Mail className="w-4 h-4" />
-              <span className="hidden sm:inline">
-                standardschool2051@gmail.com
-              </span>
-            </a>
-          </div>
-          <Link href="/notices" className="flex items-center gap-2">
-            <Bell className="w-4 h-4 animate-wiggle" />
-            <span className="hidden sm:inline">Latest Notices</span>
-          </Link>
-        </div>
-      </div> */}
-
-      {/* Main Navbar */}
-      <nav
-        className={`fixed top-0 start-0 w-full left-0 z-50 m-0 transition-all duration-300 ${
-          scrolled
-            ? "backdrop-blur-md shadow-md bg-secondary/80"
-            : "bg-[hsl(var(--color-background)/1)]"
-        }`}
-      >
-        <div className="container-school mb-0">
-          <div className="flex h-18 pb-0 mb-0 items-center justify-between">
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 ml-3 lg:ml-0 md:ml-0">
-              <div className="w-16 h-16 pb-0 rounded-xl flex items-center justify-center">
-                {/* <span className="text-2xl font-bold text-white">S</span> */}
-                <Image
-                  src={SchoolLogo}
-                  alt="Standard Secondary Boarding School Logo"
-                  width={100}
-                  height={100}
-                  priority
-                />
-              </div>
-              <div className="hidden md:block">
-                <h1 className="font-bold text-lg">Standard Secondary</h1>
-                <p className="text-xs text-muted-foreground">Boarding School</p>
-              </div>
-            </Link>
-
-            {/* Desktop Nav */}
-            <div className="hidden top-0 lg:flex items-center gap-1 bg-yellow-100 px-4 py-2 rounded-2xl shadow-2xs shadow-amber-200">
-              {navLinks.map((link) =>
-                link.children ? (
-                  <DropdownMenu key={link.name}>
-                    <DropdownMenuTrigger className="flex items-center gap-1 px-4 py-1">
-                      {link.name}
-                      <ChevronDown className="w-4 h-4" />
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="bg-white/90 border-2">
-                      {link.children.map((child) => (
-                        <DropdownMenuItem
-                          key={child.name}
-                          asChild
-                          className="border"
-                        >
-                          <Link href={child.path}>{child.name}</Link>
-                        </DropdownMenuItem>
-                      ))}
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                ) : (
-                  <Link
-                    key={link.name}
-                    href={link.path}
-                    className={`px-3 py-0.5 transition-all border-2 rounded-2xl ${
-                      isActive(link.path)
-                        ? "text-primary border-primary bg-amber-50"
-                        : "text-foreground border-transparent hover:border-muted"
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                ),
-              )}
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        scrolled ? "bg-background/95 shadow-md border-b" : "bg-transparent"
+      }`}
+    >
+      <div className="w-full mx-auto px-4 md:px-8">
+        {/* desktop navbar */}
+        <div className="flex h-18 items-center justify-between">
+          {/* logo */}
+          <Link href="/" className="flex items-center gap-3">
+            <Image src={SchoolLogo} width={72} height={72} priority className="object-contain" alt="logo"/>
+            {/* logo-text */}
+            <div className="hidden md:block leading-tight">
+              <h1 className="font-bold text-2xl tracking-tight">Standard Secondary</h1>
+              <p className="text-md text-muted-foreground">Boarding School</p>
             </div>
+          </Link>
 
-            {/* CTA */}
-            <div className="hidden lg:block">
-              <Link href="/admissions">
-                {/* <Button className="btn-primary-school">Apply Now</Button> */}
-                <Button
-                  className="btn-primary-school group"
-                  onClick={() =>
-                    gaEvent({
-                      action: "click_apply_now",
-                      category: "Admissions",
-                      label: "Hero Section",
-                    })
-                  }
+
+          {/* Desktop menu */}
+          <div className="hidden lg:flex items-center gap-">
+            {navLinks.map((link) =>
+              link.children ? ( //if children then show dropdown
+                <DropdownMenu key={link.name}>
+                  <DropdownMenuTrigger className="flex items-center gap-1 px-4 py-2 rounded-xl hover:bg-primary transition-colors">
+                    {link.name}
+                    <ChevronDown className="w-4 h-4 transition-transform duration-200" />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="min-w-40 bg-white">
+                    {link.children.map((child) => (
+                      <DropdownMenuItem key={child.name} asChild className="hover:bg-primary">
+                        <Link href={child.path} className="w-full">
+                          {child.name}
+                        </Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Link
+                  key={link.name}
+                  href={link.path}
+                  target={link.external ? "_blank" : undefined} //open external link in new tab
+                  rel={link.external ? "noopener noreferrer" : undefined} //security for external
+                  className={`px-4 py-2 rounded-xl transition-all font-medium ${
+                    isActive(link.path, link.external)
+                      ? "text-primary bg-primary/20"
+                      : "hover:bg-primary hover:text-foreground"
+                  }`}
                 >
-                  Apply Now
-                </Button>
+                  {link.name}
+                </Link>
+              ),
+            )}
+          </div>
+
+          {/* Desktop CTA */}
+          <div className="flex items-center gap-2">
+            {/* CTA Button */}
+            <div className="block lg:block">
+              <Link
+                href="/admissions"
+                onClick={() =>
+                  gaEvent({
+                    action: "click_apply_now",
+                    category: "Admissions",
+                    label: "Navbar",
+                  })
+                }
+                className="inline-flex items-center justify-center px-4 py-3 text-md lg:text-lg font-medium rounded-4xl bg-primary text-white hover:bg-primary/90 hover:border-2 border-accent/50"
+              >
+                Get Admission
               </Link>
             </div>
 
-            {/* Mobile Toggle */}
+            {/* Mobile Menu Button */}
             <button
+              type="button"
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden mr-8 ml-8"
+              className="lg:hidden p-2 ml-2 rounded-md border border-gray-300 transition-colors"
+              aria-label="Toggle menu"
             >
-              {isOpen ? <X /> : <Menu />}
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
+        </div>
 
-{/* Mobile Menu */}
-{isOpen && (
-  <div className="lg:hidden bg-white rounded-md py-4 px-4 border-t shadow-md">
-    {navLinks.map((link) => (
-      <div key={link.name}>
-        <Link
-          href={link.path}
-          onClick={() => setIsOpen(false)}
-          className="block w-full px-4 py-2 border border-gray-300 rounded-xl mt-2 font-medium hover:bg-gray-100 transition"
+
+
+
+        {/* Mobile Menu -- opens when clicked */}
+        <div
+          className={`fixed top-0 right-0 h-full w-[60%] sm:w-[50%] md:w-[40%] bg-background border-l shadow-lg z-50 py-6 px-4 mb-4 space-y-2 lg:hidden transform transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
         >
-          {link.name}
-        </Link>
-
-        {link.children && (
-          <div className="ml-4 border-l pl-3 mt-2 space-y-2">
-            {link.children.map((child) => (
-              <Link
-                key={child.name}
-                href={child.path}
-                onClick={() => setIsOpen(false)}
-                className="block px-3 py-2 rounded-lg text-sm text-gray-700 hover:bg-gray-100 transition"
-              >
-                {child.name}
-              </Link>
-            ))}
+          <div className="flex justify-between">
+            <h3 className="text-2xl text-gray-500">Menu</h3>
+            <button onClick={() => setIsOpen(false)} className="border border-gray-300 p-2 rounded-md">
+              <X size={24} className="text-gray-700" />
+            </button>
           </div>
-        )}
-      </div>
-    ))}
+          {navLinks.map((link) => (
+            <div key={link.name}>
+              {link.children ? (
+                <div>
+                  {/* Parent menu list - clickable */}
+                  <button type="button" onClick={() => setOpenMobileMenu(openMobileMenu === link.name ? null : link.name)} className="w-full flex items-center justify-between px-4 py-3 font-medium rounded-xl hover:bg-accent transition-colors">
+                    {link.name}
+                    <ChevronDown className={`w-6 h-6 transition-transform duration-300 ${openMobileMenu === link.name ? "rotate-180" : ""}`} />
+                  </button>
 
-    <Link href="/admissions">
-      <Button className="w-full mt-4 bg-amber-500 border border-gray-300 hover:bg-amber-500">
-        Apply Now
-      </Button>
-    </Link>
-  </div>
-)}
+                  {/* Children (dropdown) */}
+                  <div className={`overflow-hidden transition-all duration-300 ${
+                      openMobileMenu === link.name
+                        ? "max-h-40 opacity-100"
+                        : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    <div className="pl-6 mt-1 space-y-1 border-l">
+                      {link.children.map((child) => (
+                        <Link
+                          key={child.name}
+                          href={child.path}
+                          onClick={() => setIsOpen(false)}
+                          className="block px-4 py-2 text-sm rounded-lg hover:bg-accent transition-colors"
+                        >
+                          {child.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  href={link.path}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noopener noreferrer" : undefined}
+                  onClick={() => setIsOpen(false)}
+                  className="block px-4 py-3 rounded-xl hover:bg-accent transition-colors font-medium"
+                >
+                  {link.name}
+                </Link>
+              )}
+            </div>
+          ))}
+
+          <div className="mt-6">
+            <Button asChild className="w-full p-5">
+              <Link href="/admissions" onClick={() => setIsOpen(false)}>Get Admission</Link>
+            </Button>
+          </div>
 
         </div>
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 };

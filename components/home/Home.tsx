@@ -8,6 +8,7 @@ import { HeroSection } from "./HeroSection";
 import { PrincipalMessage } from "./PrincipalMessage";
 import TeachersSection from "./TeachersSection";
 import { TestimonialsSection } from "./TestimonialsSection";
+import WhyChooseUs from "./WhyChooseUs";
 
 
 
@@ -18,8 +19,9 @@ const Index = () => {
       <GradesSection />
       <AcademicsSection />
       <FacilitiesSection />
-      <TestimonialsSection />
       <ActivitiesSection />
+      <WhyChooseUs />
+      <TestimonialsSection />
       <TeachersSection />
       <PrincipalMessage />
       <AdmissionCTA />
