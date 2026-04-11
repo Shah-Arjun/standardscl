@@ -1,144 +1,159 @@
 "use client";
-
 import { useState } from "react";
-import { Bell, X, ChevronRight } from "lucide-react";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
-const latestNotices = [
-  { id: 1, title: "Admissions Open for 2083", date: "Jan 15, 2025" },
-  { id: 2, title: "Parent-Teacher Meeting", date: "Jan 25, 2025" },
-  { id: 3, title: "Annual Sports Week", date: "Jan 20, 2025" },
+interface Notice {
+  id: number;
+  heading: string;
+  date: string;
+}
+
+const notices: Notice[] = [
+  {
+    id: 1,
+    heading: "Annual Exam Schedule 2026 Released",
+    date: "April 10, 2026",
+  },
+  {
+    id: 2,
+    heading: "Holiday Notice: Buddha Jayanti",
+    date: "April 8, 2026",
+  },
+  {
+    id: 3,
+    heading: "Parent-Teacher Meeting Schedule",
+    date: "March 28, 2026",
+  },
+  {
+    id: 4,
+    heading: "Summer Vacation Notice",
+    date: "March 15, 2026",
+  },
 ];
 
-/* ================= ANIMATION VARIANTS ================= */
-
-import type { Variants } from "framer-motion";
-
-const panelVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    scale: 0.9,
-    y: 20,
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: {
-      duration: 0.25,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
-  exit: {
-    opacity: 0,
-    scale: 0.9,
-    y: 20,
-    transition: {
-      duration: 0.2,
-      ease: [0.4, 0, 1, 1],
-    },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    x: -10,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-  },
-};
-
 export const FloatingNotice = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);        // Popup state
+  const [showBanner, setShowBanner] = useState(true); // Banner visibility (default: true)
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
-      {/* ================= NOTICE PANEL ================= */}
+    <>
+      {/* Floating Notice Banner with Toggle Arrow */}
       <AnimatePresence>
-        {isOpen && (
+        {showBanner && (
           <motion.div
-            variants={panelVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className="absolute bottom-16 right-0 w-80 bg-card border border-border rounded-2xl shadow-lg overflow-hidden"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 50 }}
+            transition={{ duration: 0.3 }}
+            className="fixed top-52 right-0 z-50 cursor-pointer flex items-center"
+            onClick={() => setIsOpen(true)}
           >
-            {/* Header */}
-            <div className="bg-gradient-hero p-4 flex items-center justify-between">
-              <h3 className="font-heading font-bold text-primary-foreground">
-                Latest Notices
-              </h3>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
+            <div className="bg-green-800 text-white px-2 py-2 lg:px-4 lg:py-3 shadow-xl flex items-center gap-3 rounded-l-2xl hover:rounded-l-3xl transition-all duration-300 hover:bg-green-700">
+              <span className="text-md font-semibold uppercase tracking-wider">Notice</span>
+              <div className="w-2 h-2 bg-red-500 rounded-full animate-ping" />
             </div>
 
-            {/* Notice List */}
-            <div className="p-4 space-y-3">
-              {latestNotices.map((notice, index) => (
-                <motion.div
-                  key={notice.id}
-                  custom={index}
-                  variants={itemVariants}
-                  initial="hidden"
-                  animate="visible"
-                  transition={{ delay: index * 0.05 }}
-                >
-                  <Link
-                    href="/notices"
-                    className="block p-3 rounded-lg bg-muted hover:bg-primary/10 transition-colors group"
-                  >
-                    <p className="font-medium text-foreground group-hover:text-primary transition-colors">
-                      {notice.title}
-                    </p>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      {notice.date}
-                    </p>
-                  </Link>
-                </motion.div>
-              ))}
-
-              <Link
-                href="/notices"
-                className="flex items-center justify-center gap-2 text-primary font-medium hover:gap-3 transition-all pt-2"
-              >
-                View All Notices
-                <ChevronRight className="w-4 h-4" />
-              </Link>
-            </div>
+            {/* Arrow Button to Hide Banner */}
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent opening popup when clicking arrow
+                setShowBanner(false);
+              }}
+              className="bg-green-800 text-white px-2 py-4 lg:py-5 rounded-r-2xl shadow-xl hover:bg-green-700 transition-colors"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </motion.button>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* ================= FLOATING BELL ================= */}
-      <motion.button
-        onClick={() => setIsOpen(!isOpen)}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        animate={{
-          rotate: isOpen ? 12 : 0,
-        }}
-        transition={{ type: "spring", stiffness: 200 }}
-        className="relative w-14 h-14 rounded-full bg-gradient-hero shadow-lg flex items-center justify-center"
-      >
-        <motion.div
-          animate={{ rotate: isOpen ? 0 : [0, -10, 10, -10, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5 }}
+      {/* Show Banner Button (when hidden) */}
+      {!showBanner && (
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => setShowBanner(true)}
+          className="fixed top-52 right-0 z-50 bg-green-800 text-white p-3 rounded-l-2xl shadow-xl hover:bg-green-700 transition-all"
         >
-        </motion.div>
+          <ChevronLeft className="h-5 w-5" />
+        </motion.button>
+      )}
 
-        {/* Badge */}
-        <span className="absolute -top-1 -right-1 w-5 h-5 bg-secondary text-secondary-foreground text-xs font-bold rounded-full flex items-center justify-center">
-          3
-        </span>
-      </motion.button>
-    </div>
+      {/* Notice Popup with Slide Animation from Right */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Backdrop */}
+            <div
+              className="fixed inset-0 bg-black/50 z-[60]"
+              onClick={() => setIsOpen(false)}
+            />
+
+            {/* Sliding Popup from Right */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="fixed top-24 right-0 z-[70] w-full max-w-xs bg-white rounded-l-3xl shadow-2xl overflow-hidden h-[calc(100vh-120px)] md:h-auto md:max-h-[520px]"
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between border-b px-6 py-5 bg-gradient-to-r from-amber-50 to-orange-50">
+                <div className="flex items-center gap-3">
+                  <h3 className="font-bold text-xl text-gray-900">Notices</h3>
+                  <span className="text-xs bg-amber-100 text-amber-700 px-3 py-1 rounded-full font-medium">
+                    {notices.length} new
+                  </span>
+                </div>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="text-gray-500 hover:text-gray-700 transition-colors p-2 rounded-full hover:bg-gray-100"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
+
+              {/* Notices List */}
+              <div className="overflow-y-auto p-4 h-[calc(100%-140px)]">
+                {notices.length > 0 ? (
+                  <div className="space-y-3">
+                    {notices.map((notice) => (
+                      <motion.div
+                        key={notice.id}
+                        whileHover={{ x: 6 }}
+                        className="group p-5 bg-white border border-gray-100 hover:border-amber-200 rounded-2xl transition-all hover:shadow-md cursor-pointer"
+                      >
+                        <p className="font-medium text-gray-900 leading-snug group-hover:text-amber-700 transition-colors">
+                          {notice.heading}
+                        </p>
+                        <p className="text-sm text-gray-500 mt-3">{notice.date}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="py-12 text-center text-gray-500">
+                    No notices at the moment.
+                  </div>
+                )}
+              </div>
+
+              {/* Footer */}
+              <div className="border-t px-6 py-4 text-center bg-gray-50">
+                <p className="text-xs text-gray-400">
+                  Click on any notice for more details (coming soon)
+                </p>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
+
+export default FloatingNotice;

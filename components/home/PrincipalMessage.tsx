@@ -1,94 +1,97 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { SectionHeader } from "@/components/shared/SectionHeader";
-import principal from "@/public/principal.jpg";
 import Image from "next/image";
 
 export const PrincipalMessage = () => {
   return (
-    <section className="section-padding bg-muted">
-      <div className="container-school">
-        <div className="grid lg:grid-cols-2 gap-8 items-center">
-          {/* Image */}
+    <section className="section-padding bg-muted py-16 lg:py-24">
+      <div className="container mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          
+          {/* Principal Image Section - Left on desktop/tablet */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative"
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="flex justify-center lg:justify-start"
           >
-            <div className="relative z-10 group lg:m-20">
-              <Image
-                src="https://res.cloudinary.com/dpraq0j6y/image/upload/f_auto,q_auto,w_800/v1775802322/teachers/fup318vjjwk7sxmfevge.jpg"
-                alt="School Principal"
-                width={800}
-                height={1000}
-                quality={100}
-                priority
-                className="w-full max-w-sm md:max-w-lg lg:max-w-xl mx-auto rounded-2xl object-cover  border-6 border-white/60 transition-all duration-500 hover:scale-105 shadow-lg hover:shadow-golden"
-              />
+            <div className="relative w-full max-w-xs md:max-w-md lg:max-w-lg">
+              {/* Main Image */}
+              <div className="relative z-10 group">
+                <Image
+                  src="https://res.cloudinary.com/dpraq0j6y/image/upload/f_auto,q_auto,w_800/v1775802322/teachers/fup318vjjwk7sxmfevge.jpg"
+                  alt="Mr. Ganesh Koirala - School Principal"
+                  width={700}
+                  height={850}
+                  quality={100}
+                  priority
+                  className="w-full rounded-3xl object-cover shadow-2xl border-8 border-white transition-transform duration-700 group-hover:scale-[1.03]"
+                />
+
+                {/* Decorative Overlay */}
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+              </div>
+
               {/* Name Card */}
-              <div
-                className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-gradient-hero px-6 py-4 rounded-xl shadow-golden backdrop-blur-md border border-white/20"
-              >
-                <p className="font-heading font-bold text-primary-foreground text-center text-lg">
+              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-lg px-4 py-3 lg:py-5 lg:px-8 rounded-2xl shadow-xl border border-white z-20 w-fit">
+                <p className="font-heading font-bold text-2xl text-center text-gray-900 whitespace-nowrap">
                   Mr. Ganesh Koirala
                 </p>
-
-                <p className="text-primary-foreground/80 text-sm text-center">
-                  School Chief / Principal
+                <p className="text-primary text-center font-medium mt-1">
+                  Principal &amp; School Chief
                 </p>
               </div>
+
+              {/* Background Accent */}
+              <div className="absolute -top-8 -right-8 w-full h-full bg-gradient-to-br from-amber-200/30 to-orange-200/30 rounded-3xl -z-10" />
             </div>
-            {/* Background */}
-            <div className="absolute top-8 left-8 w-full max-w-sm md:max-w-lg lg:max-w-xl h-full bg-secondary/30 rounded-3xl -z-10" />
           </motion.div>
 
-          {/* Content */}
+          {/* Message Content - Right on desktop/tablet */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 60 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
+            className="space-y-8 lg:pt-8"
           >
-            <h2 className="font-heading font-bold text-3xl md:text-4xl text-foreground mb-6">
-              Message from the{" "}
-              <span className="text-gradient-golden">Principal</span>
-            </h2>
+            <div>
+              <h2 className="font-heading font-bold text-4xl md:text-5xl leading-tight mb-6">
+                Message from the{" "}
+                <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+                  Principal
+                </span>
+              </h2>
+            </div>
 
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>Dear Parents and Students,</p>
+            <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+              <p className="text-foreground">Dear Parents and Students,</p>
+
               <p>
-                Welcome to Standard Secondary Boarding School! For over three
-                decades, we have been committed to nurturing young minds and
-                building future leaders.
+                We believe that every child is unique and possesses immense potential. 
+                Our dedicated team of educators works tirelessly to provide not just 
+                academic excellence, but holistic development — encompassing character 
+                building, sports, arts, and leadership skills.
               </p>
-              <p>
-                We believe that every child is unique and has the potential to
-                achieve greatness. Our dedicated team of educators works
-                tirelessly to provide not just academic excellence, but holistic
-                development that includes character building, sports, and
-                cultural activities.
-              </p>
+
               <p>
                 Our motto{" "}
-                <strong className="text-primary">
-                  "Education is Main Path of Success"
-                </strong>{" "}
-                reflects our commitment to preparing students not just for
-                examinations, but for the challenges and opportunities life
-                presents.
+                <span className="font-semibold text-primary">"Education is Main Path of Success"</span>{" "}
+                reflects our deep commitment to preparing students not only for examinations, 
+                but for the real challenges and opportunities that life offers.
               </p>
-              <p className="font-semibold text-foreground">
-                I invite you to join our growing family of learners and
-                achievers.
+
+              <p className="font-semibold text-foreground pt-4">
+                I warmly invite you to join our growing family of learners and achievers.
               </p>
             </div>
 
-            <div className="mt-8 flex items-center gap-4">
-              <div className="w-16 h-1 bg-gradient-hero rounded-full" />
-              <p className="italic text-primary font-semibold">
+            {/* Inspirational Quote */}
+            <div className="pt-6 border-t border-gray-200 flex items-center gap-4">
+              <div className="flex-shrink-0 w-12 h-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full" />
+              <p className="italic text-xl text-gray-700 font-light">
                 "Education is the passport to the future"
               </p>
             </div>
@@ -98,3 +101,5 @@ export const PrincipalMessage = () => {
     </section>
   );
 };
+
+export default PrincipalMessage;

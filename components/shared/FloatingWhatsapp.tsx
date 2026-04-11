@@ -58,7 +58,7 @@ export const FloatingWhatsapp = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="fixed bottom-8 right-8 z-50">
+    <div className="fixed bottom-5 right-5 lg:bottom-8 lg:right-8 z-50">
       {/* ================= NOTICE PANEL ================= */}
       <AnimatePresence>
         {isOpen && (
@@ -142,7 +142,7 @@ export const FloatingWhatsapp = () => {
           rotate: isOpen ? 12 : 0,
         }}
         transition={{ type: "spring", stiffness: 200 }}
-        className="relative w-16 h-16 rounded-full bg-gradient-hero shadow-lg flex items-center justify-center"
+        className="relative w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-gradient-hero shadow-lg flex items-center justify-center"
       >
         <motion.div
           animate={{ rotate: isOpen ? 0 : [0, -10, 10, -10, 0] }}
