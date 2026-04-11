@@ -109,7 +109,7 @@ export const TeachersSection = () => {
                     {/* Experience (only admin) */}
                     {isAdministration && teacher.experience && (
                       <span className="mt-3 inline-block text-xs bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
-                        {teacher.experience}+ yrs experience
+                        {parseInt(teacher.experience)}+ yrs experience
                       </span>
                     )}
                   </div>
