@@ -66,6 +66,7 @@ export default function Teachers() {
       />
 
       <section className="section-padding bg-muted">
+        {/* <p className="absolute flex items-center gap-2 right-12 px-6 -mt-12 text-lg font-semibold"><span className="text-lg lg:text-3xl">40+</span> <span className="text-md">Teachers</span></p> */}
         <div className="container-school">
           {/* Teachers Grid / List */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
