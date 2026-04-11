@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import React from 'react'
 import AdminSidebar from '../sidebar/AdminSidebar'
 
 
@@ -25,8 +24,7 @@ function Dashboard({children}: Readonly<{children: React.ReactNode}>) {
                 <button className="text-gray-500 focus:outline-none focus:text-gray-700">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
                 <input className="mx-4 w-full border rounded-md px-4 py-2" type="text" placeholder="Search" />
@@ -37,7 +35,7 @@ function Dashboard({children}: Readonly<{children: React.ReactNode}>) {
                     className="flex items-center text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                             d="M12 19l-7-7 7-7m5 14l7-7-7-7" />
                     </svg>
                 </button>

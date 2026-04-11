@@ -1,5 +1,5 @@
 {
-  "id": "f4a010f1-4e3f-4085-83d4-36c8591756b7",
+  "id": "a6b273ca-972b-42e6-a005-48b8b8c6ef6b",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -25,13 +25,13 @@
           "type": "gender_enum",
           "typeSchema": "public",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "email": {
           "name": "email",
           "type": "varchar(255)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "phone": {
           "name": "phone",
@@ -47,42 +47,39 @@
         },
         "employment_type": {
           "name": "employment_type",
-          "type": "employment_enum",
-          "typeSchema": "public",
+          "type": "text",
           "primaryKey": false,
           "notNull": true
         },
         "qualification": {
           "name": "qualification",
-          "type": "text",
+          "type": "jsonb",
           "primaryKey": false,
-          "notNull": true
-        },
-        "field_of_study": {
-          "name": "field_of_study",
-          "type": "field_of_study_enum",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "subject_teaches": {
           "name": "subject_teaches",
-          "type": "text",
+          "type": "jsonb",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "position": {
           "name": "position",
-          "type": "position_enum",
-          "typeSchema": "public",
+          "type": "jsonb",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "years_of_experience": {
           "name": "years_of_experience",
-          "type": "numeric",
+          "type": "numeric(5, 2)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
+        },
+        "photo_public_id": {
+          "name": "photo_public_id",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
         },
         "photo": {
           "name": "photo",
@@ -102,50 +99,65 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false,
-          "default": "now()"
+          "default": "CURRENT_TIMESTAMP"
         }
       },
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "teachers_email_unique": {
-          "name": "teachers_email_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.users": {
+      "name": "users",
+      "schema": "",
+      "columns": {
+        "email": {
+          "name": "email",
+          "type": "varchar(255)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "password": {
+          "name": "password",
+          "type": "varchar(250)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "role": {
+          "name": "role",
+          "type": "user_role",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "CURRENT_TIMESTAMP"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "CURRENT_TIMESTAMP"
         }
       },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
       "isRLSEnabled": false
     }
   },
   "enums": {
-    "public.employment_enum": {
-      "name": "employment_enum",
-      "schema": "public",
-      "values": [
-        "Full Time",
-        "Part Time",
-        "Contract",
-        "Other"
-      ]
-    },
-    "public.field_of_study_enum": {
-      "name": "field_of_study_enum",
-      "schema": "public",
-      "values": [
-        "Mathematics",
-        "Science",
-        "Computer Science/Engineering",
-        "Education",
-        "Sanskrit",
-        "Economics",
-        "Other"
-      ]
-    },
     "public.gender_enum": {
       "name": "gender_enum",
       "schema": "public",
@@ -155,25 +167,12 @@
         "other"
       ]
     },
-    "public.position_enum": {
-      "name": "position_enum",
+    "public.user_role": {
+      "name": "user_role",
       "schema": "public",
       "values": [
-        "Founder",
-        "Principal",
-        "Vice-Principal",
-        "Exam Coordinator",
-        "ECA Coordinator",
-        "ECL Coordinator",
-        "Accountant",
-        "ECA Member",
-        "ECL Member",
-        "Assistant Teacher",
-        "Martial Art(Karate) Teacher",
-        "Dance Teacher",
-        "Music Teacher",
-        "Arts/Drawing Teacher",
-        "Other"
+        "admin",
+        "user"
       ]
     }
   },

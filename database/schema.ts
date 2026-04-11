@@ -37,5 +37,20 @@ export const teachersTable =  pgTable("teachers", {
 
 
 
+// user roles
+export const roleEnum = pgEnum("user_role", ["admin", "user"]);
+
+export const userTable = pgTable("users", {
+  email: varchar("email", { length: 255 }).primaryKey(),
+  password: varchar("password", { length: 250 }).notNull(),
+
+  role: roleEnum("role").notNull(),
+
+  createdAt: timestamp("created_at").default(sql`CURRENT_TIMESTAMP`),
+
+  updatedAt: timestamp("updated_at").default(sql`CURRENT_TIMESTAMP`).$onUpdate(() => new Date()),
+});
+
+
 
 // other schema goes here

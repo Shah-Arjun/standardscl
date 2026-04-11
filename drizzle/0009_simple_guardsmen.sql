@@ -1,1 +1,0 @@
-ALTER TABLE "teachers" ALTER COLUMN "years_of_experience" SET DATA TYPE numeric(5, 2);

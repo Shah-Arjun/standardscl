@@ -1,1 +1,0 @@
-ALTER TABLE "teachers" ADD COLUMN "photo_public_id" varchar NOT NULL;

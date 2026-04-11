@@ -18,6 +18,9 @@ node_modules
 dist
 build
 
+seed.ts
+seed
+
 
 # testing
 /coverage

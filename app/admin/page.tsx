@@ -1,10 +1,10 @@
-// stats page of main admin dashboard
+import { cookies } from "next/headers"
+import { verifyToken } from "@/lib/auth"
+import { redirect } from "next/navigation"
 
+export default function AdminDashboard() {
 
-function AdminDashboard(){
-    return(
-        <h1>bye</h1>
-    )
+  return (
+    <h1>stat</h1>
+  )
 }
-
-export default AdminDashboard
