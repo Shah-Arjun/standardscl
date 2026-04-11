@@ -36,13 +36,13 @@ export const HeroSection = () => {
       
       {/* ================= MAIN CONTENT ================= */}
       <div className="container-hero relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center justify-items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* ================= LEFT : TEXT CONTENT ================= */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center lg:text-left max-w-md sm:max-w-lg lg:max-w-xl mx-auto lg:mx-0 space-y-10 mt-8 sm:space-y-8"
+            className="flex flex-col items-center text-center lg:items-start lg:text-left w-full max-w-md sm:max-w-lg lg:max-w-xl mx-auto lg:mx-0 space-y-10 mt-8 sm:space-y-8"
           >
             {/* Badge */}
             <motion.div
@@ -99,7 +99,7 @@ export const HeroSection = () => {
             <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
               <Link href="/admissions">
                 <Button
-                  className="btn-primary-school group"
+                  className="btn-primary-school gap-0 hover:gap-2"
                   onClick={() =>
                     gaEvent({
                       action: "click_apply_now",
@@ -109,7 +109,7 @@ export const HeroSection = () => {
                   }
                 >
                   Apply Now
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
 
@@ -143,8 +143,8 @@ export const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="relative w-full max-w-sm sm:max-w-md md:max-w-xl lg:max-w-2xl mx-auto"
           >
-            {/* Book Image */}
-            <Image src={book} alt="book" className="absolute -top-18 w-20 h-16 z-20 opacity-40 animate-bounce duration-100"/>
+            {/* Book doodle */}
+            <Image src={book} alt="book" className="absolute -top-16 w-16 h-14 z-20 opacity-40 lg:w-20 lg:h-16 animate-bounce duration-100"/>
             {/* Glow */}
               <div aria-hidden className="absolute inset-6 bg-primary/30 blur-3xl rounded-3xl -z-10" />
 
@@ -171,7 +171,7 @@ export const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
-              className="absolute -bottom-4 sm:-bottom-6 -left-4 sm:-left-6 bg-card p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg border"
+              className="absolute -bottom-4 sm:-bottom-6 -left-4 drop-shadow-lg sm:-left-6 bg-card p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg border"
             >
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-gradient-hero rounded-xl flex items-center justify-center">🎓</div>

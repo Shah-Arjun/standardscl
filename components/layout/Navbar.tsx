@@ -131,7 +131,7 @@ export const Navbar = () => {
                     label: "Navbar",
                   })
                 }
-                className="inline-flex items-center justify-center px-4 py-3 text-md lg:text-lg font-medium rounded-4xl bg-primary text-white hover:bg-primary/90 hover:border-2 border-secondary"
+                className="inline-flex items-center justify-center px-2 py-2.5 text-md lg:text-lg font-medium rounded-4xl btn-primary-school text-white hover:border-2 border-secondary"
               >
                 Get Admission
               </Link>
@@ -210,7 +210,7 @@ export const Navbar = () => {
           ))}
 
           <div className="mt-6">
-            <Button asChild className="w-full p-5">
+            <Button asChild className="w-full btn-primary-school p-5">
               <Link href="/admissions" onClick={() => setIsOpen(false)}>Get Admission</Link>
             </Button>
           </div>

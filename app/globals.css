@@ -118,15 +118,11 @@
   }
 
   .btn-primary-school {
-    @apply px-6 py-3 font-semibold rounded-xl transition-transform;
+    @apply px-6 py-3 font-semibold rounded-xl;
     background: var(--color-primary);
     color: var(--color-primary-foreground);
   }
 
-  .btn-primary-school:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 32px hsl(38 92% 50% / 0.6);
-  }
 
   .section-padding {
     @apply py-16 md:py-24 px-4 md:px-8;
@@ -144,15 +140,10 @@
   }
 
   .container-hero {
-    @apply 
-      w-full 
-      max-w-[1920px]     /* or max-w-[90%] */
-      mx-auto 
-      px-5 
-      sm:px-6 
-      lg:px-8 
-      xl:px-12;
+    @apply w-full max-w-[1620px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12;
   }
+
+
 
   .logo {
     height: 6em;
