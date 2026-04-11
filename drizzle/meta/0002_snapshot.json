@@ -1,6 +1,6 @@
 {
-  "id": "cef5abf4-501c-48a1-ae01-29422159f62f",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "2a4cbd40-7a45-410a-9fd9-d57506d3500c",
+  "prevId": "e7b63676-9ced-4a94-9475-b36fdc6c0574",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -38,8 +38,7 @@
           "type": "posted_by",
           "typeSchema": "public",
           "primaryKey": false,
-          "notNull": true,
-          "default": "'Principal'"
+          "notNull": true
         },
         "created_at": {
           "name": "created_at",
@@ -239,6 +238,7 @@
         "Holiday",
         "News",
         "Exam",
+        "Result",
         "General"
       ]
     },

@@ -16,6 +16,7 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
     <div className=" min-h-screen flex flex-col">
       <Navbar />
       <NoticeMarquee />
+      <FloatingNotice />
       <main className="flex-1 mt-16">{children}</main>      
       <Footer />
       <FloatingWhatsapp />

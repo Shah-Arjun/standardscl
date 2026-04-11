@@ -4,7 +4,6 @@ import Script from "next/script";
 import "./globals.css";
 import { Toaster } from "sonner";
 import ScrollTracker from "@/components/analytics/ScrollTracker";
-import FloatingNotice from "@/components/shared/FloatingNotice";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -72,7 +71,6 @@ export default function RootLayout({
 
       <body className="antialiased">
         <ScrollTracker />
-        <FloatingNotice />
         {children}
 
         {/* Global toaster */}

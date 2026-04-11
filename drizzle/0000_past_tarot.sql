@@ -1,5 +1,17 @@
 CREATE TYPE "public"."gender_enum" AS ENUM('male', 'female', 'other');--> statement-breakpoint
+CREATE TYPE "public"."notice_category" AS ENUM('Admissions', 'Sports', 'Events', 'Academic', 'Meeting', 'Holiday', 'News', 'Exam', 'General');--> statement-breakpoint
+CREATE TYPE "public"."posted_by" AS ENUM('Principal', 'Exam Coordinator', 'Vice Principal');--> statement-breakpoint
 CREATE TYPE "public"."user_role" AS ENUM('admin', 'user');--> statement-breakpoint
+CREATE TABLE "notices" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"title" varchar(500) NOT NULL,
+	"content" text NOT NULL,
+	"category" "notice_category" NOT NULL,
+	"posted_by" "posted_by" DEFAULT 'Principal' NOT NULL,
+	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
+	"updated_at" timestamp with time zone DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
 CREATE TABLE "teachers" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"teacher_name" varchar(255) NOT NULL,

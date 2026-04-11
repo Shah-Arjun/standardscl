@@ -5,8 +5,22 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1775896923965,
-      "tag": "0000_yummy_mister_fear",
+      "when": 1775935292713,
+      "tag": "0000_past_tarot",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1775935405840,
+      "tag": "0001_useful_rictor",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1775935950501,
+      "tag": "0002_far_mach_iv",
       "breakpoints": true
     }
   ]

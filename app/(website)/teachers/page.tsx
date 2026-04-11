@@ -22,7 +22,7 @@ export default function Teachers() {
     async function fetchTeachers() {
       setLoading(true);
       try {
-        const res = await fetch("/api/teachers/add");
+        const res = await fetch("/api/teachers");
         const data = await res.json();
         setTeachers(data || []);
       } catch (error) {

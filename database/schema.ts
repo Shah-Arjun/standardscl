@@ -53,4 +53,49 @@ export const userTable = pgTable("users", {
 
 
 
+
+
+// notice schema
+import { boolean, integer } from "drizzle-orm/pg-core";
+
+export const noticeCategoryEnum = pgEnum("notice_category", [
+  "Admissions",
+  "Sports",
+  "Events",
+  "Academic",
+  "Meeting",
+  "Holiday",
+  "News",
+  "Exam",
+  "Result",
+  "General",
+]);
+
+export const postedByEnum = pgEnum("posted_by", [
+  "Principal",
+  "Exam Coordinator",
+  "Vice Principal",
+]);
+
+
+
+export const notices = pgTable("notices", {
+  id: serial("id").primaryKey(),
+
+  title: varchar("title", { length: 500 }).notNull(),
+  content: text("content").notNull(),
+
+  category: noticeCategoryEnum("category").notNull(),
+
+  postedBy: postedByEnum("posted_by").notNull(),
+    
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp("updated_at", { withTimezone: true })
+    .defaultNow()
+    .$onUpdate(() => new Date())
+    .notNull(),
+});
+
+
+
 // other schema goes here

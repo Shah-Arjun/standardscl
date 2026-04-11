@@ -1,0 +1,1 @@
+ALTER TYPE "public"."notice_category" ADD VALUE 'Result' BEFORE 'General';
