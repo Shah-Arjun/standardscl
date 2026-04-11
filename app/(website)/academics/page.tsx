@@ -6,6 +6,7 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 import { AcademicsSection } from "@/components/home/AcademicsSection";
 import { GradesSection } from "@/components/home/GradesSection";
 import { BookOpen, Globe, Award, Calendar, Clock, Users } from "lucide-react";
+import PageHero from "@/components/shared/PageHero";
 
 const curriculum = [
   {
@@ -46,23 +47,11 @@ const Academics = () => {
   return (
     <SiteLayout>
       {/* Hero */}
-      <section className="bg-gradient-hero section-padding text-primary-foreground">
-        <div className="container-school">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <h1 className="font-heading font-bold text-4xl md:text-5xl mb-6">
-              Academic Programs
-            </h1>
-            <p className="text-xl text-white/90">
-              Comprehensive education from Pre-Primary to Secondary level
-              following NEB curriculum in English medium.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHero
+        title="Academic Programs"
+        subtitle="Comprehensive education from Pre-Primary to Secondary level following NEB curriculum in English medium."
+        badge="WHAT WE OFFER"
+      />
 
       {/* Curriculum */}
       <section className="section-padding bg-background">

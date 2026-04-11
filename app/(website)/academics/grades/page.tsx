@@ -10,6 +10,7 @@ import {
   Award,
   CheckCircle,
 } from "lucide-react";
+import PageHero from "@/components/shared/PageHero";
 
 
 
@@ -112,23 +113,11 @@ const Grades = () => {
   return (
     <SiteLayout>
       {/* Hero */}
-      <section className="bg-gradient-hero section-padding text-primary-foreground">
-        <div className="container-school">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <h1 className="font-heading font-bold text-4xl md:text-5xl mb-6">
-              Academic Grades
-            </h1>
-            <p className="text-xl text-white/90">
-              Explore our comprehensive grade structure from Pre-Primary to
-              Secondary level
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHero
+        title="Academic Grades"
+        subtitle="Explore our comprehensive grade structure from Pre-Primary to Secondary level"
+        badge="WHAT WE OFFER"
+      />
 
       {/* Grades Detail */}
       <section className="section-padding bg-background">

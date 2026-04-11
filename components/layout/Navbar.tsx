@@ -24,11 +24,8 @@ const navLinks = [
   },
   { name: "Facilities", path: "/facilities" },
   { name: "Gallery", path: "/gallery" },
-  {
-    name: "Results",
-    path: "https://www.standardschool.edu.np/Home",
-    external: true,
-  },
+  { name: "Teachers", path: "/teachers" },
+  { name: "Results", path: "https://www.standardschool.edu.np/Home", external: true },
   { name: "Notices", path: "/notices" },
   { name: "About Us", path: "/about" },
   { name: "Contact", path: "/contact" },
@@ -42,7 +39,6 @@ export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const [openMobileMenu, setOpenMobileMenu] = useState<string | null>(null);
-
 
 
   

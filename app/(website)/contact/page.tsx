@@ -21,6 +21,7 @@ import {
   Youtube,
   Twitter,
 } from "lucide-react";
+import PageHero from "@/components/shared/PageHero";
 
 const contactInfo = [
   {
@@ -118,23 +119,11 @@ const handleSubmit = async (e: React.FormEvent) => {
   return (
     <SiteLayout>
       {/* Hero */}
-      <section className="bg-gradient-hero section-padding text-primary-foreground">
-        <div className="container-school">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <h1 className="font-heading font-bold text-4xl md:text-5xl mb-6">
-              Contact Us
-            </h1>
-            <p className="text-xl text-white/90">
-              We'd love to hear from you. Get in touch with us for any
-              inquiries.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHero
+        title="Contact Us"
+        subtitle="We'd love to hear from you. Get in touch with us for any inquiries."
+        badge="GET IN TOUCH"
+      />
 
       {/* Contact Section */}
       <section className="section-padding bg-background">

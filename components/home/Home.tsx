@@ -6,7 +6,7 @@ import { FacilitiesSection } from "./FacilitiesSection";
 import { GradesSection } from "./GradesSection";
 import { HeroSection } from "./HeroSection";
 import { PrincipalMessage } from "./PrincipalMessage";
-import TeachersSection from "./TeachersSection";
+// import TeachersSection from "./TeachersSection";
 import { TestimonialsSection } from "./TestimonialsSection";
 import WhyChooseUs from "./WhyChooseUs";
 
@@ -22,7 +22,7 @@ const Index = () => {
       <ActivitiesSection />
       <WhyChooseUs />
       <TestimonialsSection />
-      <TeachersSection />
+      {/* <TeachersSection /> */}
       <PrincipalMessage />
       <AdmissionCTA />
     </SiteLayout>

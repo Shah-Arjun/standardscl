@@ -5,6 +5,7 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 import { PrincipalMessage } from "@/components/home/PrincipalMessage";
 import { Target, Eye, Heart, Award, Users, BookOpen } from "lucide-react";
 import { SiteLayout } from "@/components/layout/SiteLayout";
+import PageHero from "@/components/shared/PageHero";
 
 const values = [
   {
@@ -74,23 +75,11 @@ const About = () => {
   return (
     <SiteLayout>
       {/* Hero */}
-      <section className="bg-gradient-hero section-padding text-primary-foreground">
-        <div className="container-school">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <h1 className="font-heading font-bold text-4xl md:text-5xl mb-6">
-              About Our School
-            </h1>
-            <p className="text-xl text-white/90">
-              Building tomorrow's leaders through quality education, discipline,
-              and values in the heart of Sunsari District, Nepal.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHero
+        title="About Our School"
+        subtitle="Building tomorrow's leaders through quality education, discipline, and values in the heart of Sunsari District, Nepal."
+        badge="WHO WE ARE"
+      />
 
       {/* Story */}
       <section className="section-padding bg-background">

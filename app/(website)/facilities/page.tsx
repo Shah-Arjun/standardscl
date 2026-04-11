@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { SiteLayout } from "@/components/layout/SiteLayout";
-import { SectionHeader } from "@/components/shared/SectionHeader";
+import { PageHero } from "@/components/shared/PageHero";
 import {
   FlaskConical,
   Monitor,
@@ -95,23 +95,11 @@ const Facilities = () => {
   return (
     <SiteLayout>
       {/* Hero */}
-      <section className="bg-gradient-hero section-padding text-primary-foreground">
-        <div className="container-school">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <h1 className="font-heading font-bold text-4xl md:text-5xl mb-6">
-              Our Facilities
-            </h1>
-            <p className="text-xl text-white/90">
-              World-class infrastructure to support holistic education and
-              development of our students
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHero
+        title="Our Facilities"
+        subtitle="World-class infrastructure to support holistic education and development of our students"
+        badge="WHAT WE OFFER"
+      />
 
       {/* Facilities Grid */}
       <section className="section-padding bg-background">

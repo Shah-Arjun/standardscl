@@ -1,5 +1,6 @@
 "use client"
 
+import PageHero from "@/components/shared/PageHero";  
 import { motion } from "framer-motion";
 import { SiteLayout } from "@/components/layout/SiteLayout";
 import { SectionHeader } from "@/components/shared/SectionHeader";
@@ -83,43 +84,28 @@ const notices = [
   },
 ];
 
-const categories = ["All", "Admissions", "Sports", "Events", "Academic", "Meeting"];
-
-
 
 
 const Notices = () => {
   return (
     <SiteLayout>
-      {/* Hero */}
-      <section className="bg-gradient-hero section-padding text-primary-foreground">
-        <div className="container-school">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <h1 className="font-heading font-bold text-4xl md:text-5xl mb-6">
-              Notices & News
-            </h1>
-            <p className="text-xl text-white/90">
-              Stay updated with the latest announcements and news from our school
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      {/* Reusable Hero Component */}
+      <PageHero 
+        title="Notices & News"
+        subtitle="Stay updated with the latest notices, events, and important information from our school"
+        badge="LATEST ANNOUNCEMENTS"
+      />
 
-      {/* Notices */}
+      {/* Notices Section */}
       <section className="section-padding bg-background">
         <div className="container-school">
           <div className="grid lg:grid-cols-3 gap-8">
-            {/* Main Content */}
             <div className="lg:col-span-2">
-              <SectionHeader
-                title="Latest Notices"
+              {/* <SectionHeader
+                title=""
                 subtitle="Important announcements and updates"
                 centered={false}
-              />
+              /> */}
 
               <div className="space-y-6">
                 {notices.map((notice, index) => (
@@ -146,10 +132,13 @@ const Notices = () => {
                         </span>
                       )}
                     </div>
+
                     <h3 className="font-heading font-bold text-xl text-foreground mb-2 group-hover:text-primary transition-colors">
                       {notice.title}
                     </h3>
+                    
                     <p className="text-muted-foreground mb-4">{notice.excerpt}</p>
+                    
                     <button className="flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all">
                       Read More
                       <ArrowRight className="w-4 h-4" />
@@ -158,62 +147,6 @@ const Notices = () => {
                 ))}
               </div>
             </div>
-
-            {/* Sidebar */}
-            <aside>
-              <div className="sticky top-32 space-y-8">
-                {/* Categories */}
-                <div className="bg-card p-6 rounded-2xl border border-border">
-                  <h3 className="font-heading font-bold text-lg text-foreground mb-4">
-                    Categories
-                  </h3>
-                  <div className="space-y-2">
-                    {categories.map((category) => (
-                      <button
-                        key={category}
-                        className="block w-full text-left px-4 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors text-muted-foreground"
-                      >
-                        {category}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Quick Links */}
-                <div className="bg-gradient-hero p-6 rounded-2xl text-primary-foreground">
-                  <h3 className="font-heading font-bold text-lg mb-4">Quick Links</h3>
-                  <ul className="space-y-3">
-                    <li>
-                      <Link
-                        href="/admissions"
-                        className="flex items-center gap-2 hover:opacity-80 transition-opacity"
-                      >
-                        <ArrowRight className="w-4 h-4" />
-                        Apply Now
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/contact"
-                        className="flex items-center gap-2 hover:opacity-80 transition-opacity"
-                      >
-                        <ArrowRight className="w-4 h-4" />
-                        Contact Us
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/gallery"
-                        className="flex items-center gap-2 hover:opacity-80 transition-opacity"
-                      >
-                        <ArrowRight className="w-4 h-4" />
-                        Photo Gallery
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </aside>
           </div>
         </div>
       </section>

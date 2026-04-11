@@ -6,6 +6,8 @@ import Image from "next/image";
 import { X } from "lucide-react";
 import { event as gaEvent } from "@/lib/gtag";
 import { SiteLayout } from "@/components/layout/SiteLayout";
+import Page from "@/app/page";
+import PageHero from "@/components/shared/PageHero";
 
 
 
@@ -126,21 +128,11 @@ export default function Gallery() {
   return (
     <SiteLayout>
       {/* ================= HERO ================= */}
-      <section className="bg-gradient-hero section-padding text-primary-foreground">
-        <div className="container-school text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4"
-          >
-            Our Gallery
-          </motion.h1>
-          <p className="text-white/90 max-w-2xl mx-auto">
-            Explore beautiful moments captured from school life, events, sports,
-            and activities.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        title="Our Gallery"
+        subtitle="Explore beautiful moments captured from school life, events, sports, and activities."
+        badge="CHECK IT OUT"
+      />
 
       {/* ================= FILTER ================= */}
       <section className="section-padding bg-background">
