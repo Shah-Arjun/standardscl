@@ -144,7 +144,7 @@ export const HeroSection = () => {
             className="relative w-full max-w-sm sm:max-w-md md:max-w-xl lg:max-w-2xl mx-auto"
           >
             {/* Book doodle */}
-            <Image src={book} alt="book" className="absolute -top-16 w-16 h-14 z-20 opacity-40 lg:w-20 lg:h-16 animate-bounce duration-100"/>
+            <Image src={book} alt="book" className="absolute -top-12 -left-4 w-12 h-10 z-20 opacity-40 lg:left-0 lg:-top-18 lg:w-19 lg:h-16 animate-bounce duration-100"/>
             {/* Glow */}
               <div aria-hidden className="absolute inset-6 bg-primary/30 blur-3xl rounded-3xl -z-10" />
 
