@@ -55,9 +55,9 @@ const steps = [
 const requirements = [
   "Birth Certificate (Original & Copy)",
   "Character Certificate from previous school",
-  "Transfer Certificate (if applicable)",
+  "Transfer Certificate & IEMIS number",
   "Recent passport-size photos (2 copies)",
-  "Previous grade mark sheet",
+  "Previous grade sheet",
 ];
 
 
@@ -192,7 +192,7 @@ const Admissions = () => {
                   <div>
                     <p className="font-bold text-foreground">Entrance Exam</p>
                     <p className="text-muted-foreground text-sm">
-                      Baishakh 07, 2025
+                      Date -- Coming Soon
                     </p>
                   </div>
                 </div>
@@ -212,11 +212,11 @@ const Admissions = () => {
               </div>
 
               {/* Download Prospectus */}
-              <Button className="btn-secondary-school mt-8 w-full group">
+              {/* <Button className="btn-secondary-school mt-8 w-full group">
                 <Download className="mr-2 w-5 h-5" />
                 Download Prospectus
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              </Button> */}
             </motion.div>
 
             {/* Application Form */}
@@ -234,7 +234,7 @@ const Admissions = () => {
               >
                 <div className="space-y-6">
                   <div>
-                    <Label htmlFor="studentName">Student's Full Name</Label>
+                    <Label htmlFor="studentName">Student's Full Name *</Label>
                     <Input
                       id="studentName"
                       value={formData.studentName}
@@ -251,7 +251,7 @@ const Admissions = () => {
                   </div>
 
                   <div>
-                    <Label htmlFor="parentName">Parent/Guardian Name</Label>
+                    <Label htmlFor="parentName">Parent/Guardian Name *</Label>
                     <Input
                       id="parentName"
                       value={formData.parentName}
@@ -266,7 +266,7 @@ const Admissions = () => {
 
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="email">Email Address</Label>
+                      <Label htmlFor="email">Email Address *</Label>
                       <Input
                         id="email"
                         type="email"
@@ -280,7 +280,7 @@ const Admissions = () => {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="phone">Phone Number</Label>
+                      <Label htmlFor="phone">Phone Number *</Label>
                       <Input
                         id="phone"
                         type="tel"
@@ -296,7 +296,7 @@ const Admissions = () => {
                   </div>
 
                   <div>
-                    <Label htmlFor="grade">Applying for Grade</Label>
+                    <Label htmlFor="grade">Applying for Grade *</Label>
                     <Select
                       value={formData.grade}
                       onValueChange={(value) =>
@@ -306,7 +306,7 @@ const Admissions = () => {
                       <SelectTrigger className="mt-2">
                         <SelectValue placeholder="Select Grade" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="bg-white">
                         <SelectItem value="nursery">Nursery</SelectItem>
                         <SelectItem value="lkg">LKG</SelectItem>
                         <SelectItem value="ukg">UKG</SelectItem>

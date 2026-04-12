@@ -51,8 +51,9 @@ export const HeroSection = () => {
               transition={{ delay: 0.3, type: "spring", stiffness: 120 }}
               className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full"
             >
-              <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-              <span className="text-sm font-semibold">Admissions Open for Academic Years 2083</span>
+              {/* <span className="w-2 h-2 bg-primary rounded-full animate-pulse" /> */}
+              {/* <span className="text-sm font-semibold">Admissions Open for Academic Years 2083</span> */}
+              <span className="text-sm font-semibold">🎓 Nursery to Grade 10</span>
             </motion.div>
 
             {/* Heading */}

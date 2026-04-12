@@ -24,10 +24,10 @@ export const AdmissionCTA = () => {
           className="text-center"
         >
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/20 text-primary-foreground px-4 py-2 rounded-full mb-6 animate-pulse-glow">
+          {/* <div className="inline-flex items-center gap-2 bg-white/20 text-primary-foreground px-4 py-2 rounded-full mb-6 animate-pulse-glow">
             <span className="w-2 h-2 bg-white rounded-full" />
             <span className="font-semibold">Admissions Open for 2083</span>
-          </div>
+          </div> */}
 
           <h2 className="font-heading font-bold text-3xl md:text-5xl text-primary-foreground mb-6">
             Begin Your Child's Journey
