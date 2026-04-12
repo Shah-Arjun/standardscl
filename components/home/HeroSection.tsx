@@ -89,7 +89,7 @@ export const HeroSection = () => {
                   <Users className="w-6 h-6 text-secondary" />
                 </div>
                 <div>
-                  <p className="font-bold">800+ Students</p>
+                  <p className="font-bold">700+ Students</p>
                   <p className="text-sm text-muted-foreground">Growing Family</p>
                 </div>
               </div>
@@ -155,7 +155,7 @@ export const HeroSection = () => {
               muted
               loop
               playsInline
-              controls
+              // controls
               onPlay={() =>
                 gaEvent({
                   action: "play_hero_video",

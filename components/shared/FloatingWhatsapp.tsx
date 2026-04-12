@@ -4,7 +4,8 @@ import { useState } from "react";
 import { X, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import WhatsAppIcon from "../../public/whatsapp.png";
+// import WhatsAppIcon from "../../public/whatsapp.png";
+import PhoneCall from "../../public/phone-call.png";
 
 const latestNotices = [
   { id: 1, title: "Admissions Open for 2083", date: "Jan 15, 2025" },
@@ -128,8 +129,8 @@ export const FloatingWhatsapp = () => {
       </div>
       <motion.button
         onClick={() => {
-          const phone = "9779807307132"; // replace with your number
-          const message = "Hello, I want to inquire about admission.";
+          const phone = "9779807307132"; // receiver whatsapp number
+          const message = "Hello, how can I learn more about the admission process?"; // default message
 
           window.open(
             `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
@@ -142,13 +143,13 @@ export const FloatingWhatsapp = () => {
           rotate: isOpen ? 12 : 0,
         }}
         transition={{ type: "spring", stiffness: 200 }}
-        className="relative w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-gradient-hero shadow-lg flex items-center justify-center"
+        className="relative w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-white shadow-lg flex items-center justify-center"
       >
         <motion.div
           animate={{ rotate: isOpen ? 0 : [0, -10, 10, -10, 0] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
         >
-          <Image width={100} height={56} src={WhatsAppIcon} alt="WhatsApp" />
+          <Image width={100} height={56} src={PhoneCall} alt="Call" />
         </motion.div>
       </motion.button>
     </div>

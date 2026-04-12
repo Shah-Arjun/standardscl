@@ -29,7 +29,7 @@ const grades = [
       "Physical development activities",
       "Social skills development",
     ],
-    subjects: ["English", "Nepali", "Mathematics", "Drawing", "Rhymes & Songs"],
+    subjects: ["English", "Nepali","Science", "Mathematics","Sero-fero", "Drawing","Dancing", "Rhymes & Songs"],
   },
   {
     id: "primary",
@@ -52,8 +52,9 @@ const grades = [
       "Science",
       "Social Studies",
       "Computer",
-      "Moral Education",
-      "Serofero"
+      "Sero-fero",
+      "Health & Physical Education",
+      "Drawing & Handwriting"
     ],
   },
   {
@@ -79,6 +80,7 @@ const grades = [
       "Optional Mathematics",
       "Computer",
       "Health & Physical Education",
+      "Sero-fero"
     ],
   },
   {
@@ -102,7 +104,7 @@ const grades = [
       "Science",
       "Social Studies",
       "Optional Mathematics",
-      "Accountancy",
+      "Office Management & Accountancy",
     ],
   },
 ];
