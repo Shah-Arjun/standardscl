@@ -59,8 +59,15 @@ export default function CreateNoticePage() {
 
   
   return (
+    <>
+      <button
+        onClick={() => router.back()}
+        className="mb-6 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+      >
+        ← Go Back
+      </button>
     <div className="max-w-2xl mx-auto p-6 space-y-6">
-      
+      {/* Back Button */}
       {/* Header */} 
       <div>
         <h1 className="text-3xl font-bold">Add Notice</h1>
@@ -145,5 +152,6 @@ export default function CreateNoticePage() {
         </button>
       </form>
     </div>
+    </>
   );
 }

@@ -3,44 +3,43 @@ import { db } from "@/database/db";
 import { notices } from "@/database/schema";
 import { eq } from "drizzle-orm";
 
-
-// get notice by id
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = Number(params.id);
+    //  Next.js 15/16 requires await params
+    const { id } = await context.params;
 
-    // validate id
-    if (!id || isNaN(id)) {
+    const noticeId = Number(id);
+
+    // ✅ Better validation
+    if (Number.isNaN(noticeId)) {
       return NextResponse.json(
-        { error: "Invalid notice ID" },
+        { error: "InvalnoticeId notice noticeId" },
         { status: 400 }
       );
     }
 
-    // fetch notice
-    const result = await db
+    const notice = await db
       .select()
       .from(notices)
-      .where(eq(notices.id, id))
+      .where(eq(notices.id, noticeId))
       .limit(1);
 
-    const notice = result[0];
-
-    // not found
-    if (!notice) {
+    if (notice.length === 0) {
       return NextResponse.json(
         { error: "Notice not found" },
         { status: 404 }
       );
     }
 
-    return NextResponse.json(notice);
+    return NextResponse.json(notice[0], { status: 200 });
   } catch (error) {
+    console.error("GET notice by noticeId error:", error);
+
     return NextResponse.json(
-      { error: "Failed to fetch notice" },
+      { error: "Internal server error" },
       { status: 500 }
     );
   }

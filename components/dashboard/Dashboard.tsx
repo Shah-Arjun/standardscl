@@ -1,55 +1,106 @@
-import Link from 'next/link'
-import AdminSidebar from '../sidebar/AdminSidebar'
+"use client";
+import Link from "next/link";
+import AdminSidebar from "../sidebar/AdminSidebar";
 
+import { useEffect, useState } from "react";
 
+type User = {
+  email: string;
+  role: string;
+};
 
+function Dashboard({ children }: Readonly<{ children: React.ReactNode }>) {
+  const [user, setUser] = useState<User | null>(null);
+  const [open, setOpen] = useState(false);
 
-function Dashboard({children}: Readonly<{children: React.ReactNode}>) {
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await fetch("/api/admin/auth/me");
+        const data = await res.json();
+
+        console.log("user", data.user);
+        setUser(data.user);
+      } catch {
+        setUser(null);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
+  const handleLogout = async () => {
+    await fetch("/api/admin/logout", {
+      method: "POST",
+    });
+
+    window.location.href = "/";
+  };
+
   return (
-
     <div className="flex h-screen bg-gray-100">
-
-    {/* sidebar  */}
-    <div className="hidden md:flex flex-col w-64 bg-gray-800">
+      {/* sidebar  */}
+      <div className="hidden md:flex flex-col w-64 bg-gray-800">
         <div className="flex items-center justify-start h-16 bg-gray-900 gap-6 px-6">
-            <div  className='bg-muted p-3'>logo</div>
-            <span className="text-white font-bold uppercase">SSBS</span>
+          <div className="bg-muted p-3">logo</div>
+          <span className="text-white font-bold uppercase">SSBS</span>
         </div>
-    <AdminSidebar />
-    </div>
+        <AdminSidebar />
+      </div>
 
-     {/* Main content  */}
-    <div className="flex flex-col flex-1 overflow-y-auto">
+      {/* Main content  */}
+      <div className="flex flex-col flex-1 overflow-y-auto">
         <div className="flex items-center justify-between h-16 bg-white border-b border-gray-200">
-            <div className="flex items-center px-4">
-                <input className="mx-4 w-full border rounded-md px-4 py-2" type="text" placeholder="Search" />
-            </div>
-            <div className="flex items-center pr-4">
+          <div className="flex items-center px-4">
+            <input
+              className="mx-4 w-full border rounded-md px-4 py-2"
+              type="text"
+              placeholder="Search"
+            />
+          </div>
 
-                <button className="text-gray-500 focus:outline-none focus:text-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
+          {/* user info */}
+          <div className="flex items-center justify-end h-16 bg-white border-b px-6">
+            {user && (
+              <div className="relative">
+                {/* Avatar Button */}
+                <button
+                  onClick={() => setOpen(!open)}
+                  className="flex items-center gap-4"
+                >
+                  {/* Info */}
+                  <div className="text-right hidden sm:block">
+                    <p className="text-md font-medium text-gray-800">
+                      {user.email}
+                    </p>
+                    <p className="text-xs text-gray-500">{user?.role}</p>
+                  </div>
+
+                  {/* Avatar */}
+                  <div className="w-12 h-12 rounded-full bg-blue-600 border text-white flex items-center justify-center font-bold uppercase">
+                    {user?.email ? user.email.charAt(0).toUpperCase() : "A"}
+                  </div>
                 </button>
-                {/* <button
-                    className="flex items-center text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                            d="M12 19l-7-7 7-7m5 14l7-7-7-7" />
-                    </svg>
-                </button> */}
-            </div>
-        </div>
-        <div className="p-4">
-            {children}
-        </div>
-    </div>
-    
-</div>
 
-  )
+                {/* Dropdown */}
+                {open && (
+                  <div className="absolute right-0 mt-2 w-44 bg-white border rounded-lg shadow-md z-50">
+                    <button
+                      onClick={handleLogout}
+                      className="w-full text-left px-4 py-4 text-md text-red-600 hover:bg-red-50"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="p-4">{children}</div>
+      </div>
+    </div>
+  );
 }
 
-export default Dashboard
+export default Dashboard;

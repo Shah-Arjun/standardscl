@@ -46,7 +46,7 @@ export const FloatingNotice = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 50 }}
             transition={{ duration: 0.3 }}
-            className="fixed top-52 right-0 z-50 cursor-pointer flex items-center"
+            className="fixed top-40 md:top-42 lg:top-52 right-0 z-50 cursor-pointer flex items-center"
             onClick={() => setIsOpen(true)}
           >
             <div className="bg-green-800 text-white px-2 py-2 lg:px-4 lg:py-3 shadow-xl flex items-center gap-3 rounded-l-2xl hover:rounded-l-3xl transition-all duration-300 hover:bg-green-700">
@@ -78,7 +78,7 @@ export const FloatingNotice = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={() => setShowBanner(true)}
-          className="fixed top-52 right-0 z-50 bg-green-800 text-white p-3 rounded-l-2xl shadow-xl hover:bg-green-700 transition-all"
+          className="fixed top-40 md:top-42 lg:top-52 right-0 z-50 bg-green-800 text-white p-3 rounded-l-2xl shadow-xl hover:bg-green-700 transition-all"
         >
           <ChevronLeft className="h-5 w-5" />
         </motion.button>
@@ -100,10 +100,10 @@ export const FloatingNotice = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-24 right-0 z-[70] w-full max-w-xs bg-white rounded-l-3xl shadow-2xl overflow-hidden h-[calc(100vh-120px)] md:h-auto md:max-h-[520px]"
+              className="fixed top-18 right-0 z-[70] w-full max-w-xs bg-white rounded-l-3xl shadow-2xl overflow-hidden h-120 lg:max-h-200"
             >
               {/* Header */}
-              <div className="flex items-center justify-between border-b px-6 py-5 bg-gradient-to-r from-amber-50 to-orange-50">
+              <div className="flex items-center justify-between border-b px-6 py-2 bg-gradient-to-r from-amber-50 to-orange-50">
                 <div className="flex items-center gap-3">
                   <h3 className="font-bold text-xl text-gray-900">Notices</h3>
                   <span className="text-xs bg-amber-100 text-amber-700 px-3 py-1 rounded-full font-medium">

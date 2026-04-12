@@ -47,8 +47,7 @@ export default function AdminSidebar() {
       <nav className="flex-1 px-3 py-6 overflow-y-auto">
         <div className="space-y-1">
           {navItems.map((item) => {
-            const isActive = pathname === item.href || 
-                            (item.href !== "/admin" && pathname?.startsWith(item.href));
+            const isActive = pathname === item.href || (item.href !== "/admin" && pathname?.startsWith(item.href));
 
             return (
               <Link

@@ -1,42 +1,112 @@
-"use client"
+"use client";
 
-import { use } from "react";
+import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { set } from "date-fns";
 
-function NoticeDetailPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = use(params);
+type Notice = {
+  id: number;
+  title: string;
+  content: string;
+  category: string;
+  createdAt: string;
+};
+
+export default function NoticeDetailPage() {
+  const params = useParams();
+  const router = useRouter();
+
+  const id = Array.isArray(params.id) ? params.id[0] : params.id;
+
+  const [notice, setNotice] = useState<Notice | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!id) return;
+
+    const fetchNotice = async () => {
+      try {
+        setLoading(true);
+
+        const res = await fetch(`/api/notices/${id}`);
+        
+        if (!res.ok) {
+          setError("Failed to fetch notice");
+          throw new Error("Failed to fetch notice");
+        }
+        
+        const data = await res.json();
+        setNotice(data);
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchNotice();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="p-6 text-center text-gray-500">
+        Loading notice...
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="p-6 text-center text-red-500">
+        {error}
+      </div>
+    );
+  }
+
+  if (!notice) {
+    return (
+      <div className="p-6 text-center text-gray-500">
+        Notice not found
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
-      <div className="text-center bg-white shadow-md rounded-2xl p-10 max-w-md w-full border">
-        
-        <div className="text-5xl mb-4">🚧</div>
+    <div className="min-h-screen bg-gray-50 p-6">
 
-        <h1 className="text-2xl font-bold text-gray-800">
-          Notice Details Coming Soon
+      {/* Back Button */}
+      <button
+        onClick={() => router.back()}
+        className="mb-6 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+      >
+        ← Go Back
+      </button>
+
+      {/* Notice Card */}
+      <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-2xl p-8 border">
+
+        {/* Category Badge */}
+        <span className="inline-block mb-4 px-3 py-1 text-xs font-medium bg-blue-100 text-blue-700 rounded-full">
+          {notice.category}
+        </span>
+
+        {/* Title */}
+        <h1 className="text-3xl font-bold text-gray-900 mb-4">
+          {notice.title}
         </h1>
 
-        <p className="text-gray-500 mt-2">
-          This feature is under development
+        {/* Content */}
+        <p className="text-gray-700 leading-relaxed whitespace-pre-line">
+          {notice.content}
         </p>
 
-        <div className="mt-6 bg-gray-100 rounded-lg px-4 py-3">
-          <p className="text-sm text-gray-600">Notice ID</p>
-          <p className="text-xl font-semibold text-gray-900">{id}</p>
+        {/* Date */}
+        <div className="mt-6 text-sm text-gray-500 border-t pt-4">
+          Created at:{" "}
+          {new Date(notice.createdAt).toLocaleString()}
         </div>
-
-        <button
-          onClick={() => history.back()}
-          className="mt-6 px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-        >
-          Go Back
-        </button>
       </div>
     </div>
   );
 }
-
-export default NoticeDetailPage;

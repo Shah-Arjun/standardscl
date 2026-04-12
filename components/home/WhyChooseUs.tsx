@@ -1,4 +1,7 @@
 import { CheckCircle } from "lucide-react";
+import { SectionHeader } from "../shared/SectionHeader";
+
+
 
 const reasons = [
   "Qualified and experienced educators passionate about teaching",
@@ -9,12 +12,22 @@ const reasons = [
   "Regular parent-teacher communication and involvement",
 ];
 
+
+
 const WhyChooseUs = () => {
   return (
-    <section className="py-20 bg-primary">
+    
+    <section className="section-padding bg-gradient-hero relative overflow-hidden">
+
+    <div className="container-school relative z-10">
+          <SectionHeader 
+          title="Why Choose Us?"
+          subtitle="A Safe & Supportive Environment for Growth"
+          light
+          />
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="font-body font-bold text-sunshine text-sm uppercase tracking-widest mb-3">
+          {/* <p className="font-body font-bold text-sunshine text-sm uppercase tracking-widest mb-3">
             Why Us
           </p>
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
@@ -22,7 +35,7 @@ const WhyChooseUs = () => {
           </h2>
           <p className="font-body text-primary-foreground/80 text-lg mb-12">
             A Safe & Supportive Environment for Growth
-          </p>
+          </p> */}
           <div className="grid sm:grid-cols-2 gap-5 text-left">
             {reasons.map((r) => (
               <div key={r} className="flex items-start gap-3">
@@ -31,16 +44,13 @@ const WhyChooseUs = () => {
               </div>
             ))}
           </div>
-          <a
-            href="#contact"
-            className="inline-block mt-12 bg-coral text-coral-foreground px-8 py-3.5 rounded-full font-body font-bold text-lg hover:opacity-90 transition-opacity"
-          >
-            Contact Us
-          </a>
         </div>
       </div>
-    </section>
+</div>
+</section>
   );
 };
 
 export default WhyChooseUs;
+
+
