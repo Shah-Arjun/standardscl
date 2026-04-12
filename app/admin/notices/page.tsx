@@ -8,6 +8,8 @@ type Notice = {
   title: string;
   category: string;
   date: string;
+  content: string;
+  postedBy: string;
   createdAt: string;
 };
 
