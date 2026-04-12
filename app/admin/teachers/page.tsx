@@ -5,22 +5,27 @@ import { motion } from "framer-motion";
 import { Loader2, User } from "lucide-react";
 import Link from "next/link";
 
+
+
 interface Teacher {
   id: number;
-  name: string;
+  teacherName: string;
   subject: string;
   email?: string;
   phone?: string;
-  qualification?: string;
-  experience?: number;
+  qualifications?: string;
+  experience?: string;
   status?: string;
 }
+
+
 
 function Teachers() {
   const [teachers, setTeachers] = useState<Teacher[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
   const teachersPerPage = 8;
+
 
   useEffect(() => {
     async function fetchTeachers() {
@@ -40,12 +45,18 @@ function Teachers() {
     fetchTeachers();
   }, []);
 
+
+
+
   // Pagination
   const totalPages = Math.ceil(teachers.length / teachersPerPage);
   const paginatedTeachers = teachers.slice(
     currentPage * teachersPerPage,
     (currentPage + 1) * teachersPerPage
   );
+
+
+
 
   return (
     <div className="p-6 space-y-6">
@@ -55,7 +66,7 @@ function Teachers() {
           <h1 className="text-3xl font-bold text-gray-900">Teachers</h1>
           <p className="text-gray-600 mt-1">Manage school teachers and staff</p>
         </div>
-        <div className="text-sm text-gray-500">
+        <div className="text-lg text-gray-500">
           Total Teachers: <span className="font-semibold text-gray-900">{teachers.length}</span>
         </div>
       </div>
@@ -81,7 +92,7 @@ function Teachers() {
                 <thead>
                   <tr className="bg-gray-50 border-b">
                     <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">Name</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">Qualification</th>
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">Qualifications</th>
                     <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">Experience</th>
                     <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">Contact</th>
                     <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">Status</th>
@@ -139,9 +150,9 @@ function Teachers() {
                 <button
                   onClick={() => setCurrentPage((prev) => Math.max(0, prev - 1))}
                   disabled={currentPage === 0}
-                  className="px-4 py-2 text-sm font-medium text-gray-600 disabled:opacity-40 hover:bg-white rounded-lg transition"
+                  className="px-4 py-2 text-md font-medium text-gray-600 disabled:opacity-40 hover:bg-white rounded-lg transition"
                 >
-                  Previous
+                  &lt;&lt; Previous
                 </button>
 
                 <div className="text-sm text-gray-600">
@@ -151,9 +162,9 @@ function Teachers() {
                 <button
                   onClick={() => setCurrentPage((prev) => Math.min(totalPages - 1, prev + 1))}
                   disabled={currentPage === totalPages - 1}
-                  className="px-4 py-2 text-sm font-medium text-gray-600 disabled:opacity-40 hover:bg-white rounded-lg transition"
+                  className="px-4 py-2 text-md font-medium text-gray-600 disabled:opacity-40 hover:bg-white rounded-lg transition"
                 >
-                  Next
+                  Next &gt;&gt;
                 </button>
               </div>
             )}

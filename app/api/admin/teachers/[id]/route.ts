@@ -5,29 +5,31 @@ import { eq } from "drizzle-orm";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = parseInt(params.id);
+    //  Next.js 15/16 requires await params
+    const { id } = await context.params;
 
+    // convert to number
+    const teacherId = Number(id);
 
-    if (!id || isNaN(id)) {
-      return NextResponse.json({ error: "Invalid teacher ID" }, { status: 400 });
-    }
-
-    if (isNaN(id)) {
+    // validate id
+    if (Number.isNaN(teacherId)) {
       return NextResponse.json(
         { error: "Invalid teacher ID" },
         { status: 400 }
       );
     }
 
+    // fetch teacher
     const teacher = await db
       .select()
       .from(teachersTable)
-      .where(eq(teachersTable.id, id))
+      .where(eq(teachersTable.id, teacherId))
       .limit(1);
 
+    // not found
     if (teacher.length === 0) {
       return NextResponse.json(
         { error: "Teacher not found" },
@@ -35,7 +37,9 @@ export async function GET(
       );
     }
 
+    // success
     return NextResponse.json(teacher[0], { status: 200 });
+
   } catch (error) {
     console.error("GET teacher by id error:", error);
 
