@@ -9,7 +9,7 @@ type Teacher = {
   teacherName: string;
   email: string;
   phone: string;
-  experience: number;
+  experience: string;
   qualifications?: string[];
   photo?: string;
 };
