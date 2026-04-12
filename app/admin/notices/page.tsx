@@ -27,7 +27,7 @@ const [loadingDelete, setLoadingDelete] = useState(false);
       setLoading(true);
       const res = await fetch("/api/notices");
       const data = await res.json();
-console.log("Fetched notices:", data);  //debug
+// console.log("Fetched notices:", data);  //debug
       // newest first
       setNotices(data.reverse());
     } catch (error) {

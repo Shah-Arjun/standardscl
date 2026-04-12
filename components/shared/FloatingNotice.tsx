@@ -1,40 +1,53 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
-interface Notice {
+type Notice = {
   id: number;
-  heading: string;
+  title: string;
+  category: string;
   date: string;
-}
+  content: string;
+  postedBy: string;
+  createdAt: string;
+};
 
-const notices: Notice[] = [
-  {
-    id: 1,
-    heading: "Annual Exam Schedule 2026 Released",
-    date: "April 10, 2026",
-  },
-  {
-    id: 2,
-    heading: "Holiday Notice: Buddha Jayanti",
-    date: "April 8, 2026",
-  },
-  {
-    id: 3,
-    heading: "Parent-Teacher Meeting Schedule",
-    date: "March 28, 2026",
-  },
-  {
-    id: 4,
-    heading: "Summer Vacation Notice",
-    date: "March 15, 2026",
-  },
-];
 
 export const FloatingNotice = () => {
-  const [isOpen, setIsOpen] = useState(false);        // Popup state
+  const [isOpen, setIsOpen] = useState(false); // Popup state
   const [showBanner, setShowBanner] = useState(true); // Banner visibility (default: true)
+
+  const [notices, setNotices] = useState<Notice[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch notices
+  const fetchNotices = async () => {
+    try {
+      setLoading(true);
+      const res = await fetch("/api/notices");
+      const data = await res.json();
+      // console.log("Fetched notices:", data);  //debug
+      
+      // newest first
+      setNotices(
+        Array.isArray(data)
+          ? data.sort((a, b) => b.id - a.id)
+          : []
+      );    } catch (error) {
+      console.error("Failed to load notices", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchNotices();
+  }, []);
+
+
+
 
   return (
     <>
@@ -50,7 +63,9 @@ export const FloatingNotice = () => {
             onClick={() => setIsOpen(true)}
           >
             <div className="bg-green-800 text-white px-2 py-2 lg:px-4 lg:py-3 shadow-xl flex items-center gap-3 rounded-l-2xl hover:rounded-l-3xl transition-all duration-300 hover:bg-green-700">
-              <span className="text-md font-semibold uppercase tracking-wider">Notice</span>
+              <span className="text-md font-semibold uppercase tracking-wider">
+                Notice
+              </span>
               <div className="w-2 h-2 bg-red-500 rounded-full animate-ping" />
             </div>
 
@@ -120,21 +135,38 @@ export const FloatingNotice = () => {
 
               {/* Notices List */}
               <div className="overflow-y-auto p-4 h-[calc(100%-140px)]">
-                {notices.length > 0 ? (
-                  <div className="space-y-3">
-                    {notices.map((notice) => (
-                      <motion.div
-                        key={notice.id}
-                        whileHover={{ x: 6 }}
-                        className="group p-5 bg-white border border-gray-100 hover:border-amber-200 rounded-2xl transition-all hover:shadow-md cursor-pointer"
-                      >
-                        <p className="font-medium text-gray-900 leading-snug group-hover:text-amber-700 transition-colors">
-                          {notice.heading}
-                        </p>
-                        <p className="text-sm text-gray-500 mt-3">{notice.date}</p>
-                      </motion.div>
-                    ))}
+                {loading ? (
+                  <div className="py-12 text-center text-gray-500">
+                    Loading notices...
                   </div>
+                ) : notices.length > 0 ? (
+                  <div className="space-y-3">
+                    <p className="text-end pr-2 text-md">Published On</p>
+                  {notices.map((notice) => (
+                    <Link key={notice.id} href={`/notices/${notice.id}`}>
+                      <motion.div
+                        whileHover={{ x: 6 }}
+                        className="group p-4 mb-2 bg-white border border-gray-200 hover:border-amber-200 rounded-2xl transition-all hover:shadow-md cursor-pointer"
+                      >
+                        <div className="flex justify-between items-center gap-4">
+                          {/* Title */}
+                          <p className="font-medium text-gray-900 leading-snug group-hover:text-amber-700 transition-colors">
+                            {notice.title}
+                          </p>
+                
+                          {/* Date */}
+                          <p className="text-sm text-gray-500 whitespace-nowrap">
+                            {new Date(notice.createdAt).toLocaleDateString("en-GB", {
+                              day: "numeric",
+                              month: "short",
+                              year: "numeric",
+                            })}
+                          </p>
+                        </div>
+                      </motion.div>
+                    </Link>
+                  ))}
+                </div>
                 ) : (
                   <div className="py-12 text-center text-gray-500">
                     No notices at the moment.
@@ -144,8 +176,8 @@ export const FloatingNotice = () => {
 
               {/* Footer */}
               <div className="border-t px-6 py-4 text-center bg-gray-50">
-                <p className="text-xs text-gray-400">
-                  Click on any notice for more details (coming soon)
+                <p className="text-md text-gray-400">
+                  View details <Link href="/notices" className="ml-2 py-1 px-3 border border-gray-400 rounded-xl text-2xl text-amber-600 hover:underline">&gt;&gt;</Link>.
                 </p>
               </div>
             </motion.div>

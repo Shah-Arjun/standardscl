@@ -1,55 +1,62 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, ArrowRight, Tag, X } from "lucide-react";
 
 import { SiteLayout } from "@/components/layout/SiteLayout";
 import PageHero from "@/components/shared/PageHero";
 
-const notices = [
-  {
-    id: 1,
-    title: "Admissions Open for Academic Year 2083",
-    date: "Baishakh",
-    category: "Admissions",
-    excerpt: "We are pleased to announce that admissions are now open for the upcoming academic year. Limited seats available for all grades from Nursery to Grade 10.",
-    content: "Detailed admission process, important dates, required documents, fee structure, age criteria, and online/offline application procedure will be shared here. Parents are requested to visit the school office or apply through the official portal.",
-    isNew: true,
-  },
-  {
-    id: 2,
-    title: "Annual Sports Week Schedule Released",
-    date: "January 20, 2025",
-    category: "Sports",
-    excerpt: "The much-awaited Annual Sports Week will be held from February 1-7, 2025. Students are encouraged to participate in various sports events.",
-    content: "Full event schedule, rules and regulations, team formations, prizes, and participation guidelines...",
-    isNew: true,
-  },
-  {
-    id: 3,
-    title: "Parent-Teacher Meeting Scheduled",
-    date: "January 25, 2025",
-    category: "Meeting",
-    excerpt: "Parents are invited for the quarterly parent-teacher meeting to discuss student progress and academic performance.",
-    content: "Meeting agenda, timing, venue, and topics to be discussed with teachers...",
-    isNew: false,
-  },
-  {
-    id: 4,
-    title: "Entrance Examination Date Announced",
-    date: "February 1, 2025",
-    category: "Exam",
-    excerpt: "Entrance examination for new admissions will be conducted on March 15, 2025. Application forms available at the school office.",
-    content: "Syllabus, exam pattern, timing, and preparation tips...",
-    isNew: false,
-  },
-];
 
-type Notice = typeof notices[number];
+
+type Notice = {
+  id: number;
+  title: string;
+  category: string;
+  date: string;
+  content: string;
+  postedBy: string;
+  createdAt: string;
+};
+
+
+
 
 const Notices = () => {
-  const [selectedNotice, setSelectedNotice] = useState<Notice | null>(notices[0]);
+
+    const [notices, setNotices] = useState<Notice[]>([]);
+    const [selectedNotice, setSelectedNotice] = useState<Notice | null>(notices[0]);
+    const [loading, setLoading] = useState(true);
+  
+    // Fetch notices
+    const fetchNotices = async () => {
+      try {
+        setLoading(true);
+        const res = await fetch("/api/notices");
+        const data = await res.json();
+        // console.log("Fetched notices:", data);  //debug
+        // newest first
+        setNotices(
+          Array.isArray(data)
+            ? data.sort((a, b) => b.id - a.id)
+            : []
+        );    } catch (error) {
+        console.error("Failed to load notices", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    useEffect(() => {
+      fetchNotices();
+    }, []);
+  
+  
+
+
+
+
+
 
   return (
     <SiteLayout>
@@ -62,7 +69,9 @@ const Notices = () => {
       <section className="section-padding bg-background min-h-screen">
         <div className="container-school">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-10">
-            
+
+
+
             {/* LEFT SIDE - Notices List */}
             <div className="lg:col-span-5 xl:col-span-4">
               <div className="sticky top-24">
@@ -76,7 +85,7 @@ const Notices = () => {
                       animate={{ opacity: 1, y: 0 }}
                       whileHover={{ scale: 1.02 }}
                       onClick={() => setSelectedNotice(notice)}
-                      className={`group p-6 rounded-3xl border cursor-pointer transition-all duration-300
+                      className={`group p-6 rounded-3xl border-2 border-l-gray-400 cursor-pointer transition-all duration-300
                         ${selectedNotice?.id === notice.id 
                           ? 'border-primary bg-primary/5 shadow-sm' 
                           : 'border-gray-100 hover:border-primary/30 hover:bg-white'}`}
@@ -84,12 +93,15 @@ const Notices = () => {
                       <div className="flex flex-wrap items-center gap-3 mb-4">
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
                           <Calendar className="w-4 h-4" />
-                          {notice.date}
+                          {new Date(notice.createdAt).toLocaleDateString("en-GB", {
+                            day: "numeric",
+                            month: "short",
+                            year: "numeric",
+                          })}
                         </div>
                         <div className="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full">
                           {notice.category}
                         </div>
-                        {notice.isNew && <span className="text-emerald-500 text-xs font-bold">• NEW</span>}
                       </div>
 
                       <h3 className="font-semibold text-lg leading-tight mb-3 line-clamp-2 group-hover:text-primary transition-colors">
@@ -97,7 +109,7 @@ const Notices = () => {
                       </h3>
 
                       <p className="text-muted-foreground text-sm line-clamp-3">
-                        {notice.excerpt}
+                        {notice.content}
                       </p>
 
                       <div className="mt-4 flex items-center text-primary text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
@@ -109,6 +121,8 @@ const Notices = () => {
                 </div>
               </div>
             </div>
+
+
 
             {/* RIGHT SIDE - Detail View */}
             <div className="lg:col-span-7 xl:col-span-8">
@@ -127,7 +141,11 @@ const Notices = () => {
                           {selectedNotice.category}
                         </div>
                         <div className="text-sm text-muted-foreground">
-                          {selectedNotice.date}
+                          {new Date(selectedNotice.createdAt).toLocaleDateString("en-GB", {
+                              day: "numeric",
+                              month: "short",
+                              year: "numeric",
+                            })}
                         </div>
                       </div>
 
@@ -148,8 +166,22 @@ const Notices = () => {
                       {selectedNotice.content}
                     </div>
 
-                    <div className="mt-12 pt-8 border-t border-gray-100 text-sm text-muted-foreground">
-                      Published on: {selectedNotice.date}
+                    <div className="prose prose-lg mt-12 max-w-none text-gray-700 leading-relaxed">
+                      Thank you.
+                    </div>
+
+                    <div className="flex justify-between mt-60 pt-8 border-t border-gray-100">
+                      <div className="text-sm text-muted-foreground">
+                        Published By: {selectedNotice.postedBy}
+                      </div>
+                      
+                      <div className=" text-sm text-muted-foreground">
+                        Published on: {new Date(selectedNotice.createdAt).toLocaleDateString("en-GB", {
+                                day: "numeric",
+                                month: "short",
+                                year: "numeric",
+                              })}
+                      </div>
                     </div>
                   </motion.div>
                 ) : (

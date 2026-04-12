@@ -105,7 +105,7 @@ export default function TeacherDetailPage() {
             <b>Phone:</b> {teacher.phone}
           </p>
           <p>
-            <b>Experience:</b> {teacher.experience} years
+          <b>Experience:</b> {parseInt(teacher.experience)} years
           </p>
 
           <p>
