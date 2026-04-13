@@ -21,7 +21,7 @@ export const PrincipalMessage = () => {
               {/* Main Image */}
               <div className="relative z-10 group">
                 <Image
-                  src="https://res.cloudinary.com/dpraq0j6y/image/upload/v1776096179/copy_of_e30a12dd-0594-4e5c-ba1a-1f95e484753c_qavkkb_3d7960.jpg"
+                  src="https://res.cloudinary.com/dpraq0j6y/image/upload/v1776099993/copy_of_copy_of_e30a12dd-0594-4e5c-ba1a-1f95e484753c_qavkkb_3d7960_d7b86d.jpg"
                   alt="Mr. Ganesh Koirala - School Principal"
                   width={700}
                   height={850}
@@ -35,11 +35,11 @@ export const PrincipalMessage = () => {
               </div>
 
               {/* Name Card */}
-              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-lg px-4 py-3 lg:py-5 lg:px-8 rounded-2xl shadow-xl border border-white z-20 w-fit">
-                <p className="font-heading font-bold text-2xl text-center text-gray-900 whitespace-nowrap">
+              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-lg px-3 py-1 md:px-4 md:py-2 lg:py-4 lg:px-8 rounded-2xl shadow-xl border border-white z-20 w-fit">
+                <p className="font-heading font-bold text-lg md:text-xl text-center text-gray-900 whitespace-nowrap">
                   Mr. Ganesh Koirala
                 </p>
-                <p className="text-primary text-center font-medium mt-1">
+                <p className="text-primary text-sm lg:text-md text-center font-medium lg:mt-1">
                   Principal &amp; School Chief
                 </p>
               </div>
@@ -55,7 +55,7 @@ export const PrincipalMessage = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
-            className="space-y-8 lg:pt-8"
+            className="space-y-8 pt-6 lg:pt-0"
           >
             <div>
               <h2 className="font-heading font-bold text-4xl md:text-5xl leading-tight mb-6">
@@ -83,17 +83,24 @@ export const PrincipalMessage = () => {
                 but for the real challenges and opportunities that life offers.
               </p>
 
-              <p className="font-semibold text-foreground pt-4">
+              <p className="font-semibold text-foreground pt-2">
                 I warmly invite you to join our growing family of learners and achievers.
               </p>
-            </div>
+            
 
             {/* Inspirational Quote */}
-            <div className="pt-6 border-t border-gray-200 flex items-center gap-4">
-              <div className="flex-shrink-0 w-12 h-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full" />
-              <p className="italic text-xl text-gray-700 font-light">
-                "Education is the passport to the future"
+            <div className="border-t border-gray-200 flex items-center">
+              {/* <div className="flex-shrink-0 w-12 h-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full" /> */}
+              <p className="italic text-lg text-gray-700 font-light">
+               - &quot;Education is the passport to the future&quot;
               </p>
+            </div>
+            <div className="border-t border-gray-200 flex items-center">
+              {/* <div className="flex-shrink-0 w-12 h-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full" /> */}
+              <p className="text-lg text-gray-700 font-light">
+                Thank you.
+              </p>
+            </div>
             </div>
           </motion.div>
         </div>
