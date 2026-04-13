@@ -13,7 +13,7 @@ const testimonials = [
     feedback:
       "The teachers here really care about every child. My son has become much more confident and his grades have improved a lot. The hostel feels like a second home.",
     rating: 5,
-    date: "March 2026",
+    date: "Falgun 2082",
   },
   {
     id: 2,
@@ -21,17 +21,17 @@ const testimonials = [
     childGrade: "Grade 5",
     feedback:
       "We are very happy with the discipline and regular updates from the school. The safety measures are excellent, and our daughter loves going to school every day.",
-    rating: 4,
-    date: "February 2026",
+    rating: 5,
+    date: "Asar 2081",
   },
   {
     id: 3,
     name: "Kamala Thapa",
     childGrade: "Grade 10",
     feedback:
-      "Both my children studied here and it has shaped them beautifully — not just in studies but in character and confidence. Truly a school with heart.",
+      "Both my children studied here and it has shaped them beautifully — not just in studies but in character and confidence. Also provides a special guidance to class 10th students.",
     rating: 5,
-    date: "January 2026",
+    date: "Falgun 2078",
   },
   {
     id: 4,
@@ -40,16 +40,16 @@ const testimonials = [
     feedback:
       "The school provides a perfect balance between academics and extracurricular activities. My child has developed leadership skills and enjoys every moment at school.",
     rating: 5,
-    date: "April 2026",
+    date: "Poush 2080",
   },
   {
     id: 5,
-    name: "Anita Gurung",
+    name: "Anita Chaudhary",
     childGrade: "Grade 6",
     feedback:
       "I truly appreciate the caring environment and dedicated teachers. The communication between school and parents is excellent, which gives us great confidence.",
-    rating: 4,
-    date: "March 2026",
+    rating: 5,
+    date: "Baisakh 2079",
   },
 ];
 
@@ -107,7 +107,7 @@ export const TestimonialsSection = () => {
     <section className="section-padding bg-background">
       <div className="container-school">
         <SectionHeader
-          title="Parents' Voice"
+          title="Parents Voice"
           subtitle="Real stories from parents who trust us with their children's future"
         />
 
@@ -137,7 +137,7 @@ export const TestimonialsSection = () => {
               >
                 <Quote className="w-6 h-6 text-primary mb-3" />
 
-                <p className="text-sm mb-4 line-clamp-4">
+                <p className="text-sm mb-4 italic">
                   "{item.feedback}"
                 </p>
 
