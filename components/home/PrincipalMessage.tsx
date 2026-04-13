@@ -21,7 +21,7 @@ export const PrincipalMessage = () => {
               {/* Main Image */}
               <div className="relative z-10 group">
                 <Image
-                  src="https://res.cloudinary.com/dpraq0j6y/image/upload/f_auto,q_auto,w_800/v1775802322/teachers/fup318vjjwk7sxmfevge.jpg"
+                  src="https://res.cloudinary.com/dpraq0j6y/image/upload/v1776096179/copy_of_e30a12dd-0594-4e5c-ba1a-1f95e484753c_qavkkb_3d7960.jpg"
                   alt="Mr. Ganesh Koirala - School Principal"
                   width={700}
                   height={850}
