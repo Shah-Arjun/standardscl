@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 import SchoolLogo from "./../../public/SchoolLogo-nobg.png";
+import TopNavbar from "./TopNavbar";
 
 
 
@@ -58,9 +59,12 @@ export const Navbar = () => {
 
 
   return (
+  <>
+  <TopNavbar />
+
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? "bg-background/95 shadow-md border-b" : "bg-transparent"
+      className={`left-0 w-full z-50 transition-all duration-300 ${
+        scrolled ? "fixed top-0 bg-background/95 shadow-md border-b" : "bg-transparent"
       }`}
     >
       <div className="w-full mx-auto px-4 md:px-8">
@@ -214,5 +218,6 @@ export const Navbar = () => {
         </div>
       </div>
     </nav>
+    </>
   );
 };

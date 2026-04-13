@@ -35,7 +35,7 @@ export const HeroSection = () => {
 
       
       {/* ================= MAIN CONTENT ================= */}
-      <div className="container-hero relative z-10">
+      <div className="container-hero relative z-10 -top-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* ================= LEFT : TEXT CONTENT ================= */}
           <motion.div
