@@ -11,6 +11,7 @@ import {
   Award,
 } from "lucide-react";
 
+
 const features = [
   {
     icon: Users,
@@ -30,7 +31,7 @@ const features = [
   {
     icon: ClipboardCheck,
     title: "Regular Evaluations",
-    description: "Weekly tests and continuous assessment",
+    description: "Weekly tests, continuous assessment and terminal examinations",
   },
   {
     icon: BookPlus,
@@ -43,6 +44,7 @@ const features = [
     description: "Committed to achieving academic excellence",
   },
 ];
+
 
 export const AcademicsSection = () => {
   return (

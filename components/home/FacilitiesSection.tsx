@@ -5,7 +5,7 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 import {
   FlaskConical,
   Monitor,
-  Building2,
+  Bot,
   Trophy,
   Bus,
   Shield,
@@ -25,14 +25,14 @@ const facilities = [
     description: "Modern computers with training programs",
   },
   {
-    icon: Building2,
-    title: "Hostel",
-    description: "Safe boarding facility with homely environment",
+    icon: Bot,
+    title: "Robotics & IT Trainings",
+    description: "Hands-on training in robotics and IT skills",
   },
   {
     icon: Trophy,
     title: "Sports Ground",
-    description: "Spacious playground for various sports",
+    description: "Appropriate playground for various sports",
   },
   {
     icon: Bus,

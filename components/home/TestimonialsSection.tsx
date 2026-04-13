@@ -1,13 +1,9 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { useRef, useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
 import { SectionHeader } from "@/components/shared/SectionHeader";
-import Image from "next/image";
-import parent1 from "@/public/parent-1.jpg";
-import parent2 from "@/public/parent-2.jpg";
-import parent3 from "@/public/parent-3.jpg";
 
 const testimonials = [
   {
@@ -15,134 +11,159 @@ const testimonials = [
     name: "Sunita Sharma",
     childGrade: "Grade 8",
     feedback:
-      "The teachers at Standard Secondary are truly dedicated. My son has shown tremendous improvement in both academics and confidence. The boarding facility is excellent with a homely atmosphere.",
-    image: parent1,
+      "The teachers here really care about every child. My son has become much more confident and his grades have improved a lot. The hostel feels like a second home.",
+    rating: 5,
+    date: "March 2026",
   },
   {
     id: 2,
     name: "Rajesh Adhikari",
     childGrade: "Grade 5",
     feedback:
-      "We chose this school for its discipline and quality education. The regular updates about our child's progress and the safety measures give us complete peace of mind.",
-    image: parent2,
+      "We are very happy with the discipline and regular updates from the school. The safety measures are excellent, and our daughter loves going to school every day.",
+    rating: 4,
+    date: "February 2026",
   },
   {
     id: 3,
     name: "Kamala Thapa",
     childGrade: "Grade 10",
     feedback:
-      "Both my children studied here. The holistic approach to education - academics, sports, and values - has shaped them into confident individuals. Highly recommended!",
-    image: parent3,
+      "Both my children studied here and it has shaped them beautifully — not just in studies but in character and confidence. Truly a school with heart.",
+    rating: 5,
+    date: "January 2026",
+  },
+  {
+    id: 4,
+    name: "Bikash Rai",
+    childGrade: "Grade 7",
+    feedback:
+      "The school provides a perfect balance between academics and extracurricular activities. My child has developed leadership skills and enjoys every moment at school.",
+    rating: 5,
+    date: "April 2026",
+  },
+  {
+    id: 5,
+    name: "Anita Gurung",
+    childGrade: "Grade 6",
+    feedback:
+      "I truly appreciate the caring environment and dedicated teachers. The communication between school and parents is excellent, which gives us great confidence.",
+    rating: 4,
+    date: "March 2026",
   },
 ];
 
+
+
+
+
+
 export const TestimonialsSection = () => {
-  const [current, setCurrent] = useState(0);
-  const [autoPlay, setAutoPlay] = useState(true);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
 
+  //  Set initial position (middle)
   useEffect(() => {
-    if (!autoPlay) return;
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [autoPlay]);
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft =
+        scrollRef.current.scrollWidth / 2;
+    }
+  }, []);
 
-  const next = () => {
-    setAutoPlay(false);
-    setCurrent((prev) => (prev + 1) % testimonials.length);
+  //  Auto scroll (smooth + infinite)
+  useEffect(() => {
+    if (isHovered) return;
+
+    const interval = setInterval(() => {
+      const el = scrollRef.current;
+      if (!el) return;
+
+      el.scrollLeft += 1;
+
+      const halfWidth = el.scrollWidth / 2;
+
+      // seamless loop
+      if (el.scrollLeft >= halfWidth) {
+        el.scrollLeft -= halfWidth;
+      }
+    }, 20);
+
+    return () => clearInterval(interval);
+  }, [isHovered]);
+
+  //  Manual scroll (buttons)
+  const scroll = (direction: "left" | "right") => {
+    if (!scrollRef.current) return;
+
+    scrollRef.current.scrollBy({
+      left: direction === "left" ? -320 : 320,
+      behavior: "smooth",
+    });
   };
 
-  const prev = () => {
-    setAutoPlay(false);
-    setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
+
 
   return (
     <section className="section-padding bg-background">
       <div className="container-school">
         <SectionHeader
           title="Parents' Voice"
-          subtitle="Hear what parents have to say about their experience with our school"
+          subtitle="Real stories from parents who trust us with their children's future"
         />
 
-        <div className="relative max-w-4xl mx-auto">
-          {/* Quote Icon */}
-          <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-            <div className="w-16 h-16 bg-gradient-hero rounded-full flex items-center justify-center shadow-golden">
-              <Quote className="w-8 h-8 text-primary-foreground" />
-            </div>
-          </div>
+        {/* Carousel */}
+        <div
+          className="relative"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onTouchStart={() => setIsHovered(true)}
+          onTouchEnd={() => setIsHovered(false)}
+        >
+          {/* Gradients */}
+          <div className="absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
-          {/* Testimonial Card */}
-          <div className="bg-card rounded-3xl p-8 md:p-12 pt-16 shadow-lg border border-border relative overflow-hidden">
-            {/* Background Decoration */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2" />
-
-            <AnimatePresence mode="wait">
+          {/* Scroll Area */}
+          <motion.div
+            ref={scrollRef}
+            className="flex gap-6 overflow-x-auto scrollbar-hide py-4 px-2"
+            whileTap={{ cursor: "grabbing" }}
+          >
+            {testimonials.map((item, index) => (
               <motion.div
-                key={current}
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.5 }}
-                className="relative z-10"
+                key={index}
+                className="min-w-[280px] max-w-[320px] bg-card rounded-2xl p-6 shadow-md border border-border flex-shrink-0 hover:shadow-xl transition-all"
+                whileHover={{ scale: 1.05 }}
               >
-                <p className="text-lg md:text-xl text-foreground leading-relaxed text-center mb-8 italic">
-                  "{testimonials[current].feedback}"
+                <Quote className="w-6 h-6 text-primary mb-3" />
+
+                <p className="text-sm mb-4 line-clamp-4">
+                  "{item.feedback}"
                 </p>
 
-                <div className="flex flex-col items-center">
-                  <Image
-                    src={testimonials[current].image}
-                    alt={testimonials[current].name}
-                    className="w-20 h-20 rounded-full object-cover border-4 border-primary shadow-lg mb-4"
-                  />
-                  <h4 className="font-heading font-bold text-lg text-foreground">
-                    {testimonials[current].name}
-                  </h4>
-                  <p className="text-muted-foreground">
-                    Parent of {testimonials[current].childGrade} student
-                  </p>
+                <div className="flex gap-1 mb-3">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`w-4 h-4 ${
+                        i < item.rating
+                          ? "fill-yellow-400 text-yellow-400"
+                          : "text-muted-foreground/30"
+                      }`}
+                    />
+                  ))}
                 </div>
+
+                <h4 className="font-semibold">{item.name}</h4>
+                <p className="text-xs text-muted-foreground">
+                  Parent of {item.childGrade}
+                </p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  {item.date}
+                </p>
               </motion.div>
-            </AnimatePresence>
-
-            {/* Navigation */}
-            <div className="flex items-center justify-center gap-4 mt-8">
-              <button
-                onClick={prev}
-                className="w-12 h-12 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-colors flex items-center justify-center"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-
-              {/* Dots */}
-              <div className="flex items-center gap-2">
-                {testimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      setAutoPlay(false);
-                      setCurrent(index);
-                    }}
-                    className={`w-3 h-3 rounded-full transition-all ${
-                      index === current
-                        ? "bg-primary w-8"
-                        : "bg-muted hover:bg-primary/50"
-                    }`}
-                  />
-                ))}
-              </div>
-
-              <button
-                onClick={next}
-                className="w-12 h-12 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-colors flex items-center justify-center"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>

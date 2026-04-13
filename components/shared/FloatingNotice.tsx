@@ -143,7 +143,7 @@ export const FloatingNotice = () => {
                   <div className="space-y-3">
                     <p className="text-end pr-2 text-md">Published On</p>
                   {notices.map((notice) => (
-                    <Link key={notice.id} href={`/notices/${notice.id}`}>
+                    <Link key={notice.id} href={`/notices`}>
                       <motion.div
                         whileHover={{ x: 6 }}
                         className="group p-4 mb-2 bg-white border border-gray-200 hover:border-amber-200 rounded-2xl transition-all hover:shadow-md cursor-pointer"

@@ -41,7 +41,7 @@ function TopNavbar() {
 
 
           {/* right end */}
-          <div className="flex items-center gap-1 md:gap-2 lg:gap-3">
+          <div className="flex items-center gap-2 md:gap-2 lg:gap-3">
             <a
               href="https://www.facebook.com/100046922456345/about/?_rdr"
               target="_blank"

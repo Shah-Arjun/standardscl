@@ -35,13 +35,13 @@ export const AdmissionCTA = () => {
             <span className="text-white/90">to Excellence</span>
           </h2>
 
-          <p className="text-xl text-white/80 max-w-2xl mx-auto mb-10">
+          <p className="text-xl text-white/80 max-w-2xl mx-auto mb-14">
             Join our family of learners and give your child the best education
             in a nurturing environment. Limited seats available!
           </p>
 
           {/* Features */}
-          <div className="flex flex-wrap justify-center gap-6 mb-10">
+          <div className="flex flex-wrap justify-center gap-6 mb-14">
             <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-xl">
               <FileText className="w-5 h-5 text-white" />
               <span className="text-white font-medium">Online Application</span>

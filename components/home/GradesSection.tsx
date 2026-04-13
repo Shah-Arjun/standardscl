@@ -16,8 +16,8 @@ const grades = [
     description: "Building strong foundations through play-based learning",
   },
   {
-    id: "primary",
-    title: "Primary",
+    id: "basic_1_5",
+    title: "Basic Level (1-5)",
     levels: ["Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5"],
     icon: BookOpen,
     color: "from-blue-400 to-cyan-500",
@@ -25,8 +25,8 @@ const grades = [
     description: "Developing core skills in reading, writing, and mathematics",
   },
   {
-    id: "lower-secondary",
-    title: "Lower Secondary",
+    id: "basic_6_8",
+    title: "Basic Level (6-8)",
     levels: ["Grade 6", "Grade 7", "Grade 8"],
     icon: GraduationCap,
     color: "from-green-400 to-emerald-500",

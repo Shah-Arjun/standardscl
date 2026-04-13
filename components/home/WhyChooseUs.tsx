@@ -20,10 +20,10 @@ const WhyChooseUs = () => {
     <section className="section-padding bg-gradient-hero relative overflow-hidden">
 
     <div className="container-school relative z-10">
-          <SectionHeader 
-          title="Why Choose Us?"
-          subtitle="A Safe & Supportive Environment for Growth"
-          light
+          <SectionHeader
+            title="Why Choose Us?"
+            subtitle="A safe & supportive environment for all round development"
+            light
           />
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
