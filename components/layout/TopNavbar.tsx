@@ -1,5 +1,5 @@
 import React from "react";
-import { Facebook, Mail, MapPin, Phone } from "lucide-react";
+import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 
 function TopNavbar() {
@@ -50,6 +50,16 @@ function TopNavbar() {
             >
               <Facebook className="w-4 h-4" />
             </a>
+
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+            >
+              <Instagram className="w-4 h-4" />
+            </a>
+
 
             {/* TikTok */}
             <a
