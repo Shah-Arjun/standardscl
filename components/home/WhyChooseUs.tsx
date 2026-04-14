@@ -27,15 +27,6 @@ const WhyChooseUs = () => {
           />
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
-          {/* <p className="font-body font-bold text-sunshine text-sm uppercase tracking-widest mb-3">
-            Why Us
-          </p>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
-            Why Choose Us?
-          </h2>
-          <p className="font-body text-primary-foreground/80 text-lg mb-12">
-            A Safe & Supportive Environment for Growth
-          </p> */}
           <div className="grid sm:grid-cols-2 gap-5 text-left">
             {reasons.map((r) => (
               <div key={r} className="flex items-start gap-3">
