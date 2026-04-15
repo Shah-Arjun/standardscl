@@ -32,8 +32,8 @@ const grades = [
     subjects: ["English", "Nepali","Science", "Mathematics","Sero-fero", "Drawing","Dancing", "Rhymes & Songs"],
   },
   {
-    id: "primary",
-    title: "Primary",
+    id: "basic_1-5",
+    title: "Basic Level (1-5)",
     levels: ["Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5"],
     icon: BookOpen,
     color: "from-blue-400 to-cyan-500",
@@ -52,14 +52,14 @@ const grades = [
       "Science",
       "Social Studies",
       "Computer",
-      "Sero-fero",
       "Health & Physical Education",
-      "Drawing & Handwriting"
+      "Drawing & Handwriting",
+      "Sero-fero",
     ],
   },
   {
-    id: "lower-secondary",
-    title: "Lower Secondary",
+    id: "basic_6_8",
+    title: "Basic Level (6-8)",
     levels: ["Grade 6", "Grade 7", "Grade 8"],
     icon: GraduationCap,
     color: "from-green-400 to-emerald-500",
@@ -77,10 +77,10 @@ const grades = [
       "Mathematics",
       "Science",
       "Social Studies",
-      "Optional Mathematics",
       "Computer",
+      "Sero-fero",
+      "Optional Mathematics",
       "Health & Physical Education",
-      "Sero-fero"
     ],
   },
   {
@@ -98,9 +98,9 @@ const grades = [
       "Special coaching for competitive exams",
     ],
     subjects: [
-      "Compulsory English",
-      "Compulsory Nepali",
-      "Compulsory Mathematics",
+      "English",
+      "Nepali",
+      "Mathematics",
       "Science",
       "Social Studies",
       "Optional Mathematics",
@@ -143,15 +143,15 @@ const Grades = () => {
                   <div className="bg-card p-8 rounded-3xl shadow-lg border border-border">
                     <div className="flex items-center gap-4 mb-6">
                       <div
-                        className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${grade.color} flex items-center justify-center shadow-lg`}
+                        className={`w-13 h-13 lg:w-16 lg:h-16 rounded-2xl bg-gradient-to-br ${grade.color} flex items-center justify-center shadow-lg`}
                       >
                         <grade.icon className="w-8 h-8 text-white" />
                       </div>
                       <div>
-                        <h2 className="font-heading font-bold text-2xl text-foreground">
+                        <h2 className="font-heading text-xl md:text-2xl lg:text-2xl font-bold text-foreground">
                           {grade.title}
                         </h2>
-                        <p className="text-muted-foreground">
+                        <p className="text-muted-foreground text-sm lg:text-md">
                           Age: {grade.ageGroup}
                         </p>
                       </div>
@@ -162,7 +162,7 @@ const Grades = () => {
                       {grade.levels.map((level) => (
                         <span
                           key={level}
-                          className={`px-4 py-2 bg-gradient-to-br ${grade.color} text-white rounded-full text-sm font-medium`}
+                          className={`px-3 py-1 lg:px-3 lg:py-1 bg-gradient-to-br ${grade.color} text-white rounded-full text-xs lg:text-sm font-medium`}
                         >
                           {level}
                         </span>
@@ -190,13 +190,13 @@ const Grades = () => {
                     <h4 className="font-heading font-bold text-xl text-foreground mb-6">
                       Subjects Offered
                     </h4>
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-2 gap-2 lg:gap-3">
                       {grade.subjects.map((subject) => (
                         <div
                           key={subject}
-                          className="bg-card px-4 py-3 rounded-xl border border-border hover:border-primary transition-colors"
+                          className="bg-card px-3 py-2 lg:px-4 lg:py-3 rounded-xl border border-border hover:border-primary transition-colors"
                         >
-                          <span className="text-foreground font-medium">
+                          <span className="text-foreground text-sm md:text-md lg:text-[16px]">
                             {subject}
                           </span>
                         </div>
