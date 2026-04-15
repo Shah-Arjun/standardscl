@@ -65,7 +65,7 @@ export const AdmissionCTA = () => {
               </Button> */}
 
               <Button
-                className="bg-white text-primary hover:text-xl hover:bg-white/90 font-semibold px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all group"
+                className="bg-white text-primary hover:text-xl hover:bg-white/90 font-semibold px-4 py-5 text-md lg:px-8 lg:py-6 lg:text-lg rounded-xl shadow-lg hover:shadow-xl transition-all group"
                 onClick={() =>
                   gaEvent({
                     action: "click_apply_now",
@@ -81,7 +81,7 @@ export const AdmissionCTA = () => {
             <Link href="/contact">
               <Button
                 variant="outline"
-                className="hover:bg-white/90 text-primary hover:text-xl font-semibold px-8 py-6 text-lg rounded-xl hover:shadow-xl transition-all group"
+                className="hover:bg-white/90 text-primary hover:text-xl font-semibold ppx-5 py-5 text-md lg:px-8 lg:py-6 lg:text-lg rounded-xl hover:shadow-xl transition-all group"
               >
                 Contact Us
               </Button>

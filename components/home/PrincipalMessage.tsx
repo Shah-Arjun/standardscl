@@ -89,15 +89,15 @@ export const PrincipalMessage = () => {
             
 
             {/* Inspirational Quote */}
-            <div className="border-t border-gray-200 flex items-center">
+            <div className="text-foreground flex items-center">
               {/* <div className="flex-shrink-0 w-12 h-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full" /> */}
-              <p className="italic text-lg text-gray-700 font-light">
+              <p className="italic text-lg font-light">
                - &quot;Education is the passport to the future&quot;
               </p>
             </div>
             <div className="border-t border-gray-200 flex items-center">
               {/* <div className="flex-shrink-0 w-12 h-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full" /> */}
-              <p className="text-lg text-gray-700 font-light">
+              <p className="text-lgfont-light">
                 Thank you.
               </p>
             </div>
