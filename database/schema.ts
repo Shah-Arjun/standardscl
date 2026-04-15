@@ -1,3 +1,4 @@
+import { id } from "date-fns/locale";
 import { sql } from "drizzle-orm";
 import { pgTable, serial, varchar, text, timestamp, pgEnum, jsonb, numeric } from "drizzle-orm/pg-core";
 
@@ -57,6 +58,7 @@ export const userTable = pgTable("users", {
 
 // notice schema
 import { boolean, integer } from "drizzle-orm/pg-core";
+import { url } from "inspector";
 
 export const noticeCategoryEnum = pgEnum("notice_category", [
   "Admissions",
@@ -78,7 +80,6 @@ export const postedByEnum = pgEnum("posted_by", [
 ]);
 
 
-
 export const notices = pgTable("notices", {
   id: serial("id").primaryKey(),
 
@@ -95,6 +96,32 @@ export const notices = pgTable("notices", {
     .$onUpdate(() => new Date())
     .notNull(),
 });
+
+
+
+
+
+//image by admin schema
+
+export const categoryEnum = pgEnum("category", [
+  "School",
+  "Teachers",
+  "Students",
+  "Events",
+  "Sports",
+  "Activities",
+  "Educational Tour",
+  "Memories"
+]);
+
+export const imageTable = pgTable("images", {
+  id: serial("id").primaryKey(),
+  category: categoryEnum("category").notNull(), // e.g., "teacher", "event", etc.
+  title: varchar("title", { length: 255 }).notNull(),
+  photoPublicId: varchar("photo_public_id").notNull(), // Cloudinary public ID for the photo, to access photo
+  url: text("url").notNull(), //cloudinary URL of teacher's photo
+  createdAt: timestamp("created_at").defaultNow().notNull()
+})
 
 
 

@@ -22,6 +22,13 @@
       "when": 1775935950501,
       "tag": "0002_far_mach_iv",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1776250656811,
+      "tag": "0003_whole_blizzard",
+      "breakpoints": true
     }
   ]
 }

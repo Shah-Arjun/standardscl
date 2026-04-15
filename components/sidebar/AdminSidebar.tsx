@@ -38,10 +38,10 @@ export default function AdminSidebar() {
   return (
     <div className="flex flex-col h-full bg-gray-900 text-gray-100">
       {/* Logo / Header */}
-      <div className="px-6 py-8 border-b border-gray-800">
+      {/* <div className="px-6 py-8 border-b border-gray-800">
         <h2 className="text-2xl font-bold tracking-tight">School Admin</h2>
         <p className="text-gray-400 text-sm mt-1">Management Portal</p>
-      </div>
+      </div> */}
 
       {/* Navigation */}
       <nav className="flex-1 px-3 py-6 overflow-y-auto">

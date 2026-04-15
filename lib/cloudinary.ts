@@ -13,10 +13,11 @@ interface CloudinaryUploadResult {
 
 export const uploadToCloudinary = async (
   fileBuffer: Buffer,
+  folderName: string
 ): Promise<CloudinaryUploadResult> => {
   return new Promise((resolve, reject) => {
     const uploadStream = cloudinary.uploader.upload_stream(
-      { folder: "teachers" },
+      { folder: folderName },
       (error, result) => {
         if (error) {
           reject(error);

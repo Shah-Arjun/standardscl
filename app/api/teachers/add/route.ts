@@ -1,6 +1,6 @@
 import { teachersTable } from "@/database/schema";
 import { db } from "../../../../database/db";
-import fs from "fs/promises";
+// import fs from "fs/promises";
 import { NextResponse } from "next/server";
 import path from "path";
 import { uploadToCloudinary } from "./../../.../../../../lib/cloudinary";
@@ -136,7 +136,7 @@ export async function POST(req: Request) {
     // ─── Upload to Cloudinary ─────────────────────────
     let cloudResult;
     try {
-      cloudResult = await uploadToCloudinary(buffer);
+      cloudResult = await uploadToCloudinary(buffer, "teachers");
     } catch (err) {
       console.error("Cloudinary upload failed:", err);
       return NextResponse.json(
