@@ -23,21 +23,23 @@ import {
 } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 
+
+
 const contactInfo = [
   {
     icon: MapPin,
     title: "Address",
-    details: ["Itahari-17, Sunsari District", "Nepal"],
+    details: ["Itahari-17, Sunsari District, Nepal"],
   },
   {
     icon: Phone,
     title: "Phone",
-    details: ["9800000000", "025-XXXXXX"],
+    details: ["+977 9812363723 | 025-590085"],
   },
   {
     icon: Mail,
     title: "Email",
-    details: ["standardschool2051@gmail.com", "info@standardschool.edu.np"],
+    details: ["standardschool2051@gmail.com"],
   },
   {
     icon: Clock,
@@ -45,6 +47,8 @@ const contactInfo = [
     details: ["Sunday - Friday: 8:00 AM - 5:00 PM", "Saturday: Closed"],
   },
 ];
+
+
 
 const socialLinks = [
   {
@@ -54,18 +58,13 @@ const socialLinks = [
   },
   {
     icon: Instagram,
-    href: "https://www.instagram.com/",
+    href: "#",
     label: "Instagram",
   },
   {
     icon: Youtube,
-    href: "https://www.youtube.com/",
+    href: "#",
     label: "YouTube",
-  },
-  {
-    icon: Twitter,
-    href: "https://twitter.com/",
-    label: "Twitter",
   },
 ];
 
@@ -190,9 +189,24 @@ const handleSubmit = async (e: React.FormEvent) => {
                       <Icon className="w-5 h-5" />
                     </a>
                   ))}
+                  <a
+                    href="#"
+                    // target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 bg-muted rounded-xl flex items-center justify-center
+                    hover:bg-primary hover:text-primary-foreground
+                    transition-colors"
+                  >
+                    <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current">
+                      <path d="M16 3c.3 2.5 1.8 4 4 4v3c-1.5 0-2.9-.4-4-1v6.5a5.5 5.5 0 1 1-5.5-5.5c.3 0 .7 0 1 .1v3.1a2.5 2.5 0 1 0 2.5 2.5V3h2z" />
+                    </svg>
+                  </a>
                 </div>
               </div>
             </motion.div>
+
+
+
 
             {/* Contact Form */}
             <motion.div

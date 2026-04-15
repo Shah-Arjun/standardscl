@@ -219,6 +219,9 @@ const Admissions = () => {
               </Button> */}
             </motion.div>
 
+
+
+
             {/* Application Form */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}

@@ -110,6 +110,8 @@ const galleryItems = [
   },
 ];
 
+
+
 export default function Gallery() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [selectedItem, setSelectedItem] = useState<
@@ -124,6 +126,8 @@ export default function Gallery() {
   useEffect(() => {
     document.body.style.overflow = selectedItem ? "hidden" : "auto";
   }, [selectedItem]);
+
+
 
   return (
     <SiteLayout>

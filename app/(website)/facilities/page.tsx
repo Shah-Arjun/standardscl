@@ -14,6 +14,7 @@ import {
   Wifi,
   BookOpen,
   Utensils,
+  Bot,
 } from "lucide-react";
 
 const facilities = [
@@ -32,11 +33,11 @@ const facilities = [
     features: ["Latest Computers", "High-Speed Internet", "Regular Training"],
   },
   {
-    icon: Building2,
-    title: "Hostel Facility",
+    icon: Bot,
+    title: "Robotics & IT Trainings",
     description:
-      "Safe and comfortable boarding facility with separate wings for boys and girls, providing a home away from home environment.",
-    features: ["24/7 Supervision", "Nutritious Meals", "Study Rooms"],
+      "Comprehensive robotics and IT training programs with hands-on experience in coding, graphics design and robotics.",
+    features: ["Hands-On Projects", "Expert Instructors", "Latest Technology"],
   },
   {
     icon: Trophy,
@@ -65,13 +66,6 @@ const facilities = [
     description:
       "Modern smart classrooms with interactive digital boards, projectors, and audio-visual equipment for enhanced learning.",
     features: ["Digital Boards", "Projectors", "Audio-Visual Aids"],
-  },
-  {
-    icon: BookOpen,
-    title: "Library",
-    description:
-      "Well-stocked library with thousands of books, magazines, and reference materials to support academic and recreational reading.",
-    features: ["Vast Collection", "Reading Area", "Digital Resources"],
   },
   {
     icon: Wifi,
@@ -121,13 +115,11 @@ const Facilities = () => {
                 className="bg-card p-6 rounded-2xl border border-border hover:border-primary transition-colors group"
               >
                 <div className="flex gap-6">
-                  <div className="w-16 h-16 bg-gradient-hero rounded-2xl flex items-center justify-center flex-shrink-0 shadow-golden group-hover:scale-110 transition-transform">
-                    <facility.icon className="w-8 h-8 text-primary-foreground" />
+                  <div className="w-13 h-13 lg:w-16 lg:h-16 bg-gradient-hero rounded-2xl flex items-center justify-center flex-shrink-0 shadow-golden group-hover:scale-110 transition-transform">
+                    <facility.icon className="w-6 h-6 lg:w-8 lg:h-8 text-primary-foreground" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-heading font-bold text-xl text-foreground mb-2">
-                      {facility.title}
-                    </h3>
+                    <h3 className="font-heading font-bold text-xl text-foreground mb-2">{facility.title}</h3>
                     <p className="text-muted-foreground mb-4">{facility.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {facility.features.map((feature) => (

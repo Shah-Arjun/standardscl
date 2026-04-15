@@ -6,10 +6,14 @@ import Image from "next/image";
 import { SiteLayout } from "@/components/layout/SiteLayout";
 import PageHero from "@/components/shared/PageHero";
 
+
+
 const ADMIN_POSTS = [
   "eca", "elc", "principal", "founder", "coordinator", 
   "accountant", "exam", "vice-principal", "dance teacher"
 ];
+
+
 
 export default function Teachers() {
   const teachersPerPage = 8;
@@ -36,6 +40,7 @@ export default function Teachers() {
     fetchTeachers();
   }, []);
 
+
   const totalPages = Math.ceil(teachers.length / teachersPerPage);
   const visibleTeachers = teachers.slice(
     page * teachersPerPage,
@@ -57,6 +62,9 @@ export default function Teachers() {
     );
   }
 
+
+
+  
   return (
     <SiteLayout>
       <PageHero
@@ -78,9 +86,8 @@ export default function Teachers() {
                 );
 
               return (
-                <div className="lg:mb-14 lg:mt-2">
+                <div key={teacher.id} className="lg:mb-14 lg:mt-2">
                   <motion.div
-                  key={teacher.id}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05 }}
