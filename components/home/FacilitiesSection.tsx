@@ -97,10 +97,10 @@ export const FacilitiesSection = () => {
             <motion.div
               key={facility.title}
               variants={itemVariants}
-              className="bg-card p-6 rounded-2xl text-center card-hover group"
+              className="bg-card p-4 md:p-6 lg:p-6 rounded-2xl text-center card-hover group"
             >
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-hero rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-golden">
-                <facility.icon className="w-8 h-8 text-primary-foreground" />
+              <div className="w-12 h-12 md:w-16 md:h-16 lg:w-16 lg:h-16  mx-auto mb-4 bg-gradient-hero rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-golden">
+                <facility.icon className="w-6 h-6 md:w-8 md:h-8 lg:w-8 lg:h-8 text-primary-foreground" />
               </div>
               <h3 className="font-heading font-bold text-foreground mb-2">
                 {facility.title}

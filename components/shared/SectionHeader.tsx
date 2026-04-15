@@ -19,7 +19,7 @@ export const SectionHeader = ({ title, subtitle, centered = true, light = false 
       </h2>
       {subtitle && (
         <p
-          className={`text-lg max-w-2xl ${centered ? "mx-auto" : ""} ${
+          className={`text-md md:text-lg lg:text-lg max-w-2xl ${centered ? "mx-auto" : ""} ${
             light ? "text-background/80" : "text-muted-foreground"
           }`}
         >

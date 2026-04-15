@@ -69,10 +69,10 @@ export const Navbar = () => {
     >
       <div className="w-full mx-auto px-4 md:px-8">
         {/* desktop navbar */}
-        <div className="flex h-18 items-center justify-between">
+        <div className="flex h-16 lg:h-18 items-center justify-between">
           {/* logo */}
-          <Link href="/" className="flex items-center gap-3">
-            <Image src={SchoolLogo} width={72} height={72} priority className="object-contain" alt="logo"/>
+          <Link href="/" className="flex items-center gap-3 ">
+            <Image src={SchoolLogo} width={72} height={72} priority className="h-16 w-16 lg:h-18 lg:w-18 object-contain" alt="logo"/>
             {/* logo-text */}
             <div className="hidden md:block leading-tight">
               <h1 className="font-bold text-2xl tracking-tight">Standard Secondary</h1>
@@ -131,7 +131,7 @@ export const Navbar = () => {
                     label: "Navbar",
                   })
                 }
-                className="inline-flex items-center justify-center px-2 py-2.5 text-md lg:text-lg font-medium rounded-4xl btn-primary-school text-white hover:border-2 border-secondary"
+                className="inline-flex items-center justify-center px-2 py-2 text-md lg:text-lg font-medium rounded-4xl btn-primary-school text-white hover:border-2 border-secondary"
               >
                 Get Admission
               </Link>
@@ -141,10 +141,10 @@ export const Navbar = () => {
             <button
               type="button"
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 ml-2 rounded-md border border-gray-300 transition-colors"
+              className="lg:hidden ml-2 rounded-md  transition-colors"
               aria-label="Toggle menu"
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              {isOpen ? "" : <Menu size={22} />}
             </button>
           </div>
         </div>
@@ -160,7 +160,7 @@ export const Navbar = () => {
         >
           <div className="flex justify-between">
             <h3 className="text-2xl text-gray-500">Menu</h3>
-            <button onClick={() => setIsOpen(false)} className="border border-gray-300 p-2 rounded-md">
+            <button onClick={() => setIsOpen(false)} className="">
               <X size={24} className="text-gray-700" />
             </button>
           </div>
