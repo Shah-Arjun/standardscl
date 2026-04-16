@@ -6,6 +6,8 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET!,
 });
 
+
+
 interface CloudinaryUploadResult {
   public_id: string;
   secure_url: string;
@@ -33,3 +35,7 @@ export const uploadToCloudinary = async (
     uploadStream.end(fileBuffer);
   });
 };
+
+
+
+export default cloudinary
