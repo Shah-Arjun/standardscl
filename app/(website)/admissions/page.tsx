@@ -74,21 +74,57 @@ const Admissions = () => {
 
 
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success(
-      "Application submitted successfully! We will contact you soon.",
-    );
-    setFormData({
-      studentName: "",
-      parentName: "",
-      email: "",
-      phone: "",
-      grade: "",
-      message: "",
-    });
+  
+    try {
+      toast.loading("Submitting application...");
+  
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.studentName,
+          email: formData.email,
+          subject: `Admission Application - ${formData.grade}`,
+          message: `
+            Student Name: ${formData.studentName}
+            Parent Name: ${formData.parentName}
+            Phone: ${formData.phone}
+            Grade: ${formData.grade}
+            
+            Message:
+            ${formData.message || "N/A"}
+          `,
+        }),
+      });
+  
+      const data = await res.json();
+  
+      toast.dismiss();
+  
+      if (data.success) {
+        toast.success("Application submitted successfully!");
+  
+        setFormData({
+          studentName: "",
+          parentName: "",
+          email: "",
+          phone: "",
+          grade: "",
+          message: "",
+        });
+      } else {
+        toast.error("Failed to submit. Try again.");
+      }
+    } catch (error) {
+      toast.dismiss();
+      toast.error("Something went wrong");
+      console.error(error);
+    }
   };
-
 
   
   return (

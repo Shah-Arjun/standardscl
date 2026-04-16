@@ -68,6 +68,9 @@ const socialLinks = [
   },
 ];
 
+
+
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -76,43 +79,62 @@ const Contact = () => {
     subject: "",
     message: "",
   });
+  const [loading, setLoading] = useState(false);
+
+
 
 
   
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-
-
-  // for google analytics
-  gaEvent({
-    action: "submit_contact_form",
-    category: "Contact",
-    label: "Contact Page Form",
-  });
-
-  try {
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+  
+    // Google Analytics
+    gaEvent({
+      action: "submit_contact_form",
+      category: "Contact",
+      label: "Contact Page Form",
     });
+  
+    try {
+      setLoading(true);
+      toast.loading("Sending message...");
+  
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      const data = await res.json(); 
+  
+      toast.dismiss();
+  
+      if (data.success) {
+        toast.success("Email sent successfully!");
+  
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        toast.error(data.error || "Failed to send message");
+      }
+    } catch (error) {
+      toast.dismiss();
+      toast.error("Something went wrong. Please try again.");
+      // console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    if (!res.ok) throw new Error("Failed");
 
-    toast.success("Message sent successfully!");
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: "",
-    });
-  } catch (error) {
-    toast.error("Something went wrong. Please try again.");
-  }
-};
+
 
 
   return (
@@ -238,7 +260,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="email">Email Address</Label>
+                      <Label htmlFor="email">Your Email Address</Label>
                       <Input
                         id="email"
                         type="email"
@@ -297,9 +319,13 @@ const handleSubmit = async (e: React.FormEvent) => {
                     />
                   </div>
 
-                  <Button type="submit" className="btn-primary-school w-full">
+                  <Button
+                    type="submit"
+                    className="btn-primary-school w-full"
+                    disabled={loading}
+                  >
                     <Send className="mr-2 w-4 h-4" />
-                    Send Message
+                    {loading ? "Sending..." : "Send Message"}
                   </Button>
                 </div>
               </form>
@@ -308,19 +334,6 @@ const handleSubmit = async (e: React.FormEvent) => {
         </div>
       </section>
 
-      {/* Map */}
-      {/* <section className="h-96">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1146.125499502753!2d87.22085152316471!3d26.681266376883094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ef6b54a9ea5841%3A0xaaa3d314ed1a04bb!2sM6JC%2BFX9%2C%20Ramdhuni%20Bhasi%2056705%2C%20Nepal!5e0!3m2!1sen!2suk!4v1769857331191!5m2!1sen!2suk"
-          width="100%"
-          height="100%"
-          style={{ border: 0 }}
-          allowFullScreen
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          title="School Location"
-        />
-      </section> */}
     </SiteLayout>
   );
 };

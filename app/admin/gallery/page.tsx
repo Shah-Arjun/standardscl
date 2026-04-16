@@ -16,6 +16,9 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
+
+
+
 interface ImageItem {
   id: number;
   title: string;
@@ -23,11 +26,16 @@ interface ImageItem {
   url: string;
 }
 
+
+
+
 interface FormState {
   title: string;
   category: string;
   image: File | null;
 }
+
+
 
 const categories: string[] = [
   "All",
@@ -40,6 +48,8 @@ const categories: string[] = [
   "Educational Tour",
   "Memories",
 ];
+
+
 
 export default function AdminImagePage() {
   const [form, setForm] = useState<FormState>({
@@ -177,7 +187,6 @@ export default function AdminImagePage() {
 
 
 
-
   // delete handler - Improved Version
   const handleDelete = async () => {
     if (selectedIds.length === 0) return;
@@ -217,9 +226,7 @@ export default function AdminImagePage() {
 
   
 
-
   const currentItem = filteredImages[currentIndex];
-
 
 
 
