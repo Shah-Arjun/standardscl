@@ -151,7 +151,7 @@ const Admissions = () => {
           >
             <div className="inline-flex items-center gap-2 bg-white/20 px-4 py-2 rounded-full mb-6 animate-pulse-glow">
               <span className="w-2 h-2 bg-white rounded-full" />
-              <span className="font-semibold">Admissions Open for 2083</span>
+              {/* <span className="font-semibold">Admissions Open for 2083</span> */}
             </div>
             <h1 className="font-heading font-bold text-4xl md:text-5xl mb-6">
               Join Our Family

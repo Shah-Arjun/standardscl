@@ -25,9 +25,11 @@ type Notice = {
 const Notices = () => {
 
     const [notices, setNotices] = useState<Notice[]>([]);
-    const [selectedNotice, setSelectedNotice] = useState<Notice | null>(notices[0]);
+    const [selectedNotice, setSelectedNotice] = useState<Notice | null>(
+      notices[0],
+    );
     const [loading, setLoading] = useState(true);
-  
+
     // Fetch notices
     const fetchNotices = async () => {
       try {
@@ -36,11 +38,8 @@ const Notices = () => {
         const data = await res.json();
         // console.log("Fetched notices:", data);  //debug
         // newest first
-        setNotices(
-          Array.isArray(data)
-            ? data.sort((a, b) => b.id - a.id)
-            : []
-        );    } catch (error) {
+        setNotices(Array.isArray(data) ? data.sort((a, b) => b.id - a.id) : []);
+      } catch (error) {
         console.error("Failed to load notices", error);
       } finally {
         setLoading(false);

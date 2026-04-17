@@ -1,19 +1,58 @@
 "use client"
 
 import { Megaphone } from "lucide-react";
+import NepaliDate from "nepali-date-converter";
+import { useEffect, useState } from "react";
 
-const notices = [
-  "🏆 Congratulations to our students for excellent SEE results!",
-  "🎓 Admissions Open for Academic Year 2083!",
-  "📝 Be prepared for the Entrance Examination for new admission",
-  "🏅 Annual Sports Week concluded successfully with great enthusiasm!",
-  "🎉 HISSAN Creative Mela is going on",
-  "🎨 Art & Science Exhibition coming soon!",
-  "🙏 Successfully concluded Free New Admission Campaign on the auspicious occasion of Saraswati Puja",
-];
+
+
+
+type Notice = {
+  id: number;
+  title: string;
+  category: string;
+  date: string;
+  content: string;
+  postedBy: string;
+  createdAt: string;
+};
+
+
 
 
 export const NoticeMarquee = () => {
+  const [notices, setNotices] = useState<Notice[]>([])
+
+
+
+  const fetchNotices = async() => {
+    try {
+      const res = await fetch("/api/notices")
+      const data = await res.json()
+
+      const sortedByNewNotices = Array.isArray(data)
+      ? data.sort(
+          (a: Notice, b: Notice) =>
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        )
+      : [];
+
+      setNotices(sortedByNewNotices)
+    } catch (err) {
+        console.error("Failed to load notices", err)
+    }
+
+  }
+
+
+
+  useEffect(() => {
+    fetchNotices();
+  }, []);
+
+
+
+
   return (
     <div className="sticky top-18 bg-secondary text-secondary-foreground overflow-hidden z-40">
       <div className="w-full flex items-center">
@@ -23,16 +62,31 @@ export const NoticeMarquee = () => {
       </div>
         <div className="overflow-hidden flex-1">
           <div className="flex animate-marquee whitespace-nowrap min-w-max">
-            {notices.map((notice, index) => (
-              <span key={index} className="mx-8 text-sm font-medium">
-                {notice}
-              </span>
-            ))}
-            {notices.map((notice, index) => (
+          {notices.map((notice) => {
+              const bsDate = new NepaliDate(new Date(notice.createdAt));
+
+              return (
+                <span key={notice.id} className="mx-8 text-sm font-medium">
+                  <time
+                    dateTime={notice.createdAt}
+                    className="mr-2"
+                  >
+                    {bsDate.format("DD MMMM YYYY")}
+                  </time>
+                  - {notice.title}
+                </span>
+              );
+            })}
+
+            {/* repeat */}
+            {/* {notices.map((notice, index) => (
               <span key={`repeat-${index}`} className="mx-8 text-sm font-medium">
-                {notice}
+                <time dateTime={notice.createdAt} className="mr-2 text-muted-foreground">
+                  {new Date(notice.createdAt).toLocaleDateString()}
+                </time>
+                {notice.title}
               </span>
-            ))}
+            ))} */}
           </div>
         </div>
       </div>
