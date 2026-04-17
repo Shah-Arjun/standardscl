@@ -63,11 +63,34 @@ export async function sendAutoReply(email: string, name: string) {
     `,
 
     html: `
-      <p>Hi <b>${name}</b>,</p>
-      <p>Thank you for contacting us.</p>
-      <p>We have received your message and will contact you soon.</p>
+    <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333333; max-width: 600px; margin: 0 auto;">
+      
+      <p>Dear <strong>${name}</strong>,</p>
+      
+      <p>Thank you for contacting Standard Sec. Boarding School.</p>
+      <p>We have received your email and will contact you soon.</p>
+      
       <br/>
-      <p>Regards,<br/>Standard Sec. Boarding School<br/>025 590085<br/>9812363723 <br/> standardboarding.com</p>
-    `,
+      
+      <p>
+        Best regards,<br/>
+        <strong>Standard Secondary Boarding School</strong><br/>
+        📞 025-590085<br/>
+        📱 9812 363723<br/>
+        🌐 www.standardboarding.com
+      </p>
+      
+      <!-- Logo -->
+      <div style="margin-top: 30px; text-align: left;">
+        <img 
+          src="https://res.cloudinary.com/dpraq0j6y/image/upload/v1776400420/SchoolLogo_aleh3u.png" 
+          alt="Standard Secondary Boarding School Logo" 
+          width="140"
+          style="display: block;"
+        />
+      </div>
+      
+    </div>
+  `
   });
 }
