@@ -81,11 +81,11 @@ export async function sendAutoReply(email: string, name: string) {
       </p>
       
       <!-- Logo -->
-      <div style="margin-top: 30px; text-align: left;">
+      <div style="margin-top: 16px; text-align: left;">
         <img 
           src="https://res.cloudinary.com/dpraq0j6y/image/upload/v1776400420/SchoolLogo_aleh3u.png" 
           alt="Standard Secondary Boarding School Logo" 
-          width="140"
+          width="90"
           style="display: block;"
         />
       </div>
