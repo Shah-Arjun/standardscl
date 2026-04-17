@@ -27,6 +27,8 @@ import {
 
 
 
+
+
 const steps = [
   {
     number: 1,
@@ -52,6 +54,8 @@ const steps = [
 
 
 
+
+
 const requirements = [
   "Birth Certificate (Original & Copy)",
   "Character Certificate from previous school",
@@ -59,6 +63,7 @@ const requirements = [
   "Recent passport-size photos (2 copies)",
   "Previous grade sheet",
 ];
+
 
 
 
@@ -71,6 +76,8 @@ const Admissions = () => {
     grade: "",
     message: "",
   });
+  const [loading, setLoading] = useState(false);
+
 
 
 
@@ -78,36 +85,36 @@ const Admissions = () => {
     e.preventDefault();
   
     try {
+      setLoading(true);
       toast.loading("Submitting application...");
   
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/api/admission", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: formData.studentName,
+          studentName: formData.studentName,
+          parentName: formData.parentName,
           email: formData.email,
-          subject: `Admission Application - ${formData.grade}`,
-          message: `
-            Student Name: ${formData.studentName}
-            Parent Name: ${formData.parentName}
-            Phone: ${formData.phone}
-            Grade: ${formData.grade}
-            
-            Message:
-            ${formData.message || "N/A"}
-          `,
-        }),
-      });
-  
+          phone: formData.phone,
+          grade: formData.grade,
+          message: `  
+            ${formData.message.trim() || "N/A"}
+            `,
+          }),
+        });
+
+
       const data = await res.json();
-  
+
+      // console.log("form admission form ", data);    // debug
+
       toast.dismiss();
   
+
       if (data.success) {
         toast.success("Application submitted successfully!");
-  
         setFormData({
           studentName: "",
           parentName: "",
@@ -117,15 +124,19 @@ const Admissions = () => {
           message: "",
         });
       } else {
-        toast.error("Failed to submit. Try again.");
+        toast.error(data.error || "Failed to submit. Try again.");
       }
     } catch (error) {
       toast.dismiss();
       toast.error("Something went wrong");
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
+
+  
   
   return (
     <SiteLayout>
@@ -322,7 +333,7 @@ const Admissions = () => {
                       <Label htmlFor="phone">Phone Number *</Label>
                       <Input
                         id="phone"
-                        type="tel"
+                        type="tel"    // to show numeric keypad in mobile , but value type is still string
                         value={formData.phone}
                         onChange={(e) =>
                           setFormData({ ...formData, phone: e.target.value })
@@ -379,8 +390,12 @@ const Admissions = () => {
                     />
                   </div>
 
-                  <Button type="submit" className="btn-primary-school w-full">
-                    Submit Application
+                  <Button
+                    type="submit"
+                    className="btn-primary-school w-full"
+                    disabled={loading}
+                  >
+                    {loading ? "Submitting..." : "Submit Application"}
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
                 </div>

@@ -45,12 +45,12 @@ export async function sendEmailToScl(data: {
 // Auto-reply to user
 export async function sendAutoReply(email: string, name: string) {
   return transporter.sendMail({
-    from: `"School Support" <${process.env.MAIL_USER}>`,
+    from: `"Standard Sec. Boarding School" <${process.env.MAIL_USER}>`,
     to: email,
     subject: "We received your message",
 
     text: `
-      Hi ${name},
+      Dear ${name},
 
       Thank you for contacting us.
       We have received your message and will contact you soon.
