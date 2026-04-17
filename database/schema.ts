@@ -38,7 +38,7 @@ export const teachersTable =  pgTable("teachers", {
 
 
 
-// user roles
+// user table
 export const roleEnum = pgEnum("user_role", ["admin", "user"]);
 
 export const userTable = pgTable("users", {
