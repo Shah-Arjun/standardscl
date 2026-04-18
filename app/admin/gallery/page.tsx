@@ -45,6 +45,7 @@ const categories: string[] = [
   "Events",
   "Sports",
   "Activities",
+  "Arts",
   "Educational Tour",
   "Memories",
 ];
@@ -87,9 +88,18 @@ export default function AdminImagePage() {
     }
   };
 
+
+
+
+
   useEffect(() => {
     fetchGalleryData();
   }, []);
+
+
+
+
+
 
   // Filter logic
   useEffect(() => {
@@ -129,6 +139,11 @@ export default function AdminImagePage() {
     }
   };
 
+
+
+
+
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!form.image) {
@@ -140,7 +155,7 @@ export default function AdminImagePage() {
       setLoading(true);
       const data = new FormData();
       data.append("file", form.image);
-      data.append("title", form.title || "");
+      data.append("title", form.title || " ");
       data.append("category", form.category);
 
       const res = await fetch("/api/admin/upload", { method: "POST", body: data });
@@ -184,6 +199,12 @@ export default function AdminImagePage() {
   const goToNext = () => {
     setCurrentIndex((prev) => (prev === filteredImages.length - 1 ? 0 : prev + 1));
   };
+
+
+
+
+
+
 
 
 
@@ -390,6 +411,8 @@ export default function AdminImagePage() {
         )}
       </div>
 
+
+
       {/* Full Screen Viewer */}
       <Dialog open={viewerOpen} onOpenChange={setViewerOpen}>
         <DialogContent className="max-w-7xl p-0 overflow-hidden bg-black border-none">
@@ -449,6 +472,8 @@ export default function AdminImagePage() {
           )}
         </DialogContent>
       </Dialog>
+
+
 
       {/* Delete Confirmation Dialog */}
       <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>

@@ -19,7 +19,7 @@ function Dashboard({ children }: Readonly<{ children: React.ReactNode }>) {
         const res = await fetch("/api/admin/auth/me");
         const data = await res.json();
 
-        console.log("user", data.user);
+        // console.log("user", data.user);   //debug
         setUser(data.user);
       } catch {
         setUser(null);

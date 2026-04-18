@@ -29,6 +29,7 @@ export async function POST(req: Request) {
       "Events",
       "Sports",
       "Activities",
+      "Arts",
       "Educational Tour",
       "Memories",
     ];
@@ -137,7 +138,7 @@ export async function POST(req: Request) {
       // data: inserted,
     });
   } catch (err: any) {
-    console.error("POST /api/admin/upload error:", err);   //debug
+    // console.error("POST /api/admin/upload error:", err);   //debug
     return NextResponse.json(
       { success: false, message: err.message || "Image upload failed" },
       { status: 500 },

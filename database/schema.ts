@@ -109,6 +109,7 @@ export const categoryEnum = pgEnum("category", [
   "Students",
   "Events",
   "Sports",
+  "Arts",
   "Activities",
   "Educational Tour",
   "Memories"

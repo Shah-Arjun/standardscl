@@ -1,5 +1,6 @@
 "use client"
 
+import { set } from "date-fns"
 import { useEffect, useState } from "react"
 
 
@@ -16,6 +17,7 @@ interface Teacher {
 export default function TeacherStats() {
   const [teachers, setTeachers] = useState<Teacher[]>([])
   const [notices, setNotices] = useState<any[]>([])
+  const [gallery, setGallery] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
 
 
@@ -53,12 +55,14 @@ export default function TeacherStats() {
   }, [])
 
 
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await fetch("/api/gallery")
         const data = await res.json()
-        setNotices(data || [])
+        setGallery(data.data || [])
+        // console.log(data.data)      //debug
       } catch (err) {
         console.error(err)
       } finally {
@@ -67,6 +71,9 @@ export default function TeacherStats() {
     }
     fetchData()
   }, [])
+
+
+
 
 
   if (loading) {
@@ -79,7 +86,6 @@ export default function TeacherStats() {
     (t) => t.status === "Active" || !t.status
   ).length
 
-  const totalNotices = notices.length
 
 
 
@@ -99,15 +105,15 @@ export default function TeacherStats() {
       </div>
 
       {/* Notices */}
-      <div className="bg-pink-50 p-4 rounded-xl shadow border">
+      <div className="bg-pink-100 p-4 rounded-xl shadow border">
         <h2 className="text-md text-green-600">Notices</h2>
-        <p className="text-2xl font-bold text-green-700">{totalNotices}</p>
+        <p className="text-2xl font-bold text-green-700">{notices.length}</p>
       </div>
 
       {/* Images */}
       <div className="bg-blue-50 p-4 rounded-xl shadow border">
         <h2 className="text-md text-green-600">Gallery Images</h2>
-        <p className="text-2xl font-bold text-green-700"></p>
+        <p className="text-2xl font-bold text-green-700">{gallery.length}</p>
       </div>
 
       {/* Average Experience */}

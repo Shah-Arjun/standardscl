@@ -1,0 +1,1 @@
+ALTER TYPE "public"."category" ADD VALUE 'Arts' BEFORE 'Activities';
