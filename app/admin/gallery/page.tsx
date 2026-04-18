@@ -3,7 +3,7 @@
 import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { UploadCloud, Trash2, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { UploadCloud, Trash2, X, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -72,6 +72,8 @@ export default function AdminImagePage() {
   // Full-screen Viewer
   const [viewerOpen, setViewerOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+
 
   // Fetch images
   const fetchGalleryData = async () => {
@@ -143,7 +145,7 @@ export default function AdminImagePage() {
 
 
 
-
+// upload files
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!form.image) {
@@ -382,19 +384,30 @@ export default function AdminImagePage() {
                 />
               </div>
 
-              {img.url.match(/\.(mp4|webm|ogg|mov)$/i) ? (
-                <video
-                  src={img.url}
-                  className="w-full h-48 object-cover"
-                  muted
-                />
-              ) : (
-                <img
-                  src={img.url}
-                  alt={img.title}
-                  className="w-full h-48 object-cover"
-                />
-              )}
+              <div className="relative w-full h-48">
+                {img.url.match(/\.(mp4|webm|ogg|mov)$/i) ? (
+                  <>
+                    <video
+                      src={img.url}
+                      className="w-full h-full object-cover"
+                      muted
+                    />
+
+                    {/* ▶ PLAY BUTTON OVERLAY */}
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                      <div className="w-14 h-14 flex items-center justify-center rounded-full bg-white/60 backdrop-blur-md shadow-lg">
+                        <Play className="w-7 h-7 text-gray-800" />
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <img
+                    src={img.url}
+                    alt={img.title}
+                    className="w-full h-full object-cover"
+                  />
+                )}
+              </div>
 
               <CardContent className="p-3">
                 <h2 className="font-semibold line-clamp-1">{img.title}</h2>

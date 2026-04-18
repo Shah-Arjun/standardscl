@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { X } from "lucide-react";
+import { Play, X } from "lucide-react";
 import { event as gaEvent } from "@/lib/gtag";
 import { SiteLayout } from "@/components/layout/SiteLayout";
 import Page from "@/app/page";
@@ -88,19 +88,19 @@ export default function Gallery() {
 
 
   // next and previous logic
-  const currentIndex = galleryItems.findIndex(
+  const currentIndex = filteredItems.findIndex(
     (item) => item.id === selectedItem?.id
   );
   
   const handleNext = () => {
-    const nextIndex = (currentIndex + 1) % galleryItems.length;
-    setSelectedItem(galleryItems[nextIndex]);
+    const nextIndex = (currentIndex + 1) % filteredItems.length;
+    setSelectedItem(filteredItems[nextIndex]);
   };
   
   const handlePrev = () => {
     const prevIndex =
-      (currentIndex - 1 + galleryItems.length) % galleryItems.length;
-    setSelectedItem(galleryItems[prevIndex]);
+      (currentIndex - 1 + filteredItems.length) % filteredItems.length;
+    setSelectedItem(filteredItems[prevIndex]);
   };
 
 
@@ -120,6 +120,12 @@ export default function Gallery() {
   
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [selectedItem, currentIndex]);
+
+
+
+
+  const isVideo = (url: string) =>
+    /\.(mp4|webm|ogg|mov)$/i.test(url) || url.includes("/video/");
 
 
 
@@ -179,8 +185,6 @@ export default function Gallery() {
 
 
 
-
-
           {/* ================= GRID ================= */}
           {!loading && !error && (
           <motion.div
@@ -206,14 +210,32 @@ export default function Gallery() {
                 }}
                 className="relative aspect-square rounded-2xl overflow-hidden cursor-pointer group"
               >
-                <Image
-                  src={item.url}
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+                <div className="relative w-full h-full">
+                  {isVideo(item.url) ? (
+                    <>
+                      <video
+                        src={item.url}
+                        className="w-full h-full object-cover"
+                        muted
+                      />
 
+                      {/* ▶ PLAY BUTTON */}
+                      <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                        <div className="w-14 h-14 flex items-center justify-center rounded-full bg-white/50 backdrop-blur-md shadow-lg">
+                          <Play className="w-6 h-6 text-black ml-1" />
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <Image
+                      src={item.url}
+                      alt={item.title}
+                      fill
+                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  )}
+                </div>
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                   <div className="text-center text-white">
@@ -288,13 +310,23 @@ export default function Gallery() {
             className="relative max-w-6xl w-full max-h-[80vh] flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <Image
-              src={selectedItem.url}
-              alt={selectedItem.title}
-              width={1200}
-              height={800}
-              className="object-contain max-h-[80vh] w-auto h-auto"
-            />
+            {isVideo(selectedItem.url) ? (
+              <video
+                src={selectedItem.url}
+                controls
+                muted
+                autoPlay
+                className="max-h-[80vh] w-auto h-auto"
+              />
+            ) : (
+              <Image
+                src={selectedItem.url}
+                alt={selectedItem.title}
+                width={1200}
+                height={800}
+                className="object-contain max-h-[80vh] w-auto h-auto"
+              />
+            )}
           </motion.div>
 
           {/* BOTTOM INFO */}

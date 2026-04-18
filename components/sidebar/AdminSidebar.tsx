@@ -37,13 +37,10 @@ export default function AdminSidebar() {
 
   return (
     <div className="flex flex-col h-full bg-gray-900 text-gray-100">
-      {/* Logo / Header */}
-      {/* <div className="px-6 py-8 border-b border-gray-800">
-        <h2 className="text-2xl font-bold tracking-tight">School Admin</h2>
-        <p className="text-gray-400 text-sm mt-1">Management Portal</p>
-      </div> */}
+      {/* border */}
+      <span className="mt-1 border-b border-gray-800"></span>
 
-      {/* Navigation */}
+      {/* Navigation  buttons*/}
       <nav className="flex-1 px-3 py-6 overflow-y-auto">
         <div className="space-y-1">
           {navItems.map((item) => {
@@ -69,7 +66,7 @@ export default function AdminSidebar() {
 
       {/* Footer (Optional) */}
       <div className="p-4 border-t border-gray-800 text-xs text-gray-500 text-center">
-        © 2026 School Admin
+        © 2026 SSBS Admin
       </div>
     </div>
   );

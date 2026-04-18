@@ -93,8 +93,9 @@ export async function POST(req: Request) {
     const buffer = Buffer.from(bytes);
     // await fs.writeFile(filePath, buffer);  //for local upload
 
-    console.log("File saved locally, now uploading to Cloudinary...");
+    // console.log("File saved locally, now uploading to Cloudinary...");
 
+    console.log()
 
 
     // ─── Upload to Cloudinary ─────────────────────────

@@ -3,6 +3,7 @@ import Link from "next/link";
 import AdminSidebar from "../sidebar/AdminSidebar";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 type User = {
   email: string;
@@ -42,7 +43,13 @@ function Dashboard({ children }: Readonly<{ children: React.ReactNode }>) {
       {/* sidebar  */}
       <div className="hidden md:flex flex-col w-64 bg-gray-800">
         <div className="flex items-center justify-start h-16 bg-gray-900 gap-6 px-6">
-          <div className="bg-muted p-3">logo</div>
+          <Image
+            src="/SchoolLogo.png"
+            alt="Logo"
+            width={50}
+            height={50}
+            className="rounded-full"
+          />
           <span className="text-white font-bold uppercase">SSBS</span>
         </div>
         <AdminSidebar />

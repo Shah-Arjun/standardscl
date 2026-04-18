@@ -19,7 +19,10 @@ export const uploadToCloudinary = async (
 ): Promise<CloudinaryUploadResult> => {
   return new Promise((resolve, reject) => {
     const uploadStream = cloudinary.uploader.upload_stream(
-      { folder: folderName },
+      {
+        folder: folderName,
+        resource_type: "auto", // Automatically detect the file type (image, video, etc.)
+      },
       (error, result) => {
         if (error) {
           reject(error);
