@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
             .orderBy(desc(imageTable.createdAt))     //latest first
             
 
-        console.log("Fetched gallery data:", images)  //debug
+        // console.log("Fetched gallery data:", images)  //debug
 
 
         return NextResponse.json(

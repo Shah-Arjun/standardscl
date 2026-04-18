@@ -463,6 +463,7 @@ export default function AdminImagePage() {
                   src={currentItem.url}
                   controls
                   autoPlay
+                  muted
                   className="max-h-[85vh] max-w-full"
                 />
               ) : (

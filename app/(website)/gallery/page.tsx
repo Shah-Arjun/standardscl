@@ -52,7 +52,7 @@ export default function Gallery() {
       const data = await res.json();
   
       // console.log("public gallery:", data);   //debug
-  
+      
       const items = Array.isArray(data) ? data : data.data || data.gallery || [];
   
       setGalleryItems(items);
@@ -231,6 +231,7 @@ export default function Gallery() {
                       src={item.url}
                       alt={item.title}
                       fill
+                      loading="eager"
                       sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
@@ -287,7 +288,7 @@ export default function Gallery() {
               e.stopPropagation();
               handlePrev();
             }}
-            className="absolute text-xl  left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-primary/40 hover:text-white transition z-50 cursor-pointer"
+            className="absolute text-xl text-white left-0 lg:left-6 top-1/2 -translate-y-1/2 w-8 h-8 lg:w-12 lg:h-12 bg-black/50 lg:bg-white/40 rounded-full flex items-center justify-center hover:bg-primary/40 hover:text-white transition z-50 cursor-pointer"
           >
             &lt;
           </button>
@@ -298,7 +299,7 @@ export default function Gallery() {
               e.stopPropagation();
               handleNext();
             }}
-            className="absolute text-xl right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-primary/40 hover:text-white transition z-50 cursor-pointer"
+            className="absolute text-xl text-white right-0 lg:right-6 top-1/2 -translate-y-1/2 w-8 h-8 lg:w-12 lg:h-12 bg-black/50 lg:bg-white/40 rounded-full flex items-center justify-center hover:bg-primary/40 hover:text-white transition z-50 cursor-pointer"
           >
             &gt;
           </button>
