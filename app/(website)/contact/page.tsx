@@ -10,63 +10,12 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { event as gaEvent } from "@/lib/gtag";
-import {
-  Phone,
-  Mail,
-  MapPin,
-  Clock,
-  Send,
-  Facebook,
-  Instagram,
-  Youtube,
-  Twitter,
-} from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
+import { contactInfo, socialLinks } from "@/data/data";
+import { Send } from "lucide-react";
 
 
 
-const contactInfo = [
-  {
-    icon: MapPin,
-    title: "Address",
-    details: ["Itahari-17, Sunsari District, Nepal"],
-  },
-  {
-    icon: Phone,
-    title: "Phone",
-    details: ["+977 9812363723 | 025-590085"],
-  },
-  {
-    icon: Mail,
-    title: "Email",
-    details: ["standardschool2051@gmail.com"],
-  },
-  {
-    icon: Clock,
-    title: "Office Hours",
-    details: ["Sunday - Friday: 8:00 AM - 5:00 PM", "Saturday: Closed"],
-  },
-];
-
-
-
-const socialLinks = [
-  {
-    icon: Facebook,
-    href: "https://www.facebook.com/profile.php?id=100046922456345",
-    label: "Facebook",
-  },
-  {
-    icon: Instagram,
-    href: "#",
-    label: "Instagram",
-  },
-  {
-    icon: Youtube,
-    href: "#",
-    label: "YouTube",
-  },
-];
 
 
 
@@ -82,9 +31,7 @@ const Contact = () => {
   const [loading, setLoading] = useState(false);
 
 
-
-
-  
+  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
   

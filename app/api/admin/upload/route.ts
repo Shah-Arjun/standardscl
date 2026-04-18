@@ -95,7 +95,6 @@ export async function POST(req: Request) {
 
     // console.log("File saved locally, now uploading to Cloudinary...");
 
-    console.log()
 
 
     // ─── Upload to Cloudinary ─────────────────────────

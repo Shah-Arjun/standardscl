@@ -1,9 +1,11 @@
-// app/api/admin/delete/route.ts
+// app/api/admin/delete/route.ts  to delete images/videos from Cloudinary and Supabase
+
+
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/database/db";
 import { imageTable } from "@/database/schema";
 import { inArray } from "drizzle-orm";
-import cloudinary from "@/lib/cloudinary";   // ← Make sure this file exists
+import cloudinary from "@/lib/cloudinary";  
 
 
 
@@ -42,7 +44,6 @@ export async function DELETE(req: NextRequest) {
 
 
 
-
     // 1. Fetch items from database
     const itemsToDelete = await db
       .select({
@@ -53,6 +54,7 @@ export async function DELETE(req: NextRequest) {
       .from(imageTable)
       .where(inArray(imageTable.id, ids));
 
+      // if no items found
     if (itemsToDelete.length === 0) {
       return NextResponse.json(
         { success: false, message: "No matching items found" },
@@ -73,11 +75,12 @@ export async function DELETE(req: NextRequest) {
         await cloudinary.uploader.destroy(item.photoPublicId, {
           resource_type: resourceType,
         });
-        console.log(`Deleted from Cloudinary: ${item.photoPublicId} (${resourceType})`);
+        // console.log(`Deleted from Cloudinary: ${item.photoPublicId} (${resourceType})`);
       } catch (cloudErr: any) {
         console.error(`Failed to delete from Cloudinary ${item.photoPublicId}:`, cloudErr.message);
       }
     });
+
 
     await Promise.allSettled(deletePromises);
 
@@ -85,12 +88,12 @@ export async function DELETE(req: NextRequest) {
 
 
 
-    // 3. Delete records from Supabase (Drizzle)
+    // 3. Delete records from Supabase (using drizzle orm)
     await db
       .delete(imageTable)
       .where(inArray(imageTable.id, ids));
 
-    console.log(`Successfully deleted ${ids.length} items`);
+    // console.log(`Successfully deleted ${ids.length} items`);
 
     return NextResponse.json({
       success: true,

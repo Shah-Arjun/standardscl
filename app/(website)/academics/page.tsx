@@ -5,39 +5,10 @@ import { SiteLayout } from "@/components/layout/SiteLayout";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { AcademicsSection } from "@/components/home/AcademicsSection";
 import { GradesSection } from "@/components/home/GradesSection";
-import { BookOpen, Globe, Award, Calendar, Clock, Users } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
+import { curriculum, schedule } from "@/data/data";
+import { Clock } from "lucide-react";
 
-const curriculum = [
-  {
-    icon: Globe,
-    title: "English Medium",
-    description:
-      "All subjects are taught in English to prepare students for global opportunities",
-  },
-  {
-    icon: BookOpen,
-    title: "NEB Curriculum",
-    description:
-      "Following the National Examination Board curriculum of Nepal",
-  },
-  {
-    icon: Award,
-    title: "SEE Preparation",
-    description:
-      "Special focus on Secondary Education Examination preparation",
-  },
-];
-
-const schedule = [
-  { time: "5:30 AM", activity: "Taekwondo (Karate training)" },
-  { time: "6:30 AM", activity: "Coaching Classes Begins" },
-  { time: "8:30 AM", activity: "Coaching Classes Ends" },
-  { time: "10:00 AM", activity: "Morning Assembly & Classes Begin" },
-  { time: "12:45 PM", activity: "Lunch Break" },
-  { time: "1:30 PM", activity: "Afternoon Classes" },
-  { time: "4:00 PM", activity: "Classes End & Extra-curricular Activities Begins" },
-];
 
 
 const Academics = () => {

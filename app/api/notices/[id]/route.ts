@@ -8,12 +8,11 @@ export async function GET(
   context: { params: Promise<{ id: string }> }
 ) {
   try {
-    //  Next.js 15/16 requires await params
     const { id } = await context.params;
 
     const noticeId = Number(id);
 
-    // ✅ Better validation
+    // Better validation
     if (Number.isNaN(noticeId)) {
       return NextResponse.json(
         { error: "InvalnoticeId notice noticeId" },

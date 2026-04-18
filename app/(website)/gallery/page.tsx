@@ -8,19 +8,9 @@ import { event as gaEvent } from "@/lib/gtag";
 import { SiteLayout } from "@/components/layout/SiteLayout";
 import Page from "@/app/page";
 import PageHero from "@/components/shared/PageHero";
+import { categories } from "@/data/data";
 
 
-
-const categories = [
-  "All",
-  "School",
-  "Teachers",
-  "Events",
-  "Sports",
-  "Arts",
-  "Activities",
-  "Educational Tour",
-];
 
 
 type galleryItem = {
@@ -41,7 +31,7 @@ export default function Gallery() {
 
 
 
-
+  // fetch gallery through API
   const fetchGallery = async () => {
     try {
       setLoading(true);
@@ -71,18 +61,15 @@ export default function Gallery() {
 
 
 
-
+  // handle body overflow
   useEffect(() => {
     document.body.style.overflow = selectedItem ? "hidden" : "auto";
   }, [selectedItem]);
 
 
 
-
-  const filteredItems =
-    activeCategory === "All"
-      ? galleryItems
-      : galleryItems.filter((item) => item.category === activeCategory);
+  // filter gallery items by category
+  const filteredItems = activeCategory === "All" ? galleryItems : galleryItems.filter((item) => item.category === activeCategory);
 
 
 
@@ -123,7 +110,7 @@ export default function Gallery() {
 
 
 
-
+  // check if the URL is a video
   const isVideo = (url: string) =>
     /\.(mp4|webm|ogg|mov)$/i.test(url) || url.includes("/video/");
 

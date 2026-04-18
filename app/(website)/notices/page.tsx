@@ -30,6 +30,8 @@ const Notices = () => {
     );
     const [loading, setLoading] = useState(true);
 
+
+
     // Fetch notices
     const fetchNotices = async () => {
       try {
@@ -51,8 +53,6 @@ const Notices = () => {
     }, []);
   
   
-
-
 
 
 

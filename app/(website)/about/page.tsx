@@ -3,73 +3,14 @@
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { PrincipalMessage } from "@/components/home/PrincipalMessage";
-import { Target, Eye, Heart, Award, Users, BookOpen } from "lucide-react";
 import { SiteLayout } from "@/components/layout/SiteLayout";
 import PageHero from "@/components/shared/PageHero";
-
-const values = [
-  {
-    icon: Target,
-    title: "Our Mission",
-    description:
-      "To provide quality education that develops intellectual, physical, and moral excellence in students, preparing them for challenges of the modern world.",
-  },
-  {
-    icon: Eye,
-    title: "Our Vision",
-    description:
-      "To be the leading educational institution in Nepal, recognized for academic excellence, character development, and community contribution.",
-  },
-  {
-    icon: Heart,
-    title: "Our Values",
-    description:
-      "Integrity, discipline, respect, excellence, and compassion form the foundation of everything we do at Standard Secondary.",
-  },
-];
+import { values, whyUs, stats } from "@/data/data";
+import { CheckCircle } from "lucide-react";
 
 
-const whyUs = [
-              {
-                icon: Award,
-                title: "Academic Excellence",
-                description:
-                  "Consistently high SEE pass rates and top performers",
-              },
-              {
-                icon: Users,
-                title: "Experienced Faculty",
-                description: "Qualified and dedicated teaching professionals",
-              },
-              {
-                icon: BookOpen,
-                title: "Modern Curriculum",
-                description: "NEB curriculum with English medium instruction",
-              },
-              {
-                icon: Heart,
-                title: "Safe Environment",
-                description: "24/7 security with CCTV surveillance",
-              },
-              {
-                icon: Target,
-                title: "Holistic Development",
-                description: "Balance of academics, sports, and arts",
-              },
-              {
-                icon: Eye,
-                title: "Individual Attention",
-                description:
-                  "Optimal student-teacher ratio for personalized learning",
-              },
-            ]
 
-const stats = [
-  { number: "31+", label: "Years of Excellence" },
-  { number: "800+", label: "Students Enrolled" },
-  { number: "45+", label: "Qualified Teachers" },
-  { number: "95%", label: "SEE Pass Rate" },
-];
+
 
 const About = () => {
   return (
@@ -140,6 +81,13 @@ const About = () => {
         </div>
       </section>
 
+
+
+
+
+
+
+
       {/* Mission, Vision, Values */}
       <section className="section-padding bg-muted">
         <div className="container-school">
@@ -164,17 +112,31 @@ const About = () => {
                 <h3 className="font-heading font-bold text-xl text-foreground mb-4">
                   {item.title}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {item.description}
-                </p>
+                {item.description.map((d) => (
+                  <div className="flex items-start gap-3 text-muted-foreground leading-relaxed">
+                    <CheckCircle className="text-mint shrink-0 mt-1.5" size={22} />
+                    <p className="mt-1 font-body text-primary-foreground/75 font-medium">{d}</p>
+                </div>
+                ))}
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
+
+
+
+
+
+
+
+
       {/* Principal Message */}
       <PrincipalMessage />
+
+
+
 
       {/* Why Choose Us */}
       <section className="section-padding bg-background">

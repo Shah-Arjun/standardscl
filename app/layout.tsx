@@ -71,7 +71,8 @@ export default function RootLayout({
 
       <body className="antialiased">
         <ScrollTracker />
-        {children}
+        {/* all pages renders here */}
+        {children}   
 
         {/* Global toaster */}
         <Toaster richColors position="top-right" />

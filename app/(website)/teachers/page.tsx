@@ -8,6 +8,7 @@ import PageHero from "@/components/shared/PageHero";
 
 
 
+// Admin posts categories
 const ADMIN_POSTS = [
   "eca", "elc", "principal", "founder", "coordinator", 
   "accountant", "exam", "vice-principal", "dance teacher"

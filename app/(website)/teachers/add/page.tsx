@@ -6,10 +6,11 @@ import SchoolLogo from "./../../../../public/SchoolLogo-nobg.png";
 import { useRouter } from "next/navigation";
 import { Footer } from "@/components/layout/Footer";
 
+
 type Gender = "male" | "female" | "other";
 
 
-// ──────────────────────────────────────────────── Types
+//  Types
 interface TeacherFormData {
   teacherName: string;
   gender: Gender;
@@ -23,12 +24,16 @@ interface TeacherFormData {
   experience: number;
 }
 
+
 type QualificationCategory =
   | "Bachelor"
   | "Master"
   | "Diploma"
   | "Certification"
   | "Other";
+
+
+
 const qualificationOptions: Record<QualificationCategory, string[]> = {
   Bachelor: [
     "B.Ed Mathematics",
@@ -43,7 +48,7 @@ const qualificationOptions: Record<QualificationCategory, string[]> = {
     "BSc Biology",
     "B.Com / BBA",
     "B.Ed Special Education",
-    "Other", // ← added
+    "Other", 
   ],
   Master: [
     "M.Ed Curriculum & Instruction",
@@ -54,29 +59,34 @@ const qualificationOptions: Record<QualificationCategory, string[]> = {
     "M.Sc Biology",
     "MBA",
     "M.Ed Special Education",
-    "Other", // ← added
+    "Other", 
   ],
   Diploma: [
     "Montessori Teacher Certification",
     "Early Childhood Education",
     "Computer Education / ICT",
     "Postgraduate Diploma in Education (PGDE)",
-    "Other", // ← added
+    "Other",
   ],
   Certification: [
     "TESOL / TEFL",
     "Other professional certifications",
-    "Other", // ← added (or merge if you prefer)
+    "Other", 
   ],
   Other: [
-    "Other", // makes sense here too
+    "Other", 
   ],
 };
+
+
 
 type MultiSelectKey =
   | "qualifications"
   | "subjectsTeaches"
   | "post";
+
+
+
 
 const defaultOptions = {
   subjectsTeaches: ["Math", "Science", "English", "Nepali", "Socaial Std.", "SeroFero", "Health", "Arts", "Other"],
@@ -99,7 +109,10 @@ const defaultOptions = {
   ],
 };
 
-// ──────────────────────────────────────────────── Component
+
+
+
+//  Component =====================================================================
 export default function AddTeacher() {
   const [formData, setFormData] = useState<TeacherFormData>({
     teacherName: "",
@@ -121,20 +134,10 @@ export default function AddTeacher() {
   const router = useRouter()
 
 
-  // ──────────────────────────────────────────────── Add this state back (only for qualifications filtering)
   const [selectedCategory, setSelectedCategory] = useState<
-    QualificationCategory | ""
+  QualificationCategory | ""
   >("");
-
-
-
-  // ──────────────────────────────────────────────── Optional: helper to get current options
-  const getQualificationOptions = () => {
-    if (!selectedCategory) return [];
-    return qualificationOptions[selectedCategory] || [];
-  };
-  // const [selectedCategory, setSelectedCategory] = useState<QualificationCategory | "">("");
-  // const [selectedDegrees, setSelectedDegrees] = useState<string[]>([]);
+  
 
   const [customValues, setCustomValues] = useState<
     Record<MultiSelectKey, string>
@@ -144,23 +147,19 @@ export default function AddTeacher() {
     post: "",
   });
 
-  // Sync qualifications
-  // useEffect(() => {
-  //   setFormData((prev) => ({ ...prev, qualifications: [...selectedDegrees] }));
-  // }, [selectedDegrees]);
 
-  // const handleDegreeSelect = (degree: string, checked: boolean) => {
-  //   setSelectedDegrees((prev) =>
-  //     checked ? [...prev, degree] : prev.filter((d) => d !== degree)
-  //   );
-  // };
 
-  // const handleCategoryChange = (e: ChangeEvent<HTMLSelectElement>) => {
-  //   const category = e.target.value as QualificationCategory;
-  //   setSelectedCategory(category);
-  //   setSelectedDegrees([]);
-  // };
 
+
+  // helper to get current options
+  const getQualificationOptions = () => {
+    if (!selectedCategory) return [];
+    return qualificationOptions[selectedCategory] || [];
+  };
+
+
+
+// handle input change
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
@@ -168,6 +167,10 @@ export default function AddTeacher() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+
+
+
+  // handle multi-select change
   const handleMultiSelect = (
     key: MultiSelectKey,
     value: string,
@@ -182,11 +185,18 @@ export default function AddTeacher() {
     });
   };
 
+
+
+
+  // handle custom input change
   const handleCustomInputChange = (key: MultiSelectKey, value: string) => {
     setCustomValues((prev) => ({ ...prev, [key]: value }));
   };
 
-  // ──────────────────────────────────────────────── Inside the component (add / update these)
+  
+
+
+  // handle add custom value - for "other option"
   const handleAddCustomValue = (key: MultiSelectKey) => {
     const val = customValues[key]?.trim();
     if (!val) return;
@@ -205,6 +215,7 @@ export default function AddTeacher() {
   
   
 
+  // handle image file change
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files?.[0];
     if (selected) {
@@ -213,6 +224,9 @@ export default function AddTeacher() {
     }
   };
 
+
+
+  // handle form submission
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
@@ -272,7 +286,7 @@ export default function AddTeacher() {
 
       alert("Teacher added successfully!\nThank you for your time — have a great day!");
       router.push("/") // redirect to home after successful submission
-      // Optional: reset form here
+      // reset form goes here
     } catch (err: any) {
       setMessage("Failed to submit form");
     } finally {
@@ -282,7 +296,7 @@ export default function AddTeacher() {
 
 
 
-  // ──────────────────────────────────────────────── Updated renderMultiSelect (better UX)
+  // render multi-select options
   const renderMultiSelect = (key: MultiSelectKey, options: string[]) => (
     <div className="space-y-2 pt-2">
       <label className="block text-md font-medium text-gray-700 capitalize">

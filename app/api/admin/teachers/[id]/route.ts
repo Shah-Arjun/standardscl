@@ -3,15 +3,17 @@ import { db } from "@/database/db";
 import { teachersTable } from "@/database/schema";
 import { eq } from "drizzle-orm";
 
+
+
+
 export async function GET(
   req: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
   try {
-    //  Next.js 15/16 requires await params
-    const { id } = await context.params;
+    const { id } = await context.params; //extract id from url, comes as string
 
-    // convert to number
+    // convert to number datatype
     const teacherId = Number(id);
 
     // validate id
@@ -21,6 +23,7 @@ export async function GET(
         { status: 400 }
       );
     }
+
 
     // fetch teacher
     const teacher = await db

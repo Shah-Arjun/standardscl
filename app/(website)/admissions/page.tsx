@@ -8,61 +8,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
 import { toast } from "sonner";
-import {
-  FileText,
-  Calendar,
-  ClipboardList,
-  Download,
-  CheckCircle,
-  ArrowRight,
-} from "lucide-react";
-
-
-
-
-
-const steps = [
-  {
-    number: 1,
-    title: "Submit Application",
-    description: "Fill out the online form or collect from office",
-  },
-  {
-    number: 2,
-    title: "Entrance Test",
-    description: "Appear for entrance examination",
-  },
-  {
-    number: 3,
-    title: "Interview",
-    description: "Student and parent interview",
-  },
-  {
-    number: 4,
-    title: "Admission Confirmation",
-    description: "Submit documents and fees",
-  },
-];
-
-
-
-
-
-const requirements = [
-  "Birth Certificate (Original & Copy)",
-  "Character Certificate from previous school",
-  "Transfer Certificate & IEMIS number",
-  "Recent passport-size photos (2 copies)",
-  "Previous grade sheet",
-];
+import { Calendar, ClipboardList, CheckCircle, ArrowRight} from "lucide-react";
+import { steps, requirements } from "@/data/data";
 
 
 
@@ -80,7 +29,7 @@ const Admissions = () => {
 
 
 
-
+  // handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
   
@@ -112,9 +61,9 @@ const Admissions = () => {
 
       toast.dismiss();
   
-
       if (data.success) {
         toast.success("Application submitted successfully!");
+        // Reset form data after successful submission
         setFormData({
           studentName: "",
           parentName: "",
@@ -129,7 +78,7 @@ const Admissions = () => {
     } catch (error) {
       toast.dismiss();
       toast.error("Something went wrong");
-      console.error(error);
+      console.error("failed to submit form", error);
     } finally {
       setLoading(false);
     }
@@ -163,6 +112,7 @@ const Admissions = () => {
           </motion.div>
         </div>
       </section>
+
 
       {/* Admission Process */}
       <section className="section-padding bg-background">
@@ -203,6 +153,7 @@ const Admissions = () => {
           </div>
         </div>
       </section>
+
 
       {/* Requirements & Form */}
       <section className="section-padding bg-muted">
@@ -257,13 +208,6 @@ const Admissions = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Download Prospectus */}
-              {/* <Button className="btn-secondary-school mt-8 w-full group">
-                <Download className="mr-2 w-5 h-5" />
-                Download Prospectus
-                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Button> */}
             </motion.div>
 
 

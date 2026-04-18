@@ -3,85 +3,9 @@
 import { motion } from "framer-motion";
 import { SiteLayout } from "@/components/layout/SiteLayout";
 import { PageHero } from "@/components/shared/PageHero";
-import {
-  FlaskConical,
-  Monitor,
-  Building2,
-  Trophy,
-  Bus,
-  Shield,
-  Tv,
-  Wifi,
-  BookOpen,
-  Utensils,
-  Bot,
-} from "lucide-react";
+import { facilities } from "@/data/data";
 
-const facilities = [
-  {
-    icon: FlaskConical,
-    title: "Science Laboratory",
-    description:
-      "State-of-the-art physics, chemistry, and biology labs with modern equipment for hands-on experiments and practical learning experiences.",
-    features: ["Modern Equipment", "Safety Measures", "Expert Supervision"],
-  },
-  {
-    icon: Monitor,
-    title: "Computer Lab",
-    description:
-      "Fully equipped computer laboratory with latest computers, high-speed internet, and dedicated computer training programs for all students.",
-    features: ["Latest Computers", "High-Speed Internet", "Regular Training"],
-  },
-  {
-    icon: Bot,
-    title: "Robotics & IT Trainings",
-    description:
-      "Comprehensive robotics and IT training programs with hands-on experience in coding, graphics design and robotics.",
-    features: ["Hands-On Projects", "Expert Instructors", "Latest Technology"],
-  },
-  {
-    icon: Trophy,
-    title: "Sports Ground",
-    description:
-      "Spacious playground for various sports including football, cricket, basketball, badminton, and athletics.",
-    features: ["Multiple Sports", "Professional Coaching", "Annual Events"],
-  },
-  {
-    icon: Bus,
-    title: "Transportation",
-    description:
-      "Safe and reliable school bus service covering major routes in Itahari and surrounding areas with experienced drivers.",
-    features: ["GPS Tracking", "Experienced Drivers", "Wide Coverage"],
-  },
-  {
-    icon: Shield,
-    title: "CCTV & Security",
-    description:
-      "Comprehensive security system with CCTV surveillance throughout the campus and trained security personnel.",
-    features: ["24/7 Surveillance", "Trained Guards", "Emergency Response"],
-  },
-  {
-    icon: Tv,
-    title: "Smart Classrooms",
-    description:
-      "Modern smart classrooms with interactive digital boards, projectors, and audio-visual equipment for enhanced learning.",
-    features: ["Digital Boards", "Projectors", "Audio-Visual Aids"],
-  },
-  {
-    icon: Wifi,
-    title: "Digital Campus",
-    description:
-      "Wi-Fi enabled campus supporting digital learning initiatives and online educational resources.",
-    features: ["Campus-Wide WiFi", "Digital Learning", "Online Resources"],
-  },
-  {
-    icon: Utensils,
-    title: "Cafeteria",
-    description:
-      "Hygienic cafeteria serving nutritious meals prepared under strict quality standards with variety of options.",
-    features: ["Nutritious Food", "Hygienic Preparation", "Variety Menu"],
-  },
-];
+
 
 
 

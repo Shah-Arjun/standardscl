@@ -38,11 +38,11 @@ export async function POST(req: Request) {
       const res = NextResponse.json({ success: true })
   
       res.cookies.set("token", token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
-        path: "/",
-        maxAge: 60 * 60,    //1h
+        httpOnly: true,                                  // JS cannot access --> secure
+        secure: process.env.NODE_ENV === "production",   // only https in production
+        sameSite: "strict",                              // prevents CSRF attacks
+        path: "/admin",                                      // cookies will only be available in /admin/* path
+        maxAge: 60 * 60,                                // expires after 1h
       })
   
       return res
