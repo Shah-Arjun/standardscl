@@ -5,13 +5,16 @@ import { X, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import WhatsAppIcon from "../../public/whatsapp.png";
-// import PhoneCall from "../../public/phone-call.png";
+
+
 
 const latestNotices = [
   { id: 1, title: "Admissions Open for 2083", date: "Jan 15, 2025" },
   { id: 2, title: "Parent-Teacher Meeting", date: "Jan 25, 2025" },
   { id: 3, title: "Annual Sports Week", date: "Jan 20, 2025" },
 ];
+
+
 
 /* ================= ANIMATION VARIANTS ================= */
 
@@ -44,6 +47,8 @@ const panelVariants: Variants = {
   },
 };
 
+
+
 const itemVariants: Variants = {
   hidden: {
     opacity: 0,
@@ -54,6 +59,9 @@ const itemVariants: Variants = {
     x: 0,
   },
 };
+
+
+
 
 export const FloatingWhatsapp = () => {
   const [isOpen, setIsOpen] = useState(false);

@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import book from "@/public/book.png";
 import ssbsTeachers from "@/public/ssbsTeachers.jpg";
-import { TypewriterText } from "../text/TypewriterText";
+import { TypewriterText } from "../typewriter/TypewriterText";
 import { event as gaEvent } from "@/lib/gtag";
 
 

@@ -5,7 +5,7 @@ import { eq } from "drizzle-orm";
 
 
 
-
+// get single theacher  by admin
 export async function GET(
   req: NextRequest,
   context: { params: Promise<{ id: string }> }

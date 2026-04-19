@@ -1,12 +1,15 @@
 import React from "react";
 import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
-import Link from "next/link";
+
+
+
 
 function TopNavbar() {
   return (
     <>
       <div className="bg-orange-700 text-white py-1 px-4">
         <div className="flex justify-between items-center text-sm">
+          
           {/* left end */}
           <div className="flex items-center gap-2 md:gap-4 lg:gap-6">
             <a
@@ -24,9 +27,7 @@ function TopNavbar() {
               className="flex items-center gap-2 hover:opacity-80 transition-opacity"
             >
               <Mail className="w-4 h-4" />
-              <span className="hidden sm:inline">
-                standardschool2051@gmail.com
-              </span>
+              <span className="hidden sm:inline">standardschool2051@gmail.com</span>
             </a>
 
             <a
@@ -37,8 +38,6 @@ function TopNavbar() {
               <span className="hidden sm:inline">025-590085</span>
             </a>
           </div>
-
-
 
           {/* right end */}
           <div className="flex items-center gap-2 md:gap-2 lg:gap-3">
@@ -60,7 +59,6 @@ function TopNavbar() {
               <Instagram className="w-4 h-4" />
             </a>
 
-
             {/* TikTok */}
             <a
               href="#"
@@ -68,7 +66,7 @@ function TopNavbar() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 hover:opacity-80 transition-opacity"
             >
-              {/* TikTok SVG (since lucide doesn't have it) */}
+              {/* TikTok SVG , since lucide doesn't have it */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -78,6 +76,7 @@ function TopNavbar() {
               </svg>
             </a>
           </div>
+          
         </div>
       </div>
     </>

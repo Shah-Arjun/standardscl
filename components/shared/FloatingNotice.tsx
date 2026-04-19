@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
+
 type Notice = {
   id: number;
   title: string;
@@ -13,6 +14,7 @@ type Notice = {
   postedBy: string;
   createdAt: string;
 };
+
 
 
 export const FloatingNotice = () => {

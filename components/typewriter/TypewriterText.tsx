@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import pen from "@/public/pen.png";
 
+
+
 type TypewriterTextProps = {
   text: string;
   typingSpeed?: number;
@@ -12,6 +14,8 @@ type TypewriterTextProps = {
   delayBeforeType?: number;
   className?: string;
 };
+
+
 
 export const TypewriterText = ({
   text,
@@ -23,6 +27,8 @@ export const TypewriterText = ({
 }: TypewriterTextProps) => {
   const [displayed, setDisplayed] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+
+
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
@@ -52,11 +58,14 @@ export const TypewriterText = ({
     delayBeforeType,
   ]);
 
+
+
+
   return (
     <span className={`inline-flex items-center ${className}`}>
       {displayed}
 
-      {/* VISIBLE CURSOR */}
+      {/* VISIBLE CURSOR -> pen*/}
       <span
         aria-hidden
         className="

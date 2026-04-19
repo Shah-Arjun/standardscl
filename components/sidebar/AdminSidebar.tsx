@@ -9,6 +9,8 @@ import {
   Image 
 } from "lucide-react";
 
+
+
 const navItems = [
   {
     href: "/admin",
@@ -32,6 +34,8 @@ const navItems = [
   },
 ];
 
+
+
 export default function AdminSidebar() {
   const pathname = usePathname();
 
@@ -40,7 +44,7 @@ export default function AdminSidebar() {
       {/* border */}
       <span className="mt-1 border-b border-gray-800"></span>
 
-      {/* Navigation  buttons*/}
+      {/* left Navigation  buttons */}
       <nav className="flex-1 px-3 py-6 overflow-y-auto">
         <div className="space-y-1">
           {navItems.map((item) => {
@@ -64,7 +68,7 @@ export default function AdminSidebar() {
         </div>
       </nav>
 
-      {/* Footer (Optional) */}
+      {/* left Footer */}
       <div className="p-4 border-t border-gray-800 text-xs text-gray-500 text-center">
         © 2026 SSBS Admin
       </div>

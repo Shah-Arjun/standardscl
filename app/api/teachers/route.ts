@@ -1,9 +1,14 @@
 // api to get all teachers
 // app/api/teachers/route.ts
-import { getAllTeachers } from "@/lib/queries/teachers";
+import { db } from "@/database/db";
+import { teachersTable } from "@/database/schema";
+import { asc } from "drizzle-orm";
 
 
 export async function GET() {
-  const teachers = await getAllTeachers();
+  const teachers = await db.select()
+      .from(teachersTable)
+      .orderBy(asc(teachersTable.createdAt));     
+      
   return Response.json(teachers);
 }

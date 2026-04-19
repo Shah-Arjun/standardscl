@@ -1,11 +1,16 @@
 "use client"
 
+
+
 interface SectionHeaderProps {
   title: string;
   subtitle?: string;
   centered?: boolean;
   light?: boolean;
 }
+
+
+
 
 export const SectionHeader = ({ title, subtitle, centered = true, light = false }: SectionHeaderProps) => {
   return (

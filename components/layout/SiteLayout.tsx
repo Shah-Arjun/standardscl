@@ -7,9 +7,13 @@ import { Footer } from "./Footer";
 import { FloatingNotice } from "../shared/FloatingNotice";
 import { FloatingWhatsapp } from "../shared/FloatingWhatsapp";
 
+
+
 interface SiteLayoutProps {
   children?: ReactNode;
 }
+
+
 
 export const SiteLayout = ({ children }: SiteLayoutProps) => {
   return (
