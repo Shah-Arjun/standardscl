@@ -2,58 +2,9 @@
 
 import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
+import { Quote, Star } from "lucide-react";
 import { SectionHeader } from "@/components/shared/SectionHeader";
-
-const testimonials = [
-  {
-    id: 1,
-    name: "Sunita Sharma",
-    childGrade: "Grade 8",
-    feedback:
-      "The teachers here really care about every child. My son has become much more confident and his grades have improved a lot. The hostel feels like a second home.",
-    rating: 5,
-    date: "Falgun 2082",
-  },
-  {
-    id: 2,
-    name: "Rajesh Adhikari",
-    childGrade: "Grade 5",
-    feedback:
-      "We are very happy with the discipline and regular updates from the school. The safety measures are excellent, and our daughter loves going to school every day.",
-    rating: 5,
-    date: "Asar 2081",
-  },
-  {
-    id: 3,
-    name: "Kamala Thapa",
-    childGrade: "Grade 10",
-    feedback:
-      "Both my children studied here and it has shaped them beautifully — not just in studies but in character and confidence. Also provides a special guidance to class 10th students.",
-    rating: 5,
-    date: "Falgun 2078",
-  },
-  {
-    id: 4,
-    name: "Bikash Rai",
-    childGrade: "Grade 7",
-    feedback:
-      "The school provides a perfect balance between academics and extracurricular activities. My child has developed leadership skills and enjoys every moment at school.",
-    rating: 5,
-    date: "Poush 2080",
-  },
-  {
-    id: 5,
-    name: "Anita Chaudhary",
-    childGrade: "Grade 6",
-    feedback:
-      "I truly appreciate the caring environment and dedicated teachers. The communication between school and parents is excellent, which gives us great confidence.",
-    rating: 5,
-    date: "Baisakh 2079",
-  },
-];
-
-
+import { testimonials } from "@/data/data";
 
 
 
@@ -62,13 +13,17 @@ export const TestimonialsSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
+
+
   //  Set initial position (middle)
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollLeft =
-        scrollRef.current.scrollWidth / 2;
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (scrollRef.current) {
+  //     scrollRef.current.scrollLeft = scrollRef.current.scrollWidth / 2;
+  //   }
+  // }, []);
+
+
+
 
   //  Auto scroll (smooth + infinite)
   useEffect(() => {

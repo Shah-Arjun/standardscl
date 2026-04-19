@@ -2,59 +2,10 @@
 
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/shared/SectionHeader";
-import {
-  FlaskConical,
-  Monitor,
-  Bot,
-  Trophy,
-  Bus,
-  Shield,
-  Tv,
-  Wifi,
-} from "lucide-react";
+import { homeFacilities } from "@/data/data";
 
-const facilities = [
-  {
-    icon: FlaskConical,
-    title: "Science Lab",
-    description: "Well-equipped labs for practical experiments",
-  },
-  {
-    icon: Monitor,
-    title: "Computer Lab",
-    description: "Modern computers with training programs",
-  },
-  {
-    icon: Bot,
-    title: "Robotics & IT Trainings",
-    description: "Hands-on training in robotics and IT skills",
-  },
-  {
-    icon: Trophy,
-    title: "Sports Ground",
-    description: "Appropriate playground for various sports",
-  },
-  {
-    icon: Bus,
-    title: "Transportation",
-    description: "Safe and reliable school bus service",
-  },
-  {
-    icon: Shield,
-    title: "CCTV & Safety",
-    description: "24/7 surveillance for student security",
-  },
-  {
-    icon: Tv,
-    title: "Smart Classes",
-    description: "Digital learning with interactive boards",
-  },
-  {
-    icon: Wifi,
-    title: "Digital Campus",
-    description: "Wi-Fi enabled campus for modern learning",
-  },
-];
+
+
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -66,6 +17,9 @@ const containerVariants = {
   },
 };
 
+
+
+
 const itemVariants = {
   hidden: { opacity: 0, scale: 0.8 },
   visible: {
@@ -76,6 +30,9 @@ const itemVariants = {
     },
   },
 };
+
+
+
 
 export const FacilitiesSection = () => {
   return (
@@ -93,7 +50,7 @@ export const FacilitiesSection = () => {
           viewport={{ once: true, margin: "-100px" }}
           className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
         >
-          {facilities.map((facility, index) => (
+          {homeFacilities.map((facility, index) => (
             <motion.div
               key={facility.title}
               variants={itemVariants}

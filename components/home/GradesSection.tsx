@@ -2,47 +2,9 @@
 
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/shared/SectionHeader";
-import { Baby, BookOpen, GraduationCap, Award } from "lucide-react";
 import Link from "next/link";
+import { homeGrades } from "@/data/data";
 
-const grades = [
-  {
-    id: "pre-primary",
-    title: "Pre-Primary",
-    levels: ["Nursery", "LKG", "UKG"],
-    icon: Baby,
-    color: "from-pink-400 to-rose-500",
-    bgColor: "bg-pink-50",
-    description: "Building strong foundations through play-based learning",
-  },
-  {
-    id: "basic_1_5",
-    title: "Basic Level (1-5)",
-    levels: ["Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5"],
-    icon: BookOpen,
-    color: "from-blue-400 to-cyan-500",
-    bgColor: "bg-blue-50",
-    description: "Developing core skills in reading, writing, and mathematics",
-  },
-  {
-    id: "basic_6_8",
-    title: "Basic Level (6-8)",
-    levels: ["Grade 6", "Grade 7", "Grade 8"],
-    icon: GraduationCap,
-    color: "from-green-400 to-emerald-500",
-    bgColor: "bg-green-50",
-    description: "Expanding knowledge with specialized subjects",
-  },
-  {
-    id: "secondary",
-    title: "Secondary",
-    levels: ["Grade 9", "Grade 10"],
-    icon: Award,
-    color: "from-amber-400 to-orange-500",
-    bgColor: "bg-amber-50",
-    description: "Preparing for SEE examination and future success",
-  },
-];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -54,6 +16,9 @@ const containerVariants = {
   },
 };
 
+
+
+
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
@@ -64,6 +29,9 @@ const cardVariants = {
     },
   },
 };
+
+
+
 
 export const GradesSection = () => {
   return (
@@ -81,7 +49,7 @@ export const GradesSection = () => {
           viewport={{ once: true, margin: "-100px" }}
           className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
         >
-          {grades.map((grade) => (
+          {homeGrades.map((grade) => (
             <motion.div key={grade.id} variants={cardVariants}>
               <Link href={`/grades#${grade.id}`}>
                 <div className={`${grade.bgColor} p-6 rounded-2xl card-hover group cursor-pointer h-full`}>

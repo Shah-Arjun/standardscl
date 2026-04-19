@@ -2,36 +2,10 @@
 
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/shared/SectionHeader";
-// import activitiesImage from "@/public/activities-illustration.jpg";
-import {
-    Trophy,
-    Music,
-    Palette,
-    MessageSquare,
-    Users,
-    Map,
-} from "lucide-react";
-import Image from "next/image";
+// import Image from "next/image";
+import { activities } from "@/data/data";
 
 
-
-
-const activities = [
-    {
-        icon: Trophy,
-        title: "Sports",
-        description: "Football, Cricket, Athletics",
-    },
-    { icon: Music, title: "Music & Dance", description: "Traditional & Modern" },
-    { icon: Palette, title: "Art & Craft", description: "Creative Expression" },
-    {
-        icon: MessageSquare,
-        title: "Debate & Quiz",
-        description: "Critical Thinking",
-    },
-    { icon: Users, title: "Clubs", description: "Scouts, SQC, Red Cross" },
-    { icon: Map, title: "Field Trips", description: "Educational Tours" },
-];
 
 
 

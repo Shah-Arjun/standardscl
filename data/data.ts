@@ -22,9 +22,26 @@ import {
     Bot,
   } from "lucide-react";
 
+import {
+  Laptop,
+  ClipboardCheck,
+  BookPlus,
+} from "lucide-react";
+import {
+  Music,
+  Palette,
+  MessageSquare,
+  Map,
+} from "lucide-react";
 
 
-// for /about page ===============================================================================
+
+
+
+
+
+
+// for   /about page    &     home->whyChooseUs section===============================================================================
 export  const values = [
     {
       icon: Target,
@@ -439,5 +456,200 @@ export const categories = [
 
 
 
+
+//   ===========================  /   home page  data   ==============================
+
+// home-> AcademicsSection data
+export const features = [
+  {
+    icon: Users,
+    title: "Experienced Teachers",
+    description: "Highly qualified and dedicated faculty members",
+  },
+  {
+    icon: Target,
+    title: "Optimal Ratio",
+    description: "Appropriate student-teacher ratio for personalized attention",
+  },
+  {
+    icon: Laptop,
+    title: "Digital Learning",
+    description: "Modern technology integrated into everyday learning",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "Regular Evaluations",
+    description: "Weekly tests, continuous assessment and terminal examinations",
+  },
+  {
+    icon: BookPlus,
+    title: "Extra Classes",
+    description: "Remedial and extra classes for academic support",
+  },
+  {
+    icon: Award,
+    title: "Excellence Focus",
+    description: "Committed to achieving academic excellence",
+  },
+];
+ 
+
+
+
+
+// home-> ActivitiesSection data 
+export const activities = [
+  { icon: Trophy, title: "Sports", description: "Football, Cricket, Athletics"},
+  { icon: Music, title: "Music & Dance", description: "Traditional & Modern" },
+  { icon: Palette, title: "Art & Craft", description: "Creative Expression" },
+  { icon: MessageSquare, title: "Debate & Quiz", description: "Critical Thinking"},
+  { icon: Users, title: "Clubs", description: "Scouts, SQC, Red Cross" },
+  { icon: Map, title: "Field Trips", description: "Educational Tours" },
+];
+
+
+
+
+// home -> FacilitiesSection data 
+export const homeFacilities = [
+  {
+    icon: FlaskConical,
+    title: "Science Lab",
+    description: "Well-equipped labs for practical experiments",
+  },
+  {
+    icon: Monitor,
+    title: "Computer Lab",
+    description: "Modern computers with training programs",
+  },
+  {
+    icon: Bot,
+    title: "Robotics & IT Trainings",
+    description: "Hands-on training in robotics and IT skills",
+  },
+  {
+    icon: Trophy,
+    title: "Sports Ground",
+    description: "Appropriate playground for various sports",
+  },
+  {
+    icon: Bus,
+    title: "Transportation",
+    description: "Safe and reliable school bus service",
+  },
+  {
+    icon: Shield,
+    title: "CCTV & Safety",
+    description: "24/7 surveillance for student security",
+  },
+  {
+    icon: Tv,
+    title: "Smart Classes",
+    description: "Digital learning with interactive boards",
+  },
+  {
+    icon: Wifi,
+    title: "Digital Campus",
+    description: "Wi-Fi enabled campus for modern learning",
+  },
+];
+
+
+
+
+
+//  home -> GradesSection data
+export const homeGrades = [
+  {
+    id: "pre-primary",
+    title: "Pre-Primary",
+    levels: ["Nursery", "LKG", "UKG"],
+    icon: Baby,
+    color: "from-pink-400 to-rose-500",
+    bgColor: "bg-pink-50",
+    description: "Building strong foundations through play-based learning",
+  },
+  {
+    id: "basic_1_5",
+    title: "Basic Level (1-5)",
+    levels: ["Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5"],
+    icon: BookOpen,
+    color: "from-blue-400 to-cyan-500",
+    bgColor: "bg-blue-50",
+    description: "Developing core skills in reading, writing, and mathematics",
+  },
+  {
+    id: "basic_6_8",
+    title: "Basic Level (6-8)",
+    levels: ["Grade 6", "Grade 7", "Grade 8"],
+    icon: GraduationCap,
+    color: "from-green-400 to-emerald-500",
+    bgColor: "bg-green-50",
+    description: "Expanding knowledge with specialized subjects",
+  },
+  {
+    id: "secondary",
+    title: "Secondary",
+    levels: ["Grade 9", "Grade 10"],
+    icon: Award,
+    color: "from-amber-400 to-orange-500",
+    bgColor: "bg-amber-50",
+    description: "Preparing for SEE examination and future success",
+  },
+];
+
+
+
+
+
+
+// home -> TestimonialSection data 
+export const testimonials = [
+  {
+    id: 1,
+    name: "Sunita Sharma",
+    childGrade: "Grade 8",
+    feedback:
+      "The teachers here really care about every child. My son has become much more confident and his grades have improved a lot. The hostel feels like a second home.",
+    rating: 5,
+    date: "Falgun 2082",
+  },
+  {
+    id: 2,
+    name: "Rajesh Adhikari",
+    childGrade: "Grade 5",
+    feedback:
+      "We are very happy with the discipline and regular updates from the school. The safety measures are excellent, and our daughter loves going to school every day.",
+    rating: 5,
+    date: "Asar 2081",
+  },
+  {
+    id: 3,
+    name: "Kamala Thapa",
+    childGrade: "Grade 10",
+    feedback:
+      "Both my children studied here and it has shaped them beautifully — not just in studies but in character and confidence. Also provides a special guidance to class 10th students.",
+    rating: 5,
+    date: "Falgun 2078",
+  },
+  {
+    id: 4,
+    name: "Bikash Rai",
+    childGrade: "Grade 7",
+    feedback:
+      "The school provides a perfect balance between academics and extracurricular activities. My child has developed leadership skills and enjoys every moment at school.",
+    rating: 5,
+    date: "Poush 2080",
+  },
+  {
+    id: 5,
+    name: "Anita Chaudhary",
+    childGrade: "Grade 6",
+    feedback:
+      "I truly appreciate the caring environment and dedicated teachers. The communication between school and parents is excellent, which gives us great confidence.",
+    rating: 5,
+    date: "Baisakh 2079",
+  },
+];
 
 

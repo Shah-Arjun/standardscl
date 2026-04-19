@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { event as gaEvent } from "@/lib/gtag";
 
+
+
+
 export const AdmissionCTA = () => {
   return (
     <section className="section-padding bg-gradient-hero relative overflow-hidden">
@@ -59,10 +62,6 @@ export const AdmissionCTA = () => {
           {/* CTA Buttons */}
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/admissions">
-              {/* <Button className="bg-white text-primary hover:text-xl hover:bg-white/90 font-semibold px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all group">
-                Apply Now
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button> */}
 
               <Button
                 className="bg-white text-primary hover:text-xl hover:bg-white/90 font-semibold px-4 py-5 text-md lg:px-8 lg:py-6 lg:text-lg rounded-xl shadow-lg hover:shadow-xl transition-all group"

@@ -2,48 +2,9 @@
 
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/shared/SectionHeader";
-import {
-  Users,
-  Target,
-  Laptop,
-  ClipboardCheck,
-  BookPlus,
-  Award,
-} from "lucide-react";
+import { features } from "@/data/data";
 
 
-const features = [
-  {
-    icon: Users,
-    title: "Experienced Teachers",
-    description: "Highly qualified and dedicated faculty members",
-  },
-  {
-    icon: Target,
-    title: "Optimal Ratio",
-    description: "Appropriate student-teacher ratio for personalized attention",
-  },
-  {
-    icon: Laptop,
-    title: "Digital Learning",
-    description: "Modern technology integrated into everyday learning",
-  },
-  {
-    icon: ClipboardCheck,
-    title: "Regular Evaluations",
-    description: "Weekly tests, continuous assessment and terminal examinations",
-  },
-  {
-    icon: BookPlus,
-    title: "Extra Classes",
-    description: "Remedial and extra classes for academic support",
-  },
-  {
-    icon: Award,
-    title: "Excellence Focus",
-    description: "Committed to achieving academic excellence",
-  },
-];
 
 
 export const AcademicsSection = () => {

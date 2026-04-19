@@ -1,19 +1,30 @@
+//  admin dashboard
+
+
 "use client";
+
+
 import Link from "next/link";
 import AdminSidebar from "../sidebar/AdminSidebar";
-
 import { useEffect, useState } from "react";
 import Image from "next/image";
+
+
 
 type User = {
   email: string;
   role: string;
 };
 
+
+
+
 function Dashboard({ children }: Readonly<{ children: React.ReactNode }>) {
   const [user, setUser] = useState<User | null>(null);
   const [open, setOpen] = useState(false);
 
+
+  // fetch admin from db
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -30,6 +41,8 @@ function Dashboard({ children }: Readonly<{ children: React.ReactNode }>) {
     fetchUser();
   }, []);
 
+
+  // logout user handler
   const handleLogout = async () => {
     await fetch("/api/admin/logout", {
       method: "POST",
@@ -37,6 +50,9 @@ function Dashboard({ children }: Readonly<{ children: React.ReactNode }>) {
 
     window.location.href = "/";
   };
+
+
+
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -55,6 +71,8 @@ function Dashboard({ children }: Readonly<{ children: React.ReactNode }>) {
         <AdminSidebar />
       </div>
 
+
+
       {/* Main content  */}
       <div className="flex flex-col flex-1 overflow-y-auto">
         <div className="flex items-center justify-between h-16 bg-white border-b border-gray-200">
@@ -65,6 +83,8 @@ function Dashboard({ children }: Readonly<{ children: React.ReactNode }>) {
               placeholder="Search"
             />
           </div>
+
+
 
           {/* user info */}
           <div className="flex items-center justify-end h-16 bg-white border-b px-6">
@@ -88,6 +108,8 @@ function Dashboard({ children }: Readonly<{ children: React.ReactNode }>) {
                     {user?.email ? user.email.charAt(0).toUpperCase() : "A"}
                   </div>
                 </button>
+
+
 
                 {/* Dropdown */}
                 {open && (

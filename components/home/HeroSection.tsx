@@ -5,13 +5,12 @@ import { ArrowRight, MapPin, GraduationCap, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-
-import heroImage from "@/public/hero-illustration.jpg";
 import book from "@/public/book.png";
-import books from "@/public/books.png";
 import ssbsTeachers from "@/public/ssbsTeachers.jpg";
 import { TypewriterText } from "../text/TypewriterText";
 import { event as gaEvent } from "@/lib/gtag";
+
+
 
 
 
@@ -29,8 +28,11 @@ export const HeroSection = () => {
         />
       </div>
 
+
+
       {/* ================= OVERLAY  for bg image =================*/}
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/70 via-background/60 to-background/90" />
+
 
 
       
