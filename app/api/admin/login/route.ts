@@ -41,7 +41,7 @@ export async function POST(req: Request) {
         httpOnly: true,                                  // JS cannot access --> secure
         secure: process.env.NODE_ENV === "production",   // only https in production
         sameSite: "strict",                              // prevents CSRF attacks
-        path: "/admin",                                      // cookies will only be available in /admin/* path
+        path: "/",                                      // cookies will only be available in /admin/* path
         maxAge: 60 * 60,                                // expires after 1h
       })
   
