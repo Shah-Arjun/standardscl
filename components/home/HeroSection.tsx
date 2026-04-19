@@ -55,7 +55,7 @@ export const HeroSection = () => {
             >
               {/* <span className="w-2 h-2 bg-primary rounded-full animate-pulse" /> */}
               {/* <span className="text-sm font-semibold">Admissions Open for Academic Years 2083</span> */}
-              <span className="text-sm font-semibold">🎓 Nursery to Grade 10</span>
+              <span className="text-sm font-semibold">🎓 Play Group to Grade 10</span>
             </motion.div>
 
             {/* Heading */}

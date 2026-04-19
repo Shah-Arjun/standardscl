@@ -40,7 +40,7 @@ export const AdmissionCTA = () => {
 
           <p className="text-xl text-white/80 max-w-2xl mx-auto mb-14">
             Join our family of learners and give your child the best education
-            in a nurturing environment. Limited seats available!
+            in a nurturing environment.
           </p>
 
           {/* Features */}
