@@ -9,12 +9,16 @@ import book from "@/public/book.png";
 import ssbsTeachers from "@/public/ssbsTeachers.jpg";
 import { TypewriterText } from "../typewriter/TypewriterText";
 import { event as gaEvent } from "@/lib/gtag";
+import { useEffect, useState } from "react";
 
 
 
 
 
 export const HeroSection = () => {
+
+
+
   return (
     <section className="relative min-h-[85svh] md:min-h-[90svh] flex items-center overflow-hidden">
       {/* ================= BACKGROUND IMAGE =================*/}
@@ -59,10 +63,20 @@ export const HeroSection = () => {
             </motion.div>
 
             {/* Heading */}
-            <h1 className="text-xl sm:text-xl md:text-2xl lg:text-3xl text-gray-800">Welcome to</h1>{" "}
+            {/* Welcome to */}
+            <h1 className="text-xl sm:text-xl md:text-2xl lg:text-3xl text-gray-800">
+              Welcome to
+            </h1>
+
+            {/* Typewriter */}
             <h1 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
-              <span className="inline-block min-w-[19ch] sm:min-w-[19ch] md:min-w-[19ch]">
-                <TypewriterText text="Standard Secondary" className="text-gradient-golden whitespace-nowrap"/>
+              <span className="inline-block min-w-[19ch] sm:min-w-[22ch] md:min-w-[28ch] lg:min-w-[28ch]">
+                <TypewriterText 
+                  texts={["Standard Secondary", "स्ट्याण्डर्ड सेकेण्डरी"]}
+                  typingSpeed={90}
+                  delayBeforeDelete={2000}
+                  className="text-gradient-golden"
+                />
               </span>{" "}
               Boarding School
             </h1>
