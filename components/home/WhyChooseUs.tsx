@@ -34,8 +34,8 @@ const WhyChooseUs = () => {
                 <h3 className="font-heading font-bold text-xl text-foreground mb-4">{item.title}</h3>
               </div>   
 
-              {item.description.map((d, index) => (
-                <div key={index} className="flex items-start gap-3 text-muted-foreground leading-relaxed">
+              {item.description.map((d, i) => (
+                <div key={i} className="flex items-start gap-3 text-muted-foreground leading-relaxed">
                   <CheckCircle className="text-mint shrink-0 mt-1.5" size={20} />
                   <p className="mt-1 font-body text-primary-foreground/80 font-medium">{d}</p>
               </div>

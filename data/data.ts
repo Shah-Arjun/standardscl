@@ -44,24 +44,28 @@ import {
 // for   /about page    &     home->whyChooseUs section===============================================================================
 export  const values = [
     {
-      icon: Target,
-      title: "Our Mission",
-      description: ["a", "b", "c"]
-    },
-    {
-      icon: Eye,
-      title: "Our Vision",
-      description: ['a', 'b', 'c']
-    },
-    {
       icon: Heart,
-      title: "Our Values",
+      title: "Our Core Values",
       description: [
-        "Inclusive and Respect",
+        "Inclusiveness and Respect",
         "Discipline and Moral Integrity",
         "Quality Education with Culture",
         "Creativity and Innovation",
         "Social Responsibility and Civic Sense"
+      ]
+    },
+    {
+      icon: Eye,
+      title: "Our Vision",
+      description: ["To nurture disciplined, cultured, creative and responsible citizens through quality, inclusive and value-based education"]
+    },
+    {
+      icon: Target,
+      title: "Our Mission",
+      description: [
+        "To provide quality and practical education for holistic development",
+        "To respect and promote cultural diversity and social harmony",
+        "To develop discipline, moral values and civic responsibility."
       ]
     },
   ];

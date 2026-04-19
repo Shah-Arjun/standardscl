@@ -112,8 +112,8 @@ const About = () => {
                 <h3 className="font-heading font-bold text-xl text-foreground mb-4">
                   {item.title}
                 </h3>
-                {item.description.map((d) => (
-                  <div className="flex items-start gap-3 text-muted-foreground leading-relaxed">
+                {item.description.map((d, i) => (
+                  <div key={i} className="flex items-start gap-3 text-muted-foreground leading-relaxed">
                     <CheckCircle className="text-mint shrink-0 mt-1.5" size={22} />
                     <p className="mt-1 font-body text-primary-foreground/75 font-medium">{d}</p>
                 </div>

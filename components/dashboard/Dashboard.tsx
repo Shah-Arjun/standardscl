@@ -111,7 +111,7 @@ function Dashboard({ children }: Readonly<{ children: React.ReactNode }>) {
 
 
 
-                {/* Dropdown */}
+                {/* Dropdown and logout */}
                 {open && (
                   <div className="absolute right-0 mt-2 w-44 bg-white border rounded-lg shadow-md z-50">
                     <button
