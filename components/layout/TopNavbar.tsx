@@ -61,7 +61,7 @@ function TopNavbar() {
 
             {/* TikTok */}
             <a
-              href="#"
+              href="https://www.tiktok.com/@standard.boarding?_r=1&_t=ZS-95gRDyVHNX5"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 hover:opacity-80 transition-opacity"

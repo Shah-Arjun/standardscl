@@ -5,6 +5,7 @@ import {
   Facebook,
   Instagram,
   Copyright,
+  Linkedin,
 } from "lucide-react";
 import Link from "next/link";
 import { event as gaEvent } from "@/lib/gtag";
@@ -116,7 +117,8 @@ export const Footer = () => {
 
                 {/* tiktok */}
                 <a
-                  href="#"
+                  href="https://www.tiktok.com/@standard.boarding?_r=1&_t=ZS-95gRDyVHNX5"
+                  target="_blank"
                   className="w-9 h-9 rounded-full bg-golden/20 flex items-center justify-center hover:bg-golden hover:text-foreground transition"
                 >
                   <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
@@ -187,6 +189,15 @@ export const Footer = () => {
               >
                 +977 9807307132
               </a>
+
+              <span>|</span>
+
+              <a
+                  href="https://www.linkedin.com/in/arjunshah856?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                  className="flex text-golden hover:underline transition"
+                >
+                  <Linkedin className="w-3.5 h-3.5" /> <span className="pl-1">LinkedIn</span>
+                </a>
             </p>
           </div>
 

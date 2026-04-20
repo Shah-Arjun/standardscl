@@ -158,9 +158,10 @@ const Contact = () => {
                       <Icon className="w-5 h-5" />
                     </a>
                   ))}
+                  {/* tiktok */}
                   <a
-                    href="#"
-                    // target="_blank"
+                    href="https://www.tiktok.com/@standard.boarding?_r=1&_t=ZS-95gRDyVHNX5"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="w-12 h-12 bg-muted rounded-xl flex items-center justify-center
                     hover:bg-primary hover:text-primary-foreground
