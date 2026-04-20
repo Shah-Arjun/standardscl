@@ -239,8 +239,7 @@ export default function AdminImagePage() {
     } catch (err: any) {
       console.error("Delete error:", err);
       
-      // Show more user-friendly error message
-      const errorMessage = err.message || "Failed to delete items. Please try again.";
+      const errorMessage = "Failed to delete items. Please try again.";
       alert(errorMessage);
     } finally {
       setIsDeleting(false);

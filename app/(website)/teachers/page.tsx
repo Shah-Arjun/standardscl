@@ -99,7 +99,7 @@ export default function Teachers() {
                     <div className="absolute -top-16 left-1/2 -translate-x-1/2">
                       <div className="w-36 h-36 rounded-full overflow-hidden border-4 border-white shadow-lg group-hover:scale-110 transition">
                         <Image
-                          src={`${teacher.photo}?q_auto,f_auto`}
+                          src={`${teacher?.photo}?q_auto,f_auto`}
                           alt={teacher.teacherName}
                           width={144}
                           height={144}

@@ -2,6 +2,9 @@
 
 import { transporter } from "./mailer";
 
+
+
+
 // Send message to school mail fuction
 export async function sendEmailToScl(data: {
   name: string;
@@ -42,7 +45,7 @@ export async function sendEmailToScl(data: {
 
 
 
-// Auto-reply to user
+// Auto-reply to user function
 export async function sendAutoReply(email: string, name: string) {
   return transporter.sendMail({
     from: `"Standard Sec. Boarding School" <${process.env.MAIL_USER}>`,

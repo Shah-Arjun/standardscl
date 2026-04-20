@@ -1,5 +1,7 @@
 import { v2 as cloudinary } from "cloudinary";
 
+
+// cloudinary config
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME!,
   api_key: process.env.CLOUDINARY_API_KEY!,
@@ -7,12 +9,14 @@ cloudinary.config({
 });
 
 
-
+// types
 interface CloudinaryUploadResult {
   public_id: string;
   secure_url: string;
 }
 
+
+// upload to cloudinary function
 export const uploadToCloudinary = async (
   fileBuffer: Buffer,
   folderName: string
