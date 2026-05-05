@@ -18,8 +18,8 @@ node_modules
 dist
 build
 
-seed.ts
-seed
+# seed.ts
+# seed
 
 
 # testing
