@@ -64,9 +64,9 @@ export const HeroSection = () => {
 
             {/* Heading */}
             {/* Welcome to */}
-            <h1 className="text-xl sm:text-xl md:text-2xl lg:text-3xl text-gray-800">
+            <p className="text-xl sm:text-xl md:text-2xl lg:text-3xl text-gray-800">
               Welcome to
-            </h1>
+            </p>
 
             {/* Typewriter */}
             <h1 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
