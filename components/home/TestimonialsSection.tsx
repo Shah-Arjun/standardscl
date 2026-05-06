@@ -87,7 +87,7 @@ export const TestimonialsSection = () => {
             {testimonials.map((item, index) => (
               <motion.div
                 key={index}
-                className="min-w-[280px] max-w-[320px] bg-card rounded-2xl p-6 shadow-md border border-border flex-shrink-0 hover:shadow-xl transition-all"
+                className="min-w-[260px] sm:min-w-[280px] max-w-[320px] bg-card rounded-2xl p-5 sm:p-6 shadow-md border border-border flex-shrink-0 hover:shadow-xl transition-all"
                 whileHover={{ scale: 1.05 }}
               >
                 <Quote className="w-6 h-6 text-primary mb-3" />

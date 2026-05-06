@@ -9,7 +9,7 @@ function TopNavbar() {
     <>
       <div className="bg-orange-700 text-white py-1 px-4">
         <div className="flex justify-between items-center text-sm">
-          
+
           {/* left end */}
           <div className="flex items-center gap-2 md:gap-4 lg:gap-6">
             <a
@@ -76,7 +76,7 @@ function TopNavbar() {
               </svg>
             </a>
           </div>
-          
+
         </div>
       </div>
     </>

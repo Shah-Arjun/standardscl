@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { SiteLayout } from "@/components/layout/SiteLayout";
 import PageHero from "@/components/shared/PageHero";
+import { User } from "lucide-react";
 
 
 
@@ -22,6 +23,19 @@ export default function Teachers() {
   const [page, setPage] = useState(0);
   const [teachers, setTeachers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [failedImages, setFailedImages] = useState<Set<number>>(new Set());
+
+  const handleImageError = (teacherId: number) => {
+    setFailedImages(prev => new Set([...prev, teacherId]));
+  };
+
+  const getGenderIcon = (gender: string | null | undefined) => {
+    const isFemale = gender?.toLowerCase() === "female";
+    const iconClass = "w-16 h-16 sm:w-20 sm:h-20";
+    const iconColor = isFemale ? "text-pink-300" : "text-gray-400";
+    
+    return <User className={`${iconClass} ${iconColor}`} strokeWidth={1.5} />;
+  };
 
   useEffect(() => {
     async function fetchTeachers() {
@@ -97,15 +111,26 @@ export default function Teachers() {
                   {/* Desktop Card (Floating Circle) */}
                   <div className="hidden lg:block bg-white/50 w-full max-w-xs mx-auto pt-16 pb-6 px-6 rounded-2xl shadow-md hover:shadow-xl transition text-center relative">
                     <div className="absolute -top-16 left-1/2 -translate-x-1/2">
-                      <div className="w-36 h-36 rounded-full overflow-hidden border-4 border-white shadow-lg group-hover:scale-110 transition">
-                        <Image
-                          src={`${teacher?.photo}?q_auto,f_auto`}
-                          alt={teacher.teacherName}
-                          width={144}
-                          height={144}
-                          quality={100}
-                          className="object-cover w-full h-full"
-                        />
+                      <div className="w-36 h-36 rounded-full overflow-hidden border-4 border-white shadow-lg group-hover:scale-110 transition bg-gray-200 flex items-center justify-center">
+                        {!failedImages.has(teacher.id) && teacher.photo ? (
+                          <Image
+                            src={`${teacher?.photo}?q_auto,f_auto`}
+                            alt={teacher.teacherName}
+                            width={144}
+                            height={144}
+                            quality={100}
+                            className="object-cover w-full h-full"
+                            onError={() => handleImageError(teacher.id)}
+                          />
+                        ) : (
+                          <div className={`w-full h-full flex items-center justify-center ${
+                            teacher.gender?.toLowerCase() === "female"
+                              ? "bg-gradient-to-br from-pink-50 to-pink-100"
+                              : "bg-gradient-to-br from-gray-50 to-gray-100"
+                          }`}>
+                            {getGenderIcon(teacher.gender)}
+                          </div>
+                        )}
                       </div>
                     </div>
 
@@ -129,15 +154,26 @@ export default function Teachers() {
 
                   {/* Mobile Horizontal Card (List Style) */}
                   <div className="lg:hidden bg-white rounded-2xl shadow-md overflow-hidden flex gap-4 p-4 border border-gray-100">
-                    <div className="w-24 h-24 flex-shrink-0 rounded-xl overflow-hidden border-2 border-white shadow-sm">
-                      <Image
-                        src={`${teacher.photo}?q_auto,f_auto`}
-                        alt={teacher.teacherName}
-                        width={96}
-                        height={96}
-                        quality={100}
-                        className="object-cover w-full h-full"
-                      />
+                    <div className="w-24 h-24 flex-shrink-0 rounded-xl overflow-hidden border-2 border-white shadow-sm bg-gray-200 flex items-center justify-center">
+                      {!failedImages.has(teacher.id) && teacher.photo ? (
+                        <Image
+                          src={`${teacher.photo}?q_auto,f_auto`}
+                          alt={teacher.teacherName}
+                          width={96}
+                          height={96}
+                          quality={100}
+                          className="object-cover w-full h-full"
+                          onError={() => handleImageError(teacher.id)}
+                        />
+                      ) : (
+                        <div className={`w-full h-full flex items-center justify-center ${
+                          teacher.gender?.toLowerCase() === "female"
+                            ? "bg-gradient-to-br from-pink-50 to-pink-100"
+                            : "bg-gradient-to-br from-gray-50 to-gray-100"
+                        }`}>
+                          {getGenderIcon(teacher.gender)}
+                        </div>
+                      )}
                     </div>
 
                     <div className="flex-1 py-1">

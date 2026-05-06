@@ -148,9 +148,9 @@ export const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="border-t border-border/20 py-6 px-4">
-        <div className="container-school flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+        <div className="container-school flex flex-col md:flex-row justify-between items-center gap-6 md:gap-4 text-center md:text-left">
           {/* LEFT SIDE */}
-          <div className="space-y-1">
+          <div className="space-y-3 md:space-y-1">
             <p className="text-muted-foreground text-sm">
               <Copyright className="w-4 h-4 inline" />{" "}
               {new Date().getFullYear()} Standard Secondary Boarding School. All

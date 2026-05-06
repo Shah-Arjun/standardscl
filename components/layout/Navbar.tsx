@@ -154,9 +154,18 @@ export const Navbar = () => {
 
 
 
+        {/* Backdrop for mobile menu */}
+        {isOpen && (
+          <div 
+            className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+            onClick={() => setIsOpen(false)}
+            aria-hidden="true"
+          />
+        )}
+
         {/* Mobile Menu -- opens when clicked */}
         <div
-          className={`fixed top-0 right-0 h-full w-[60%] sm:w-[50%] md:w-[40%] bg-background border-l shadow-lg z-50 py-6 px-4 mb-4 space-y-2 lg:hidden transform transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          className={`fixed top-0 right-0 h-full w-[80%] sm:w-[60%] md:w-[50%] bg-background border-l shadow-2xl z-50 py-6 px-4 mb-4 space-y-2 lg:hidden transform transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] overflow-y-auto ${
             isOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >

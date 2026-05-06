@@ -39,10 +39,10 @@ export const HeroSection = () => {
 
 
 
-      
+
       {/* ================= MAIN CONTENT ================= */}
       <div className="container-hero relative z-10 -top-4 lg:-top-8 ">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* ================= LEFT : TEXT CONTENT ================= */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -71,7 +71,7 @@ export const HeroSection = () => {
             {/* Typewriter */}
             <h1 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
               <span className="inline-block min-w-[19ch] sm:min-w-[22ch] md:min-w-[28ch] lg:min-w-[28ch]">
-                <TypewriterText 
+                <TypewriterText
                   texts={["Standard Secondary", "स्ट्याण्डर्ड सेकेण्डरी"]}
                   typingSpeed={90}
                   delayBeforeDelete={2000}
@@ -161,9 +161,9 @@ export const HeroSection = () => {
             className="relative w-full max-w-sm sm:max-w-md md:max-w-xl lg:max-w-2xl mx-auto"
           >
             {/* Book doodle */}
-            <Image src={book} alt="book" className="absolute -top-12 -left-4 w-12 h-10 z-20 opacity-40 lg:left-0 lg:-top-18 lg:w-19 lg:h-16 animate-bounce duration-100"/>
+            <Image src={book} alt="book" className="absolute -top-12 left-0 w-12 h-10 z-20 opacity-40 lg:-left-4 lg:-top-18 lg:w-19 lg:h-16 animate-bounce duration-100" />
             {/* Glow */}
-              <div aria-hidden className="absolute inset-6 bg-primary/30 blur-3xl rounded-3xl -z-10" />
+            <div aria-hidden className="absolute inset-6 bg-primary/30 blur-3xl rounded-3xl -z-10" />
 
             {/* Video */}
             <video
@@ -188,7 +188,7 @@ export const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
-              className="absolute -bottom-4 sm:-bottom-6 -left-4 drop-shadow-lg sm:-left-6 bg-card p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg border"
+              className="absolute -bottom-4 sm:-bottom-6 left-2 sm:-left-6 drop-shadow-lg bg-card p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg border scale-90 sm:scale-100 origin-bottom-left"
             >
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-gradient-hero rounded-xl flex items-center justify-center">🎓</div>
