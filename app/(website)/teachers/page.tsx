@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { SiteLayout } from "@/components/layout/SiteLayout";
 import PageHero from "@/components/shared/PageHero";
-import { User } from "lucide-react";
+import { GraduationCap } from "lucide-react";
 
 
 
@@ -34,7 +34,7 @@ export default function Teachers() {
     const iconClass = "w-16 h-16 sm:w-20 sm:h-20";
     const iconColor = isFemale ? "text-pink-300" : "text-gray-400";
     
-    return <User className={`${iconClass} ${iconColor}`} strokeWidth={1.5} />;
+    return <GraduationCap className={`${iconClass} ${iconColor}`} strokeWidth={1.5} />;
   };
 
   useEffect(() => {

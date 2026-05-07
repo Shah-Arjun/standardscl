@@ -16,9 +16,6 @@ import { useEffect, useState } from "react";
 
 
 export const HeroSection = () => {
-
-
-
   return (
     <section className="relative min-h-[85svh] md:min-h-[90svh] flex items-center overflow-hidden">
       {/* ================= BACKGROUND IMAGE =================*/}

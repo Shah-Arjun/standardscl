@@ -1,6 +1,3 @@
-/* ================================
-   Tailwind v4 (MUST be first)
-================================ */
 @import "tailwindcss";
 
 /* ================================
@@ -76,17 +73,11 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
   }
 
-  code,
-  pre {
+  code, pre {
     font-family: var(--font-mono);
   }
 }
@@ -95,25 +86,26 @@
    Components
 ================================ */
 @layer components {
-  /* .app-container {
+  .app-container {
     max-width: max-w-7xl auto;
     margin-inline: auto;
     padding: 2rem;
     text-align: center;
-  } */
+  }
 
-  .app-container {
+  /* .app-container {
     @apply max-w-7xl mx-auto px-4;
         margin-inline: auto;
     padding: 2rem;
     text-align: center;
-  }
+  } */
 
-  .card {
+  /* UNUSED: .card - use Tailwind utility classes bg-card or the Card component instead */
+  /* .card {
       @apply p-4 md:p-6 lg:p-8;
     background: var(--color-card);
     border-radius: var(--radius-xl);
-  }
+  } */
 
   .card-hover {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -152,7 +144,8 @@
 
 
 
-  .logo {
+  /* UNUSED: .logo - use Image component with object-contain instead */
+  /* .logo {
       @apply h-16 md:h-24;
     padding: 1.5em;
     transition: filter 300ms;
@@ -165,7 +158,7 @@
 
   .logo.react:hover {
     filter: drop-shadow(0 0 32px hsl(193 95% 68% / 0.6));
-  }
+  } */
 }
 
 /* ================================
@@ -176,11 +169,12 @@
     color: var(--color-muted-foreground);
   }
 
-  .bg-gradient-warm {
+  /* UNUSED: .bg-gradient-warm - no references found in codebase */
+  /* .bg-gradient-warm {
     background: linear-gradient(135deg,
         hsl(40 33% 98%),
         hsl(38 92% 95%));
-  }
+  } */
 
   .bg-gradient-hero {
     background: linear-gradient(135deg,
@@ -255,9 +249,10 @@
 }
 
 /* cursor blinking */
-.animate-caret {
+/* UNUSED: .animate-caret - code uses .animate-caret-blink instead */
+/* .animate-caret {
   animation: caret 2s steps(1) infinite;
-}
+} */
 
 
 
@@ -300,13 +295,15 @@
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
+/* UNUSED: .animate-logo-spin - no references found */
+/* @media (prefers-reduced-motion: no-preference) {
   .animate-logo-spin {
     animation: logo-spin 16s linear infinite;
   }
-}
+} */
 
-@keyframes marquee-left {
+/* UNUSED: marquee-left / marquee-right keyframes - supporting commented classes above */
+/* @keyframes marquee-left {
   0% {
     transform: translateX(0%);
   }
@@ -322,15 +319,16 @@
   100% {
     transform: translateX(0%);
   }
-}
+} */
 
-.animate-marquee-left {
+/* UNUSED: .animate-marquee-left / .animate-marquee-right - no references found */
+/* .animate-marquee-left {
   animation: marquee-left 30s linear infinite;
 }
 
 .animate-marquee-right {
   animation: marquee-right 30s linear infinite;
-}
+} */
 
 /* Pause on hover */
 .pause-on-hover:hover {
