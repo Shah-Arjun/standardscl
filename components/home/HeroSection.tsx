@@ -65,7 +65,7 @@ export const HeroSection = () => {
             </p>
 
             {/* Typewriter */}
-            <h3 className="font-heading font-bold text-2xl sm:text-4xl md:text-5xl lg:text-5xl leading-[1.15] sm:leading-[1.2]">
+            <h3 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl lg:text-5xl leading-[1.15] sm:leading-[1.2]">
               <span className="inline-block min-w-[18ch] sm:min-w-[22ch] md:min-w-[28ch] lg:min-w-[28ch]">
                 <TypewriterText
                   texts={["Standard Secondary", "स्ट्याण्डर्ड सेकेण्डरी"]}
