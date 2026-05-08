@@ -16,7 +16,7 @@ export const SectionHeader = ({ title, subtitle, centered = true, light = false 
   return (
     <div className={`mb-12 ${centered ? "text-center" : ""}`}>
       <h2
-        className={`font-heading font-bold text-3xl md:text-4xl lg:text-5xl mb-4 ${
+        className={`font-heading font-bold text-3xl md:text-4xl lg:text-4xl mb-4 ${
           light ? "text-background" : "text-foreground"
         }`}
       >
@@ -24,7 +24,7 @@ export const SectionHeader = ({ title, subtitle, centered = true, light = false 
       </h2>
       {subtitle && (
         <p
-          className={`text-md md:text-lg lg:text-lg max-w-2xl ${centered ? "mx-auto" : ""} ${
+          className={`text-sm md:text-md lg:text-md max-2xl ${centered ? "mx-auto" : ""} ${
             light ? "text-background/80" : "text-muted-foreground"
           }`}
         >

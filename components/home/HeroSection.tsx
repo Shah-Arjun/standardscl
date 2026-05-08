@@ -16,7 +16,7 @@ import { event as gaEvent } from "@/lib/gtag";
 
 export const HeroSection = () => {
   return (
-    <section className="relative flex items-center overflow-x-hidden py-12 sm:py-16 lg:py-0 min-h-[92svh] lg:min-h-[90svh]">
+    <section className="relative flex items-center overflow-x-hidden py-1 sm:py-16 lg:py-0 min-h-[92svh] lg:min-h-[90svh]">
       {/* ================= BACKGROUND IMAGE =================*/}
       <div className="absolute inset-0 -z-20">
         <Image
@@ -37,7 +37,7 @@ export const HeroSection = () => {
 
 
       {/* ================= MAIN CONTENT ================= */}
-      <div className="container-hero relative z-10 w-full">
+      <div className="container-hero relative -top-3 z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* ================= LEFT : TEXT CONTENT ================= */}
           <motion.div
@@ -156,7 +156,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative w-full max-w-sm sm:max-w-md md:max-w-xl lg:max-w-lg mx-auto mt-2 lg:mt-0 lg:pl-8"
+            className="relative w-full max-w-sm sm:max-w-md md:max-w-xl lg:max-w-lg mx-auto mt-2 lg:mt-0 "
           >
             {/* Book doodle */}
             <Image src={book} alt="book" className="absolute -top-10 sm:-top-12 left-0 w-10 h-8 sm:w-12 sm:h-10 z-20 opacity-40 lg:-left-4 lg:w-16 lg:h-12 animate-bounce duration-100" />

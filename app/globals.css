@@ -147,7 +147,7 @@
   }
 
   .container-hero {
-    @apply w-full max-w-[1620px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-22;
+    @apply w-full max-w-[1620px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-24;
   }
 
 

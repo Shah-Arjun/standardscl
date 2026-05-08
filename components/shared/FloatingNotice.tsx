@@ -64,7 +64,7 @@ export const FloatingNotice = () => {
             className="fixed top-40 md:top-42 lg:top-52 right-0 z-50 cursor-pointer flex items-center"
             onClick={() => setIsOpen(true)}
           >
-            <div className="bg-green-800 text-white px-2 py-2 lg:px-4 lg:py-3 shadow-xl flex items-center gap-3 rounded-l-2xl hover:rounded-l-3xl transition-all duration-300 hover:bg-green-700">
+            <div className="bg-green-800 text-white px-1 py-2 lg:px-4 lg:py-2.25 shadow-xl flex items-center gap-3 rounded-l-2xl hover:rounded-l-3xl transition-all duration-300 hover:bg-green-700">
               <span className="text-md font-semibold uppercase tracking-wider">
                 Notice
               </span>
@@ -79,7 +79,7 @@ export const FloatingNotice = () => {
                 e.stopPropagation(); // Prevent opening popup when clicking arrow
                 setShowBanner(false);
               }}
-              className="bg-green-800 text-white px-2 py-4 lg:py-5 rounded-r-2xl shadow-xl hover:bg-green-700 transition-colors"
+              className="bg-green-800 text-white px-2 py-4 lg:py-4 rounded-r-2xl shadow-xl hover:bg-green-700 transition-colors"
             >
               <ChevronRight className="h-5 w-5" />
             </motion.button>

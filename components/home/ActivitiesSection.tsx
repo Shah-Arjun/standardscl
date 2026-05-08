@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/shared/SectionHeader";
-// import Image from "next/image";
+import Image from "next/image";
 import { activities } from "@/data/data";
 
 
@@ -53,12 +53,14 @@ export const ActivitiesSection = () => {
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="relative"
+                        className="relative m-10"
                     >
-                        <img
+                        <Image
                             src="https://res.cloudinary.com/dpraq0j6y/image/upload/v1770037838/sports_nd9wgi.jpg"
                             alt="Students enjoying co-curricular activities"
-                            className="rounded-3xl shadow-lg w-full"
+                            width={200}
+                            height={100}
+                            className="rounded-3xl shadow-lg w-full h-auto"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent rounded-3xl" />
 

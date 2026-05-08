@@ -131,9 +131,9 @@ export const FloatingWhatsapp = () => {
       {/* ================= FLOATING BELL ================= */}
       {/* Ripple Rings */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <span className="absolute w-14 h-14 rounded-full bg-green-400 opacity-30 animate-ping" />
-        <span className="absolute w-14 h-14 rounded-full bg-green-400 opacity-20 animate-ping delay-200" />
-        <span className="absolute w-14 h-14 rounded-full bg-green-400 opacity-10 animate-ping delay-500" />
+        <span className="absolute w-12 h-12 rounded-full bg-green-400 opacity-30 animate-ping" />
+        <span className="absolute w-12 h-12 rounded-full bg-green-400 opacity-20 animate-ping delay-200" />
+        <span className="absolute w-12 h-12 rounded-full bg-green-400 opacity-10 animate-ping delay-500" />
       </div>
       <motion.button
         onClick={() => {
@@ -151,7 +151,7 @@ export const FloatingWhatsapp = () => {
           rotate: isOpen ? 12 : 0,
         }}
         transition={{ type: "spring", stiffness: 200 }}
-        className="relative w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-white shadow-lg flex items-center justify-center"
+        className="relative w-14 h-14 rounded-full bg-white shadow-lg flex items-center justify-center"
       >
         <motion.div
           animate={{ rotate: isOpen ? 0 : [0, -10, 10, -10, 0] }}

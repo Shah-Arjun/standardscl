@@ -76,7 +76,7 @@ export const Navbar = () => {
           <Link href="/" className="flex items-center gap-3">
             <Image src={SchoolLogo} width={66} height={66} priority className="object-contain" alt="logo"/>
             {/* logo-text */}
-            <div className="hidden md:block leading-tight">
+            <div className="hidden sm:block md:block leading-tight">
               <h1 className="font-bold text-xl tracking-tight">Standard Secondary</h1>
               <p className="text-md text-muted-foreground">Boarding School</p>
             </div>
@@ -111,7 +111,7 @@ export const Navbar = () => {
                   className={`px-3 py-1 rounded-xl transition-all text-md font-medium ${
                     isActive(link.path, link.external)
                       ? "text-primary bg-primary/20"
-                      : "hover:bg-primary hover:text-foreground"
+                      : "hover:bg-primary/80 hover:text-foreground"
                   }`}
                 >
                   {link.name}

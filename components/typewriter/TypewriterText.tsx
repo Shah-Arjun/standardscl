@@ -86,7 +86,7 @@ export const TypewriterText = ({
       <Image 
         src={pen} 
         alt="Pen" 
-        className="w-8 h-8 sm:w-9 sm:h-11 -ml-1 self-end rotate-45 transition-transform duration-300 group-hover:rotate-12" 
+        className="w-8 h-8 sm:w-9 sm:h-10 mb-2 -ml-1 self-end rotate-45 transition-transform duration-300 group-hover:rotate-12" 
       />
     </span>
   );

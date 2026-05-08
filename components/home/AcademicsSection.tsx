@@ -31,11 +31,11 @@ export const AcademicsSection = () => {
               transition={{ delay: index * 0.1 }}
               className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20 hover:bg-white/20 transition-colors"
             >
-              <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4">
                 <feature.icon className="w-7 h-7" />
               </div>
               <h3 className="font-heading font-bold text-xl mb-2">{feature.title}</h3>
-              <p className="text-white/80">{feature.description}</p>
+              <p className="text-white/70">{feature.description}</p>
             </motion.div>
           ))}
         </div>
