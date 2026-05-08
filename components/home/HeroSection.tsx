@@ -37,7 +37,7 @@ export const HeroSection = () => {
 
 
       {/* ================= MAIN CONTENT ================= */}
-      <div className="container-hero relative -top-3 z-10 w-full">
+      <div className="container-hero relative mt-4 sm:mt-0 md:mt-0 lg:mt-0 z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* ================= LEFT : TEXT CONTENT ================= */}
           <motion.div
@@ -111,7 +111,7 @@ export const HeroSection = () => {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4 w-full sm:w-auto">
+            <div className="flex flex-row justify-center lg:justify-start gap-3 sm:gap-4 w-full sm:w-auto">
               <Link href="/admissions">
                 <Button
                   className="btn-primary-school gap-2 w-full sm:w-auto px-5 sm:px-6 py-2"
