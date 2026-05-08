@@ -56,9 +56,9 @@ export const NoticeMarquee = () => {
   return (
     <div className="sticky top-18 bg-secondary text-secondary-foreground overflow-hidden z-40">
       <div className="w-full flex items-center">
-        <div className="flex items-center gap-2 bg-primary px-3 py-1 rounded-full mr-2 flex-shrink-0">
+        <div className="flex items-center gap-2 bg-primary px-3 py-0.5 rounded-full mr-2 flex-shrink-0">
         <Megaphone className="w-4 h-4" />
-        <span className="hidden sm:inline text-sm font-semibold">Notice</span>
+        {/* <span className="hidden sm:inline text-xs font-semibold">Notice</span> */}
       </div>
         <div className="overflow-hidden flex-1">
           <div className="flex animate-marquee whitespace-nowrap min-w-max">
@@ -66,7 +66,7 @@ export const NoticeMarquee = () => {
               const bsDate = new NepaliDate(new Date(notice.createdAt));
 
               return (
-                <span key={notice.id} className="mx-8 text-sm font-medium">
+                <span key={notice.id} className="mx-8 text-xs font-light">
                   <time
                     dateTime={notice.createdAt}
                     className="mr-2"

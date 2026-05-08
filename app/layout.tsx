@@ -35,7 +35,6 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-HYBBFF6LPG"

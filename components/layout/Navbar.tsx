@@ -71,13 +71,13 @@ export const Navbar = () => {
     >
       <div className="w-full mx-auto px-4 md:px-8">
         {/* desktop navbar */}
-        <div className="flex h-18 items-center justify-between">
+        <div className="flex h-16 lg:h-18 items-center justify-between ">
           {/* logo */}
           <Link href="/" className="flex items-center gap-3">
-            <Image src={SchoolLogo} width={72} height={72} priority className="object-contain" alt="logo"/>
+            <Image src={SchoolLogo} width={66} height={66} priority className="object-contain" alt="logo"/>
             {/* logo-text */}
             <div className="hidden md:block leading-tight">
-              <h1 className="font-bold text-2xl tracking-tight">Standard Secondary</h1>
+              <h1 className="font-bold text-xl tracking-tight">Standard Secondary</h1>
               <p className="text-md text-muted-foreground">Boarding School</p>
             </div>
           </Link>
@@ -88,9 +88,9 @@ export const Navbar = () => {
             {navLinks.map((link) =>
               link.children ? ( //if children then show dropdown
                 <DropdownMenu key={link.name}>
-                  <DropdownMenuTrigger className="flex items-center gap-1 px-4 py-2 rounded-xl hover:bg-primary transition-colors">
+                  <DropdownMenuTrigger className="flex text-md font-medium items-center gap-1 px-3 py-1 rounded-xl hover:bg-primary transition-colors">
                     {link.name}
-                    <ChevronDown className="w-4 h-4 transition-transform duration-200" />
+                    <ChevronDown className="w-4 h-3 transition-transform duration-200" />
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="start" className="min-w-40 bg-white">
                     {link.children.map((child) => (
@@ -108,7 +108,7 @@ export const Navbar = () => {
                   href={link.path}
                   target={link.external ? "_blank" : undefined} //open external link in new tab
                   rel={link.external ? "noopener noreferrer" : undefined} //security for external
-                  className={`px-4 py-2 rounded-xl transition-all font-medium ${
+                  className={`px-3 py-1 rounded-xl transition-all text-md font-medium ${
                     isActive(link.path, link.external)
                       ? "text-primary bg-primary/20"
                       : "hover:bg-primary hover:text-foreground"
@@ -133,7 +133,7 @@ export const Navbar = () => {
                     label: "Navbar",
                   })
                 }
-                className="inline-flex items-center justify-center px-2 py-2.5 text-sm md:text-md lg:text-lg font-medium rounded-4xl btn-primary-school text-white hover:border-2 border-secondary"
+                className="inline-flex items-center justify-center px-2 py-2 text-sm md:text-md lg:text-base font-medium rounded-4xl btn-primary-school text-white hover:border-2 border-secondary"
               >
                 Get Admission
               </Link>

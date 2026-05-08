@@ -7,8 +7,8 @@ import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 function TopNavbar() {
   return (
     <>
-      <div className="bg-orange-700 text-white py-1 px-4">
-        <div className="flex justify-between items-center text-sm">
+      <div className="bg-orange-700 text-white py-0.5 px-4">
+        <div className="flex justify-between items-center text-xs font-light">
 
           {/* left end */}
           <div className="flex items-center gap-2 md:gap-4 lg:gap-6">
