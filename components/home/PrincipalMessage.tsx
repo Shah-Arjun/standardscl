@@ -5,9 +5,9 @@ import Image from "next/image";
 
 export const PrincipalMessage = () => {
   return (
-    <section className="section-padding bg-muted py-16 lg:py-24">
+    <section className="container-school bg-muted py-16 lg:py-24">
       <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className=" grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           
           {/* Principal Image Section - Left on desktop/tablet */}
           <motion.div
@@ -17,7 +17,7 @@ export const PrincipalMessage = () => {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="flex justify-center lg:justify-start"
           >
-            <div className="relative w-full max-w-xs md:max-w-md lg:max-w-lg">
+            <div className="relative w-full max-w-xs md:max-w-sm lg:max-w-md">
               {/* Main Image */}
               <div className="relative z-10 group">
                 <Image
@@ -35,11 +35,11 @@ export const PrincipalMessage = () => {
               </div>
 
               {/* Name Card */}
-              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-lg px-3 py-1 md:px-4 md:py-2 lg:py-4 lg:px-8 rounded-2xl shadow-xl border border-white z-20 w-fit">
-                <p className="font-heading font-bold text-lg md:text-xl text-center text-gray-900 whitespace-nowrap">
+              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-lg px-4 py-2 lg:py-3 lg:px-6 rounded-2xl shadow-xl border border-white z-20 w-fit">
+                <p className="font-heading font-bold text-md md:text-lg text-center text-gray-900 whitespace-nowrap">
                   Mr. Ganesh Koirala
                 </p>
-                <p className="text-primary text-sm lg:text-md text-center font-medium lg:mt-1">
+                <p className="text-primary text-xs lg:text-sm text-center font-medium lg:mt-1">
                   Principal &amp; School Chief
                 </p>
               </div>
@@ -58,7 +58,7 @@ export const PrincipalMessage = () => {
             className="space-y-8 pt-6 lg:pt-0"
           >
             <div>
-              <h2 className="font-heading font-bold text-4xl md:text-5xl leading-tight mb-6">
+              <h2 className="font-heading font-bold text-3xl md:text-4xl leading-tight mb-6">
                 Message from the{" "}
                 <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
                   Principal
@@ -66,7 +66,7 @@ export const PrincipalMessage = () => {
               </h2>
             </div>
 
-            <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+            <div className="space-y-6 text-md text-muted-foreground leading-relaxed">
               <p className="text-foreground">Dear Parents and Students,</p>
 
               <p>
@@ -78,7 +78,7 @@ export const PrincipalMessage = () => {
 
               <p>
                 Our motto{" "}
-                <span className="font-semibold text-primary">"Education is Main Path of Success"</span>{" "}
+                <span className="font-semibold text-primary">&quot;Education is Main Path of Success&quot;</span>{" "}
                 reflects our deep commitment to preparing students not only for examinations, 
                 but for the real challenges and opportunities that life offers.
               </p>
@@ -91,13 +91,13 @@ export const PrincipalMessage = () => {
             {/* Inspirational Quote */}
             <div className="text-foreground flex items-center">
               {/* <div className="flex-shrink-0 w-12 h-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full" /> */}
-              <p className="italic text-lg font-light">
+              <p className="italic text-md font-light">
                - &quot;Education is the passport to the future&quot;
               </p>
             </div>
             <div className="border-t border-gray-200 flex items-center">
               {/* <div className="flex-shrink-0 w-12 h-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full" /> */}
-              <p className="text-lgfont-light">
+              <p className="text-md font-light">
                 Thank you.
               </p>
             </div>
