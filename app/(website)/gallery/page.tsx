@@ -134,7 +134,7 @@ export default function Gallery() {
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-6 py-2 rounded-full font-medium transition-all ${
+                className={`px-4 py-1 rounded-full font-medium transition-all ${
                   activeCategory === category
                     ? "bg-gradient-hero text-primary-foreground shadow-golden"
                     : "bg-muted text-muted-foreground hover:bg-primary/10"
@@ -148,7 +148,7 @@ export default function Gallery() {
 
           {/* ================= LOADING ================= */}
            {loading && (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4">
               {[...Array(8)].map((_, i) => (
                 <div
                   key={i}
@@ -176,7 +176,7 @@ export default function Gallery() {
           {!loading && !error && (
           <motion.div
             layout
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
           >
             {filteredItems.map((item) => (
               <motion.div

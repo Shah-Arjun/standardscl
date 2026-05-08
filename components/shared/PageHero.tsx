@@ -64,7 +64,7 @@ export const PageHero = ({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}   // Fast title
-            className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6 bg-gradient-to-br from-amber-100 via-yellow-100 to-amber-200 bg-clip-text text-transparent"
+            className="font-heading font-bold text-4xl md:text-5xl lg:text-5xl leading-tight mb-6 bg-gradient-to-br from-amber-100 via-yellow-100 to-amber-200 bg-clip-text text-transparent"
           >
             {title}
           </motion.h1>
@@ -75,7 +75,7 @@ export const PageHero = ({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: "easeOut", delay: 0.25 }}   // Quickest
-              className="text-md md:text-xl text-amber-100/80 max-w-2xl mx-auto leading-relaxed"
+              className="text-md md:text-lg text-amber-100/80 max-w-2xl mx-auto leading-relaxed"
             >
               {subtitle}
             </motion.p>

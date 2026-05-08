@@ -27,18 +27,18 @@ export const AdmissionCTA = () => {
           className="text-center"
         >
           {/* Badge */}
-          {/* <div className="inline-flex items-center gap-2 bg-white/20 text-primary-foreground px-4 py-2 rounded-full mb-6 animate-pulse-glow">
+          <div className="inline-flex items-center gap-2 bg-white/20 text-primary-foreground px-4 py-2 rounded-full mb-6 animate-pulse-glow">
             <span className="w-2 h-2 bg-white rounded-full" />
             <span className="font-semibold">Admissions Open for 2083</span>
-          </div> */}
+          </div>
 
-          <h2 className="font-heading font-bold text-3xl md:text-5xl text-primary-foreground mb-6">
-            Begin Your Child's Journey
+          <h2 className="font-heading font-bold text-3xl md:text-4xl text-primary-foreground mb-6">
+            Begin Your Child&apos;s Journey
             <br />
             <span className="text-white/90">to Excellence</span>
           </h2>
 
-          <p className="text-xl text-white/80 max-w-2xl mx-auto mb-14">
+          <p className="text-lg text-white/80 max-w-2xl mx-auto mb-14">
             Join our family of learners and give your child the best education
             in a nurturing environment.
           </p>

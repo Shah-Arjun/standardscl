@@ -16,7 +16,7 @@ import { event as gaEvent } from "@/lib/gtag";
 
 export const HeroSection = () => {
   return (
-    <section className="relative flex items-center overflow-x-hidden py-1 sm:py-16 lg:py-0 min-h-[92svh] lg:min-h-[90svh]">
+    <section className="relative flex items-center overflow-hidden py-1 sm:py-16 lg:py-0 min-h-[92svh] lg:min-h-[86svh]">
       {/* ================= BACKGROUND IMAGE =================*/}
       <div className="absolute inset-0 -z-20">
         <Image
@@ -37,7 +37,7 @@ export const HeroSection = () => {
 
 
       {/* ================= MAIN CONTENT ================= */}
-      <div className="container-hero relative mt-4 sm:mt-0 md:mt-0 lg:mt-0 z-10 w-full">
+      <div className="container-hero relative my-6 sm:my-0 md:my-0 lg:my-0 z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* ================= LEFT : TEXT CONTENT ================= */}
           <motion.div

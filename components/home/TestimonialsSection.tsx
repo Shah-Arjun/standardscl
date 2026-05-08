@@ -75,8 +75,8 @@ export const TestimonialsSection = () => {
           onTouchEnd={() => setIsHovered(false)}
         >
           {/* Gradients in both sides */}
-          {/* <div className="absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" /> */}
+          <div className="absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
           {/* Scroll Area */}
           <motion.div
@@ -93,7 +93,7 @@ export const TestimonialsSection = () => {
                 <Quote className="w-6 h-6 text-primary mb-3" />
 
                 <p className="text-sm mb-4 italic">
-                  "{item.feedback}"
+                  &quot;{item.feedback}&quot;
                 </p>
 
                 <div className="flex gap-1 mb-3">

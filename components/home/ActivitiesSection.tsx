@@ -53,7 +53,7 @@ export const ActivitiesSection = () => {
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="relative m-10"
+                        className="relative m-0 lg:m-10"
                     >
                         <Image
                             src="https://res.cloudinary.com/dpraq0j6y/image/upload/v1770037838/sports_nd9wgi.jpg"
@@ -65,8 +65,8 @@ export const ActivitiesSection = () => {
                         <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent rounded-3xl" />
 
                         {/* Floating Badge */}
-                        <div className="absolute bottom-6 left-6 bg-card/90 backdrop-blur-sm px-6 py-4 rounded-xl shadow-lg">
-                            <p className="font-heading font-bold text-2xl text-primary">
+                        <div className="absolute bottom-2 left-2 lg:bottom-6 lg:left-6 bg-card/90 backdrop-blur-sm px-2 py-1 lg:px-5 lg:py-3 rounded-xl shadow-lg">
+                            <p className="font-heading font-bold text-xl lg:text-2xl text-primary">
                                 20+
                             </p>
                             <p className="text-muted-foreground text-sm">

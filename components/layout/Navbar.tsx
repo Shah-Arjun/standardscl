@@ -66,29 +66,29 @@ export const Navbar = () => {
 
     <nav
       className={`left-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? "fixed top-0 bg-background/95 shadow-md border-b" : "bg-transparent"
+        scrolled ? "fixed top-0 bg-background/98 shadow-md border-b" : "bg-background"
       }`}
     >
-      <div className="w-full mx-auto px-4 md:px-8">
+      <div className="w-full mx-auto px-4 md:px-2">
         {/* desktop navbar */}
         <div className="flex h-16 lg:h-18 items-center justify-between ">
           {/* logo */}
-          <Link href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-2">
             <Image src={SchoolLogo} width={66} height={66} priority className="object-contain" alt="logo"/>
             {/* logo-text */}
             <div className="hidden sm:block md:block leading-tight">
-              <h1 className="font-bold text-xl tracking-tight">Standard Secondary</h1>
+              <h1 className="font-bold md:text-lg lg:text-xl tracking-tight">Standard Secondary</h1>
               <p className="text-md text-muted-foreground">Boarding School</p>
             </div>
           </Link>
 
 
           {/* Desktop menu */}
-          <div className="hidden lg:flex items-center gap-">
+          <div className="hidden lg:flex items-center">
             {navLinks.map((link) =>
               link.children ? ( //if children then show dropdown
                 <DropdownMenu key={link.name}>
-                  <DropdownMenuTrigger className="flex text-md font-medium items-center gap-1 px-3 py-1 rounded-xl hover:bg-primary transition-colors">
+                  <DropdownMenuTrigger className="flex text-md font-medium items-center px-3 py-1 rounded-xl hover:bg-primary transition-colors">
                     {link.name}
                     <ChevronDown className="w-4 h-3 transition-transform duration-200" />
                   </DropdownMenuTrigger>

@@ -5,9 +5,9 @@ import Image from "next/image";
 
 export const PrincipalMessage = () => {
   return (
-    <section className="container-school bg-muted py-16 lg:py-24">
-      <div className="container mx-auto px-6">
-        <div className=" grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+    <section className="section-padding bg-muted py-16 lg:py-24">
+      <div className="mx-auto px-6">
+        <div className="container-school grid lg:grid-cols-2 gap-12 lg:gap-2 items-center">
           
           {/* Principal Image Section - Left on desktop/tablet */}
           <motion.div
@@ -19,7 +19,7 @@ export const PrincipalMessage = () => {
           >
             <div className="relative w-full max-w-xs md:max-w-sm lg:max-w-md">
               {/* Main Image */}
-              <div className="relative z-10 group">
+              <div className="relative z-10 group hover:grayscale transition-all duration-300">
                 <Image
                   src="https://res.cloudinary.com/dpraq0j6y/image/upload/v1776099993/copy_of_copy_of_e30a12dd-0594-4e5c-ba1a-1f95e484753c_qavkkb_3d7960_d7b86d.jpg"
                   alt="Mr. Ganesh Koirala - School Principal"
@@ -55,9 +55,9 @@ export const PrincipalMessage = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
-            className="space-y-8 pt-6 lg:pt-0"
+            className="space-y-8 pt-6 lg:pt-0 "
           >
-            <div>
+            <div className="text-center lg:text-left">
               <h2 className="font-heading font-bold text-3xl md:text-4xl leading-tight mb-6">
                 Message from the{" "}
                 <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">

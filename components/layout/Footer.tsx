@@ -40,7 +40,7 @@ export const Footer = () => {
     <footer className="bg-foreground text-background">
       {/* Main Footer */}
       <div className="section-padding pb-10">
-        <div className="container-hero">
+        <div className="container-school">
           {/* FLEX CONTAINER */}
           <div className="flex flex-col sm:flex-row flex-wrap gap-10">
             {/* 1. School Info */}
@@ -54,13 +54,13 @@ export const Footer = () => {
                   <p className="text-sm md:text-base text-muted-foreground">Boarding School</p>
                 </div>
               </div>
-              <p className="text-golden font-semibold italic text-sm md:text-base">"Education is Main Path of Success"</p>
+              <p className="text-golden font-semibold italic text-sm md:text-md">&quot;Education is Main Path of Success&quot;</p>
             </div>
 
             {/* 2. Quick Links */}
             <div className="w-full sm:w-[48%] lg:w-[30%]">
               <h4 className="font-heading font-bold text-lg mb-6 text-golden">Quick Links</h4>
-              <ul className="space-y-2 text-sm md:text-base">
+              <ul className="space-y-2 text-sm md:text-md">
                 {quickLinks.map((link) => (
                   <li key={link.name}>
                     <Link href={link.path} className="text-muted-foreground hover:text-golden hover:ml-2 transition-all">
@@ -75,7 +75,7 @@ export const Footer = () => {
             <div className="w-full sm:w-[48%] lg:w-[30%]">
               <h4 className="font-heading font-bold text-lg mb-6 text-golden">Contact Us</h4>
 
-              <ul className="space-y-4 text-sm md:text-base">
+              <ul className="space-y-4 text-sm md:text-md">
                 <li className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-golden mt-1" />
                   <span className="text-muted-foreground">Itahari-17, Sunsari, Nepal</span>
@@ -131,7 +131,7 @@ export const Footer = () => {
 
           {/* Map */}
           <div className="w-full mt-8 rounded-xl overflow-hidden border border-border">
-            <div className="relative w-full min-h-[250px] md:min-h-[320px]">
+            <div className="relative w-full min-h-[250px] md:min-h-[280px]">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1146.125499502753!2d87.22085152316471!3d26.681266376883094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ef6b54a9ea5841%3A0xaaa3d314ed1a04bb!2sM6JC%2BFX9%2C%20Ramdhuni%20Bhasi%2056705%2C%20Nepal!5e0!3m2!1sen!2suk!4v1769857331191!5m2!1sen!2suk"
                 className="absolute inset-0 w-full h-full"
@@ -146,8 +146,10 @@ export const Footer = () => {
         </div>
       </div>
 
+
+
       {/* Bottom Bar */}
-      <div className="border-t border-border/20 py-6 px-4">
+      <div className="border-t border-border/20 py-4 px-4">
         <div className="container-school flex flex-col md:flex-row justify-between items-center gap-6 md:gap-4 text-center md:text-left">
           {/* LEFT SIDE */}
           <div className="space-y-3 md:space-y-1">
