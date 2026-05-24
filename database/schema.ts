@@ -13,8 +13,8 @@ export const teachersTable =  pgTable("teachers", {
   id : serial("id").primaryKey(), //serial is a helper function that creates an auto-incrementing integer column, and id passed is actual name of db column, and primaryKey() marks it as the primary key of the table.
   teacherName: varchar("teacher_name", { length: 255 }).notNull(),
   gender: genderEnum("gender"),
-  email: varchar("email", { length: 255 }).notNull(),
-  phone: varchar("phone", { length: 20 }).notNull(),
+  email: varchar("email", { length: 255 }),
+  phone: varchar("phone", { length: 20 }),
   address: text("address"),
 
   employmentType: text("employment_type").notNull(),
@@ -24,9 +24,9 @@ export const teachersTable =  pgTable("teachers", {
   subjectsTeaches: jsonb("subject_teaches").$type<string[]>(),
   post: jsonb("position").$type<string[]>(),
 
-  experience: numeric("years_of_experience", { precision: 5, scale: 2 }).$type<number>().notNull(),
-  photoPublicId: varchar("photo_public_id").notNull(), // Cloudinary public ID for the photo, to access photo
-  photo: text("photo").notNull(), // URL of teacher's photo
+  experience: numeric("years_of_experience", { precision: 5, scale: 2 }).$type<number>(),
+  photoPublicId: varchar("photo_public_id"), // Cloudinary public ID for the photo, to access photo
+  photo: text("photo"), // URL of teacher's photo
 
 //   createdAt : timestamp("created_at").defaultNow(),    // or
   createdAt : timestamp("created_at").default(sql`CURRENT_TIMESTAMP`),

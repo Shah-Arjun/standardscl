@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useState, ChangeEvent, FormEvent, useEffect } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import SchoolLogo from "./../../../../public/SchoolLogo-nobg.png";
 import { useRouter } from "next/navigation";
 import { Footer } from "@/components/layout/Footer";
+import { addTeacher } from "@/app/actions/teacher";
 
 
 type Gender = "male" | "female" | "other";
@@ -274,14 +275,10 @@ export default function AddTeacher() {
 
 
     try {
-      const res = await fetch("/api/teachers/add", {
-        method: "POST",
-        body: formDataToSend,
-      });
+      const res = await addTeacher(formDataToSend);
 
-      if (!res.ok) {
-        const text = await res.json();
-        throw new Error(text || "Failed to add teacher");
+      if (!res.success) {
+        throw new Error(res.message || "Failed to add teacher");
       }
 
       alert("Teacher added successfully!\nThank you for your time — have a great day!");

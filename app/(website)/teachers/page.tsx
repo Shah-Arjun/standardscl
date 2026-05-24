@@ -6,37 +6,78 @@ import Image from "next/image";
 import { SiteLayout } from "@/components/layout/SiteLayout";
 import PageHero from "@/components/shared/PageHero";
 import { GraduationCap } from "lucide-react";
-
-
+import { getAllTeachers } from "@/app/actions/teacher";
+import type { Teacher } from "@/lib/types/teacher";
 
 // Admin posts categories
 const ADMIN_POSTS = [
   "eca", "elc", "principal", "founder", "coordinator",
-  "accountant", "exam", "vice-principal", "dance teacher"
+  "accountant", "exam", "vice-principal", "dance teacher",
 ];
 
+// ─── Desktop Card Skeleton ─────────────────────────────────────────────────────
+function TeacherCardSkeletonDesktop() {
+  return (
+    <div className="hidden lg:block bg-white/50 w-full max-w-xs mx-auto pt-16 pb-6 px-6 rounded-2xl shadow-md text-center relative animate-pulse">
+      {/* Floating circle */}
+      <div className="absolute -top-16 left-1/2 -translate-x-1/2">
+        <div className="w-36 h-36 rounded-full bg-gray-200 border-4 border-white shadow-lg" />
+      </div>
+      {/* Name */}
+      <div className="h-5 bg-gray-200 rounded-full w-3/4 mx-auto mt-6" />
+      {/* Post */}
+      <div className="h-4 bg-gray-100 rounded-full w-1/2 mx-auto mt-3" />
+      {/* Badge */}
+      <div className="h-5 bg-gray-100 rounded-full w-24 mx-auto mt-4" />
+    </div>
+  );
+}
 
+// ─── Mobile Card Skeleton ──────────────────────────────────────────────────────
+function TeacherCardSkeletonMobile() {
+  return (
+    <div className="lg:hidden bg-white rounded-2xl shadow-md overflow-hidden flex gap-4 p-4 border border-gray-100 animate-pulse">
+      {/* Avatar */}
+      <div className="w-24 h-24 flex-shrink-0 rounded-xl bg-gray-200" />
+      {/* Info */}
+      <div className="flex-1 py-2 space-y-3">
+        <div className="h-4 bg-gray-200 rounded w-3/4" />
+        <div className="h-3 bg-gray-100 rounded w-1/2" />
+        <div className="h-3 bg-gray-100 rounded w-1/3" />
+      </div>
+    </div>
+  );
+}
 
+// ─── Combined Skeleton Card (desktop + mobile) ────────────────────────────────
+function TeacherCardSkeleton() {
+  return (
+    <div className="lg:mb-14 lg:mt-2">
+      <TeacherCardSkeletonDesktop />
+      <TeacherCardSkeletonMobile />
+    </div>
+  );
+}
+
+// ─── Main Component ────────────────────────────────────────────────────────────
 export default function Teachers() {
   const teachersPerPage = 8;
 
   const [page, setPage] = useState(0);
-  const [teachers, setTeachers] = useState<any[]>([]);
+  const [teachers, setTeachers] = useState<Teacher[]>([]);
   const [loading, setLoading] = useState(true);
   const [failedImages, setFailedImages] = useState<Set<number>>(new Set());
 
   const handleImageError = (teacherId: number) => {
-    setFailedImages(prev => new Set([...prev, teacherId]));
+    setFailedImages((prev) => new Set([...prev, teacherId]));
   };
-
 
   useEffect(() => {
     async function fetchTeachers() {
       setLoading(true);
       try {
-        const res = await fetch("/api/teachers");
-        const data = await res.json();
-        setTeachers(data || []);
+        const res = await getAllTeachers();
+        setTeachers(res.success ? (res.data as Teacher[]) : []);
       } catch (error) {
         console.error("Failed to fetch teachers:", error);
         setTeachers([]);
@@ -44,34 +85,14 @@ export default function Teachers() {
         setLoading(false);
       }
     }
-
     fetchTeachers();
   }, []);
-
 
   const totalPages = Math.ceil(teachers.length / teachersPerPage);
   const visibleTeachers = teachers.slice(
     page * teachersPerPage,
     page * teachersPerPage + teachersPerPage
   );
-
-  if (loading) {
-    return (
-      <SiteLayout>
-        <PageHero
-          title="Meet Our Teachers"
-          subtitle="Dedicated educators committed to nurturing young minds"
-          badge="OUR TEAM"
-        />
-        <div className="section-padding bg-muted text-center py-20">
-          <p className="text-lg">Loading teachers...</p>
-        </div>
-      </SiteLayout>
-    );
-  }
-
-
-
 
   return (
     <SiteLayout>
@@ -82,112 +103,115 @@ export default function Teachers() {
       />
 
       <section className="section-padding bg-muted">
-        {/* <p className="absolute flex items-center gap-2 right-12 px-6 -mt-12 text-lg font-semibold"><span className="text-lg lg:text-3xl">40+</span> <span className="text-md">Teachers</span></p> */}
         <div className="container-school">
-          {/* Teachers Grid / List */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {visibleTeachers.map((teacher, index) => {
-              const isAdministration =
-                Array.isArray(teacher.post) &&
-                teacher.post.some((p: string) =>
-                  ADMIN_POSTS.includes(p.toLowerCase())
-                );
 
-              return (
-                <div key={teacher.id} className="lg:mb-14 lg:mt-2">
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                    className="group"
-                  >
-                    {/* Desktop Card (Floating Circle) */}
-                    <div className="hidden lg:block bg-white/50 w-full max-w-xs mx-auto pt-16 pb-6 px-6 rounded-2xl shadow-md hover:shadow-xl transition text-center relative">
-                      <div className="absolute -top-16 left-1/2 -translate-x-1/2">
-                        <div className="w-36 h-36 rounded-full overflow-hidden border-4 border-white shadow-lg group-hover:scale-110 transition bg-gray-200 flex items-center justify-center">
-                          {!failedImages.has(teacher.id) && teacher.photo ? (
-                            <Image
-                              src={`${teacher?.photo}?q_auto,f_auto`}
-                              alt={teacher.teacherName}
-                              width={144}
-                              height={144}
-                              quality={100}
-                              className="object-cover w-full h-full group-hover:grayscale transition-all duration-300"
-                              onError={() => handleImageError(teacher.id)}
-                            />
-                          ) : (
-                            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
-                              <GraduationCap className="w-16 h-16 sm:w-20 sm:h-20 text-gray-400" />
-                            </div>
-                          )}
-                        </div>
-                      </div>
+            {/* ── Loading skeleton ── */}
+            {loading &&
+              [...Array(teachersPerPage)].map((_, i) => (
+                <TeacherCardSkeleton key={i} />
+              ))}
 
-                      <h3 className="text-lg font-semibold text-gray-800 mt-6">
-                        {teacher.teacherName}
-                      </h3>
-                      <p className="text-sm text-primary font-medium">
-                        {Array.isArray(teacher.post) ? teacher.post.join(", ") : teacher.post}
-                      </p>
-                      {!isAdministration && teacher.employmentType && (
-                        <p className="text-sm text-gray-500 mt-1">
-                          {teacher.employmentType}
-                        </p>
-                      )}
-                      {isAdministration && teacher.experience && (
-                        <span className="mt-3 inline-block text-xs bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
-                          {parseInt(teacher.experience)}+ yrs experience
-                        </span>
-                      )}
-                    </div>
+            {/* ── Teacher cards ── */}
+            {!loading &&
+              visibleTeachers.map((teacher, index) => {
+                const isAdministration =
+                  Array.isArray(teacher.post) &&
+                  teacher.post.some((p) =>
+                    ADMIN_POSTS.includes(p.toLowerCase())
+                  );
 
-                    {/* Mobile Horizontal Card (List Style) */}
-                    <div className="lg:hidden bg-white rounded-2xl shadow-md overflow-hidden flex gap-4 p-4 border border-gray-100">
-                      <div className="w-24 h-24 flex-shrink-0 rounded-xl overflow-hidden border-2 border-white shadow-sm bg-gray-200 flex items-center justify-center">
-                        {!failedImages.has(teacher.id) && teacher.photo ? (
-                          <Image
-                            src={`${teacher.photo}?q_auto,f_auto`}
-                            alt={teacher.teacherName}
-                            width={96}
-                            height={96}
-                            quality={100}
-                            className="object-cover w-full h-full"
-                            onError={() => handleImageError(teacher.id)}
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
-                            <GraduationCap className="w-12 h-12 text-gray-400" />
+                return (
+                  <div key={teacher.id} className="lg:mb-14 lg:mt-2">
+                    <motion.div
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      className="group"
+                    >
+                      {/* Desktop Card (Floating Circle) */}
+                      <div className="hidden lg:block bg-white/50 w-full max-w-xs mx-auto pt-16 pb-6 px-6 rounded-2xl shadow-md hover:shadow-xl transition text-center relative">
+                        <div className="absolute -top-16 left-1/2 -translate-x-1/2">
+                          <div className="w-36 h-36 rounded-full overflow-hidden border-4 border-white shadow-lg group-hover:scale-110 transition bg-gray-200 flex items-center justify-center">
+                            {!failedImages.has(teacher.id) && teacher.photo ? (
+                              <Image
+                                src={`${teacher.photo}?q_auto,f_auto`}
+                                alt={teacher.teacherName}
+                                width={144}
+                                height={144}
+                                quality={100}
+                                className="object-cover w-full h-full group-hover:grayscale transition-all duration-300"
+                                onError={() => handleImageError(teacher.id)}
+                              />
+                            ) : (
+                              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
+                                <GraduationCap className="w-16 h-16 sm:w-20 sm:h-20 text-gray-400" />
+                              </div>
+                            )}
                           </div>
-                        )}
-                      </div>
+                        </div>
 
-                      <div className="flex-1 py-1">
-                        <h3 className="font-semibold text-base text-gray-800 leading-tight mb-1">
+                        <h3 className="text-lg font-semibold text-gray-800 mt-6">
                           {teacher.teacherName}
                         </h3>
                         <p className="text-sm text-primary font-medium">
                           {Array.isArray(teacher.post) ? teacher.post.join(", ") : teacher.post}
                         </p>
                         {!isAdministration && teacher.employmentType && (
-                          <p className="text-xs text-gray-500 mt-2">
-                            {teacher.employmentType}
-                          </p>
+                          <p className="text-sm text-gray-500 mt-1">{teacher.employmentType}</p>
                         )}
                         {isAdministration && teacher.experience && (
-                          <span className="mt-2 inline-block text-xs bg-primary/10 text-primary px-3 py-1 rounded-full">
-                            {parseInt(teacher.experience)}+ yrs experience
+                          <span className="mt-3 inline-block text-xs bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
+                            {teacher.experience}+ yrs experience
                           </span>
                         )}
                       </div>
-                    </div>
-                  </motion.div>
-                </div>
-              );
-            })}
+
+                      {/* Mobile Horizontal Card */}
+                      <div className="lg:hidden bg-white rounded-2xl shadow-md overflow-hidden flex gap-4 p-4 border border-gray-100">
+                        <div className="w-24 h-24 flex-shrink-0 rounded-xl overflow-hidden border-2 border-white shadow-sm bg-gray-200 flex items-center justify-center">
+                          {!failedImages.has(teacher.id) && teacher.photo ? (
+                            <Image
+                              src={`${teacher.photo}?q_auto,f_auto`}
+                              alt={teacher.teacherName}
+                              width={96}
+                              height={96}
+                              quality={100}
+                              className="object-cover w-full h-full"
+                              onError={() => handleImageError(teacher.id)}
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
+                              <GraduationCap className="w-12 h-12 text-gray-400" />
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="flex-1 py-1">
+                          <h3 className="font-semibold text-base text-gray-800 leading-tight mb-1">
+                            {teacher.teacherName}
+                          </h3>
+                          <p className="text-sm text-primary font-medium">
+                            {Array.isArray(teacher.post) ? teacher.post.join(", ") : teacher.post}
+                          </p>
+                          {!isAdministration && teacher.employmentType && (
+                            <p className="text-xs text-gray-500 mt-2">{teacher.employmentType}</p>
+                          )}
+                          {isAdministration && teacher.experience && (
+                            <span className="mt-2 inline-block text-xs bg-primary/10 text-primary px-3 py-1 rounded-full">
+                              {teacher.experience}+ yrs experience
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+                );
+              })}
           </div>
 
           {/* Pagination Arrows */}
-          {totalPages > 1 && (
+          {!loading && totalPages > 1 && (
             <div className="flex justify-center items-center gap-6 mt-12 lg:mt-6">
               <button
                 onClick={() => setPage((p) => Math.max(p - 1, 0))}
@@ -196,7 +220,6 @@ export default function Teachers() {
               >
                 ←
               </button>
-
               <button
                 onClick={() => setPage((p) => Math.min(p + 1, totalPages - 1))}
                 disabled={page === totalPages - 1}

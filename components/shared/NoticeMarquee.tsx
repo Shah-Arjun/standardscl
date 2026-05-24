@@ -1,47 +1,33 @@
 "use client"
 
+import { getAllNotices } from "@/app/actions/notice";
+import { Notice } from "@/lib/types/notice";
 import { Megaphone } from "lucide-react";
 import NepaliDate from "nepali-date-converter";
 import { useEffect, useState } from "react";
-
-
-
-
-type Notice = {
-  id: number;
-  title: string;
-  category: string;
-  date: string;
-  content: string;
-  postedBy: string;
-  createdAt: string;
-};
-
-
-
-
+ 
 export const NoticeMarquee = () => {
   const [notices, setNotices] = useState<Notice[]>([])
-
-
-
+ 
   const fetchNotices = async() => {
     try {
-      const res = await fetch("/api/notices")
-      const data = await res.json()
-
+      const res = await getAllNotices();
+      if (!res.success) {
+        throw new Error(res.message || "Failed to fetch notices");
+      }
+      const data = res.data
+ 
       const sortedByNewNotices = Array.isArray(data)
-      ? data.sort(
+      ? [...data].sort(
           (a: Notice, b: Notice) =>
             new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         )
       : [];
-
+ 
       setNotices(sortedByNewNotices)
     } catch (err) {
         console.error("Failed to load notices", err)
     }
-
   }
 
 
@@ -68,7 +54,7 @@ export const NoticeMarquee = () => {
               return (
                 <span key={notice.id} className="mx-8 text-xs font-light">
                   <time
-                    dateTime={notice.createdAt}
+                    dateTime={new Date(notice.createdAt).toISOString()}
                     className="mr-2"
                   >
                     {bsDate.format("DD MMMM YYYY")}

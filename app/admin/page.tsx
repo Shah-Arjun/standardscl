@@ -2,21 +2,16 @@
 
 import { set } from "date-fns"
 import { useEffect, useState } from "react"
-
-
-
-interface Teacher {
-  id: number
-  teacherName: string
-  experience?: number
-  status?: string
-}
+import { getAllNotices } from "../actions/notice"
+import { Notice } from "@/lib/types/notice"
+import { getAllTeachers } from "../actions/teacher"
+import type { Teacher } from "@/lib/types/teacher"
 
 
 
 export default function TeacherStats() {
   const [teachers, setTeachers] = useState<Teacher[]>([])
-  const [notices, setNotices] = useState<any[]>([])
+  const [notices, setNotices] = useState<Notice[]>([])
   const [gallery, setGallery] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -24,9 +19,11 @@ export default function TeacherStats() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("/api/teachers")
-        const data = await res.json()
-        setTeachers(data || [])
+        const res = await getAllTeachers()
+        if (!res.success) {
+          throw new Error(res.message || "Failed to fetch teachers");
+        }
+        setTeachers(res.data || [])
       } catch (err) {
         console.error(err)
       } finally {
@@ -42,8 +39,11 @@ export default function TeacherStats() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("/api/notices")
-        const data = await res.json()
+        const res = await getAllNotices()
+        if (!res.success) {
+          throw new Error(res.message || "Failed to fetch notices");
+        }
+        const data = res.data
         setNotices(data || [])
       } catch (err) {
         console.error(err)

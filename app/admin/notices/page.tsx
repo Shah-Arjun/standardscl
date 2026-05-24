@@ -2,34 +2,23 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-
-type Notice = {
-  id: number;
-  title: string;
-  category: string;
-  date: string;
-  content: string;
-  postedBy: string;
-  createdAt: string;
-};
+import { getAllNotices, deleteNotice } from "@/app/actions/notice";
+import { Notice } from "@/lib/types/notice";
 
 export default function AdminNoticesPage() {
   const [notices, setNotices] = useState<Notice[]>([]);
   const [loading, setLoading] = useState(true);
   const [deleteId, setDeleteId] = useState<number | null>(null);
-const [loadingDelete, setLoadingDelete] = useState(false);
-
-
+  const [loadingDelete, setLoadingDelete] = useState(false);
 
   // Fetch notices
   const fetchNotices = async () => {
     try {
       setLoading(true);
-      const res = await fetch("/api/notices");
-      const data = await res.json();
-// console.log("Fetched notices:", data);  //debug
+      const res = await getAllNotices();
+      const data = res.data || [];
       // newest first
-      setNotices(data.reverse());
+      setNotices([...data].reverse());
     } catch (error) {
       console.error("Failed to load notices", error);
     } finally {
@@ -41,27 +30,25 @@ const [loadingDelete, setLoadingDelete] = useState(false);
     fetchNotices();
   }, []);
 
-
-
-
-
   // Delete notice
   const handleDelete = async () => {
     if (!deleteId) return;
   
     setLoadingDelete(true);
   
-    const res = await fetch(`/api/admin/notices?id=${deleteId}`, {
-      method: "DELETE",
-    });
-  
-    setLoadingDelete(false);
-  
-    if (res.ok) {
-      setNotices((prev) => prev.filter((n) => n.id !== deleteId));
-      setDeleteId(null);
-    } else {
-      alert("Failed to delete notice");
+    try {
+      const res = await deleteNotice(deleteId);
+      if (res.success) {
+        setNotices((prev) => prev.filter((n) => n.id !== deleteId));
+        setDeleteId(null);
+      } else {
+        alert(res.message || "Failed to delete notice");
+      }
+    } catch (error) {
+      console.error("Failed to delete notice:", error);
+      alert("An error occurred while deleting the notice.");
+    } finally {
+      setLoadingDelete(false);
     }
   };
 

@@ -9,6 +9,7 @@ import { SiteLayout } from "@/components/layout/SiteLayout";
 import Page from "@/app/page";
 import PageHero from "@/components/shared/PageHero";
 import { categories } from "@/data/data";
+import { getGalleryImages } from "@/app/actions/gallery";
 
 
 
@@ -32,27 +33,25 @@ export default function Gallery() {
 
 
   // fetch gallery through API
-  const fetchGallery = async () => {
-    try {
-      setLoading(true);
-  
-      const res = await fetch("/api/gallery");
-      if (!res.ok) throw new Error("Failed to fetch");
-  
-      const data = await res.json();
-  
-      // console.log("public gallery:", data);   //debug
-      
-      const items = Array.isArray(data) ? data : data.data || data.gallery || [];
-  
-      setGalleryItems(items);
-    } catch (err) {
-      // console.error(err);
-      setError("Failed to load gallery");
-    } finally {
-      setLoading(false);
+const fetchGallery = async () => {
+  try {
+    setLoading(true);
+    const res = await getGalleryImages();
+    if (!res.success) {
+      throw new Error(res.message);
     }
-  };
+
+    // console.log("public gallery:", res.data);  //debug
+    const items = Array.isArray(res.data) ? res.data : [];
+
+    setGalleryItems(items);
+  } catch (err) {
+    // console.error(err);
+    setError("Failed to load gallery");
+  } finally {
+    setLoading(false);
+  }
+};
 
 
   useEffect(() => {

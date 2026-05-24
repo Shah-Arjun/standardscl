@@ -3,17 +3,8 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
-
-
-type Notice = {
-  id: number;
-  title: string;
-  category: string;
-  date: string;
-  content: string;
-  postedBy: string;
-  createdAt: string;
-};
+import { getAllNotices } from "@/app/actions/notice";
+import { Notice } from "@/lib/types/notice";
 
 
 
@@ -28,14 +19,15 @@ export const FloatingNotice = () => {
   const fetchNotices = async () => {
     try {
       setLoading(true);
-      const res = await fetch("/api/notices");
-      const data = await res.json();
+      const res = await getAllNotices();
       // console.log("Fetched notices:", data);  //debug
-      
+      if (!res.success) {
+        throw new Error(res.message || "Failed to fetch notices");
+      }
       // newest first
       setNotices(
-        Array.isArray(data)
-          ? data.sort((a, b) => b.id - a.id)
+        Array.isArray(res.data)
+          ? res.data.sort((a, b) => b.id - a.id)
           : []
       );    } catch (error) {
       console.error("Failed to load notices", error);

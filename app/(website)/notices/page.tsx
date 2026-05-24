@@ -6,41 +6,35 @@ import { Calendar, ArrowRight, Tag, X } from "lucide-react";
 
 import { SiteLayout } from "@/components/layout/SiteLayout";
 import PageHero from "@/components/shared/PageHero";
-
-
-
-type Notice = {
-  id: number;
-  title: string;
-  category: string;
-  date: string;
-  content: string;
-  postedBy: string;
-  createdAt: string;
-};
-
-
+import { getAllNotices } from "@/app/actions/notice";
+import { Notice } from "@/lib/types/notice";
 
 
 const Notices = () => {
-
-    const [notices, setNotices] = useState<Notice[]>([]);
-    const [selectedNotice, setSelectedNotice] = useState<Notice | null>(
-      notices[0],
-    );
-    const [loading, setLoading] = useState(true);
+  const [notices, setNotices] = useState<Notice[]>([]);
+  const [selectedNotice, setSelectedNotice] = useState<Notice | null>(null);
+  const [loading, setLoading] = useState(true);
 
 
 
-    // Fetch notices
     const fetchNotices = async () => {
       try {
         setLoading(true);
-        const res = await fetch("/api/notices");
-        const data = await res.json();
-        // console.log("Fetched notices:", data);  //debug
-        // newest first
-        setNotices(Array.isArray(data) ? data.sort((a, b) => b.id - a.id) : []);
+
+        const res = await getAllNotices();
+        if (!res.success) {
+          throw new Error(res.message || "Failed to fetch notices");
+        }
+        const sorted = Array.isArray(res.data)
+          ? [...res.data].sort((a, b) => b.id - a.id)
+          : [];
+
+        setNotices(sorted);
+
+        // set default selected notice
+        if (sorted.length > 0) {
+          setSelectedNotice(sorted[0]);
+        }
       } catch (error) {
         console.error("Failed to load notices", error);
       } finally {
@@ -48,6 +42,7 @@ const Notices = () => {
       }
     };
   
+
     useEffect(() => {
       fetchNotices();
     }, []);
@@ -92,7 +87,7 @@ const Notices = () => {
                       <div className="flex flex-wrap items-center gap-3 mb-4">
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
                           <Calendar className="w-4 h-4" />
-                          {new Date(notice.createdAt).toLocaleDateString("en-GB", {
+                          {new Date(notice?.createdAt).toLocaleDateString("en-GB", {
                             day: "numeric",
                             month: "short",
                             year: "numeric",
@@ -140,7 +135,7 @@ const Notices = () => {
                           {selectedNotice.category}
                         </div>
                         <div className="text-sm text-muted-foreground">
-                          {new Date(selectedNotice.createdAt).toLocaleDateString("en-GB", {
+                          {new Date(selectedNotice?.createdAt).toLocaleDateString("en-GB", {
                               day: "numeric",
                               month: "short",
                               year: "numeric",
@@ -175,7 +170,7 @@ const Notices = () => {
                       </div>
                       
                       <div className=" text-sm text-muted-foreground">
-                        Published on: {new Date(selectedNotice.createdAt).toLocaleDateString("en-GB", {
+                        Published on: {new Date(selectedNotice?.createdAt).toLocaleDateString("en-GB", {
                                 day: "numeric",
                                 month: "short",
                                 year: "numeric",

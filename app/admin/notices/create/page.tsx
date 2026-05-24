@@ -1,52 +1,43 @@
 "use client";
-
+ 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
+import { createNotice } from "@/app/actions/notice";
+import { Notice } from "@/lib/types/notice";
+ 
 export default function CreateNoticePage() {
   const router = useRouter();
-
+ 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [category, setCategory] = useState("General");
-  const [postedBy, setPostedBy] = useState("Principal");
+  const [category, setCategory] = useState<Notice["category"]>("General");
+  const [postedBy, setPostedBy] = useState<Notice["postedBy"]>("Principal");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
-
-
-
+ 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+ 
     if (!title || !content || !category || !postedBy) {
       setError("All fields are required");
       return;
     }
-
+ 
     try {
       setLoading(true);
       setError("");
-
-      const res = await fetch("/api/admin/notices", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title,
-          content,
-          category,
-          postedBy,
-        }),
+ 
+      const res = await createNotice({
+        title,
+        content,
+        category,
+        postedBy,
       });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.error || "Failed to add notice");
+ 
+      if (!res.success) {
+        throw new Error(res.message || "Failed to add notice");
       }
-
+ 
       router.push("/admin/notices");
     } catch (err: any) {
       setError(err.message);
@@ -106,7 +97,7 @@ export default function CreateNoticePage() {
           <select
             className="w-full border rounded-lg p-2"
             value={category}
-            onChange={(e) => setCategory(e.target.value)}
+            onChange={(e) => setCategory(e.target.value as Notice["category"])}
           >
             <option>Admissions</option>
             <option>Sports</option>
@@ -128,7 +119,7 @@ export default function CreateNoticePage() {
           <select
             className="w-full border rounded-lg p-2"
             value={postedBy}
-            onChange={(e) => setPostedBy(e.target.value)}
+            onChange={(e) => setPostedBy(e.target.value as Notice["postedBy"])}
           >
             <option>Principal</option>
             <option>Exam Coordinator</option>
