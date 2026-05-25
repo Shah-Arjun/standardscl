@@ -18,7 +18,7 @@ export async function getAllTeachers(): Promise<{
     const teachers = await db
       .select()
       .from(teachersTable)
-      .orderBy(asc(teachersTable.createdAt))
+      .orderBy(asc(teachersTable.id))
 
     return {
       success: true,
