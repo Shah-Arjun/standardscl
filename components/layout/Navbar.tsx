@@ -52,6 +52,31 @@ export const Navbar = () => {
 
 
 
+useEffect(() => {
+  const scrollY = window.scrollY;
+
+  if (isOpen) {
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
+  } else {
+    const top = document.body.style.top;
+
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.width = "";
+
+    window.scrollTo(0, parseInt(top || "0") * -1);
+  }
+
+  return () => {
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.width = "";
+  };
+}, [isOpen]);
+
+
   // if link active deciding arrow function
   const isActive = (path: string, external?: boolean) => {
     if (external) return false;        // External links are never "active"
@@ -165,7 +190,7 @@ export const Navbar = () => {
 
         {/* Mobile Menu -- opens when clicked */}
         <div
-          className={`fixed top-0 right-0 h-full w-[80%] sm:w-[60%] md:w-[50%] bg-background border-l shadow-2xl z-50 py-6 px-4 mb-4 space-y-2 lg:hidden transform transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] overflow-y-auto ${
+          className={`fixed top-0 right-0 h-full w-[72%] sm:w-[60%] md:w-[50%] bg-background border-l shadow-2xl z-50 py-6 px-4 mb-4 space-y-2 lg:hidden transform transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] overflow-y-auto ${
             isOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
