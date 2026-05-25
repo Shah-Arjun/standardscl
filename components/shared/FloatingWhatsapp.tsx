@@ -137,7 +137,7 @@ export const FloatingWhatsapp = () => {
       </div>
       <motion.button
         onClick={() => {
-          const phone = "9779807307132"; // receiver whatsapp number
+          const phone = "9779812363723"; // receiver whatsapp number
           const message = "Hello, how can I learn more about the admission process?"; // default message
 
           window.open(

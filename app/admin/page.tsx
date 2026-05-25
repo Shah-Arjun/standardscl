@@ -6,6 +6,7 @@ import { getAllNotices } from "../actions/notice"
 import { Notice } from "@/lib/types/notice"
 import { getAllTeachers } from "../actions/teacher"
 import type { Teacher } from "@/lib/types/teacher"
+import { getGalleryImages } from "../actions/gallery"
 
 
 
@@ -16,6 +17,7 @@ export default function TeacherStats() {
   const [loading, setLoading] = useState(true)
 
 
+  //teachers
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -35,7 +37,7 @@ export default function TeacherStats() {
   }, [])
 
 
-
+ //notices
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -59,10 +61,13 @@ export default function TeacherStats() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("/api/gallery")
-        const data = await res.json()
-        setGallery(data.data || [])
-        // console.log(data.data)      //debug
+        const res = await getGalleryImages()
+        if (!res.success) {
+          throw new Error(res.message || "Failed to fetch gallery images");
+        }
+        const data = await res.data
+        setGallery(data || [])
+        // console.log(data)      //debug
       } catch (err) {
         console.error(err)
       } finally {
