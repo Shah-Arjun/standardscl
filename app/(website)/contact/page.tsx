@@ -13,6 +13,7 @@ import { event as gaEvent } from "@/lib/gtag";
 import PageHero from "@/components/shared/PageHero";
 import { contactInfo, socialLinks } from "@/data/data";
 import { Send } from "lucide-react";
+import { submitContactForm } from "@/app/actions/contact";
 
 
 
@@ -32,53 +33,45 @@ const Contact = () => {
 
 
   // Handle form submission
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-  
-    // Google Analytics
-    gaEvent({
-      action: "submit_contact_form",
-      category: "Contact",
-      label: "Contact Page Form",
-    });
-  
-    try {
-      setLoading(true);
-      toast.loading("Sending message...");
-  
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  gaEvent({
+    action: "submit_contact_form",
+    category: "Contact",
+    label: "Contact Page Form",
+  });
+
+  try {
+    setLoading(true);
+
+    const toastId = toast.loading("Sending message...");
+
+    const res = await submitContactForm(formData);
+
+    toast.dismiss(toastId);
+
+    if (res.success) {
+      toast.success("Email sent successfully!");
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
       });
-  
-      const data = await res.json(); 
-  
-      toast.dismiss();
-  
-      if (data.success) {
-        toast.success("Email sent successfully!");
-  
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          subject: "",
-          message: "",
-        });
-      } else {
-        toast.error(data.error || "Failed to send message");
-      }
-    } catch (error) {
-      toast.dismiss();
-      toast.error("Something went wrong. Please try again.");
-      // console.error(error);
-    } finally {
-      setLoading(false);
+    } else {
+      toast.error(res.error || "Failed to send message");
     }
-  };
+  } catch (error) {
+    console.error(error);
+
+    toast.error("Something went wrong. Please try again.");
+  } finally {
+    setLoading(false);
+  }
+};
 
 
 

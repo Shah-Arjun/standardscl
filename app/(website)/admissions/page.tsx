@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/
 import { toast } from "sonner";
 import { Calendar, ClipboardList, CheckCircle, ArrowRight} from "lucide-react";
 import { steps, requirements } from "@/data/data";
+import { submitAdmissionForm } from "@/app/actions/admission";
 
 
 
@@ -36,32 +37,16 @@ const Admissions = () => {
     try {
       setLoading(true);
       toast.loading("Submitting application...");
+
+      console.log("admission form--", formData)
   
-      const res = await fetch("/api/admission", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          studentName: formData.studentName,
-          parentName: formData.parentName,
-          email: formData.email,
-          phone: formData.phone,
-          grade: formData.grade,
-          message: `  
-            ${formData.message.trim() || "N/A"}
-            `,
-          }),
-        });
-
-
-      const data = await res.json();
+      const res = await submitAdmissionForm(formData)
 
       // console.log("form admission form ", data);    // debug
 
       toast.dismiss();
   
-      if (data.success) {
+      if (res.success) {
         toast.success("Application submitted successfully!");
         // Reset form data after successful submission
         setFormData({
@@ -73,7 +58,7 @@ const Admissions = () => {
           message: "",
         });
       } else {
-        toast.error(data.error || "Failed to submit. Try again.");
+        toast.error(res.error || "Failed to submit. Try again.");
       }
     } catch (error) {
       toast.dismiss();

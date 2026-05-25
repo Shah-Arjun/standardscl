@@ -8,6 +8,8 @@ import { uploadToCloudinary } from "@/lib/cloudinary"
 import path from "path"
 import type { Teacher } from "@/lib/types/teacher"
 
+
+
 // ─── Get All Teachers ─────────────────────────────────────────────────────────
 export async function getAllTeachers(): Promise<{
   success: boolean
@@ -34,6 +36,8 @@ export async function getAllTeachers(): Promise<{
     }
   }
 }
+
+
 
 // ─── Get Single Teacher by ID ─────────────────────────────────────────────────
 export async function getTeacherById(id: number): Promise<{
@@ -70,6 +74,8 @@ export async function getTeacherById(id: number): Promise<{
     }
   }
 }
+
+
 
 // ─── Add Teacher ──────────────────────────────────────────────────────────────
 export async function addTeacher(formData: FormData): Promise<{
@@ -180,6 +186,9 @@ export async function addTeacher(formData: FormData): Promise<{
     return { success: false, message: error.message || "Failed to add teacher" }
   }
 }
+
+
+
 
 // ─── Delete Teacher ───────────────────────────────────────────────────────────
 export async function deleteTeacher(id: number): Promise<{

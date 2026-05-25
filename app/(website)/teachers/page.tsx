@@ -162,7 +162,7 @@ export default function Teachers() {
                         )}
                         {isAdministration && teacher.experience && (
                           <span className="mt-3 inline-block text-xs bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
-                            {teacher.experience}+ yrs experience
+                            {Number(teacher.experience)}+ yrs experience
                           </span>
                         )}
                       </div>
