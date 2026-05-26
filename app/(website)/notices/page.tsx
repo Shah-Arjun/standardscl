@@ -1,60 +1,55 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, ArrowRight, Tag, X } from "lucide-react";
+import { Calendar, ArrowRight, Tag, X, ArrowLeft } from "lucide-react";
 
 import { SiteLayout } from "@/components/layout/SiteLayout";
 import PageHero from "@/components/shared/PageHero";
 import { getAllNotices } from "@/app/actions/notice";
 import { Notice } from "@/lib/types/notice";
 
-
 const Notices = () => {
   const [notices, setNotices] = useState<Notice[]>([]);
   const [selectedNotice, setSelectedNotice] = useState<Notice | null>(null);
   const [loading, setLoading] = useState(true);
 
+  const fetchNotices = async () => {
+    try {
+      setLoading(true);
+      const res = await getAllNotices();
+      if (!res.success) throw new Error(res.message || "Failed to fetch notices");
 
+      const sorted = Array.isArray(res.data) ? [...res.data].sort((a, b) => b.id - a.id) : [];
+      setNotices(sorted);
 
-    const fetchNotices = async () => {
-      try {
-        setLoading(true);
-
-        const res = await getAllNotices();
-        if (!res.success) {
-          throw new Error(res.message || "Failed to fetch notices");
-        }
-        const sorted = Array.isArray(res.data)
-          ? [...res.data].sort((a, b) => b.id - a.id)
-          : [];
-
-        setNotices(sorted);
-
-        // set default selected notice
-        if (sorted.length > 0) {
-          setSelectedNotice(sorted[0]);
-        }
-      } catch (error) {
-        console.error("Failed to load notices", error);
-      } finally {
-        setLoading(false);
+      if (sorted.length > 0 && !selectedNotice) {
+        setSelectedNotice(sorted[0]);
       }
-    };
-  
+    } catch (error) {
+      console.error("Failed to load notices", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    useEffect(() => {
-      fetchNotices();
-    }, []);
-  
-  
+  useEffect(() => {
+    fetchNotices();
+  }, []);
 
+  const handleSelect = (notice: Notice) => {
+    setSelectedNotice(notice);
+    // Scroll to top on mobile when opening detail
+    // window.scrollTo({ top: 60, behavior: "smooth" });
+  };
 
-
+  const closeDetail = () => {
+    setSelectedNotice(null);
+  };
 
   return (
     <SiteLayout>
-      <PageHero 
+      <PageHero
         title="Notices & News"
         subtitle="Stay updated with the latest notices, events, and important information from our school"
         badge="LATEST ANNOUNCEMENTS"
@@ -62,15 +57,34 @@ const Notices = () => {
 
       <section className="section-padding bg-background min-h-screen">
         <div className="container-school">
+          {/* Mobile Header - Shown only when detail is open */}
+          <AnimatePresence>
+            {selectedNotice && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="lg:hidden flex items-center gap-3 mb-6 sticky top-4 z-50 bg-background/95 backdrop-blur-md py-2"
+              >
+                <button
+                  onClick={closeDetail}
+                  className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <ArrowLeft size={20} />
+                  Back to Notices
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-10">
-
-
-
             {/* LEFT SIDE - Notices List */}
-            <div className="lg:col-span-5 xl:col-span-4">
+            <div className={`lg:col-span-5 xl:col-span-4 transition-all duration-300 ${
+              selectedNotice ? "hidden lg:block" : "block"
+            }`}>
               <div className="sticky top-24">
                 <h2 className="text-3xl font-bold mb-8">All Notices</h2>
-                
+
                 <div className="space-y-5">
                   {notices.map((notice) => (
                     <motion.div
@@ -78,8 +92,8 @@ const Notices = () => {
                       initial={{ opacity: 0, y: 15 }}
                       animate={{ opacity: 1, y: 0 }}
                       whileHover={{ scale: 1.02 }}
-                      onClick={() => setSelectedNotice(notice)}
-                      className={`group p-6 rounded-3xl border-2 border-l-gray-400 cursor-pointer transition-all duration-300
+                      onClick={() => handleSelect(notice)}
+                      className={`group p-6 rounded-3xl border-2 cursor-pointer transition-all duration-300
                         ${selectedNotice?.id === notice.id 
                           ? 'border-primary bg-primary/5 shadow-sm' 
                           : 'border-gray-100 hover:border-primary/30 hover:bg-white'}`}
@@ -87,10 +101,8 @@ const Notices = () => {
                       <div className="flex flex-wrap items-center gap-3 mb-4">
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
                           <Calendar className="w-4 h-4" />
-                          {new Date(notice?.createdAt).toLocaleDateString("en-GB", {
-                            day: "numeric",
-                            month: "short",
-                            year: "numeric",
+                          {new Date(notice.createdAt).toLocaleDateString("en-GB", {
+                            day: "numeric", month: "short", year: "numeric",
                           })}
                         </div>
                         <div className="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full">
@@ -107,8 +119,7 @@ const Notices = () => {
                       </p>
 
                       <div className="mt-4 flex items-center text-primary text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                        Read Full Notice 
-                        <ArrowRight className="ml-2 w-4 h-4" />
+                        Read Full Notice <ArrowRight className="ml-2 w-4 h-4" />
                       </div>
                     </motion.div>
                   ))}
@@ -116,73 +127,62 @@ const Notices = () => {
               </div>
             </div>
 
-
-
             {/* RIGHT SIDE - Detail View */}
-            <div className="lg:col-span-7 xl:col-span-8">
+            <div className={`lg:col-span-7 xl:col-span-8 ${selectedNotice ? "block" : "hidden lg:block"}`}>
               <AnimatePresence mode="wait">
                 {selectedNotice ? (
                   <motion.div
                     key={selectedNotice.id}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    className="bg-white rounded-3xl p-8 lg:p-12 shadow-sm border border-gray-100 min-h-[600px] sticky top-24"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    className="bg-white rounded-3xl p-6 lg:p-12 shadow-sm border border-gray-100 min-h-[600px] flex flex-col"
                   >
-                    <div className="flex justify-between items-start mb-8">
-                      <div className="flex items-center gap-3">
-                        <div className="px-4 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium">
-                          {selectedNotice.category}
-                        </div>
-                        <div className="text-sm text-muted-foreground">
-                          {new Date(selectedNotice?.createdAt).toLocaleDateString("en-GB", {
-                              day: "numeric",
-                              month: "short",
-                              year: "numeric",
-                            })}
-                        </div>
-                      </div>
-
-                      {/* Close Button (visible on mobile) */}
+                    {/* Desktop close button  */}
+                    <div className="hidden lg:flex justify-end mb-4">
                       <button
                         onClick={() => setSelectedNotice(null)}
-                        className="lg:hidden text-gray-400 hover:text-gray-600 transition-colors"
+                        className="text-gray-400 hover:text-gray-600"
                       >
-                        <X size={26} />
+                        <X size={24} />
                       </button>
+                    </div>
+
+                    <div className="flex items-center gap-3 mb-8">
+                      <div className="px-4 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium">
+                        {selectedNotice.category}
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        {new Date(selectedNotice.createdAt).toLocaleDateString("en-GB", {
+                          day: "numeric", month: "short", year: "numeric",
+                        })}
+                      </div>
                     </div>
 
                     <h1 className="font-heading text-3xl lg:text-4xl font-bold leading-tight mb-8">
                       {selectedNotice.title}
                     </h1>
 
-                    <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                    <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed flex-1">
                       {selectedNotice.content}
                     </div>
 
-                    <div className="prose prose-lg mt-12 max-w-none text-gray-700 leading-relaxed">
+                    <div className="prose prose-lg mt-12 text-gray-700">
                       Thank you.
                     </div>
 
-                    <div className="flex justify-between mt-60 pt-8 border-t border-gray-100">
-                      <div className="text-sm text-muted-foreground">
-                        Published By: {selectedNotice.postedBy}
-                      </div>
-                      
-                      <div className=" text-sm text-muted-foreground">
-                        Published on: {new Date(selectedNotice?.createdAt).toLocaleDateString("en-GB", {
-                                day: "numeric",
-                                month: "short",
-                                year: "numeric",
-                              })}
+                    <div className="flex justify-between mt-auto pt-8 border-t border-gray-100 text-sm text-muted-foreground">
+                      <div>Published By: {selectedNotice.postedBy}</div>
+                      <div>
+                        {new Date(selectedNotice.createdAt).toLocaleDateString("en-GB", {
+                          day: "numeric", month: "short", year: "numeric",
+                        })}
                       </div>
                     </div>
                   </motion.div>
                 ) : (
                   <div className="hidden lg:flex h-[500px] items-center justify-center border border-dashed border-gray-200 rounded-3xl">
-                    <div className="text-center">
-                      <p className="text-xl text-muted-foreground">Select a notice from the left to read details</p>
-                    </div>
+                    <p className="text-xl text-muted-foreground">Select a notice from the left to read details</p>
                   </div>
                 )}
               </AnimatePresence>

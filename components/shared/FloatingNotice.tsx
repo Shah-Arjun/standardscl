@@ -10,7 +10,7 @@ import { Notice } from "@/lib/types/notice";
 
 export const FloatingNotice = () => {
   const [isOpen, setIsOpen] = useState(false); // Popup state
-  const [showBanner, setShowBanner] = useState(true); // Banner visibility (default: true)
+  const [showBanner, setShowBanner] = useState(false); // Banner visibility (default: true)
 
   const [notices, setNotices] = useState<Notice[]>([]);
   const [loading, setLoading] = useState(true);
