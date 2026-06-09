@@ -139,7 +139,7 @@ const About = () => {
 
                 <p className="text-gray-600 leading-relaxed">
                   It is a <strong>centre for excellence</strong> where students learn and develop their <strong>full potential</strong>. 
-                  The school is known for its excellent teaching-learning environment with <strong>small class sizes</strong>.
+                  The school is known for its excellent teaching-learning environment with <strong>appropriate class sizes</strong>.
                 </p>
 
                 <p className="text-gray-600 leading-relaxed">
